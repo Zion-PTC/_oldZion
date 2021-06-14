@@ -178,7 +178,7 @@ export default function ZION() {
         <ZionContent top={top} >
           <MenuTop />
           <ProductArea gridPA={gridPA}>
-            {/* <TNLAudiusPlaylist /> */}
+            <TNLAudiusPlaylist />
           </ProductArea>
           <MenuBottom />
         </ZionContent>
