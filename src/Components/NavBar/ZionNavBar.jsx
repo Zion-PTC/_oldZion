@@ -2,6 +2,7 @@ export default function ZionNavBar({ children }) {
   return (
     <div id='nav'
       style={{
+        position: 'relative',
         background: '#0C3A6F',
         gridArea: 'nav',
         height:'100%',

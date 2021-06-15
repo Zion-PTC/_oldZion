@@ -4,7 +4,6 @@ export default function ZionContent({ top, children }) {
       style={{
         background: '#5693DB',
         gridArea: 'content',
-        overflow: 'auto'
       }}>
       <div id='content-grd'
         style={{

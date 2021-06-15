@@ -4,8 +4,8 @@ export default function ZionContainer({ left, children }) {
       style={{
         gridArea: 'container',
         background: 'green',
-        zIndex: '-3',
-        overflow:'auto'
+        overflow: 'auto',
+        height: '100%'
       }}>
       <div id='container-grid'
         style={{

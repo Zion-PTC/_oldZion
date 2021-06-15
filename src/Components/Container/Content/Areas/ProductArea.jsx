@@ -13,7 +13,8 @@ export default function ProductArea({ children, gridPA }) {
         gridArea: 'productarea',
         gridAutoFlow: 'dense',
         background: 'grey',
-        padding:'2px'
+        padding:'2px',
+        overflow: 'auto',
       }}>
       {children}
     </div>

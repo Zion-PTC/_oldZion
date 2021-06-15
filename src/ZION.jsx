@@ -19,6 +19,7 @@ import MetamaskBtn from "./Components/NavBar/Navbar Contents/Web3/MetamaskBtn";
 import MenuBtn from "./Components/NavBar/Navbar Contents/MenuBtn";
 import NavMenu1 from "./Components/NavBar/Navbar Contents/NavMenu1";
 import Web3Connection from "./Components/NavBar/Navbar Contents/Web3Connection";
+import { ZIONGrid } from "./Components/_ZION Styled Components/ZION.styled";
 
 
 
@@ -159,20 +160,14 @@ export default function ZION() {
   return (
     <div id='ZION'
       style={{
-        height: '100vh',
-        position: 'fixed',
+        position: 'relative',
         display: 'grid',
-        gridTemplateColumns: '100vw',
-        gridTemplateRows: '55px 1fr 34px',
+        gridTemplateColumns: '100%',
+        gridTemplateRows: '55px calc(100vh - 89px) 34px',
         gridTemplateAreas: ' "nav" "container" "footer" ',
-        background: 'red'
+        background: 'red',
       }}>
-      <ZionNavBar>
-        <AccountLogo src={logoURL} />
-        <NavMenu1 />
-        <Web3Connection metamask={metamask} metaOK={metaOK} />
-        <MenuBtn onClick={onClick} />
-      </ZionNavBar>
+      
       <ZionContainer left={left}>
         <ZionLBar />
         <ZionContent top={top} >
@@ -184,6 +179,12 @@ export default function ZION() {
         </ZionContent>
         <ZionRBar />
       </ZionContainer>
+      <ZionNavBar>
+        <AccountLogo src={logoURL} />
+        <NavMenu1 />
+        <Web3Connection metamask={metamask} metaOK={metaOK} />
+        <MenuBtn onClick={onClick} />
+      </ZionNavBar>
       <ZionFooter />
     </div>
   )
