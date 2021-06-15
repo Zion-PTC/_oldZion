@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import './App.css'
 import somma from './_JS Functions/somma'
 import { ethers } from 'ethers'
 import Web3 from 'web3'
@@ -12,28 +13,81 @@ import ZionContent from "./Components/Container/Content/ZionContent";
 import ZionRBar from "./Components/Container/Sidebars/ZionRBar";
 import MenuTop from "./Components/Container/Content/Menus/MenuTop";
 import MenuBottom from "./Components/Container/Content/Menus/MenuBottom";
-import ProductArea from "./Components/Container/Content/Areas/ProductArea";
 import TNLAudiusPlaylist from "./Components/Products/TNLAudiusPlaylist";
 import AccountLogo from "./Components/NavBar/Navbar Contents/AccountLogo";
 import MetamaskBtn from "./Components/NavBar/Navbar Contents/Web3/MetamaskBtn";
 import MenuBtn from "./Components/NavBar/Navbar Contents/MenuBtn";
 import NavMenu1 from "./Components/NavBar/Navbar Contents/NavMenu1";
 import Web3Connection from "./Components/NavBar/Navbar Contents/Web3Connection";
-import { ZIONGrid } from "./Components/_ZION Styled Components/ZION.styled";
-
-
+import { ZionGrid, Content, MenuArea, ProductArea, Nav, AccountAvatar, NavMenu, Footer, Button } from "./Components/_ZION Styled Components/ZION.styled";
+import $ from 'jquery'
 
 export default function ZION() {
   // This is the main APP Component. In this Component we set the Layout for the page, by calling one of the preset
   // which are in the Layout folder, for the moment its <ZIONv001>: it accepts 5 zones:
-  //          " . nav . "
-  // " sidebar content rbar "
-  //        " . footer . " '
+  // " nav . "
+  // "content"
+  // "footer"
   // from here we can send props to the ZIONv001 layout to react responsively
   // First we set up a button to show the menu
-  const [navHidden, setNavHidden] = useState(true)
-  const onClick = () => setNavHidden(!navHidden)
-  const top = navHidden ? '-100px' : '0'
+  // const [navHidden, setNavHidden] = useState(true)
+  const [menuActive, setmenuActive] = useState(false)
+  const [menuBarH, setmenuBarH] = useState()
+
+
+  const contentGridTR = 'auto 1fr'
+  const contentHeight = menuActive ? '100%' : 'calc(100% + ' + menuBarH + 'px)'
+
+  useEffect(() => {
+    const docReady = $(function () {
+      const bar = $('#menubar').outerHeight()
+      setmenuBarH(bar)
+
+    })
+
+  }, [])
+
+  function MenuTitle({ children }) {
+    return (
+      <p>{children}</p>
+    )
+  }
+  const playlistMenu = [
+    'TNLDGL',
+    'TNL25'
+  ]
+  const playlistList = playlistMenu.map((list) =>
+    <MenuTitle>{list}</MenuTitle>
+  )
+  console.log(playlistList);
+
+  $('#navmenuitem1').on('click', function (e) {
+    e.preventDefault();
+    setmenuActive(!menuActive)
+
+  })
+
+  // $('#navmenuitem2').on('click', function (e) {
+  //   e.preventDefault();
+  //   onClick()
+  // })
+
+  // $('#navmenuitem3').on('click', function (e) {
+  //   e.preventDefault();
+  //   onClick()
+  // })
+
+  // $('#navmenuitem4').on('click', function (e) {
+  //   e.preventDefault();
+  //   onClick()
+  // })
+
+
+
+  const top = menuActive ? '0' + 'px' : -menuBarH + 'px'
+
+  console.log(top);
+
   // Here we will set up the sidebars movements
   const left = '-144px'
   // this function is just to remind me how to import fuctions from JS files
@@ -43,7 +97,7 @@ export default function ZION() {
   var [gridPA, setgridPA] = useState()
   const mediaQuery = '(max-width: 867px)';
   const mediaQueryList = window.matchMedia(mediaQuery)
-  console.log(mediaQueryList.matches);
+  // console.log(mediaQueryList.matches);
   if (mediaQueryList.matches) { gridPA = '1fr 1fr' } else { gridPA = '1fr 1fr 1fr 1fr' }
   mediaQueryList.addEventListener('change', event => {
     if (event.matches) {
@@ -85,7 +139,7 @@ export default function ZION() {
       // if use address is undefined we show metamask button
       metaOK = eth.isMetaMask
       metamask = <MetamaskBtn />
-      console.log(userAddr);
+      // console.log(userAddr);
     } else {
       eth.on('connect', () => { userAddr = eth.selectedAddress })
 
@@ -156,37 +210,31 @@ export default function ZION() {
 
     }
   })
-
+  console.log(logoURL);
   return (
-    <div id='ZION'
-      style={{
-        position: 'relative',
-        display: 'grid',
-        gridTemplateColumns: '100%',
-        gridTemplateRows: '55px calc(100vh - 89px) 34px',
-        gridTemplateAreas: ' "nav" "container" "footer" ',
-        background: 'red',
-      }}>
-      
-      <ZionContainer left={left}>
-        <ZionLBar />
-        <ZionContent top={top} >
-          <MenuTop />
-          <ProductArea gridPA={gridPA}>
-            <TNLAudiusPlaylist />
-          </ProductArea>
-          <MenuBottom />
-        </ZionContent>
-        <ZionRBar />
-      </ZionContainer>
-      <ZionNavBar>
-        <AccountLogo src={logoURL} />
-        <NavMenu1 />
-        <Web3Connection metamask={metamask} metaOK={metaOK} />
-        <MenuBtn onClick={onClick} />
-      </ZionNavBar>
-      <ZionFooter />
-    </div>
+    <ZionGrid className='Zion'>
+      <Content top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
+        <MenuArea menuActive={menuActive} id='menubar'>
+          {playlistList}
+        </MenuArea>
+        <ProductArea id='productarea' gridTC={gridPA}>
+
+          <TNLAudiusPlaylist></TNLAudiusPlaylist>
+        </ProductArea>
+      </Content>
+      <Nav id='nav'>
+        <AccountAvatar src={logoURL}></AccountAvatar>
+        <NavMenu id='navmenulist'>
+          <li id='navmenuitem1'><a href=''>Playlist</a></li>
+          <li id='navmenuitem2'><a href=''>Tracks</a></li>
+          <li id='navmenuitem3'><a href=''>12"</a></li>
+          <li id='navmenuitem4'><a href=''>Merchandise</a></li>
+        </NavMenu>
+        <MetamaskBtn></MetamaskBtn>
+        <Button gridArea='menubtn'></Button>
+      </Nav>
+      <Footer><p>FOOTER</p></Footer>
+    </ZionGrid>
   )
 
 

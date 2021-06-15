@@ -7,7 +7,8 @@ export default function MetamaskBtn() {
     <button
       onClick={connectMetamask}
       style={{
-        id: 'metamask-btn',
+        id: 'metamaskbtn',
+        gridArea: 'web3',
         fontSize: '60%',
         border: 'solid 1px #174666',
         background: '#E36E1A',
