@@ -80,6 +80,9 @@ export const Footer = styled.footer`
   grid-area: footer;
   background: rgb(34, 27, 162);
   border-top: solid rgba(5, 53, 58, 0.501);
+  p {
+    color: aliceblue;
+  }
 `
 
 export const Button = styled.button`
@@ -91,4 +94,8 @@ export const MetaMaskButton = styled(Button)`
   border: solid 1px #174666;
   border-radius: 3px;
   place-self: center;
+`
+
+const ButtonfromStackOvreflow = styled.button`
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
 `

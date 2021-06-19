@@ -1,8 +1,6 @@
-export default function MetamaskBtn() {
-  function connectMetamask() {
-    window.ethereum.request({ method: 'eth_requestAccounts' })
-  }
+import { connectMetamask } from "../../../../_JS Functions/web3Function";
 
+export default function MetamaskBtn() {
   return (
     <button
       onClick={connectMetamask}

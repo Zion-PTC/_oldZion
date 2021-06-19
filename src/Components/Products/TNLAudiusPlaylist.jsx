@@ -3,7 +3,6 @@ import ProductTrack from './ProductTrack';
 import showData from '../../_JS Functions/Audius Fetch/Playlist Tracks';
 
 const list = showData
-console.log(list);
 
 export default function TNLAudiusPlaylist() {
   const [playlistTracks, setplaylistTracks] = useState()
