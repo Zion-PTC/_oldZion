@@ -18,7 +18,9 @@ import NavMenu1 from "./Components/NavBar/Navbar Contents/NavMenu1";
 // import Web3Connection from "./Components/NavBar/Navbar Contents/Web3Connection";
 import { ethers } from "ethers"
 import useGetBalance from "./Components/Hooks/useGetBalance";
-import useGetUserAddr from "./Components/Hooks/useGetUserAddr";
+// import useGetUserAddr from "./Components/Hooks/useGetUserAddr";
+import useGetAccounts from "./Components/Hooks/useGetAccounts";
+import acc from './Components/States/MetaOK'
 import {
   ZionGrid,
   Content,
@@ -30,18 +32,19 @@ import {
   Footer,
   Button
 } from "./Components/_ZION Styled Components/ZION.styled";
-import {
-  eth,
-  userAddr,
-  isMeta,
-  connectMetamask,
-  onEthConnect,
-  onAccountChange,
-  onChainChange,
-  getMainNetBalance
-} from "./_JS Functions/web3Function";
+// import {
+//   eth,
+  // userAddr,
+  // isMeta,
+  // connectMetamask,
+  // onEthConnect,
+  // onAccountChange,
+  // onChainChange,
+  // getMainNetBalance
+// } from "./_JS Functions/web3Function";
 import NFTInvite from "./Components/Container/Content/Areas/NFTInvite";
 import $ from 'jquery'
+import MetamaskBtn from "./Components/NavBar/Navbar Contents/Web3/MetamaskBtn";
 
 
 function MenuTitle({ children }) {
@@ -102,13 +105,18 @@ export default function ZION() {
     }
   })
   // ===========================================================
-
-
-
-  const t = useGetUserAddr()
-  const x = useGetBalance(t)
-
-
+const eth = window.ethereum
+var a = ''
+new Promise (() => {
+  if (eth !== undefined) {
+    const addressOK = eth.selectedAddress
+    if (addressOK === null) {
+      console.log('nul')
+      a = <MetamaskBtn></MetamaskBtn>
+    }
+    else { console.log('got accounts'); }
+  } 
+})
   return (
     <ZionGrid className='Zion'>
       <Content top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
@@ -127,7 +135,7 @@ export default function ZION() {
           <li id='navmenuitem3'><a href=''>12"</a></li>
           <li id='navmenuitem4'><a href=''>Merchandise</a></li>
         </NavMenu>
-        {/* {metamask} */}
+        {a}
         <Button gridArea='menubtn'></Button>
       </Nav>
       <Footer><p>FOOTER</p></Footer>
