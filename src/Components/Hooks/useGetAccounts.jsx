@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+// =========================== ETHEREUM FUNCTIONS ==============================
 function Eth() {
   const eth = window.ethereum
   const [addr, setaddr] = useState()
@@ -11,39 +12,38 @@ function Eth() {
   }, 100);
   return [addr, isMetaMask]
 }
-
 // =========================== PROMISES ==============================
 function UserAddress() {
   var myPromise = new Promise((res) => {
     var addr = Eth()[0]
-    if (addr === null || addr === undefined) {} else { res(addr) }
+    if (addr === null || addr === undefined) { } else { res(addr) }
   })
   return myPromise
 }
 
 function UserConnected() {
-  var myPromise = new Promise((res,rej) => {
+  var isUserConnected = new Promise((res, rej) => {
     var addr = Eth()[0]
-    if (addr === null || addr === undefined) {rej(false)} else { res(true) }
+    if (addr === null || addr === undefined) { rej(false) } else { res(true) }
   })
-  return myPromise
+  return isUserConnected
 }
 
 function IsMetaMask() {
   var myPromise = new Promise((res, rej) => {
     var isMetaMask = Eth()[1]
-    if (isMetaMask) {res(true)} else { rej(false) }
+    if (isMetaMask) { res(true) } else { rej(false) }
   })
   return myPromise
 }
 // ===================================================================
-
 export default function useGetAccounts() {
   const eth = window.ethereum
   var [user, setUser] = useState()
   var [connected, setConnected] = useState(false)
   var [dialogMessage, setDialogMessage] = useState()
   var [isMetaMask, setIsMetaMask] = useState(eth.isMetaMask)
+
   console.log(connected);
 
   UserAddress().then(res => setUser(res))

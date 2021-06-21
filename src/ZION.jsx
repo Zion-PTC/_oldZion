@@ -124,6 +124,7 @@ export default function ZION() {
         <PRODUCTAREA id='productarea' gridTC={gridPA}>
           <p>{metaok}</p>
           <p>{n}</p>
+          <p>pump, pump, pump it up ACIDRATS!!!</p>
         </PRODUCTAREA>
         <Lbar></Lbar>
       </CONTENT>
