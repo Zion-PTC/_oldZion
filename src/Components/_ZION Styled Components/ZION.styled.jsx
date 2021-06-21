@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
-export const ZionGrid = styled.div`
+export const ZIONGRID = styled.div`
   display: grid;
   grid-template-rows: 55px calc(100vh - 110px) 55px;
   grid-template-areas: "nav" "content" "footer";
 `
-const menuBarH = '100px'
-
-export const Content = styled.div`
+export const CONTENT = styled.div`
   position: relative;
   top: ${props => props.top};
   height: ${props => props.height};
@@ -19,13 +17,11 @@ export const Content = styled.div`
   grid-template-areas: "menu" "productarea";
   transition: ease 0.5s;
 `
-
-export const MenuArea = styled.div`
+export const MENUAREA = styled.div`
   grid-area: menu;
   background: rgb(199, 48, 48);
 `
-
-export const ProductArea = styled.div`
+export const PRODUCTAREA = styled.div`
   position: relative;
   grid-area: productarea;
   height: 100%;
@@ -36,7 +32,7 @@ export const ProductArea = styled.div`
   grid-template-columns: ${props => props.gridTC};
   grid-auto-rows: 55px;
 `
-export const Nav = styled.nav`
+export const NAV = styled.nav`
   position: relative;
   grid-area: nav;
   background: rgb(34, 27, 162);
@@ -46,14 +42,12 @@ export const Nav = styled.nav`
   grid-template-rows: 27.5px 27.5px;
   grid-template-areas: "logo navmenu web3 menubtn" "logo navmenu web3 menubtn";
 `
-
-export const AccountAvatar = styled.img`
+export const ACCOUNTAVATAR = styled.img`
   height: 85%;
   grid-area: logo;
   place-self: center;
 `
-
-export const NavMenu = styled.ul`
+export const NavMenuStyled = styled.ul`
   grid-area: navmenu;
   width: 100%;
   height: 100%;
@@ -70,12 +64,11 @@ export const NavMenu = styled.ul`
     font-size: 70%;
   }
 `
-
 export const NavMenuList = styled.li`
 
 `
 
-export const Footer = styled.footer`
+export const FOOTER = styled.footer`
   position: relative;
   grid-area: footer;
   background: rgb(34, 27, 162);
@@ -85,17 +78,32 @@ export const Footer = styled.footer`
   }
 `
 
-export const Button = styled.button`
+export const BUTTON = styled.button`
   grid-area: ${props => props.gridArea};
 `
 
-export const MetaMaskButton = styled(Button)`
+export const MetaMaskButton = styled(BUTTON)`
   font-size: 60%;
   border: solid 1px #174666;
   border-radius: 3px;
   place-self: center;
 `
 
-const ButtonfromStackOvreflow = styled.button`
+export const buttonfromStackOvreflow = styled.button`
   box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
+`
+
+export const WEB3CONN = styled.div`
+  grid-area: web3;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas: ". . ." ". a ." ". b .";
+  button {
+    color: #F6E6D8;
+    grid-area: a;
+    border-radius: 1em;
+    background: #E17D25;
+    border: solid 0.1em #A15614;
+  }
 `

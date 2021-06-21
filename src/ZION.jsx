@@ -1,50 +1,22 @@
 import React, { useEffect, useState } from "react";
 import './App.css'
 import database from './Database/Accounts.json'
-import { NFTInviteAbi } from './blockchain/ABIs/NFTInviteAbi'
-import ZionNavBar from './Components/NavBar/ZionNavBar'
-import ZionContainer from "./Components/Container/ZionContainer";
-import ZionFooter from "./Components/Footer/ZionFooter";
-import ZionLBar from "./Components/Container/Sidebars/ZionLBar";
-import ZionContent from "./Components/Container/Content/ZionContent";
-import ZionRBar from "./Components/Container/Sidebars/ZionRBar";
-import MenuTop from "./Components/Container/Content/Menus/MenuTop";
-import MenuBottom from "./Components/Container/Content/Menus/MenuBottom";
-import TNLAudiusPlaylist from "./Components/Products/TNLAudiusPlaylist";
-import AccountLogo from "./Components/NavBar/Navbar Contents/AccountLogo";
-// import MetamaskBtn from "./Components/NavBar/Navbar Contents/Web3/MetamaskBtn";
-import MenuBtn from "./Components/NavBar/Navbar Contents/MenuBtn";
-import NavMenu1 from "./Components/NavBar/Navbar Contents/NavMenu1";
-// import Web3Connection from "./Components/NavBar/Navbar Contents/Web3Connection";
-import { ethers } from "ethers"
-import useGetBalance from "./Components/Hooks/useGetBalance";
-// import useGetUserAddr from "./Components/Hooks/useGetUserAddr";
-import useGetAccounts from "./Components/Hooks/useGetAccounts";
-import acc from './Components/States/MetaOK'
+import NavMenu from "./Components/Areas/NAV/NavMenu";
+import Web3Connection from "./Components/Areas/NAV/Web3Connection";
 import {
-  ZionGrid,
-  Content,
-  MenuArea,
-  ProductArea,
-  Nav,
-  AccountAvatar,
-  NavMenu,
-  Footer,
-  Button
+  ZIONGRID,
+  CONTENT,
+  MENUAREA,
+  PRODUCTAREA,
+  NAV,
+  ACCOUNTAVATAR,
+  FOOTER,
+  BUTTON
 } from "./Components/_ZION Styled Components/ZION.styled";
-// import {
-//   eth,
-  // userAddr,
-  // isMeta,
-  // connectMetamask,
-  // onEthConnect,
-  // onAccountChange,
-  // onChainChange,
-  // getMainNetBalance
-// } from "./_JS Functions/web3Function";
-import NFTInvite from "./Components/Container/Content/Areas/NFTInvite";
 import $ from 'jquery'
-import MetamaskBtn from "./Components/NavBar/Navbar Contents/Web3/MetamaskBtn";
+import Lbar from "./Components/Areas/LBar/Lbar";
+import useGetAccounts from "./Components/Hooks/useGetAccounts";
+import useEthereum from "./Components/Hooks/useEthereum";
 
 
 function MenuTitle({ children }) {
@@ -66,7 +38,7 @@ export default function ZION() {
   const [menuBarH, setmenuBarH] = useState()
   const contentGridTR = 'auto 1fr'
   const contentHeight = menuActive ? '100%' : 'calc(100% + ' + menuBarH + 'px)'
-  const top = menuActive ? '0' + 'px' : -menuBarH + 'px'
+  const top = menuActive ? ('0' + 'px') : (-menuBarH + 'px')
   const playlistMenu = [
     'TNLDGL',
     'TNL25'
@@ -105,43 +77,64 @@ export default function ZION() {
     }
   })
   // ===========================================================
-const eth = window.ethereum
-var a = ''
-new Promise (() => {
-  if (eth !== undefined) {
-    const addressOK = eth.selectedAddress
-    if (addressOK === null) {
-      console.log('nul')
-      a = <MetamaskBtn></MetamaskBtn>
+
+  if (window.ethereum) {
+    handleEthereum();
+  } else {
+    window.addEventListener('ethereum#initialized', handleEthereum, {
+      once: true,
+    });
+
+    // If the event is not dispatched by the end of the timeout,
+    // the user probably doesn't have MetaMask installed.
+    setTimeout(handleEthereum, 3000); // 3 seconds
+  }
+  
+  function handleEthereum() {
+    var metaok = ''
+    var addr = ''
+    const { ethereum } = window;
+    if (ethereum && ethereum.isMetaMask) {
+      // console.log('Ethereum successfully detected!');
+      metaok = 'am decentralized'
+      addr = window.ethereum.selectedAddress
+      // console.log(addr);
+      
+      // Access the decentralized web!
+    } else {
+      // console.log('Please install MetaMask!');
+      metaok = 'am not decentralized'
     }
-    else { console.log('got accounts'); }
-  } 
-})
+    return [metaok, addr]
+  }
+
+  var metaok= handleEthereum()[0]
+  var addr = handleEthereum()[1]
+  var n = addr ? n = addr : n = 'not connected'
+  // console.log(addr);
+
+  // ===========================================================
+
   return (
-    <ZionGrid className='Zion'>
-      <Content top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
-        <MenuArea menuActive={menuActive} id='menubar'>
+    <ZIONGRID className='Zion'>
+      <CONTENT top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
+        <MENUAREA menuActive={menuActive} id='menubar'>
           {playlistList}
-        </MenuArea>
-        <ProductArea id='productarea' gridTC={gridPA}>
-          {/* {invite} */}
-        </ProductArea>
-      </Content>
-      <Nav id='nav'>
-        <AccountAvatar src={logoURL}></AccountAvatar>
-        <NavMenu id='navmenulist'>
-          <li id='navmenuitem1'><a href=''>Playlist</a></li>
-          <li id='navmenuitem2'><a href=''>Tracks</a></li>
-          <li id='navmenuitem3'><a href=''>12"</a></li>
-          <li id='navmenuitem4'><a href=''>Merchandise</a></li>
-        </NavMenu>
-        {a}
-        <Button gridArea='menubtn'></Button>
-      </Nav>
-      <Footer><p>FOOTER</p></Footer>
-    </ZionGrid>
+        </MENUAREA>
+        <PRODUCTAREA id='productarea' gridTC={gridPA}>
+          <p>{metaok}</p>
+          <p>{n}</p>
+        </PRODUCTAREA>
+        <Lbar></Lbar>
+      </CONTENT>
+      <NAV id='nav'>
+        <ACCOUNTAVATAR src={logoURL}></ACCOUNTAVATAR>
+        <NavMenu></NavMenu>
+        <Web3Connection></Web3Connection>
+        <BUTTON gridArea='menubtn'></BUTTON>
+      </NAV>
+      <FOOTER><p>FOOTER</p></FOOTER>
+    </ZIONGRID>
   )
-
-
 }
 
