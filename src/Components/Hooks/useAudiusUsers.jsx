@@ -9,7 +9,7 @@ export default function useAudiusUsers(query) {
     async function fetchData() {
       try {
         setLoading(true)
-        const json =await fetchAudiusUsers(query)
+        const json = await fetchAudiusUsers(query)
         setResults(
           json.data.map(item => item.name)
         )
