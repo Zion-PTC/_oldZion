@@ -1,23 +1,46 @@
 {
-  "accounts" : [
+  "accounts": [
     {
-      "name":"TNL Records",
-      "logoURL":"https://ipfs.io/ipfs/Qme9rVovLmYdwRiETVApcYUoixqRiaPvksb33FrFX2QucG?filename=logo%20tnl%20White.png",
+      "name": "TNL Records",
+      "logoURL": "https://ipfs.io/ipfs/Qme9rVovLmYdwRiETVApcYUoixqRiaPvksb33FrFX2QucG?filename=logo%20tnl%20White.png",
       "navbarColor": "#0C3A6F",
       "nftInviteAddr": "0xDc59783e7970D5f1313edD06f91baC178E5424bC",
       "menu": [
-        { "navbar": { "menu1":"","menu2":""}},
-        { "rbar": { "menu1":"","menu2":""}},
-        { "lbar": { "menu1":"","menu2":""}},
-        { "footer": { "menu1":"","menu2":""}}
+        {
+          "navbar": {
+            "Playlists": [
+              "TNLDGL",
+              "TNL25"
+            ],
+            "Vinyls": [
+              "VYNYL 1",
+              "VINYL 2"
+            ]
+          }
+        },
+        {
+          "rbar": {
+            "menu1": "",
+            "menu2": ""
+          }
+        },
+        {
+          "lbar": {
+            "menu1": "",
+            "menu2": ""
+          }
+        },
+        {
+          "footer": {
+            "menu1": "",
+            "menu2": ""
+          }
+        }
       ]
-      
-    
-    
     },
     {
-      "name":"Psychoquake Records",
-      "logoURL":""
+      "name": "Psychoquake Records",
+      "logoURL": ""
     }
   ]
 }
