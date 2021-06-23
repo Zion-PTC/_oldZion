@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import LbarDWeb from './Content/LbarDWeb'
+import { LBAR } from '../../_ZION Styled Components/ZION.styled'
 
 
 export default function Lbar() {
@@ -19,15 +20,8 @@ export default function Lbar() {
     lbarcontent = <LbarDWeb></LbarDWeb> }
 
   return (
-    <div id='lbar'
-      style={{
-        background: '#0909a1',
-        position: 'relative',
-        width: '300px',
-        gridArea: 'productarea',
-        left: `${pos}`,
-        transition: 'ease 0.5s'
-      }}
+    <LBAR id='lbar'
+    left = {pos}
     >
       <button id='button'
         style={{
@@ -37,6 +31,6 @@ export default function Lbar() {
         onClick={handleToggle}
       >MENU</button>
       {lbarcontent}
-    </div>
+    </LBAR>
   )
 }

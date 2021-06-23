@@ -15,8 +15,6 @@ import {
 } from "./Components/_ZION Styled Components/ZION.styled";
 import $ from 'jquery'
 import Lbar from "./Components/Areas/LBar/Lbar";
-import useGetAccounts from "./Components/Hooks/useGetAccounts";
-import useEthereum from "./Components/Hooks/useEthereum";
 
 
 function MenuTitle({ children }) {
@@ -78,42 +76,6 @@ export default function ZION() {
   })
   // ===========================================================
 
-  if (window.ethereum) {
-    handleEthereum();
-  } else {
-    window.addEventListener('ethereum#initialized', handleEthereum, {
-      once: true,
-    });
-
-    // If the event is not dispatched by the end of the timeout,
-    // the user probably doesn't have MetaMask installed.
-    setTimeout(handleEthereum, 3000); // 3 seconds
-  }
-  
-  function handleEthereum() {
-    var metaok = ''
-    var addr = ''
-    const { ethereum } = window;
-    if (ethereum && ethereum.isMetaMask) {
-      // console.log('Ethereum successfully detected!');
-      metaok = 'am decentralized'
-      addr = window.ethereum.selectedAddress
-      // console.log(addr);
-      
-      // Access the decentralized web!
-    } else {
-      // console.log('Please install MetaMask!');
-      metaok = 'am not decentralized'
-    }
-    return [metaok, addr]
-  }
-
-  var metaok= handleEthereum()[0]
-  var addr = handleEthereum()[1]
-  var n = addr ? n = addr : n = 'not connected'
-  // console.log(addr);
-
-  // ===========================================================
 
   return (
     <ZIONGRID className='Zion'>
@@ -122,9 +84,6 @@ export default function ZION() {
           {playlistList}
         </MENUAREA>
         <PRODUCTAREA id='productarea' gridTC={gridPA}>
-          <p>{metaok}</p>
-          <p>{n}</p>
-          <p>pump, pump, pump it up ACIDRATS!!!</p>
         </PRODUCTAREA>
         <Lbar></Lbar>
       </CONTENT>

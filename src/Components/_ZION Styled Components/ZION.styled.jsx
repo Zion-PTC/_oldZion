@@ -60,12 +60,24 @@ export const NavMenuStyled = styled.ul`
   justify-content: space-around;
   a {
     text-decoration: none;
-    color: white;
+    color: aliceblue;
     font-size: 70%;
   }
 `
 export const NavMenuList = styled.li`
 
+`
+
+export const LBAR = styled.div`
+  background: #0909a1 ;
+  position: relative;
+  width: 300px;
+  grid-area: productarea;
+  left: ${props => props.left};
+  transition: ease 0.5s;
+  p {
+    color: aliceblue;
+  }
 `
 
 export const FOOTER = styled.footer`
