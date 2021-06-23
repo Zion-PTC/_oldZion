@@ -1,71 +1,40 @@
 import React, { useEffect, useState } from "react";
-import './App.css'
-import database from './Database/Accounts.json'
-import NavMenu from "./Components/Areas/NAV/NavMenu";
-import Web3Connection from "./Components/Areas/NAV/Web3Connection";
-import {
-  ZIONGRID,
-  CONTENT,
-  MENUAREA,
-  PRODUCTAREA,
-  NAV,
-  ACCOUNTAVATAR,
-  FOOTER,
-  BUTTON
-} from "./Components/_ZION Styled Components/ZION.styled";
+import styled from "styled-components";
 import $ from 'jquery'
-import Lbar from "./Components/Areas/LBar/Lbar";
+import './App.css'
+
+import database from './Database/Accounts.json'
+
+import Nav from "./Components/Areas/Nav/Nav";
+import Content from "./Components/Areas/Content/Content";
+import Footer from "./Components/Areas/Footer/Footer";
+
+import AccountAvatar from "./Components/Areas/Nav/Content/AccountAvatar";
+import NavMenu from "./Components/Areas/Nav/Content/NavMenu";
+import Web3Connection from "./Components/Areas/Nav/Content/Web3Connection";
+import NavButton from "./Components/Areas/Nav/Content/NavButton";
+
+import Lbar from "./Components/Areas/Content/LBar/Lbar";
+import Menu from "./Components/Areas/Content/Menu/Menu";
+import Product from "./Components/Areas/Content/Product/Product";
+import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 
 
-function MenuTitle({ children }) {
-  return (
-    <p>{children}</p>
-  )
-}
-
-
-// ========================= APPLICATION
-
-export default function ZION() {
-  // ========================= CONSTANTS
-  const accounts = database
-  const navbarColor = accounts.accounts[0].navbarColor
-  const logoURL = accounts.accounts[0].logoURL
-
-  const [menuActive, setmenuActive] = useState(false)
-  const [menuBarH, setmenuBarH] = useState()
-  const contentGridTR = 'auto 1fr'
-  const contentHeight = menuActive ? '100%' : 'calc(100% + ' + menuBarH + 'px)'
-  const top = menuActive ? ('0' + 'px') : (-menuBarH + 'px')
-  const playlistMenu = [
-    'TNLDGL',
-    'TNL25'
-  ]
-
-  // ========================= NAV BAR LOGIC ===============
-  useEffect(() => {
-    const docReady = $(function () {
-      const bar = $('#menubar').outerHeight()
-      setmenuBarH(bar)
-    })
-  }, [])
-
-  const playlistList = playlistMenu.map((list) =>
-    <MenuTitle key={list}>{list}</MenuTitle>
-  );
-
+function AppLogic() {
+  var [menuHidden, setmenuHidden] = useState(false)
+  var [gridPA, setgridPA] = useState()
+  var [menuBarH, setmenuBarH] = useState()
+  // funzione che determina lo stato del menu
+  // dipende dal click effettuato sulla lista di elementi in NAV
   $('#navmenuitem1').on('click', function (e) {
     e.preventDefault();
-    setmenuActive(!menuActive)
+    setmenuHidden(!menuHidden)
   })
 
-  // ========================= RESPONSIVENESS ==================
-  // Here we will set up the sidebars movements
-  // here we create a state to manate the number of columns in the product area
-  var [gridPA, setgridPA] = useState()
+  // This functions handles the gridPA dimention based on
+  // Window dimension
   const mediaQuery = '(max-width: 867px)';
   const mediaQueryList = window.matchMedia(mediaQuery)
-  // console.log(mediaQueryList.matches);
   if (mediaQueryList.matches) { gridPA = '1fr 1fr' } else { gridPA = '1fr 1fr 1fr 1fr' }
   mediaQueryList.addEventListener('change', event => {
     if (event.matches) {
@@ -74,26 +43,62 @@ export default function ZION() {
       setgridPA('1fr 1fr 1fr 1fr')
     }
   })
-  // ===========================================================
 
+  useEffect(() => {
+    $(function () {
+      const bar = $('#menubar').outerHeight()
+      setmenuBarH(bar)
+    })
+  }, [])
+
+  return [menuHidden, gridPA, menuBarH]
+}
+
+
+const ZIONGRID = styled.div`
+  display: grid;
+  grid-template-rows: 55px calc(100vh - 110px) 55px;
+  grid-template-areas: "nav" "content" "footer";
+`
+
+
+// ========================= APPLICATION
+
+export default function ZION() {
+  // ========================= DATAS
+  const accounts = database
+  const navbarColor = accounts.accounts[0].navbarColor
+  const logoURL = accounts.accounts[0].logoURL
+  const playlistMenu = [
+    'TNLDGL',
+    'TNL25'
+  ]
+
+  const menuHidden = AppLogic()[0]
+  const gridPA = AppLogic()[1]
+  const menuBarH = AppLogic()[2]
+
+  const eth = window.ethereum
+
+  // qui si potrebbero caricare le condizioni
 
   return (
     <ZIONGRID className='Zion'>
-      <CONTENT top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
-        <MENUAREA menuActive={menuActive} id='menubar'>
-          {playlistList}
-        </MENUAREA>
-        <PRODUCTAREA id='productarea' gridTC={gridPA}>
-        </PRODUCTAREA>
+      <Content menuHidden={menuHidden} menuBarH={menuBarH}>
+        <Menu playlistMenu={playlistMenu} eth={eth}>
+        </Menu>
+        <Product gridPA={gridPA}>
+          <TNLAudiusPlaylist/>
+        </Product>
         <Lbar></Lbar>
-      </CONTENT>
-      <NAV id='nav'>
-        <ACCOUNTAVATAR src={logoURL}></ACCOUNTAVATAR>
+      </Content>
+      <Nav>
+        <AccountAvatar logoURL={logoURL}></AccountAvatar>
         <NavMenu></NavMenu>
-        <Web3Connection></Web3Connection>
-        <BUTTON gridArea='menubtn'></BUTTON>
-      </NAV>
-      <FOOTER><p>FOOTER</p></FOOTER>
+        <Web3Connection eth={eth}/>
+        <NavButton/>
+      </Nav>
+      <Footer><p>Footer</p></Footer>
     </ZIONGRID>
   )
 }

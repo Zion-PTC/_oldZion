@@ -1,4 +1,22 @@
-import {NavMenuStyled} from "../../_ZION Styled Components/ZION.styled"
+import styled from "styled-components"
+
+const NAVMENU = styled.ul`
+  grid-area: navmenu;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  a {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 70%;
+  }
+`
 
 function NoDNavMenu() {
   return (
@@ -32,8 +50,8 @@ export default function NavMenu() {
   if (eth !== undefined) { navmenu = <DWebNavMenu></DWebNavMenu> }
 
   return (
-    <NavMenuStyled id='navmenulist'>
+    <NAVMENU id='navmenulist'>
       {navmenu}
-    </NavMenuStyled>
+    </NAVMENU>
   )
 }

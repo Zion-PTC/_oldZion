@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 
-export const ZIONGRID = styled.div`
-  display: grid;
-  grid-template-rows: 55px calc(100vh - 110px) 55px;
-  grid-template-areas: "nav" "content" "footer";
-`
+
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const CONTENT = styled.div`
   position: relative;
   top: ${props => props.top};
@@ -17,10 +14,7 @@ export const CONTENT = styled.div`
   grid-template-areas: "menu" "productarea";
   transition: ease 0.5s;
 `
-export const MENUAREA = styled.div`
-  grid-area: menu;
-  background: rgb(199, 48, 48);
-`
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const PRODUCTAREA = styled.div`
   position: relative;
   grid-area: productarea;
@@ -32,6 +26,8 @@ export const PRODUCTAREA = styled.div`
   grid-template-columns: ${props => props.gridTC};
   grid-auto-rows: 55px;
 `
+
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const NAV = styled.nav`
   position: relative;
   grid-area: nav;
@@ -42,11 +38,7 @@ export const NAV = styled.nav`
   grid-template-rows: 27.5px 27.5px;
   grid-template-areas: "logo navmenu web3 menubtn" "logo navmenu web3 menubtn";
 `
-export const ACCOUNTAVATAR = styled.img`
-  height: 85%;
-  grid-area: logo;
-  place-self: center;
-`
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const NavMenuStyled = styled.ul`
   grid-area: navmenu;
   width: 100%;
@@ -64,10 +56,8 @@ export const NavMenuStyled = styled.ul`
     font-size: 70%;
   }
 `
-export const NavMenuList = styled.li`
 
-`
-
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const LBAR = styled.div`
   background: #0909a1 ;
   position: relative;
@@ -80,6 +70,7 @@ export const LBAR = styled.div`
   }
 `
 
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const FOOTER = styled.footer`
   position: relative;
   grid-area: footer;
@@ -89,22 +80,33 @@ export const FOOTER = styled.footer`
     color: aliceblue;
   }
 `
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
+export const ZIONGRID = styled.div`
+  display: grid;
+  grid-template-rows: 55px calc(100vh - 110px) 55px;
+  grid-template-areas: "nav" "content" "footer";
+`
 
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
+export const MENUAREA = styled.div`
+  grid-area: menu;
+  background: rgb(199, 48, 48);
+`
+
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
+export const ACCOUNTAVATAR = styled.img`
+  height: 85%;
+  grid-area: logo;
+  place-self: center;
+`
+
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const BUTTON = styled.button`
   grid-area: ${props => props.gridArea};
 `
 
-export const MetaMaskButton = styled(BUTTON)`
-  font-size: 60%;
-  border: solid 1px #174666;
-  border-radius: 3px;
-  place-self: center;
-`
 
-export const buttonfromStackOvreflow = styled.button`
-  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
-`
-
+// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const WEB3CONN = styled.div`
   grid-area: web3;
   display: grid;
@@ -118,4 +120,8 @@ export const WEB3CONN = styled.div`
     background: #E17D25;
     border: solid 0.1em #A15614;
   }
+`
+
+export const buttonfromStackOvreflow = styled.button`
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
 `

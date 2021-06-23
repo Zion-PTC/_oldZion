@@ -105,5 +105,5 @@ export default function useWeb3() {
 
   }StatusHandling()
 
-  return [userChainId, userAddr, userStatus]
+  return [eth, userChainId, userAddr, userStatus]
 }
