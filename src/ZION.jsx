@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import $ from 'jquery'
 import './App.css'
 
 import database from './Database/Accounts.json'
@@ -19,53 +17,16 @@ import Menu from "./Components/Areas/Content/Menu/Menu";
 import Product from "./Components/Areas/Content/Product/Product";
 import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 
-
-function AppLogic() {
-  var [menuHidden, setmenuHidden] = useState(false)
-  var [gridPA, setgridPA] = useState()
-  var [menuBarH, setmenuBarH] = useState()
-  // funzione che determina lo stato del menu
-  // dipende dal click effettuato sulla lista di elementi in NAV
-  $('#navmenuitem1').on('click', function (e) {
-    e.preventDefault();
-    setmenuHidden(!menuHidden)
-  })
-
-  // This functions handles the gridPA dimention based on
-  // Window dimension
-  const mediaQuery = '(max-width: 867px)';
-  const mediaQueryList = window.matchMedia(mediaQuery)
-  if (mediaQueryList.matches) { gridPA = '1fr 1fr' } else { gridPA = '1fr 1fr 1fr 1fr' }
-  mediaQueryList.addEventListener('change', event => {
-    if (event.matches) {
-      setgridPA('1fr 1fr')
-    } else {
-      setgridPA('1fr 1fr 1fr 1fr')
-    }
-  })
-
-  useEffect(() => {
-    $(function () {
-      const bar = $('#menubar').outerHeight()
-      setmenuBarH(bar)
-    })
-  }, [])
-
-  return [menuHidden, gridPA, menuBarH]
-}
-
+import { useSelector } from "react-redux";
+import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
 
 const ZIONGRID = styled.div`
   display: grid;
   grid-template-rows: 55px calc(100vh - 110px) 55px;
   grid-template-areas: "nav" "content" "footer";
 `
-
-
 // ========================= APPLICATION
-
 export default function ZION() {
-  // ========================= DATAS
   const accounts = database
   const navbarColor = accounts.accounts[0].navbarColor
   const logoURL = accounts.accounts[0].logoURL
@@ -74,9 +35,9 @@ export default function ZION() {
     'TNL25'
   ]
 
-  const menuHidden = AppLogic()[0]
-  const gridPA = AppLogic()[1]
-  const menuBarH = AppLogic()[2]
+  const navBarMenu = useSelector(selectNavBarMenu)
+  const menuHidden = navBarMenu.hidden
+  const menuBarH = navBarMenu.menuBarH
 
   const eth = window.ethereum
 
@@ -87,7 +48,7 @@ export default function ZION() {
       <Content menuHidden={menuHidden} menuBarH={menuBarH}>
         <Menu playlistMenu={playlistMenu} eth={eth}>
         </Menu>
-        <Product gridPA={gridPA}>
+        <Product>
           <TNLAudiusPlaylist/>
         </Product>
         <Lbar></Lbar>

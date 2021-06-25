@@ -14,9 +14,9 @@ const CONTENT = styled.div`
 `
 
 export default function Content({ children, menuHidden, menuBarH }) {
-  const contentHeight = menuHidden ? '100%' : 'calc(100% + ' + menuBarH + 'px)'
+  const contentHeight = menuHidden ? 'calc(100% + ' + menuBarH + 'px)' : '100%'
   const contentGridTR = 'auto 1fr'
-  const top = menuHidden ? ('0' + 'px') : (-menuBarH + 'px')
+  const top = menuHidden ? (-menuBarH + 'px') : ('0' + 'px')
 
   return (
     <CONTENT top={top} gridTR={contentGridTR} height={contentHeight} id='content'>

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setMenuBarH } from '../../../../features/navBarMenu/navBarMenuSlice';
 import styled from 'styled-components'
-import MenuOkWeb3 from './Content/MenuOkWeb3';
 
 const MENUAREA = styled.div`
   grid-area: menu;
@@ -10,35 +11,24 @@ const MENUAREA = styled.div`
 const MENUTITLE = styled.p`
   `
 
-function Ok(params) {
-
-}
 
 // al posto di playlilst menu qui dovrebbe arrivar eun contenuto che si basa
 // sulla selezione fatta dall'utente nel navbar
 
 export default function Menu({ playlistMenu, eth }) {
-  var [selectedMenu, setSelectedMenu] = useState([])
-  var [menuArea, setMenuArea] = useState()
-  var [menuHidden, setMenuHidden] = useState()
-  
-  
-  
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    if (eth === undefined) { setMenuHidden(true) }
-    if (eth !== undefined) { setMenuHidden(false) }
-  }, [])
-  
+    dispatch(setMenuBarH())
+  })
+
   const playlistList = playlistMenu.map((list) =>
-  <MENUTITLE key={list}>{list}</MENUTITLE>
+    <MENUTITLE key={list}>{list}</MENUTITLE>
   );
-  
-  console.log(menuHidden);
 
   return (
     <MENUAREA id='menubar'>
       {playlistList}
     </MENUAREA>
   )
-
 }

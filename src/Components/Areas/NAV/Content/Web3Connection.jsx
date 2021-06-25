@@ -3,8 +3,6 @@ import NoWeb3 from './NoWeb3'
 
 export default function Web3Connection({eth}) {
 
-  console.log(eth);
-
   // ========================= RENDER CONDITIONS
   var navmenu = ''
   if (eth === undefined) { navmenu = <NoWeb3></NoWeb3> }

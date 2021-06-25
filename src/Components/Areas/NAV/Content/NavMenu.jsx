@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import { useDispatch } from "react-redux"
+import { setNavBarMenu } from "../../../../features/navBarMenu/navBarMenuSlice"
+
 
 const NAVMENU = styled.ul`
   grid-area: navmenu;
@@ -16,26 +19,35 @@ const NAVMENU = styled.ul`
     color: aliceblue;
     font-size: 70%;
   }
+  p {
+    color: aliceblue;
+    font-size: 70%;
+    :hover {
+      cursor: pointer;
+    }
+  }
 `
 
 function NoDNavMenu() {
+  const dispatch = useDispatch()
   return (
     <>
-      <li id='navmenuitem1'><a href=''>Playlist</a></li>
-      <li id='navmenuitem2'><a href=''>Tracks</a></li>
-      <li id='navmenuitem3'><a href=''>12"</a></li>
-      <li id='navmenuitem4'><a href=''>Merchandise</a></li>
+      <li onClick={() => dispatch(setNavBarMenu())} id='navmenuitem1'><p>Playlist</p></li>
+      <li id='navmenuitem2'><p>Tracks</p></li>
+      <li id='navmenuitem3'><p>12"</p></li>
+      <li id='navmenuitem4'><p>Merchandise</p></li>
     </>
   )
 }
 
 function DWebNavMenu() {
+  const dispatch = useDispatch()
   return (
     <>
-      <li id='navmenuitem1'><a href=''>Playlist</a></li>
-      <li id='navmenuitem2'><a href=''>Tracks</a></li>
-      <li id='navmenuitem3'><a href=''>12"</a></li>
-      <li id='navmenuitem4'><a href=''>Merchandise</a></li>
+      <li onClick={() => dispatch(setNavBarMenu())} id='navmenuitem1'><p>Playlist</p></li>
+      <li id='navmenuitem2'><p>Tracks</p></li>
+      <li id='navmenuitem3'><p>12"</p></li>
+      <li id='navmenuitem4'><p>Merchandise</p></li>
     </>
   )
 }
