@@ -7,12 +7,12 @@ import { ethers } from 'ethers'
 console.clear()
 let eth = window.ethereum
 
+
 let isEth = new Promise((res, rej) => {
   const isEth = eth
   if (isEth !== undefined) { res(true) }
   if (isEth === undefined) { rej('User has no access to Web3') }
 })
-
 
 async function web3() {
   await isEth
@@ -27,9 +27,10 @@ async function web3() {
   let network = await provider.getNetwork()
   let userChain = network.name
   store.dispatch(setUserChain(userChain))
-} web3() 
+} web3()
 
 async function onChainChange() {
+  await isEth
   eth.on('chainChanged', () => {
     web3()
   })
@@ -59,9 +60,11 @@ export const ethereumSlice = createSlice({
   }
 })
 
+export const selectEthereum = state => state.ethereum
 export const {
   setIsEth,
   setUserAddr,
   setIsUserConnected,
   setUserChain
 } = ethereumSlice.actions
+export default ethereumSlice.reducer

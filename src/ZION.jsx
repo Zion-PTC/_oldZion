@@ -48,8 +48,6 @@ export default function ZION() {
   
   console.log(isEth, isUserConnected, userAddr, userChain);
 
-  // =======PROVE ASYNCTHUNK
-  const x = useSelector(state => state.host)
 
   return (
     <ZIONGRID className='Zion'>

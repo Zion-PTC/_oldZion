@@ -7,19 +7,20 @@ export default function TNLAudiusPlaylist() {
 
   //// REDUX STATE IMPORT
   const playlistID = 'LRYPG'
-  const { data, error, isLoading } = useGetPlaylistTracksQuery(playlistID)
+  // const { data, error, isLoading }
+  const { data, isLoading } = useGetPlaylistTracksQuery(playlistID)
   var playlistTracks = data
   // console.log(error, isLoading);
   if (!isLoading) {
     // ======== SPLITTING THE TAGS ========
     const track1Tags = playlistTracks.data[0].tags
     console.log(track1Tags);
-    const regexpTag = /(\w+)/g;
-    const splittedTags = track1Tags.match(regexpTag)
+    // const regexpTag = /(\w+)/g;
+    // const splittedTags = track1Tags.match(regexpTag)
     // console.table(splittedTags);
     // ========== FINDING EXACT MATCH ==========
-    const regexpTagExactMatch = /tnl25/
-    const tnl25Tagged = track1Tags.match(regexpTagExactMatch)
+    // const regexpTagExactMatch = /tnl25/
+    // const tnl25Tagged = track1Tags.match(regexpTagExactMatch)
     // console.log(tnl25Tagged);
   }
 

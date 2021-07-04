@@ -1,13 +1,13 @@
 import React from 'react'
 import LbarNotConnected from './LbarNotConnected'
 import LbarConnected from './LbarConnected'
-import useWeb3 from '../../../../Hooks/useWeb3'
+import { useSelector } from 'react-redux'
 
 export default function LbarDWeb() {
-  var userStatus = useWeb3()[3]
+  const userStatus = useSelector(state => state.ethereum.isUserConnected)
   var lbar = ''
-  if (userStatus) { lbar = <LbarConnected></LbarConnected>}
-  else { lbar = <LbarNotConnected></LbarNotConnected>}
+  if (userStatus) { lbar = <LbarConnected></LbarConnected> }
+  else { lbar = <LbarNotConnected></LbarNotConnected> }
 
   return (
     <>

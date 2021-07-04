@@ -66,8 +66,8 @@ window.addEventListener('load', () => {
 
 
 
-export const productAreaResponsiveSlice = createSlice({
-  name: 'productAreaResponsive',
+export const productAreaSlice = createSlice({
+  name: 'productArea',
   initialState: {
     gridPA: undefined
   },
@@ -84,6 +84,6 @@ export const productAreaResponsiveSlice = createSlice({
   }
 })
 
-export const selectProductAreaResponsive = state => state.productAreaResponsive
-export const { setGridPASmall, setGridPAMid, setGridPALarge } = productAreaResponsiveSlice.actions
-export default productAreaResponsiveSlice.reducer
+export const selectProductArea = state => state.productArea
+export const { setGridPASmall, setGridPAMid, setGridPALarge } = productAreaSlice.actions
+export default productAreaSlice.reducer

@@ -1,5 +1,7 @@
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import useEthereum from '../../../Hooks/useEthereum'
+import { connectToMetamask } from '../../../../features/asyncThunks/asyncThunksSlice'
+// import { connectToMetamask } from '../../../../features/ethereum/ethereumSlice'
 
 const WEB3CONN = styled.div`
   grid-area: web3;
@@ -24,16 +26,16 @@ const WEB3CONN = styled.div`
 // `
 
 export default function NotConnected() {
-  const metaConnectionMessage = useEthereum()[0]
-  const meta = useEthereum()[1]
+  const dispatch = useDispatch()
 
   return (
     <>
       <WEB3CONN>
         <button
-          onClick={meta}
+          // onClick={() => dispatch(connectToMetamask())}
+          onClick={() => dispatch(connectToMetamask())}
         >Connect</button>
-        <p style={{ gridArea: 'b', margin: '0' }}>{metaConnectionMessage}</p>
+        <p style={{ gridArea: 'b', margin: '0' }}></p>
       </WEB3CONN>
     </>
   )
