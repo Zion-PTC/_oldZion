@@ -27,7 +27,7 @@ export default function useWeb3() {
       setTimeout(() => {
         setChainId(provider.network.name)
       }, 1000);
-    }, [onChainChange])
+    }, [])
 
     var userChainPromise = new Promise((res, rej) => {
       if (tempChainId === undefined) {
@@ -54,7 +54,7 @@ export default function useWeb3() {
 
     useEffect(() => {
       setTempUserAddr(eth.selectedAddress)
-    }, [onAddressChange])
+    }, [])
 
     var userAddressPromise = new Promise((res, rej) => {
       if (tempUserAddr === undefined) {
@@ -82,7 +82,7 @@ export default function useWeb3() {
 
     useEffect(() => {
       setTempUserStatus(eth.selectedAddress)
-    }, [onStatusChange])
+    }, [])
 
     var userStatusPromise = new Promise((res, rej) => {
       if (tempUserStatus === undefined) {

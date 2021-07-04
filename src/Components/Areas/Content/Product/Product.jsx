@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
-import {selectProductAreaResponsive, setGridPASmall, setGridPAMid } from "../../../../features/productAreaResponsive/productAreaResponsiveSlice";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux"
 import styled from "styled-components"
-import { useEffect } from "react";
+import { store } from '../../../../app/store'
+
 
 const PRODUCTAREA = styled.div`
   position: relative;
@@ -14,38 +13,20 @@ const PRODUCTAREA = styled.div`
   grid-auto-flow: dense;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 55px;
-  @media screen and (min-width: 800px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: ${props => props.gridPATC};
+  /* @media screen and (min-width: 800px) {
   }
   @media only screen and (min-width: 1251px) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  }
+  } */
 `
 
 export default function Product({ children }) {
-  // const gridPA = useSelector(selectProductAreaResponsive).gridPA
-  // const dispatch = useDispatch()
-  // console.log(gridPA);
-
-  // const mediaQuery = '(max-width: 867px)';
-  // const mediaQueryList = window.matchMedia(mediaQuery)
-  // if (mediaQueryList.matches) {
-  //   dispatch(setGridPASmall())
-  // } else {
-  //   dispatch(setGridPAMid())
-  // }
-  // mediaQueryList.addEventListener('change', event => {
-  //   if (event.matches) {
-  //     dispatch(setGridPASmall())
-  //   } else {
-  //     dispatch(setGridPAMid())
-  //   }
-  // })
-
-  
-
+  const gridPATC = store.getState().productAreaResponsive.gridPA
+  const gridPA = useSelector(state => state.productAreaResponsive.gridPA)
+  console.log(gridPA);
   return (
-    <PRODUCTAREA id='productarea' >
+    <PRODUCTAREA id='productarea' gridPATC={gridPA}>
       {children}
     </PRODUCTAREA>
   )

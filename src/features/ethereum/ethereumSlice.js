@@ -1,29 +1,67 @@
-// this is a slice for Redux Toolkit
-// A "slice" is a collection of Redux
-// reducer logic and actions for a single
-// feature in your app
-
 import { createSlice } from "@reduxjs/toolkit"
+import { store } from '../../app/store'
+import { ethers } from 'ethers'
 
-const eth = ''
+// when user has metamask but not connected address is === null
 
-const ethy = new Promise (( res ) => {
-  const e = window.ethereum.selectedAddress
-  if (e !== undefined) { res(e)}
+console.clear()
+let eth = window.ethereum
+
+let isEth = new Promise((res, rej) => {
+  const isEth = eth
+  if (isEth !== undefined) { res(true) }
+  if (isEth === undefined) { rej('User has no access to Web3') }
 })
 
 
-console.log(ethy);
+async function web3() {
+  await isEth
+  eth.on('accountsChanged', () => {
+    store.dispatch(setIsEth())
+    store.dispatch(setUserAddr())
+    const addr = store.getState().ethereum.userAddr
+    if (addr === null) { store.dispatch(setIsUserConnected(false)) }
+    if (addr !== null) { store.dispatch(setIsUserConnected(true)) }
+  })
+  let provider = new ethers.providers.Web3Provider(eth)
+  let network = await provider.getNetwork()
+  let userChain = network.name
+  store.dispatch(setUserChain(userChain))
+} web3() 
+
+async function onChainChange() {
+  eth.on('chainChanged', () => {
+    web3()
+  })
+} onChainChange()
 
 export const ethereumSlice = createSlice({
-  name : 'ethereum',
+  name: 'ethereum',
   initialState: {
-    eth : eth
+    isEth: '0000',
+    isUserConnected: '00000',
+    userAddr: '00000',
+    userChain: '0000'
+  },
+  reducers: {
+    setIsEth: state => {
+      state.isEth = eth.isMetaMask
+    },
+    setUserAddr: state => {
+      state.userAddr = eth.selectedAddress
+    },
+    setIsUserConnected: (state, action) => {
+      state.isUserConnected = action.payload
+    },
+    setUserChain: (state, action) => {
+      state.userChain = action.payload
+    }
   }
 })
 
-// export const { /* list of reducers here } */ } = ethereumSlice.actions
-
-export default ethereumSlice.reducer
-
-export const selectEthereum = state => state.ethereum.value
+export const {
+  setIsEth,
+  setUserAddr,
+  setIsUserConnected,
+  setUserChain
+} = ethereumSlice.actions

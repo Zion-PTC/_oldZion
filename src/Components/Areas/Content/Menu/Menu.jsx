@@ -15,7 +15,7 @@ const MENUTITLE = styled.p`
 // al posto di playlilst menu qui dovrebbe arrivar eun contenuto che si basa
 // sulla selezione fatta dall'utente nel navbar
 
-export default function Menu({ playlistMenu, eth }) {
+export default function Menu({ playlistMenu }) {
   const dispatch = useDispatch()
 
   useEffect(() => {

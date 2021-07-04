@@ -16,12 +16,12 @@ const WEB3CONN = styled.div`
   }
 `
 
-const MetaMaskButton = styled.button`
-  font-size: 60%;
-  border: solid 1px #174666;
-  border-radius: 3px;
-  place-self: center;
-`
+// const MetaMaskButton = styled.button`
+//   font-size: 60%;
+//   border: solid 1px #174666;
+//   border-radius: 3px;
+//   place-self: center;
+// `
 
 export default function NotConnected() {
   const metaConnectionMessage = useEthereum()[0]

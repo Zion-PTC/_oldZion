@@ -16,6 +16,7 @@ import Lbar from "./Components/Areas/Content/LBar/Lbar";
 import Menu from "./Components/Areas/Content/Menu/Menu";
 import Product from "./Components/Areas/Content/Product/Product";
 import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
+// import TNL25Tags from "./Components/Products/TNL25Tags";
 
 import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
@@ -28,36 +29,43 @@ const ZIONGRID = styled.div`
 // ========================= APPLICATION
 export default function ZION() {
   const accounts = database
-  const navbarColor = accounts.accounts[0].navbarColor
+  // const navbarColor = accounts.accounts[0].navbarColor
   const logoURL = accounts.accounts[0].logoURL
   const playlistMenu = [
     'TNLDGL',
     'TNL25'
   ]
-
   const navBarMenu = useSelector(selectNavBarMenu)
+  // const dispatch = useDispatch()
+  // const audiusProvider = dispatch(getAudiusProvider())
   const menuHidden = navBarMenu.hidden
   const menuBarH = navBarMenu.menuBarH
+  // WEB 3
+  const isEth = useSelector(state => state.ethereum.isEth) // checks if user has Metamask, true id installed
+  let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
+  let userAddr = useSelector(state => state.ethereum.userAddr)
+  let userChain = useSelector(state => state.ethereum.userChain)
+  
+  console.log(isEth, isUserConnected, userAddr, userChain);
 
-  const eth = window.ethereum
-
-  // qui si potrebbero caricare le condizioni
+  // =======PROVE ASYNCTHUNK
+  const x = useSelector(state => state.host)
 
   return (
     <ZIONGRID className='Zion'>
       <Content menuHidden={menuHidden} menuBarH={menuBarH}>
-        <Menu playlistMenu={playlistMenu} eth={eth}>
+        <Menu playlistMenu={playlistMenu}>
         </Menu>
         <Product>
-          <TNLAudiusPlaylist/>
+          <TNLAudiusPlaylist></TNLAudiusPlaylist>
         </Product>
         <Lbar></Lbar>
       </Content>
       <Nav>
         <AccountAvatar logoURL={logoURL}></AccountAvatar>
         <NavMenu></NavMenu>
-        <Web3Connection eth={eth}/>
-        <NavButton/>
+        <Web3Connection eth={isEth} />
+        <NavButton />
       </Nav>
       <Footer><p>Footer</p></Footer>
     </ZIONGRID>
