@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
 import LbarDWeb from './Content/LbarDWeb'
 import styled from 'styled-components'
+import { setLeftBarHidden } from '../../../../features/leftBar/leftBarSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const LBAR = styled.div`
   background: #0909a1 ;
@@ -16,30 +17,26 @@ const LBAR = styled.div`
 `
 
 export default function Lbar() {
-  
-  var [lbarHidden, setLbarHidden] = useState(true)
+  const dispatch = useDispatch()
+  const isLeftBarHidden = useSelector(state => state.leftBar.isHidden)
+  const isEth = useSelector(state => state.ethereum.isEth)
   var pos = ''
-  if(lbarHidden) {pos = '-300px'} else { pos = '0px'}
+  if (isLeftBarHidden) { pos = '-300px' } else { pos = '0px' }
 
-  function handleToggle() {
-    setLbarHidden(!lbarHidden)
-  }
   var lbarcontent = ''
-  if (window.ethereum === undefined) { lbarcontent = <p>no metamask,fuck you</p> }
-  else {
-    
-    lbarcontent = <LbarDWeb></LbarDWeb> }
+  if (isEth === '0000') { lbarcontent = <p>no metamask,fuck you</p> }
+  else { lbarcontent = <LbarDWeb></LbarDWeb> }
 
   return (
     <LBAR id='lbar'
-    left = {pos}
+      left={pos}
     >
       <button id='button'
         style={{
           position: 'relative',
           left: '185px'
         }}
-        onClick={handleToggle}
+        onClick={() => dispatch(setLeftBarHidden())}
       >MENU</button>
       {lbarcontent}
     </LBAR>

@@ -17,7 +17,6 @@ const PRODUCTAREA = styled.div`
 
 export default function Product({ children }) {
   const gridPA = useSelector(state => state.productArea.gridPA)
-  console.log(gridPA);
   return (
     <PRODUCTAREA id='productarea' gridPATC={gridPA}>
       {children}

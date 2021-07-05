@@ -20,6 +20,7 @@ import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 
 import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
+import MusicPlayer from "./Components/Products/MusicPlayer";
 
 const ZIONGRID = styled.div`
   display: grid;
@@ -45,8 +46,8 @@ export default function ZION() {
   let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
   let userAddr = useSelector(state => state.ethereum.userAddr)
   let userChain = useSelector(state => state.ethereum.userChain)
-  
-  console.log(isEth, isUserConnected, userAddr, userChain);
+
+  // console.log(isEth, isUserConnected, userAddr, userChain);
 
 
   return (
@@ -59,6 +60,7 @@ export default function ZION() {
         </Product>
         <Lbar></Lbar>
       </Content>
+      <MusicPlayer></MusicPlayer>
       <Nav>
         <AccountAvatar logoURL={logoURL}></AccountAvatar>
         <NavMenu></NavMenu>

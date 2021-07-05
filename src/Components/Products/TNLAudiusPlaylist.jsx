@@ -14,7 +14,7 @@ export default function TNLAudiusPlaylist() {
   if (!isLoading) {
     // ======== SPLITTING THE TAGS ========
     const track1Tags = playlistTracks.data[0].tags
-    console.log(track1Tags);
+    // console.log(track1Tags);
     // const regexpTag = /(\w+)/g;
     // const splittedTags = track1Tags.match(regexpTag)
     // console.table(splittedTags);

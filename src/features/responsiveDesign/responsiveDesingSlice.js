@@ -16,16 +16,16 @@ window.addEventListener('load', () => {
   const large = window.matchMedia(lgBreakPoint)
 
   function setSm(e) {
-    if(e) {store.dispatch(setGridPASmall())}
+    if(e) {store.dispatch(setDisplaySm())}
   }
   function setMdIn(e) {
-    if(e) {store.dispatch(setGridPAMid())}
+    if(e) {store.dispatch(setDisplayMd())}
   }
   function setMdOut(e) {
-    if(e) {store.dispatch(setGridPAMid())}
+    if(e) {store.dispatch(setDisplayMd())}
   }
   function setLg(e) {
-    if(e) {store.dispatch(setGridPALarge())}
+    if(e) {store.dispatch(setDisplayLg())}
   }
 
   function handle(e) {
@@ -68,24 +68,29 @@ window.addEventListener('load', () => {
   }
 });
 
-export const productAreaSlice = createSlice({
-  name: 'productArea',
+let sm = 'small'
+let md = 'medium'
+let lg = 'large'
+
+
+export const responsiveDesignSlice = createSlice({
+  name: 'responsiveDesign',
   initialState: {
-    gridPA: undefined
+    display: undefined
   },
   reducers: {
-    setGridPASmall: state => {
-      state.gridPA = '1fr 1fr'
+    setDisplaySm: state => {
+      state.display = sm
     },
-    setGridPAMid: state => {
-      state.gridPA = '1fr 1fr 1fr 1fr'
+    setDisplayMd: state => {
+      state.display = md
     },
-    setGridPALarge: state => {
-      state.gridPA = '1fr 1fr 1fr 1fr 1fr 1fr'
+    setDisplayLg: state => {
+      state.display = lg
     }
   }
 })
 
-export const selectProductArea = state => state.productArea
-export const { setGridPASmall, setGridPAMid, setGridPALarge } = productAreaSlice.actions
-export default productAreaSlice.reducer
+export const selectResponsiveDesign = state => state.responsiveDesign
+export const { setDisplaySm, setDisplayMd, setDisplayLg } = responsiveDesignSlice.actions
+export default responsiveDesignSlice.reducer

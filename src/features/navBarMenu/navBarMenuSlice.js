@@ -10,7 +10,6 @@ export const navBarMenuSlice = createSlice({
   reducers : {
     setNavBarMenu : state => {
       state.hidden = !state.hidden
-      console.log('redux click');
     },
     setMenuBarH : state => {
       state.menuBarH = $('#menubar').outerHeight()

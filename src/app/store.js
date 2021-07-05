@@ -2,7 +2,9 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import ethereumReducer from "../features/ethereum/ethereumSlice";
+import responsiveDesingReducer from "../features/responsiveDesign/responsiveDesingSlice";
 import navBarMenuReducer from '../features/navBarMenu/navBarMenuSlice'
+import leftBarReducer from '../features/leftBar/leftBarSlice'
 import productAreaReducer from '../features/productArea/productAreaSlice'
 import audioPlayerReducer from '../features/audioPlayer/audioPlayerSlice'
 // Or from '@reduxjs/toolkit/query/react'
@@ -16,7 +18,9 @@ import { asyncThunksSlice } from "../features/asyncThunks/asyncThunksSlice";
 export const store = configureStore({
   reducer: {
     ethereum: ethereumReducer,
+    responsiveDesign: responsiveDesingReducer,
     navBarMenu: navBarMenuReducer,
+    leftBar: leftBarReducer,
     productArea: productAreaReducer,
     audioPlayer: audioPlayerReducer,
     // Add the generated reducer as a specific top-level slice
