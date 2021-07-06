@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { store } from '../../app/store';
 
-var breakPoint1 = '880px'
-var breakPoint2 = '1251px'
+var breakPoint1 = '56em'
+var breakPoint2 = '84em'
 
 var smBreakPoint = '(max-width: ' + breakPoint1 + ')'
 var mdInBreakPoint = '(min-width: ' + breakPoint1 + ')'
@@ -75,13 +75,13 @@ export const productAreaSlice = createSlice({
   },
   reducers: {
     setGridPASmall: state => {
-      state.gridPA = '1fr 1fr'
+      state.gridPA = '14em 14em'
     },
     setGridPAMid: state => {
-      state.gridPA = '1fr 1fr 1fr 1fr'
+      state.gridPA = '14em 14em 14em 14em'
     },
     setGridPALarge: state => {
-      state.gridPA = '1fr 1fr 1fr 1fr 1fr 1fr'
+      state.gridPA = '14em 14em 14em 14em 14em 14em '
     }
   }
 })

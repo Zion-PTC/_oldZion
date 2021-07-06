@@ -10,9 +10,9 @@ const PRODUCTAREA = styled.div`
   background: blueviolet;
   display: grid;
   grid-auto-flow: dense;
-  grid-template-columns: 1fr 1fr;
   grid-auto-rows: 55px;
   grid-template-columns: ${props => props.gridPATC};
+  place-self: center;
 `
 
 export default function Product({ children }) {

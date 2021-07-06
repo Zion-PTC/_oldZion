@@ -11,7 +11,6 @@ const PRODUCTTRACKAREA = styled.div`
   grid-column: span 2;
   align-self: center;
   justify-self: center;
-  transition: ease 0.5s;
 `
 const TRKLOGOTHUMBNAIL = styled.img`
   grid-area: logo;

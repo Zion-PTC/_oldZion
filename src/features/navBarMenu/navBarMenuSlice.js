@@ -5,7 +5,8 @@ export const navBarMenuSlice = createSlice({
   name : 'navBarMenu',
   initialState: {
     hidden : true,
-    menuBarH : undefined
+    menuBarH : undefined,
+    selectedMenu: undefined,
   },
   reducers : {
     setNavBarMenu : state => {
