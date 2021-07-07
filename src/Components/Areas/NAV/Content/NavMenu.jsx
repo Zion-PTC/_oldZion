@@ -70,7 +70,6 @@ export default function NavMenu() {
       </li>
     }
   )
-  console.log(displayMenus);
 
   return (
 

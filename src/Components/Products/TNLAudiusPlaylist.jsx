@@ -8,8 +8,10 @@ export default function TNLAudiusPlaylist() {
   //// REDUX STATE IMPORT
   const playlistID = 'LRYPG'
   // const { data, error, isLoading }
-  const { data, isLoading } = useGetPlaylistTracksQuery(playlistID)
+  const { data, error, isLoading } = useGetPlaylistTracksQuery(playlistID)
   var playlistTracks = data
+
+  if (error) {console.log(error);}
   // console.log(error, isLoading);
   if (!isLoading) {
     // ======== SPLITTING THE TAGS ========
@@ -50,3 +52,21 @@ export default function TNLAudiusPlaylist() {
     </>
   )
 }
+
+
+/* 
+- - ta glio
+QUA - ta glio
+LA - piu di
+Pra - da - 
+- - sen ti
+CO - me pi
+CCHIA - sound di
+QUE -  sti m
+CI - di stra
+DA
+
+
+
+
+*/

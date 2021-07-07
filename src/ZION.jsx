@@ -47,6 +47,8 @@ export default function ZION() {
   let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
   let userAddr = useSelector(state => state.ethereum.userAddr)
   let userChain = useSelector(state => state.ethereum.userChain)
+  let isE = useSelector(state => state.ethereum.isEth)
+  console.log(userAddr);
 
   // console.log(isEth, isUserConnected, userAddr, userChain);
 

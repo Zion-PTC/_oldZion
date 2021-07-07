@@ -22,11 +22,20 @@ export const connectToMetamask = createAsyncThunk(
   }
 )
 
+export const getTokenBalance = createAsyncThunk(
+  'host/getTokenBalance',
+  async () => {
+
+  }
+)
+
 export const asyncThunksSlice = createSlice({
   name: 'thunks',
   initialState: {
     host: '0000',
-    metamaskMessage : '0000'
+    metamaskMessage : '0000',
+    userMainNetTokenBalance: '0000',
+    userInvitationTokenBalance: '0000',
   },
   reducers: {
   },

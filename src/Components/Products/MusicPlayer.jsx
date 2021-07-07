@@ -24,7 +24,6 @@ let x
 export default function MusicPlayer() {
   const source = useSelector(state => state.audioPlayer.selectedTrack)
   let src = 'https://creatornode.audius.co/tracks/stream/'+source
-  console.log('source:', source);
 
   return (
     <MUSICPLAYER id='musicPlayer'>

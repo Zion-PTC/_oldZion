@@ -68,20 +68,30 @@ window.addEventListener('load', () => {
   }
 });
 
+let screenWidth = window.screen.width
+
+function setGridDimension() {
+  let columnSize = (screenWidth * 80 / 100)
+  return columnSize
+}
+
+const colSize = setGridDimension()
+
 export const productAreaSlice = createSlice({
   name: 'productArea',
   initialState: {
-    gridPA: undefined
+    gridPA: undefined,
+    columnSize: colSize
   },
   reducers: {
     setGridPASmall: state => {
-      state.gridPA = '14em 14em'
+      state.gridPA = 'repeat(2, 14em)'
     },
     setGridPAMid: state => {
-      state.gridPA = '14em 14em 14em 14em'
+      state.gridPA = 'repeat(4, 14em)'
     },
     setGridPALarge: state => {
-      state.gridPA = '14em 14em 14em 14em 14em 14em '
+      state.gridPA = 'repeat(6, 14em)'
     }
   }
 })
