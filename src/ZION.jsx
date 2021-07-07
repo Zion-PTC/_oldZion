@@ -29,9 +29,10 @@ const ZIONGRID = styled.div`
 `
 // ========================= APPLICATION
 export default function ZION() {
-  const accounts = database
-  // const navbarColor = accounts.accounts[0].navbarColor
-  const logoURL = accounts.accounts[0].logoURL
+  const accounts = database.accounts
+  const navbarColor = accounts[0].navbarColor
+  const numberOfNavBarMenus = accounts[0].menus.length
+  const logoURL = accounts[0].logoURL
   const playlistMenu = [
     'TNLDGL',
     'TNL25'
@@ -61,7 +62,10 @@ export default function ZION() {
         <Lbar></Lbar>
       </Content>
       <MusicPlayer></MusicPlayer>
-      <Nav>
+      <Nav
+        numberOfNavBarMenus={numberOfNavBarMenus}
+        backgroundColor={navbarColor}
+      >
         <AccountAvatar logoURL={logoURL}></AccountAvatar>
         <NavMenu></NavMenu>
         <Web3Connection eth={isEth} />

@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 
 // when user has metamask but not connected address is === null
 
-console.clear()
+// console.clear()
 let eth = window.ethereum
 
 

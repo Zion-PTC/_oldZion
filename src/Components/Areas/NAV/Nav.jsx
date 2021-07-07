@@ -3,7 +3,7 @@ import styled from "styled-components"
 const NAV = styled.nav`
   position: relative;
   grid-area: nav;
-  background: rgb(34, 27, 162);
+  background: ${props => props.backgroundColor};
   border-bottom: solid rgba(5, 53, 58, 0.501);
   display: grid;
   grid-template-columns: 55px 1fr 89px 55px;
@@ -11,9 +11,9 @@ const NAV = styled.nav`
   grid-template-areas: "logo navmenu web3 menubtn" "logo navmenu web3 menubtn";
 `
 
-export default function Nav({children}) {
+export default function Nav({children, backgroundColor}) {
   return (
-    <NAV id='nav'>
+    <NAV backgroundColor={backgroundColor} id='nav'>
       {children}
     </NAV>
   )

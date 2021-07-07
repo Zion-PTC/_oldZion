@@ -5,18 +5,27 @@
       "logoURL": "https://ipfs.io/ipfs/Qme9rVovLmYdwRiETVApcYUoixqRiaPvksb33FrFX2QucG?filename=logo%20tnl%20White.png",
       "navbarColor": "#0C3A6F",
       "nftInviteAddr": "0xDc59783e7970D5f1313edD06f91baC178E5424bC",
-      "menu": [
+      "menus": [
         {
-          "navbar": {
-            "Playlists": [
-              "TNLDGL",
-              "TNL25"
-            ],
-            "Vinyls": [
-              "VYNYL 1",
-              "VINYL 2"
-            ]
-          }
+          "name": "navbar",
+          "subMenus": [
+            {
+              "name": "Playlists",
+              "subMenus": [
+                "TNLDGL",
+                "TNL25"
+              ]
+            },
+            {
+              "name": "Tracks"
+            },
+            {
+              "name": "12"
+            },
+            {
+              "name": "Merchandise"
+            }
+          ]
         },
         {
           "rbar": {
