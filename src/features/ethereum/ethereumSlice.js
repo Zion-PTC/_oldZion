@@ -63,7 +63,6 @@ async function getInvitationTokenBalance(addr, web3) {
   if (chainID === 'rinkeby') {
     const NFTInviteContract = new web3.eth.Contract(NFTInviteAbi, nftInviteAddr, { from: addr });
     const result = await NFTInviteContract.methods.balanceOf(addr).call();
-    console.log('this is result', result);
     store.dispatch(getUserInviteTokenBalance(result))
   } else {
     // this will set the token balance to initialized value
@@ -109,7 +108,6 @@ export const ethereumSlice = createSlice({
       state.userAddr = action.payload
     },
     setIsUserConnected: (state, action) => {
-      console.log(action.payload);
       state.isUserConnected = action.payload
     },
     setUserChain: (state, action) => {
