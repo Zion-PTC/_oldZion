@@ -147,7 +147,6 @@ $(window).resize(function () {
 });
 
 function doneResizing() {
-  console.log('done');
   detectFullscreen()
   handle(small)
   handle(midIn)
