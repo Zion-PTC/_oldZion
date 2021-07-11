@@ -22,6 +22,9 @@ import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
 import MusicPlayer from "./Components/Products/MusicPlayer";
 
+import appLogic from "./app/appLogic";
+appLogic()
+
 const ZIONGRID = styled.div`
   display: grid;
   grid-template-rows: 55px calc(100vh - 110px) 55px;
@@ -43,12 +46,12 @@ export default function ZION() {
   const menuHidden = navBarMenu.hidden
   const menuBarH = navBarMenu.menuBarH
   // WEB 3
-  let store = useSelector(state => state)
   let isEth = useSelector(state => state.ethereum.isEth) // checks if user has Metamask, true id installed
-  let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
-  let userAddr = useSelector(state => state.ethereum.userAddr)
-  let userChain = useSelector(state => state.ethereum.userChain)
-  let isE = useSelector(state => state.ethereum.isEth)
+  // let store = useSelector(state => state)
+  // let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
+  // let userAddr = useSelector(state => state.ethereum.userAddr)
+  // let userChain = useSelector(state => state.ethereum.userChain)
+  // let isE = useSelector(state => state.ethereum.isEth)
   // console.log(store);
 
   // console.log(isEth, isUserConnected, userAddr, userChain);

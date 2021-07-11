@@ -19,7 +19,6 @@ const PLAYERAREA = styled.div`
 const AUDIO = styled.audio`
   width: 100%;
 `
-let x
 
 export default function MusicPlayer() {
   const source = useSelector(state => state.audioPlayer.selectedTrack)

@@ -51,7 +51,6 @@ export default function NavMenu() {
   const gridTemplateColumns = navBarMenu.gridTemplateColumns;
   const activeMenu = navBarMenu.activeMenu
 
-  let g
   let displayMenus
   displayMenus = menus.map(
     (i) => {

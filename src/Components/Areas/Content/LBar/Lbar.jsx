@@ -1,5 +1,4 @@
 import React from 'react'
-import LbarDWeb from './Content/LbarDWeb'
 import styled from 'styled-components'
 import { setLeftBarHidden } from '../../../../features/leftBar/leftBarSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,8 +21,9 @@ export default function Lbar() {
   const isEth = useSelector(state => state.ethereum.isEth)
   const userStatus = useSelector(state => state.ethereum.isUserConnected)
   const userInviteBalance = useSelector(state => state.ethereum.userTNLinvitationTokenBalance)
-  const width = useSelector(state => state.responsiveDesign.screenMaxWidth)
+  const width = useSelector(state => state.userDevice.screenDimensions.width)
   const colSize = useSelector(state => state.productArea.colSize)
+  const deviceType = useSelector(state => state.userDevice.deviceType)
   const innerWidth = window.innerWidth
   var pos = ''
   if (isLeftBarHidden) { pos = '-300px' } else { pos = '0px' }
@@ -41,7 +41,6 @@ export default function Lbar() {
         case true:
           switch (userInviteBalance) {
             case '0':
-              console.log('no invitation token');
               lbarcontent = <LbarConnected></LbarConnected>
               break;
             default:
@@ -71,7 +70,8 @@ export default function Lbar() {
       {lbarcontent}
       screen width: {width} <br/>
       colsize : {colSize} <br/>
-      innerwidth: {innerWidth}
+      innerwidth: {innerWidth} <br/>
+      and you are using a {deviceType} to browse this site
     </LBAR>
   )
 }

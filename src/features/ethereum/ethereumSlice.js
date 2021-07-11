@@ -17,7 +17,6 @@ let isEth = new Promise((res, rej) => {
   const isEth = eth
   if (isEth !== undefined) { res(true) }
   if (isEth === undefined) {
-    let x
     rej(false)
   }
 })

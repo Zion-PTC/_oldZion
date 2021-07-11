@@ -35,7 +35,7 @@ export default function ProductTrack({ trackID, title, artist, artwork, tags }) 
         width: '100%',
         background: '#1C4A72',
         border: '1px solid inset rgb(13, 46, 65)',
-        fontSize: '75%',
+        fontSize: '70%',
         borderRadius: '5px',
         justifySelf: 'center',
         display: 'grid',
