@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 
-
 const MUSICPLAYER = styled.div`
   height: 100%;
   background-color: coral;
@@ -21,13 +20,21 @@ const AUDIO = styled.audio`
 `
 
 export default function MusicPlayer() {
-  const source = useSelector(state => state.audioPlayer.selectedTrack)
-  let src = 'https://creatornode.audius.co/tracks/stream/'+source
+  let source
+  let selectedTrack = useSelector(state => state.audioPlayer.selectedTrack)
+  let playlistTracks = useSelector(state => state.audioPlayer.playlist.tracks)
+  let selectedTrackIndex = selectedTrack
+  if (playlistTracks[0].id !== undefined ) {
+    if (playlistTracks[selectedTrackIndex] !== undefined) {
+      let selectedTrackUrl = playlistTracks[selectedTrackIndex].url
+      source = selectedTrackUrl
+    }
+  }
 
   return (
-    <MUSICPLAYER id='musicPlayer'>
+    <MUSICPLAYER>
       <PLAYERAREA>
-        <AUDIO controls src={src} autoPlay></AUDIO>
+        <AUDIO id='musicPlayer' controls src={source} autoPlay></AUDIO>
       </PLAYERAREA>
     </MUSICPLAYER>
   )

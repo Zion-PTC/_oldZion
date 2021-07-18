@@ -2,6 +2,7 @@ import { store } from "../store";
 import { responsiveObject } from "./responsiveDesignDashboard";
 
 export default function defineGridPa(callback) {
+  console.log('called');
 
   var breakPoints = responsiveObject.breakPoints
   // Media Query Lists
@@ -20,7 +21,6 @@ export default function defineGridPa(callback) {
 
   let columnSize = store.getState().productArea.colSize
   let display = store.getState().responsiveDesign.display
-  console.log(display);
 
   if (display === small.name) { callback(`repeat(2, ${columnSize}em)`) }
   if (display === midIn.name) { callback(`repeat(4, ${columnSize}em)`) }

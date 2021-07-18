@@ -20,6 +20,7 @@ import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 
 import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
+import { selectAudioPlayer } from "./features/audioPlayer/audioPlayerSlice";
 import MusicPlayer from "./Components/Products/MusicPlayer";
 
 import appLogic from "./app/appLogic";
@@ -29,7 +30,8 @@ const ZIONGRID = styled.div`
   display: grid;
   grid-template-rows: 55px calc(100vh - 110px) 55px;
   grid-template-areas: "nav" "content" "footer";
-`
+  `
+
 // ========================= APPLICATION
 export default function ZION() {
   const accounts = database.accounts
@@ -41,21 +43,24 @@ export default function ZION() {
     'TNL25'
   ]
   const navBarMenu = useSelector(selectNavBarMenu)
-  // const dispatch = useDispatch()
-  // const audiusProvider = dispatch(getAudiusProvider())
   const menuHidden = navBarMenu.hidden
   const menuBarH = navBarMenu.menuBarH
   // WEB 3
-  let isEth = useSelector(state => state.ethereum.isEth) // checks if user has Metamask, true id installed
+  let isEth = useSelector(state => state.ethereum.isEth) // checks if user has Metamask, true if installed
   // let store = useSelector(state => state)
   // let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
   // let userAddr = useSelector(state => state.ethereum.userAddr)
   // let userChain = useSelector(state => state.ethereum.userChain)
   // let isE = useSelector(state => state.ethereum.isEth)
-  // console.log(store);
-
-  // console.log(isEth, isUserConnected, userAddr, userChain);
-
+  let audioPlayer = useSelector(selectAudioPlayer)
+  let playlist = audioPlayer.playlist
+  // const { data, error, isLoading }
+  // const { data, error, isLoading } = useGetPlaylistTracksQuery(playlistID)
+  // if (error) { console.log(error); }
+  // const dispatch = useDispatch()
+  // dispatch(setPlaylist(data))
+  // let playlist = useSelector(state => state.audioPlayer.playlist)
+  // console.log(playlist);
 
   return (
     <ZIONGRID className='Zion'>
@@ -63,7 +68,7 @@ export default function ZION() {
         <Menu playlistMenu={playlistMenu}>
         </Menu>
         <Product>
-          <TNLAudiusPlaylist></TNLAudiusPlaylist>
+          <TNLAudiusPlaylist playlist={playlist}></TNLAudiusPlaylist>
         </Product>
         <Lbar></Lbar>
       </Content>

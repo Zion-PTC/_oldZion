@@ -1,7 +1,5 @@
 import styled from "styled-components"
-import { useDispatch } from "react-redux"
-import { setSelectedTrack } from "../../features/audioPlayer/audioPlayerSlice"
-
+import { handleSelection, selectTrack } from "../../app/appLogic"
 
 const PRODUCTTRACKAREA = styled.div`
   height: 97%;
@@ -20,13 +18,23 @@ const TRKLOGOTHUMBNAIL = styled.img`
   border: solid 1px #334653;
 `
 
-export default function ProductTrack({ trackID, title, artist, artwork, tags }) {
+export default function ProductTrack({ track }) {
 
-  const dispatch = useDispatch()
+  let trackID = track.id
+  let title = track.title
+  let artist = track.artist
+  let artwork = track.artwork
+  let tags = track.tags
 
   const gridColInA = '110px 2fr 1fr 1fr 55px 6%'
   const gridRowInA = '50% 50%'
   const gridAreaInA = ' "logo _title _artist _tags badge1 likebar" "logo title artist tags badge2 likebar"'
+
+  function handleClickThumbnail() {
+    console.log(trackID);
+    selectTrack(trackID)
+    handleSelection()
+  }
 
   return (
     <PRODUCTTRACKAREA>
@@ -43,7 +51,7 @@ export default function ProductTrack({ trackID, title, artist, artwork, tags }) 
         gridTemplateRows: `${gridRowInA}`,
         gridTemplateAreas: `${gridAreaInA}`
       }}>
-        <TRKLOGOTHUMBNAIL onClick={() => dispatch(setSelectedTrack(trackID))}  src={artwork}></TRKLOGOTHUMBNAIL>
+        <TRKLOGOTHUMBNAIL onClick={handleClickThumbnail} src={artwork}></TRKLOGOTHUMBNAIL>
         <div style={{ gridArea: '_title', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Track Title</div>
         <div style={{ gridArea: 'title', padding: '1px', color: '#EEF4FA' }}>{title}</div>
         <div style={{ gridArea: '_artist', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Artist</div>
@@ -59,3 +67,5 @@ export default function ProductTrack({ trackID, title, artist, artwork, tags }) 
     </PRODUCTTRACKAREA>
   )
 }
+
+// onClick={handleSelectedTrack(trackID)}

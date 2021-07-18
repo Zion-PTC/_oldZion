@@ -29,6 +29,22 @@ export const getTokenBalance = createAsyncThunk(
   }
 )
 
+export const getTrackUrl = createAsyncThunk(
+  'host/getTrackUrl',
+  async (url) => {
+    await fetch(url)
+  }
+)
+
+export const awaitSome = createAsyncThunk(
+  'host/awaitSome',
+  async (some) => {
+    let promise = await some
+    let awaitedData = promise.data
+    return awaitedData
+  }
+)
+
 export const asyncThunksSlice = createSlice({
   name: 'thunks',
   initialState: {
@@ -36,6 +52,7 @@ export const asyncThunksSlice = createSlice({
     metamaskMessage : '0000',
     userMainNetTokenBalance: '0000',
     userInvitationTokenBalance: '0000',
+    awaitResult: undefined
   },
   reducers: {
   },
@@ -46,6 +63,9 @@ export const asyncThunksSlice = createSlice({
     })
     .addCase(connectToMetamask, (state, action) => {
       return action.payload
+    })
+    .addCase(awaitSome.fulfilled, (state, action) => {
+      state.awaitResult = action.payload
     })
   }
 })
