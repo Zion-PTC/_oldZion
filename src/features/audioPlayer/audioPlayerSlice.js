@@ -1,9 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { store } from "../../app/store"; 
-// import { store } from "../../app/store";
-
-// let playlist2 = store.getState().audioPlayer
-// console.log(playlist2);
 
 export const getApi = createAsyncThunk(
   'audioPlayer/getApi',
@@ -24,7 +19,11 @@ export const audioPlayerSlice = createSlice({
   name: 'audioPlayer',
   initialState: {
     play: false,
-    pause: true,
+    playStatus: 'pause',
+    currentPosition : '00:00',
+    currentTrackBufferStatus : {
+      'bufferedTime': undefined
+    },
     isShuffleOn: false,               // false = 'off', true = 'on'
     playlist: {
       'name': undefined,
@@ -37,10 +36,22 @@ export const audioPlayerSlice = createSlice({
     trackID: undefined,
     selectedTrack: undefined,
     cue: undefined,
-    indexesToPrefetch: [0,1,2,3,4],
+    indexesToPrefetch: [0, 1, 2, 3, 4],
     log: undefined
   },
   reducers: {
+    setPlay: (state) => {
+      state.play = !state.play
+    },
+    setPlayStatus: (state, action) => {
+      state.playStatus = action.payload
+    },
+    setCurrentPosition: (state, action) => {
+      state.currentPosition = action.payload
+    },
+    setCurrentTrackBufferStatus: (state, action) => {
+      state.currentTrackBufferStatus = action.payload
+    },
     addTrackToPlaylist: (state, action) => {
       // push track to playlist
       state.playlist.tracks.push(action.payload)
@@ -64,10 +75,10 @@ export const audioPlayerSlice = createSlice({
     setCue: (state, action) => {
       state.cue = action.payload
     },
-    selectNextTrack: (state, action) => {
-      state.selectedTrack = action.payload
+    playNextTrack: (state) => {
+      state.selectedTrack ++
     },
-    selectPreviousTrack: (state) => {
+    playPreviousTrack: (state) => {
       state.selectedTrack --
     },
   },
@@ -89,6 +100,9 @@ export const audioPlayerSlice = createSlice({
 
 export const selectAudioPlayer = state => state.audioPlayer
 export const {
+  setPlay,
+  setPlayStatus,
+  setCurrentPosition,
   addTrackToPlaylist,
   setTrackUrl,
   setSelectedTrack,
@@ -96,6 +110,7 @@ export const {
   setPlaylist,
   setIndexedToBePrefecthed,
   setCue,
-  selectNextTrack
+  playNextTrack,
+  playPreviousTrack,
 } = audioPlayerSlice.actions
 export default audioPlayerSlice.reducer

@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { handleSelection, selectTrack } from "../../app/appLogic"
+import { handleSelection, selectTrack } from "../../app/audioPlayer"
+import { timeFormat } from "../../_JS Functions/utils"
 
 const PRODUCTTRACKAREA = styled.div`
   height: 97%;
@@ -16,6 +17,10 @@ const TRKLOGOTHUMBNAIL = styled.img`
   height:  89%;
   place-self: center;
   border: solid 1px #334653;
+  overflow: hidden;
+  :hover{
+    opacity: 0.5;
+  }
 `
 
 export default function ProductTrack({ track }) {
@@ -51,7 +56,10 @@ export default function ProductTrack({ track }) {
         gridTemplateRows: `${gridRowInA}`,
         gridTemplateAreas: `${gridAreaInA}`
       }}>
-        <TRKLOGOTHUMBNAIL onClick={handleClickThumbnail} src={artwork}></TRKLOGOTHUMBNAIL>
+          <TRKLOGOTHUMBNAIL
+            onClick={handleClickThumbnail}
+            src={artwork}
+          />
         <div style={{ gridArea: '_title', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Track Title</div>
         <div style={{ gridArea: 'title', padding: '1px', color: '#EEF4FA' }}>{title}</div>
         <div style={{ gridArea: '_artist', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Artist</div>

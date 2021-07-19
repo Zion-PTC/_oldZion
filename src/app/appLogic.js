@@ -9,152 +9,21 @@ import defineIsFullscreen from "./defineFunctions/defineIsFullScreen";
 import defineDisplay from "./defineFunctions/defineDisplay";
 import defineColSize from "./defineFunctions/defineColSize";
 import defineGridPa from "./defineFunctions/defineGridPa";
+import {
+  handleSelectedTrack,
+  listenPlay,
+  listenPause,
+  listenProgress,
+  listenEnded,
+  listenPlaying,
+  listenTimeUpdate,
+  listenSeeking
+} from "./audioPlayer";
 import { responsiveObject } from "./defineFunctions/responsiveDesignDashboard";
-import { setCue, setIndexedToBePrefecthed, setPlaylist, setSelectedTrack, setTrackUrl } from "../features/audioPlayer/audioPlayerSlice";
+import { setPlaylist } from "../features/audioPlayer/audioPlayerSlice";
 import { audiusApi } from "../services/audius";
 import $ from 'jquery'
-
-export function handleSelection() {
-  let indexesToPrefect = store.getState().audioPlayer.indexesToPrefetch
-  indexesToPrefect.map(index => prefetch(index))
-}
-
-export function handleCue(indexes) {
-  let playlist = store.getState().audioPlayer.playlist.tracks
-  if (playlist[0] !== null) {
-    let cue = [
-      playlist[indexes[0]].url,
-      playlist[indexes[1]].url,
-      playlist[indexes[2]].url,
-      playlist[indexes[3]].url,
-      playlist[indexes[4]].url
-    ]
-    store.dispatch(setCue(cue))
-  }
-}
-
-export function prefetch(index) {
-  let track = store.getState().audioPlayer.playlist.tracks[index].id
-  let urlRes = store.dispatch(audiusApi.endpoints.streamTrack.initiate(track))
-  urlRes.then((res) => {
-    let url = res.data
-    let obj = {
-      'index': index,
-      'url': url
-    }
-    store.dispatch(setTrackUrl(obj))
-    let cueIndexes = store.getState().audioPlayer.indexesToPrefetch
-    handleCue(cueIndexes)
-  })
-
-}
-
-export function selectTrack(id) {
-  let playlist = store.getState().audioPlayer.playlist
-  let tracks = playlist.tracks
-  let index = tracks.findIndex(track => track.id === id)
-  let storedIndexes = store.getState().audioPlayer.indexesToPrefetch
-  let reducer = (accumulator, currentValue) => accumulator + currentValue
-  store.dispatch(setSelectedTrack(index))
-  let tracksCount = store.getState().audioPlayer.playlist.tracksCount
-  let maxIndexValue = tracksCount - 6
-  let deltaFromPlaylistEnd = tracksCount - index
-  console.log(maxIndexValue);
-  let indexesToBePrefetched = [
-    index,
-    index + 1,
-    index + 2,
-    index + 3,
-    index + 4
-  ]
-  if (index <= maxIndexValue) {
-    console.log('trackIndex is in boundaries');
-  } else {
-    console.log('track index is close to the end');
-    if (indexesToBePrefetched === undefined) {
-      indexesToBePrefetched = [
-        index,
-        index + 1,
-        index + 2,
-        index + 3,
-        index + 4
-      ]
-    }
-  }
-  console.log(storedIndexes);
-  if (storedIndexes !== [0, 1, 2, 3, 4]) {
-    let reducedStoredIndexs = storedIndexes.reduce(reducer)
-    let reducedNewIndexes = indexesToBePrefetched.reduce(reducer)
-    let sum = reducedNewIndexes - reducedStoredIndexs
-    let boundaryValues = [
-      5, -5, 10, -10, 15, -15, 20, -20, 0
-    ]
-    let inBoundary = boundaryValues.includes(sum)
-    let indexZeroDistance = indexesToBePrefetched[0] - storedIndexes[0]
-
-    console.log(reducedStoredIndexs, reducedNewIndexes, sum, inBoundary, indexZeroDistance)
-    if (inBoundary) {
-    } else {
-      if (indexZeroDistance >= 5) {
-        indexesToBePrefetched = [
-          index - 1, index - 2, index - 3, index - 4,
-          index,
-          index + 1, index + 2, index + 3, index + 4
-        ]
-        if (deltaFromPlaylistEnd >= 5) {
-          indexesToBePrefetched = [
-            index - 1, index - 2, index - 3, index - 4,
-            index,
-            index + 1, index + 2, index + 3, index + 4
-          ]
-        }
-        if (deltaFromPlaylistEnd === 4) {
-          indexesToBePrefetched = [
-            index - 1, index - 2, index - 3, index - 4,
-            index,
-            index + 1, index + 2, index + 3
-          ]
-        }
-        if (deltaFromPlaylistEnd === 3) {
-          indexesToBePrefetched = [
-            index - 1, index - 2, index - 3, index - 4,
-            index,
-            index + 1, index + 2
-          ]
-        }
-        if (deltaFromPlaylistEnd === 2) {
-          indexesToBePrefetched = [
-            index - 1, index - 2, index - 3, index - 4,
-            index,
-            index + 1
-          ]
-        }
-        if (deltaFromPlaylistEnd === 1) {
-          indexesToBePrefetched = [
-            index - 1, index - 2, index - 3, index - 4,
-            index
-          ]
-        }
-      }
-      store.dispatch(setIndexedToBePrefecthed(indexesToBePrefetched))
-    }
-  } else {
-    console.log('ooops')
-  }
-}
-
-export function handleSelectedTrack(trackId) {
-  // sent trackId to setSelectedTrack action
-  // creates the queue of indexes
-  selectTrack(trackId)
-  let prefetchIndexes = store.getState().audioPlayer.indexesToPrefetch
-  prefetchIndexes.map((index) => {
-    prefetch(index)
-    return index
-  })
-}
-
-
+import { timeFormat } from "../_JS Functions/utils";
 
 export default function appLogic() {
   // fetch playlist
@@ -169,6 +38,7 @@ export default function appLogic() {
         'title': track.title,
         'artist': track.user.name,
         'artwork': track.artwork["1000x1000"],
+        'length': timeFormat(track.duration),
         'tags': track.tags,
         'url': null
       }
@@ -185,25 +55,16 @@ export default function appLogic() {
     let firstTrack = store.getState().audioPlayer.playlist.tracks[0].id
     // set default playlist track
     handleSelectedTrack(firstTrack)
-    let player = $("#musicPlayer")[0]
+    let audioPlayer = document.getElementById('musicPlayer')
     // pass to next track on end
-    player.addEventListener('ended', function () {
-      let currentTrackIndex = store.getState().audioPlayer.selectedTrack
-      let playlist = store.getState().audioPlayer.playlist.tracks
-      let trackCount = store.getState().audioPlayer.playlist.trackCount
-      let nextTrackIndex
-      if (currentTrackIndex === trackCount - 1) {
-        nextTrackIndex = 0
-      } else { nextTrackIndex = currentTrackIndex + 1 }
-      let nextTrackId = playlist[nextTrackIndex].id
-      console.log(nextTrackId);
-      handleSelectedTrack(nextTrackId)
-    })
-    return playlist
+    audioPlayer.addEventListener('ended', (e) => listenEnded(e))
+    audioPlayer.addEventListener('play', (e) => listenPlay(e, audioPlayer))
+    audioPlayer.addEventListener('pause', (e) => listenPause(e))
+    audioPlayer.addEventListener('progress', (e) => listenProgress(e, audioPlayer))
+    audioPlayer.addEventListener('playing', (e) => listenPlaying(e, audioPlayer))
+    audioPlayer.addEventListener('timeupdate', (e) => listenTimeUpdate(e))
+    audioPlayer.addEventListener('seeking', (e) => listenSeeking(e, audioPlayer))
   })
-
-
-
 
   // ========================================================
   const breakPointsMql = responsiveObject.breakPointsMql
@@ -239,9 +100,6 @@ export default function appLogic() {
     defineDisplayOrientation(dispatchSetDisplayOrientation)
   }
   // ========================================================
-
-
-
 }
 
 

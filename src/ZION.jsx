@@ -72,7 +72,6 @@ export default function ZION() {
         </Product>
         <Lbar></Lbar>
       </Content>
-      <MusicPlayer></MusicPlayer>
       <Nav
         numberOfNavBarMenus={numberOfNavBarMenus}
         backgroundColor={navbarColor}
@@ -82,7 +81,7 @@ export default function ZION() {
         <Web3Connection eth={isEth} />
         <NavButton />
       </Nav>
-      <Footer><p>Footer</p></Footer>
+      <Footer><MusicPlayer></MusicPlayer></Footer>
     </ZIONGRID>
   )
 }

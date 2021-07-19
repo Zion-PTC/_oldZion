@@ -2,8 +2,6 @@ import { store } from "../store";
 import { responsiveObject } from "./responsiveDesignDashboard";
 
 export default function defineGridPa(callback) {
-  console.log('called');
-
   var breakPoints = responsiveObject.breakPoints
   // Media Query Lists
   const small = {
