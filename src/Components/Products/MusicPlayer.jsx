@@ -54,22 +54,6 @@ const PROGRESSBAR = styled.progress`
 `
 
 export default function MusicPlayer() {
-  let int
-
-  function counter() {
-    let counter = 0
-    function incrementCounter() {
-      counter++
-    }
-    int = setInterval(() => {
-      incrementCounter()
-      console.log(counter);
-    }, 100);
-  }
-
-  function startCounter() {
-    counter()
-  }
 
   let source
   let length
@@ -77,7 +61,7 @@ export default function MusicPlayer() {
   let playlistTracks = useSelector(state => state.audioPlayer.playlist.tracks)
   let playStatus = useSelector(state => state.audioPlayer.playStatus)
   let autoPlay = playStatus
-  let currentPosition = useSelector(state => state.audioPlayer.currentPosition)
+  // let currentPosition = useSelector(state => state.audioPlayer.currentPosition)
 
   let selectedTrackIndex = selectedTrack
   if (playlistTracks[0].id !== undefined) {

@@ -2,12 +2,10 @@ import { store } from "./store"
 import {
   setPlay,
   setPlayStatus,
-  setCurrentPosition,
   setCue,
   playPreviousTrack,
   playNextTrack,
   setMuted,
-  setAutoPlay
 } from "../features/audioPlayer/audioPlayerSlice"
 import { audiusApi } from "../services/audius"
 import $ from 'jquery'
@@ -17,7 +15,6 @@ import {
   setSelectedTrack,
   setIndexedToBePrefecthed
 } from "../features/audioPlayer/audioPlayerSlice"
-import { getHost } from "../features/asyncThunks/asyncThunksSlice"
 
 export function testButton() {
   console.log('test button');
@@ -60,18 +57,18 @@ export function listenPlaying(e, audioPlayer) {
 }
 
 export function listenProgress(event, audioPlayer) {
-  let current = event.target.currentTime
-  let currentTime = timeFormat(current)
-  let trackLength = event.target.duration
-  let trackLengthTime = timeFormat(trackLength)
+  // let current = event.target.currentTime
+  // let currentTime = timeFormat(current)
+  // let trackLength = event.target.duration
+  // let trackLengthTime = timeFormat(trackLength)
   let buffer = audioPlayer.buffered
   if (buffer.length !== 0) {
-    let bufferLength = buffer.length
-    let bufferStart = buffer.start(0)
-    let bufferStartTime = timeFormat(bufferStart)
-    let bufferEnd = buffer.end(0)
-    let bufferEndTime = timeFormat(bufferEnd)
-    let ratio = ~~ ((bufferEnd / trackLength) * 100)
+    // let bufferLength = buffer.length
+    // let bufferStart = buffer.start(0)
+    // let bufferStartTime = timeFormat(bufferStart)
+    // let bufferEnd = buffer.end(0)
+    // let bufferEndTime = timeFormat(bufferEnd)
+    // let ratio = ~~ ((bufferEnd / trackLength) * 100)
   }
 }
 

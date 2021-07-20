@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { handleSelection, selectTrack } from "../../app/audioPlayer"
 
-var productTrackObj ={
-  'productTrackArea': {
-    'heigth': '97%'
-  }
-}
+// var productTrackObj ={
+//   'productTrackArea': {
+//     'heigth': '97%'
+//   }
+// }
 
 const PRODUCTTRACKAREA = styled.div`
   height: 92%;

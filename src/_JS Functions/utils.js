@@ -1,7 +1,22 @@
 import { store } from "../app/store";
 import { audiusApi } from "../services/audius";
 
-export function timeFormat(duration) {
+let loadToLocalStorage = (stringKey, value) => {
+  try {
+    let stringValue = JSON.stringify(value)
+    localStorage.setItem(stringKey, stringValue)
+  } catch (error) {
+    console.error(error);
+  }
+  return 'success'
+}
+
+let getFromLocalStorate = (stringKey) => {
+  let jsonString = localStorage.getItem(stringKey)
+  return JSON.parse(jsonString)
+}
+
+function timeFormat(duration) {
   let hrs = ~~(duration / 3600);
   let mins = ~~((duration % 3600) / 60);
   let secs = ~~duration % 60
@@ -32,7 +47,7 @@ let dispatchSearchTracks = (e) => store.dispatch(audiusEnpoints.searchTracks.ini
 let dispatchStreamTrack = (e) => store.dispatch(audiusEnpoints.streamTrack.initiate(e))
 let dispatchSearchTags = (e) => store.dispatch(audiusEnpoints.searchTags.initiate(e))
 
-export async function createPlaylistFromTrackNames(trackNames) {
+async function createPlaylistFromTrackNames(trackNames) {
   let trackDatas = trackNames.map((trackName) => {
     let searchTracksRes = getFirstResultFromSearchTracks(trackName)
     return searchTracksRes
@@ -42,12 +57,12 @@ export async function createPlaylistFromTrackNames(trackNames) {
   return tagPlaylistObj
 }
 
-export let getFirstResultFromSearchTracks = async (e) => {
+let getFirstResultFromSearchTracks = async (e) => {
   let res = await dispatchSearchTracks(e)
   return res.data.data[0]
 }
 
-export let createTracksArrayFromAudiusPlaylistWithUrl = (trackDatas) => {
+let createTracksArrayFromAudiusPlaylistWithUrl = (trackDatas) => {
   let tracks = []
   trackDatas.forEach(async (element) => {
     let track = await element
@@ -67,7 +82,7 @@ export let createTracksArrayFromAudiusPlaylistWithUrl = (trackDatas) => {
   return tracks
 }
 
-export let createTracksArrayFromAudiusPlaylist = (playlistTracks) => {
+let createTracksArrayFromAudiusPlaylist = (playlistTracks) => {
   let tracks = playlistTracks.map(track => {
     let trackObj = {
       'id': track.id,
@@ -83,7 +98,7 @@ export let createTracksArrayFromAudiusPlaylist = (playlistTracks) => {
   return tracks
 }
 
-export let createPlaylistObjectFromAudiusTracksArray = (tracks) => {
+let createPlaylistObjectFromAudiusTracksArray = (tracks) => {
   return {
     'name': 'TNL25',
     tracks: tracks,
@@ -91,15 +106,28 @@ export let createPlaylistObjectFromAudiusTracksArray = (tracks) => {
   }
 }
 
-export let createTracksArrayFromTag = async (query) => {
+let createTracksArrayFromTag = async (query) => {
   let searchTagRes = await dispatchSearchTags(query)
   let json = await searchTagRes.data
   let data = await json.data
   let tracks = await data.tracks
-  let users = await data.users
+  // let users = await data.users
   let trackNames = tracks.map(track => track.title)
-  let userNames = users.map(track => track.handle)
+  // let userNames = users.map(track => track.handle)
   return trackNames
 }
 
 // ======================================================
+
+export {
+  loadToLocalStorage,
+  getFromLocalStorate,
+  timeFormat,
+  // AUDIUS
+  createPlaylistFromTrackNames,
+  getFirstResultFromSearchTracks,
+  createTracksArrayFromAudiusPlaylistWithUrl,
+  createTracksArrayFromAudiusPlaylist,
+  createPlaylistObjectFromAudiusTracksArray,
+  createTracksArrayFromTag
+}
