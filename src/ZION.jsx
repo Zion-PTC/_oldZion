@@ -22,7 +22,7 @@ import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
 import { selectAudioPlayer } from "./features/audioPlayer/audioPlayerSlice";
-import MusicPlayer from "./Components/Products/MusicPlayer";
+import MusicPlayer from "./Components/Areas/Footer/MusicPlayer";
 
 import appLogic from "./app/appLogic";
 $(appLogic())

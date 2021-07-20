@@ -32,6 +32,7 @@ import {
 } from "../_JS Functions/utils";
 import { defineNavBarH } from "./features/navBar/navBar";
 import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
+import { getUsersMostUsedTags } from "../_JS Functions/fetchAudius";
 
 // let audiusEnpoints = audiusApi.endpoints
 
@@ -41,6 +42,9 @@ import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
 let dispatchSetPlaylist = (e) => store.dispatch(setPlaylist(e))
 
 export default async function appLogic() {
+  let query = getUsersMostUsedTags()
+  console.log(query);
+
   // ============================TAG PLAYLIST============================
 
   let searchTags = 'tnlDAO'
@@ -115,27 +119,6 @@ export default async function appLogic() {
   }
   // ========================================================
 }
-
-
-  //// REDUX STATE IMPORT
-
-  // const playlist = useSelector(state => state.audioPlayer.playlist)
-
-  // if (error) {console.log(error);}
-  // // console.log(error, isLoading);
-  // if (!isLoading) {
-  //   // ======== SPLITTING THE TAGS ========
-  //   // const track1Tags = playlistTracks.data[0].tags
-  //   // console.log(track1Tags);
-  //   // const regexpTag = /(\w+)/g;
-  //   // const splittedTags = track1Tags.match(regexpTag)
-  //   // console.table(splittedTags);
-  //   // ========== FINDING EXACT MATCH ==========
-  //   // const regexpTagExactMatch = /tnl25/
-  //   // const tnl25Tagged = track1Tags.match(regexpTagExactMatch)
-  //   // console.log(tnl25Tagged);
-  // }
-  // const {data, error, isLoading2} = useStreamTrackQuery(playlist.data[0])
 
 
 

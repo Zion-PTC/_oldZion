@@ -7,7 +7,7 @@ import {
   handleVolume,
   toggleVolume,
   testButton
-} from "../../app/audioPlayer"
+} from "../../../app/audioPlayer"
 
 const MUSICPLAYER = styled.div`
   height: 100%;

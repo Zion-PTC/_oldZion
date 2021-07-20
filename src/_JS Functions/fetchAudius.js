@@ -1,25 +1,37 @@
-let getPlaylist = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/DOPRl?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let getPlaylist = async (playlistId) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/' + playlistId + '?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-let getPlaylistTracks = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/DOPRl/tracks?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let getPlaylistTracks = async (playlistId) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/' + playlistId + '/tracks?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-let getTrack = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/D7KyD?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let getTrack = async (trackId) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/' + trackId + '?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 let getTrailingAppMetrics = async () => {
@@ -30,36 +42,52 @@ let getTrailingAppMetrics = async () => {
   return json.data
 }
 
-let getUsers = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/nlGNe?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let getUsers = async (userId) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/' + userId + '?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-let getUsersFavTracks = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/nlGNe/favorites?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let getUsersFavTracks = async (userId) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/' + userId + '/favorites?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 let getUsersMostUsedTags = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/string/tags?user_id=string&app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/string/tags?user_id=string&app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 let getUsersRepost = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/string/reposts?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/string/reposts?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 let resolve = async () => {
@@ -70,40 +98,52 @@ let resolve = async () => {
   return json.data
 }
 
-let searchPlaylists = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/search?query=baauer b2b&app_name=EXAMPLEAPP'
+let searchPlaylists = async (query) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/playlists/search?query=' + query + '&app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let searchTracks = async (query) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/search?query=' + query + '&app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let searchUsers = async (query) => {
+  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/search?query=' + query + '&app_name=EXAMPLEAPP'
   let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
   let res = await fetch(url, options)
   let json = await res.json()
   return json.data
 }
 
-let searchTracks = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/search?query=baauer b2b&app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
+let streamTrack = async (query) => {
+  try {
+    let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/' + query + '/stream?app_name=EXAMPLEAPP'
+    let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
+    let res = await fetch(url, options)
+    let json = await res.json()
+    return json.data
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-let searchUsers = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/search?query=Brownies&app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
-}
-
-let streamTrack = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/tracks/D7KyD/stream?app_name=EXAMPLEAPP'
-  let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
-  let res = await fetch(url, options)
-  let json = await res.json()
-  return json.data
-}
-
-let usersTracks = async () => {
-  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/nlGNe/tracks?app_name=EXAMPLEAPP'
+let usersTracks = async (userId) => {
+  let url = 'https://discovery-a.mainnet.audius.radar.tech/v1/users/'+userId+'/tracks?app_name=EXAMPLEAPP'
   let options = { method: 'GET', headers: { 'Accept': 'application/json' } }
   let res = await fetch(url, options)
   let json = await res.json()
