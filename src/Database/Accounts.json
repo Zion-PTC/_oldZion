@@ -28,22 +28,13 @@
           ]
         },
         {
-          "rbar": {
-            "menu1": "",
-            "menu2": ""
-          }
+          "name": "rBar"
         },
         {
-          "lbar": {
-            "menu1": "",
-            "menu2": ""
-          }
+          "name": "lBar"
         },
         {
-          "footer": {
-            "menu1": "",
-            "menu2": ""
-          }
+          "name": "footer"
         }
       ]
     },

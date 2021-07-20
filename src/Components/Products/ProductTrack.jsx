@@ -1,9 +1,14 @@
 import styled from "styled-components"
 import { handleSelection, selectTrack } from "../../app/audioPlayer"
-import { timeFormat } from "../../_JS Functions/utils"
+
+var productTrackObj ={
+  'productTrackArea': {
+    'heigth': '97%'
+  }
+}
 
 const PRODUCTTRACKAREA = styled.div`
-  height: 97%;
+  height: 92%;
   width: 97%;
   max-width: 600px;
   grid-row: span 2;
@@ -11,6 +16,49 @@ const PRODUCTTRACKAREA = styled.div`
   align-self: center;
   justify-self: center;
 `
+
+const PRODUCTGRID = styled.div`
+  height: 100%;
+  width: 100%;
+  background: #1C4A72;
+  border: 1px solid inset rgb(13, 46, 65);
+  font-size: 70%;
+  border-radius: 5px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: ${props => props.gridColInA};
+  grid-template-rows: ${props => props.gridRowInA};
+  grid-template-areas: ${props => props.gridAreaInA};
+`
+
+const FIELD = styled.div`
+  grid-area: ${props => props.area};
+  align-self: end;
+  padding: 1px;
+  color: #03090E;
+  font-size: 90%;
+  `
+
+const DATA = styled.div`
+  grid-area: ${props => props.area};
+  padding: 1px;
+  color: #EEF4FA;
+  `
+
+const TAGS = styled(DATA)`
+  width: 100%;
+  overflow: auto;
+  `
+
+const BADGE = styled.div`
+  grid-area: ${props => props.area};
+  background: rgb(13, 46, 65);
+  border-radius: 100%;
+  height: 74%;
+  width: 74%;
+  place-self: center;
+`
+
 const TRKLOGOTHUMBNAIL = styled.img`
   grid-area: logo;
   border-radius: 10px;
@@ -21,6 +69,15 @@ const TRKLOGOTHUMBNAIL = styled.img`
   :hover{
     opacity: 0.5;
   }
+`
+
+const LIKEBAR = styled.input`
+  background-color: rgb(13, 46, 65, 0.167);
+  grid-area: likebar;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: slider-vertical;
 `
 
 export default function ProductTrack({ track }) {
@@ -43,35 +100,26 @@ export default function ProductTrack({ track }) {
 
   return (
     <PRODUCTTRACKAREA>
-      <div id='productTrackGrid' style={{
-        height: '100%',
-        width: '100%',
-        background: '#1C4A72',
-        border: '1px solid inset rgb(13, 46, 65)',
-        fontSize: '70%',
-        borderRadius: '5px',
-        justifySelf: 'center',
-        display: 'grid',
-        gridTemplateColumns: `${gridColInA}`,
-        gridTemplateRows: `${gridRowInA}`,
-        gridTemplateAreas: `${gridAreaInA}`
-      }}>
-          <TRKLOGOTHUMBNAIL
-            onClick={handleClickThumbnail}
-            src={artwork}
-          />
-        <div style={{ gridArea: '_title', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Track Title</div>
-        <div style={{ gridArea: 'title', padding: '1px', color: '#EEF4FA' }}>{title}</div>
-        <div style={{ gridArea: '_artist', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Artist</div>
-        <div style={{ gridArea: 'artist', padding: '1px', color: '#EEF4FA' }}>{artist}</div>
-        <div style={{ gridArea: '_tags', alignSelf: 'end', padding: '1px', color: '#03090E', fontSize: '90%' }}>Tags/Style</div>
-        <div style={{ gridArea: 'tags', padding: '1px', color: '#EEF4FA', width: '100%', overflow: 'auto' }}><p>{tags}</p></div>
-        <div style={{ gridArea: 'badge1', background: 'rgb(13, 46, 65)', borderRadius: '100%', height: '74%', width: '74%', placeSelf: 'center' }}></div>
-        <div style={{ background: 'rgb(13, 46, 65, 0.167)', gridArea: 'likebar', display: 'grid' }}>
-          <div style={{ background: 'yellow', borderRadius: '15px', height: '90%', width: '21px', placeSelf: 'center' }}></div>
-        </div>
-        <div style={{ gridArea: 'badge2', background: 'rgb(13, 46, 65)', borderRadius: '100%', height: '74%', width: '74%', placeSelf: 'center' }}></div>
-      </div>
+      <PRODUCTGRID id='productTrackGrid'
+        gridColInA={gridColInA}
+        gridRowInA={gridRowInA}
+        gridAreaInA={gridAreaInA}
+      >
+        <TRKLOGOTHUMBNAIL
+          onClick={handleClickThumbnail}
+          src={artwork}
+        />
+        <FIELD area='_title'>Track Title</FIELD>
+        <DATA area='title'>{title}</DATA>
+        <FIELD area='_artist'>Artist</FIELD>
+        <DATA area='artist'>{artist}</DATA>
+        <FIELD area='_tags'>Tags/Style</FIELD>
+        <TAGS area='tags'><p>{tags}</p></TAGS>
+        <BADGE area='badge1'></BADGE>
+        <LIKEBAR type='range'>
+        </LIKEBAR>
+        <BADGE area='badge2'></BADGE>
+      </PRODUCTGRID>
     </PRODUCTTRACKAREA>
   )
 }

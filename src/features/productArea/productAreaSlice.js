@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productAreaSlice = createSlice({
   name: 'productArea',
   initialState: {
-    colSize: undefined,
-    gridPA: undefined,
+    colSize: null,
+    gridPA: null,
   },
   reducers: {
     setGridPa: (state, action) => {

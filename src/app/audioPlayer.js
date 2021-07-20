@@ -5,7 +5,9 @@ import {
   setCurrentPosition,
   setCue,
   playPreviousTrack,
-  playNextTrack
+  playNextTrack,
+  setMuted,
+  setAutoPlay
 } from "../features/audioPlayer/audioPlayerSlice"
 import { audiusApi } from "../services/audius"
 import $ from 'jquery'
@@ -15,17 +17,43 @@ import {
   setSelectedTrack,
   setIndexedToBePrefecthed
 } from "../features/audioPlayer/audioPlayerSlice"
+import { getHost } from "../features/asyncThunks/asyncThunksSlice"
+
+export function testButton() {
+  console.log('test button');
+
+}
+
+export function listenKeyDown() {
+  console.log('key pressed');
+}
+
+export function toggleVolume() {
+  store.dispatch(setMuted())
+  let musicPlayer = document.getElementById('musicPlayer')
+  let isMuted = store.getState().audioPlayer.isMuted
+  musicPlayer.muted = isMuted
+  
+}
+
+export function handleVolume(volume) {
+  let musicPlayer = document.getElementById('musicPlayer')
+  musicPlayer.volume = volume / 100
+  
+}
 
 export function listenSeeking(e, audioPlayer) {
   console.log('scrolled');
   listenProgress(e, audioPlayer)
 }
 
+var time
+
 export function listenTimeUpdate(e) {
-  setInterval(() => {
-    let time = timeFormat(e.target.currentTime)
-    store.dispatch(setCurrentPosition(time))
-  }, 1000);
+  let currentTime = ~~e.target.currentTime
+  let duration = ~~e.target.duration
+  $('#audioProgressBar').attr('value', currentTime / duration)
+  document.getElementById('currentPosition').innerHTML = timeFormat(currentTime) + ' ' + timeFormat(duration)
 }
 
 export function listenPlaying(e, audioPlayer) {
@@ -43,9 +71,7 @@ export function listenProgress(event, audioPlayer) {
     let bufferStartTime = timeFormat(bufferStart)
     let bufferEnd = buffer.end(0)
     let bufferEndTime = timeFormat(bufferEnd)
-
     let ratio = ~~ ((bufferEnd / trackLength) * 100)
-    console.log(buffer, bufferLength, bufferEndTime, ratio);
   }
 }
 
@@ -56,6 +82,7 @@ export function listenPlay(event, audioPlayer) {
 
 export function listenPause() {
   store.dispatch(setPlayStatus('pause'))
+  clearInterval(time)
 }
 
 export function listenEnded() {
@@ -72,10 +99,22 @@ export function listenEnded() {
 
 export function handlePrevious() {
   store.dispatch(playPreviousTrack())
+  let selectedTrackIndex = store.getState().audioPlayer.selectedTrack
+  console.log(selectedTrackIndex);
+  let playlist = store.getState().audioPlayer.playlist.tracks
+  let selectedTrackId = playlist ? playlist[selectedTrackIndex].id : ''
+  selectTrack(selectedTrackId)
+  handleSelection()
 }
 
 export function handleNext() {
   store.dispatch(playNextTrack())
+  let selectedTrackIndex = store.getState().audioPlayer.selectedTrack
+  console.log(selectedTrackIndex);
+  let playlist = store.getState().audioPlayer.playlist.tracks
+  let selectedTrackId = playlist ? playlist[selectedTrackIndex].id : ''
+  selectTrack(selectedTrackId)
+  handleSelection()
 }
 
 export function handlePlay() {
@@ -113,20 +152,23 @@ export function handleCue(indexes) {
   }
 }
 
-export function prefetch(index) {
-  let track = store.getState().audioPlayer.playlist.tracks[index].id
-  let urlRes = store.dispatch(audiusApi.endpoints.streamTrack.initiate(track))
-  urlRes.then((res) => {
-    let url = res.data
-    let obj = {
-      'index': index,
-      'url': url
-    }
-    store.dispatch(setTrackUrl(obj))
-    let cueIndexes = store.getState().audioPlayer.indexesToPrefetch
-    handleCue(cueIndexes)
-  })
+let getTrackStreamUrl = async (track) => {
+  let endpoints = audiusApi.endpoints.streamTrack
+  let urlRes = await store.dispatch(endpoints.initiate(track))
+  return urlRes.data
+}
 
+export async function prefetch(index) {
+  let track = store.getState().audioPlayer.playlist.tracks[index].id
+  let urlRes = getTrackStreamUrl(track)
+  let url = await urlRes
+  let obj = {
+    'index': index,
+    'url': url
+  }
+  store.dispatch(setTrackUrl(obj))
+  let cueIndexes = store.getState().audioPlayer.indexesToPrefetch
+  handleCue(cueIndexes)
 }
 
 export function selectTrack(id) {

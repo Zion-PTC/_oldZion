@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import $ from 'jquery'
 import './App.css'
 
 import database from './Database/Accounts.json'
@@ -24,7 +25,7 @@ import { selectAudioPlayer } from "./features/audioPlayer/audioPlayerSlice";
 import MusicPlayer from "./Components/Products/MusicPlayer";
 
 import appLogic from "./app/appLogic";
-appLogic()
+$(appLogic())
 
 const ZIONGRID = styled.div`
   display: grid;
@@ -38,10 +39,7 @@ export default function ZION() {
   const navbarColor = accounts[0].navbarColor
   const numberOfNavBarMenus = accounts[0].menus.length
   const logoURL = accounts[0].logoURL
-  const playlistMenu = [
-    'TNLDGL',
-    'TNL25'
-  ]
+  const playlistMenu = accounts[0].menus[0].subMenus[0].subMenus
   const navBarMenu = useSelector(selectNavBarMenu)
   const menuHidden = navBarMenu.hidden
   const menuBarH = navBarMenu.menuBarH

@@ -17,56 +17,70 @@ import {
   listenEnded,
   listenPlaying,
   listenTimeUpdate,
-  listenSeeking
+  listenSeeking,
+  listenKeyDown
 } from "./audioPlayer";
 import { responsiveObject } from "./defineFunctions/responsiveDesignDashboard";
 import { setPlaylist } from "../features/audioPlayer/audioPlayerSlice";
 import { audiusApi } from "../services/audius";
-import $ from 'jquery'
-import { timeFormat } from "../_JS Functions/utils";
+import {
+  createPlaylistObjectFromAudiusTracksArray,
+  createTracksArrayFromAudiusPlaylist,
+  createTracksArrayFromTag,
+  timeFormat,
+  createPlaylistFromTrackNames,
+} from "../_JS Functions/utils";
+import { defineNavBarH } from "./features/navBar/navBar";
+import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
 
-export default function appLogic() {
-  // fetch playlist
-  let playlist = store.dispatch(audiusApi.endpoints.getPlaylistTracks.initiate('LRYPG'))
-  playlist.then((res) => {
-    let datas = res.data
-    let playlistTracks = datas.data
-    // create tracks array
-    let tracks = playlistTracks.map(track => {
-      let trackObj = {
-        'id': track.id,
-        'title': track.title,
-        'artist': track.user.name,
-        'artwork': track.artwork["1000x1000"],
-        'length': timeFormat(track.duration),
-        'tags': track.tags,
-        'url': null
-      }
-      return trackObj
-    })
-    // create playlist obj
-    let playlist = {
-      'name': 'TNL25',
-      tracks: tracks,
-      'tracksCount': tracks.length
-    }
-    // set playlist in the state
-    store.dispatch(setPlaylist(playlist))
-    let firstTrack = store.getState().audioPlayer.playlist.tracks[0].id
-    // set default playlist track
-    handleSelectedTrack(firstTrack)
-    let audioPlayer = document.getElementById('musicPlayer')
-    // pass to next track on end
-    audioPlayer.addEventListener('ended', (e) => listenEnded(e))
-    audioPlayer.addEventListener('play', (e) => listenPlay(e, audioPlayer))
-    audioPlayer.addEventListener('pause', (e) => listenPause(e))
-    audioPlayer.addEventListener('progress', (e) => listenProgress(e, audioPlayer))
-    audioPlayer.addEventListener('playing', (e) => listenPlaying(e, audioPlayer))
-    audioPlayer.addEventListener('timeupdate', (e) => listenTimeUpdate(e))
-    audioPlayer.addEventListener('seeking', (e) => listenSeeking(e, audioPlayer))
+let audiusEnpoints = audiusApi.endpoints
+
+// let dispatchSearchTracks = (e) => store.dispatch(audiusEnpoints.searchTracks.initiate(e))
+// let dispatchSearchTags = (e) => store.dispatch(audiusEnpoints.searchTags.initiate(e))
+// let dispatchStreamTrack = (e) => store.dispatch(audiusEnpoints.streamTrack.initiate(e))
+let dispatchSetPlaylist = (e) => store.dispatch(setPlaylist(e))
+
+export default async function appLogic() {
+  // ============================TAG PLAYLIST============================
+
+  let searchTags = 'tnlDAO'
+  let trackNames = await createTracksArrayFromTag(searchTags)
+  let playlistObj = await createPlaylistFromTrackNames(trackNames)
+  document.getElementById('testButton').addEventListener('click',()=>{
+    store.dispatch(setPlaylist(playlistObj))
   })
 
-  // ========================================================
+  // ============================NAVBAR============================
+
+  const dispatchSetNavBarH = (e) => store.dispatch(setMenuBarH(e))
+  defineNavBarH(dispatchSetNavBarH)
+
+  // ============================PLAYLIST============================
+  let getPlaylistTracksRes = await store.dispatch(audiusApi.endpoints.getPlaylistTracks.initiate('LRYPG'))
+  let datas = getPlaylistTracksRes.data
+  let playlistTracks = datas.data
+  let tracks = createTracksArrayFromAudiusPlaylist(playlistTracks)
+  let playlist = createPlaylistObjectFromAudiusTracksArray(tracks)
+  dispatchSetPlaylist(playlist)
+  let firstTrack = store.getState().audioPlayer.playlist.tracks[0].id
+  // set default playlist track
+  handleSelectedTrack(firstTrack)
+  let audioPlayer = document.getElementById('musicPlayer')
+  // pass to next track on end
+  audioPlayer.addEventListener('ended', (e) => listenEnded(e))
+  audioPlayer.addEventListener('play', (e) => listenPlay(e, audioPlayer))
+  audioPlayer.addEventListener('pause', (e) => listenPause(e))
+  audioPlayer.addEventListener('progress', (e) => listenProgress(e, audioPlayer))
+  audioPlayer.addEventListener('playing', (e) => listenPlaying(e, audioPlayer))
+  audioPlayer.addEventListener('timeupdate', (e) => listenTimeUpdate(e))
+  audioPlayer.addEventListener('seeking', (e) => listenSeeking(e, audioPlayer))
+  // audioProgressBarr scroll
+  document.getElementById('currentPosition').innerHTML = '00:00 ' + timeFormat(~~audioPlayer.duration)
+
+  document.addEventListener('keydown', (e) => listenKeyDown(e))
+
+
+  // ============================RESPONSIVENESS============================
   const breakPointsMql = responsiveObject.breakPointsMql
   const orientationMql = responsiveObject.orientationMql
 

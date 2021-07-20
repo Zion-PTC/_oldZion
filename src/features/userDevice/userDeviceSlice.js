@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userDeviceSlice = createSlice({
   name: "userDevice",
   initialState: {
-    deviceType: undefined,
-    webBrowser: 'ciao',
+    deviceType: null,
+    webBrowser: null,
     screenDimensions: {
-      width: undefined,
-      heght: undefined
+      width: null,
+      heght: null
     }
   },
   reducers: {

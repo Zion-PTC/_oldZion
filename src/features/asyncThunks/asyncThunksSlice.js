@@ -5,10 +5,11 @@ export const getHost = createAsyncThunk(
   async () => {
     console.log('clicked asyncthunk');
     const sample = (arr) => arr[Math.floor(Math.random() * arr.length)]
-    return fetch('https://api.audius.co')
-      .then(r => r.json())
-      .then(j => j.data)
-      .then(d => sample(d))
+    let res = await fetch('https://api.audius.co')
+    let json = await res.json()
+    let data = await json.data
+    let host = sample(data)
+    return host
   }
 )
 
@@ -17,8 +18,6 @@ export const connectToMetamask = createAsyncThunk(
   async () => {
     const eth = window.ethereum
     await eth.request({ method: 'eth_requestAccounts' })
-      // .then(res => setMetaConnectionMessage('Congratulation motherfucker', res))
-      // .catch(err => setMetaConnectionMessage('You rejected the connection, try again', err))
   }
 )
 
@@ -52,13 +51,14 @@ export const asyncThunksSlice = createSlice({
     metamaskMessage : '0000',
     userMainNetTokenBalance: '0000',
     userInvitationTokenBalance: '0000',
-    awaitResult: undefined
+    awaitResult: null
   },
   reducers: {
   },
   extraReducers: (builder) => {
     builder
     .addCase(getHost.fulfilled, (state, action) => {
+      console.log('called getHost');
       state.host = action.payload
     })
     .addCase(connectToMetamask, (state, action) => {

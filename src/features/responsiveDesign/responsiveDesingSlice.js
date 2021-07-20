@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const responsiveDesignSlice = createSlice({
   name: 'responsiveDesign',
   initialState: {
-    orientation: undefined,
+    orientation: null,
     isFullscreen: false,
-    display: undefined,
+    display: null,
   },
   reducers: {
     setDisplay: (state, action) => {

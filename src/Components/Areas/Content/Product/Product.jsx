@@ -10,7 +10,7 @@ const PRODUCTAREA = styled.div`
   background: blueviolet;
   display: grid;
   grid-auto-flow: dense;
-  grid-auto-rows: 55px;
+  grid-auto-rows: 3.7em;
   grid-template-columns: ${props => props.gridPATC};
   place-self: center;
 `

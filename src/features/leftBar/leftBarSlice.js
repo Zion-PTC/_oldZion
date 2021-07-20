@@ -17,8 +17,8 @@ export const leftBarSlice = createSlice({
   name: 'leftBar',
   initialState: {
     isHidden: true,
-    lbarContent: undefined,
-    lbarMenus: undefined,
+    lbarContent: null,
+    lbarMenus: null,
   },
   reducers: {
     setLeftBarHidden: state => {

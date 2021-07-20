@@ -53,32 +53,31 @@ export default function NavMenu() {
 
   let displayMenus
   displayMenus = menus.map(
-    (i) => {
+    (menu) => {
       let className
-      if (i === activeMenu) { className = "active" } else { className = "inactive" }
+      if (menu === activeMenu) {
+        className = "active"
+      } else {
+        className = "inactive"
+      }
 
       return <li
-        id={i}
+        id={menu}
         className={className}
-        onClick={() => dispatch(setActiveMenu(i))}
-        key={i}
-        >
+        onClick={() => dispatch(setActiveMenu(menu))}
+        key={menu}
+      >
         <p
           onClick={() => dispatch(setNavBarMenu())}
-        >{i}</p>
+        >{menu}</p>
       </li>
     }
   )
 
   return (
-
     <NAVMENU
       gridTemplateColumns={gridTemplateColumns}
       id='navmenulist'>
-      {/* <li onClick={() => dispatch(setNavBarMenu())} id='navmenuitem1'><p>Playlist</p></li>
-      <li id='navmenuitem2'><p>Tracks</p></li>
-      <li id='navmenuitem3'><p>12"</p></li>
-      <li id='navmenuitem4'><p>Merchandise</p></li> */}
       {displayMenus}
     </NAVMENU>
   )

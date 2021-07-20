@@ -19,29 +19,38 @@ export const audioPlayerSlice = createSlice({
   name: 'audioPlayer',
   initialState: {
     play: false,
+    autoplay: false,
     playStatus: 'pause',
     currentPosition : '00:00',
     currentTrackBufferStatus : {
-      'bufferedTime': undefined
+      'bufferedTime': null
     },
+    isMuted: false,
     isShuffleOn: false,               // false = 'off', true = 'on'
-    playlist: {
-      'name': undefined,
-      'tracks': [{
-        id: undefined,
-        url: undefined
-      }],
-      'trackCount': undefined
+    loop : {
+      type: null,                // 1 track || playlist
+      status : null              // on || off
     },
-    trackID: undefined,
-    selectedTrack: undefined,
-    cue: undefined,
+    playlist: {
+      'name': null,
+      'tracks': [{
+        id: null,
+        url: null
+      }],
+      'trackCount': null
+    },
+    trackID: null,
+    selectedTrack: null,
+    cue: null,
     indexesToPrefetch: [0, 1, 2, 3, 4],
-    log: undefined
+    log: null
   },
   reducers: {
     setPlay: (state) => {
       state.play = !state.play
+    },
+    setAutoPlay: (state) => {
+      state.autoplay = !state.autoplay
     },
     setPlayStatus: (state, action) => {
       state.playStatus = action.payload
@@ -52,8 +61,11 @@ export const audioPlayerSlice = createSlice({
     setCurrentTrackBufferStatus: (state, action) => {
       state.currentTrackBufferStatus = action.payload
     },
+    setMuted: (state) => {
+      console.log('clicke mute');
+      state.isMuted = !state.isMuted
+    },
     addTrackToPlaylist: (state, action) => {
-      // push track to playlist
       state.playlist.tracks.push(action.payload)
     },
     setPlaylist: (state, action) => {
@@ -101,8 +113,10 @@ export const audioPlayerSlice = createSlice({
 export const selectAudioPlayer = state => state.audioPlayer
 export const {
   setPlay,
+  setAutoPlay,
   setPlayStatus,
   setCurrentPosition,
+  setMuted,
   addTrackToPlaylist,
   setTrackUrl,
   setSelectedTrack,
