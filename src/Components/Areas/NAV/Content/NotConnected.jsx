@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { connectToMetamask } from '../../../../features/asyncThunks/asyncThunksSlice'
 // import { connectToMetamask } from '../../../../features/ethereum/ethereumSlice'
+// import { connectToMetamask } from '../../../../features/asyncThunks/asyncThunksSlice'
 
 const WEB3CONN = styled.div`
   grid-area: web3;
@@ -33,7 +33,7 @@ export default function NotConnected() {
       <WEB3CONN>
         <button
           // onClick={() => dispatch(connectToMetamask())}
-          onClick={() => dispatch(connectToMetamask())}
+          // onClick={() => dispatch(connectToMetamask())}
         >Connect</button>
         <p style={{ gridArea: 'b', margin: '0' }}></p>
       </WEB3CONN>

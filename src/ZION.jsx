@@ -13,16 +13,14 @@ import NavMenu from "./Components/Areas/Nav/Content/NavMenu";
 import Web3Connection from "./Components/Areas/Nav/Content/Web3Connection";
 import NavButton from "./Components/Areas/Nav/Content/NavButton";
 
-import Lbar from "./Components/Areas/Content/LBar/Lbar";
-import Menu from "./Components/Areas/Content/Menu/Menu";
-import Product from "./Components/Areas/Content/Product/Product";
 import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 // import TNL25Tags from "./Components/Products/TNL25Tags";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
 import { selectAudioPlayer } from "./features/audioPlayer/audioPlayerSlice";
 import MusicPlayer from "./Components/Areas/Footer/MusicPlayer";
+import { connectToMetamask } from "./features/ethereum/ethereumSlice";
 
 import appLogic from "./app/appLogic";
 $(appLogic())
@@ -44,42 +42,28 @@ export default function ZION() {
   const menuHidden = navBarMenu.hidden
   const menuBarH = navBarMenu.menuBarH
   // WEB 3
-  let isEth = useSelector(state => state.ethereum.isEth) // checks if user has Metamask, true if installed
-  // let store = useSelector(state => state)
-  // let isUserConnected = useSelector(state => state.ethereum.isUserConnected)
-  // let userAddr = useSelector(state => state.ethereum.userAddr)
-  // let userChain = useSelector(state => state.ethereum.userChain)
-  // let isE = useSelector(state => state.ethereum.isEth)
+  let ethereum = useSelector(state => state.ethereum)
+  let isEth = ethereum.isEth
+  let isConnected = ethereum.isConnected
   let audioPlayer = useSelector(selectAudioPlayer)
   let playlist = audioPlayer.playlist
-  // const { data, error, isLoading }
-  // const { data, error, isLoading } = useGetPlaylistTracksQuery(playlistID)
-  // if (error) { console.log(error); }
-  // const dispatch = useDispatch()
-  // dispatch(setPlaylist(data))
-  // let playlist = useSelector(state => state.audioPlayer.playlist)
-  // console.log(playlist);
 
   return (
     <ZIONGRID className='Zion'>
-      <Content menuHidden={menuHidden} menuBarH={menuBarH}>
-        <Menu playlistMenu={playlistMenu}>
-        </Menu>
-        <Product>
-          <TNLAudiusPlaylist playlist={playlist}></TNLAudiusPlaylist>
-        </Product>
-        <Lbar></Lbar>
+      <Content
+      menuHidden={menuHidden}
+      menuBarH={menuBarH}
+      isEth={isEth}
+      isConnected={isConnected}>
       </Content>
       <Nav
         numberOfNavBarMenus={numberOfNavBarMenus}
         backgroundColor={navbarColor}
-      >
-        <AccountAvatar logoURL={logoURL}></AccountAvatar>
-        <NavMenu></NavMenu>
-        <Web3Connection eth={isEth} />
-        <NavButton />
-      </Nav>
-      <Footer><MusicPlayer></MusicPlayer></Footer>
+        isEth={isEth}
+      />
+      <Footer>
+        {/* <MusicPlayer></MusicPlayer> */}
+      </Footer>
     </ZIONGRID>
   )
 }

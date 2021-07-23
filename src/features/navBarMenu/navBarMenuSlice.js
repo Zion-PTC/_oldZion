@@ -5,7 +5,6 @@ const accounts = database.accounts
 const nOfMenus = accounts[0].menus[0].subMenus.length
 const subMenus = accounts[0].menus[0].subMenus
 const subSubMenus = accounts[0].menus[0].subMenus[0].subMenus
-console.log(subSubMenus);
 // const navBarColor = accounts[0].navbarColor
 
 let menus
@@ -39,12 +38,14 @@ export const navBarMenuSlice = createSlice({
   }
 })
 
-export const selectNavBarMenu = state => state.navBarMenu
+
 export const {
   setNavBarMenu,
   setMenuBarH,
   setActiveMenu,
   setActiveSubMenu
 } = navBarMenuSlice.actions
+
 export default navBarMenuSlice.reducer
 
+export const selectNavBarMenu = state => state.navBarMenu

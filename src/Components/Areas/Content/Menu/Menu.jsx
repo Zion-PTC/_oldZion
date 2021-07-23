@@ -6,7 +6,7 @@ const MENUAREA = styled.div`
   background-color: rgb(199, 48, 48);
   `
 
-const MENUTITLE = styled.p`
+const MENUTITLE = styled.div`
   margin: 0;
   background-color: blueviolet;
   p {

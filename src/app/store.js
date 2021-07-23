@@ -14,7 +14,9 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { audiusApi } from "../services/audius";
 // async Thunks
 import { asyncThunksSlice } from "../features/asyncThunks/asyncThunksSlice";
-
+import { zionLoggerMiddleware } from "./middlewares/zionLoggerMiddleware";
+// import { ethereumMiddleware } from "./middlewares/ethereumMiddleware";
+import { ethereumMiddleware } from "../features/ethereum/ethereumSlice";
 
 export const store = configureStore({
   reducer: {
@@ -33,9 +35,12 @@ export const store = configureStore({
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
-      audiusApi.middleware
+      audiusApi.middleware,
+      zionLoggerMiddleware,
+      ethereumMiddleware
     ),
 })
+
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
 setupListeners(store.dispatch)
