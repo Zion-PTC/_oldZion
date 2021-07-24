@@ -1,3 +1,5 @@
+import detectEthereumProvider from '@metamask/detect-provider'
+
 import { setColSize, setGridPa } from "../features/productArea/productAreaSlice";
 import { setDisplay, setDisplayOrientation, setIsFullscreen } from "../features/responsiveDesign/responsiveDesingSlice";
 import { setDeviceType, setScreenDimensions } from "../features/userDevice/userDeviceSlice";
@@ -33,8 +35,9 @@ import {
 import { defineNavBarH } from "./features/navBar/navBar";
 import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
 import { getUsersMostUsedTags } from "../_JS Functions/fetchAudius";
-import { connectUserToWeb3 } from "../features/ethereum/ethereumSlice";
+import { connectUserToWeb3, isConnected, startSession } from "../features/ethereum/ethereumSlice";
 import { createUserWeb3Account } from "../Database/factory/users_userWeb3Account";
+
 
 // =======
 
@@ -48,8 +51,12 @@ import { createUserWeb3Account } from "../Database/factory/users_userWeb3Account
 
 export default async function appLogic() {
   // ============================ETHERUM============================
-  const eth = window.ethereum
-  store.dispatch(connectUserToWeb3(eth))
+  
+  const provider = await detectEthereumProvider();
+  store.dispatch(connectUserToWeb3(provider))
+  store.dispatch(startSession(provider))
+  // let handleAccountChanged = () => {store.dispatch(isConnected(provider))}
+  // provider.on('accountsChanged', handleAccountChanged)
 
   // ============================TAG PLAYLIST============================
 

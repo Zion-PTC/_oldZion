@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import detectEthereumProvider from '@metamask/detect-provider'
 
 import AccountAvatar from "./Content/AccountAvatar"
 import database from '../../../Database/Accounts.json'
@@ -82,10 +83,6 @@ const NavMenu = styled.ul`
   }
 `
 
-let handleClick = e => {
-  console.log(e);
-}
-
 export default function Nav({ backgroundColor, isEth }) {
   const accounts = database.accounts
   const logoURL = accounts[0].logoURL
@@ -94,6 +91,15 @@ export default function Nav({ backgroundColor, isEth }) {
   const menus = navBarMenu.menus;
   const gridTemplateColumns = navBarMenu.gridTemplateColumns;
   const activeMenu = navBarMenu.activeMenu
+  
+  let handleClick = e => {
+    let connect = async () => {
+      const provider = await detectEthereumProvider();
+      const {connectToMetamask} = await import("../../../features/ethereum/ethereumSlice")
+      dispatch(connectToMetamask(provider))
+    }
+    connect()
+  }
 
   return (
     <NavArea
@@ -106,12 +112,15 @@ export default function Nav({ backgroundColor, isEth }) {
       id='navmenulist'
       >
         <li className='active'><a><p>prova</p></a></li>
-        <li onClick={handleClick}><a><p>prova</p></a></li>
+        <li><a><p>prova</p></a></li>
         <li><a><p>prova</p></a></li>
         <li><a><p>prova</p></a></li>
       </NavMenu>
       <Web3ConnArea>
-        <MetaButton hidden={!isEth}>
+        <MetaButton
+        hidden={!isEth}
+        onClick={handleClick}
+        >
           Connect
         </MetaButton>
         <Text hidden={isEth}>Consider downloading Metamask</Text>
