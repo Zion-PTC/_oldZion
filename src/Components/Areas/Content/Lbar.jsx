@@ -1,6 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
-import { setLeftBarHidden } from '../../../../features/leftBar/leftBarSlice'
+import { setLeftBarHidden } from '../../../features/leftBar/leftBarSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 const LBAR = styled.div`

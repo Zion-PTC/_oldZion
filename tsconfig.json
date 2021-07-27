@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "Archive/MenuOkWeb3.jsx", "Archive/MenuNoWeb3.jsx", "Archive/Content", "Archive/Contentasdf"  ]
 }

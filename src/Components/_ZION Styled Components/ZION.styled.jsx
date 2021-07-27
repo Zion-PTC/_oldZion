@@ -94,13 +94,6 @@ export const MENUAREA = styled.div`
 `
 
 // TRASPORTATO ALLINTERNO DEL COMPONENTE
-export const ACCOUNTAVATAR = styled.img`
-  height: 85%;
-  grid-area: logo;
-  place-self: center;
-`
-
-// TRASPORTATO ALLINTERNO DEL COMPONENTE
 export const BUTTON = styled.button`
   grid-area: ${props => props.gridArea};
 `

@@ -21,22 +21,22 @@
     {
       "id": 0,
       "name": "navbar",
-      "accountId": 0
+      "accountId": "all" 
     },
     {
       "id": 1,
       "name": "rbar",
-      "accountId": 0
+      "accountId": "all"
     },
     {
       "id": 2,
       "name": "lBar",
-      "accountId": 0
+      "accountId": "all"
     },
     {
       "id": 3,
       "name": "footer",
-      "accountId": 0
+      "accountId": "all"
     }
   ],
   "subMenus": [

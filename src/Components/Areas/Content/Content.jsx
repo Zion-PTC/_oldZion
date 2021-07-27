@@ -1,12 +1,13 @@
 import styled from "styled-components"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-import Product from "./Product/Product"
-import Lbar from "./LBar/Lbar"
-import Menu from "./Menu/Menu"
+import Product from "../../Products/Product"
+import Lbar from "./Lbar"
+import Menu from "./Menu"
 import { database } from "../../../Database/users/database"
 import { connectToMetamask } from "../../../features/ethereum/ethereumSlice";
 import FakeUsersCreation from "../../FakeUsersCreation"
+import TNLAudiusPlaylist from "../../Products/TNLAudiusPlaylist"
 
 const CONTENT = styled.div`
   position: relative;
@@ -22,6 +23,7 @@ const CONTENT = styled.div`
 `
 
 export default function Content({ children, menuHidden, menuBarH, isEth, isConnected }) {
+  let playlist = useSelector(state => state.audioPlayer.playlist)
   const accounts = database.accounts
   const contentHeight = menuHidden ? 'calc(100% + ' + menuBarH + 'px)' : '100%'
   const contentGridTR = 'auto 1fr'
@@ -52,8 +54,8 @@ export default function Content({ children, menuHidden, menuBarH, isEth, isConne
   return (
     <CONTENT top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
 
-      <FakeUsersCreation></FakeUsersCreation>
-      {/* <Menu playlistMenu={playlistMenu}>
+      {/* <FakeUsersCreation></FakeUsersCreation> */}
+      <Menu playlistMenu={playlistMenu}>
       </Menu>
       <p>{mess}</p>
       <p>{mess2}</p>
@@ -67,7 +69,7 @@ export default function Content({ children, menuHidden, menuBarH, isEth, isConne
       </Product>
       <Lbar>
 
-      </Lbar> */}
+      </Lbar>
     </CONTENT>
   )
 }

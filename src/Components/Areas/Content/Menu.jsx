@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { handlePlaylist } from '../../../../app/features/navBar/navBar';
+import { handlePlaylist } from '../../../app/features/navBar/navBar';
 
 const MENUAREA = styled.div`
   grid-area: menu;

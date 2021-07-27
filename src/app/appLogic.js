@@ -1,42 +1,7 @@
 import detectEthereumProvider from '@metamask/detect-provider'
 
-import { setColSize, setGridPa } from "../features/productArea/productAreaSlice";
-import { setDisplay, setDisplayOrientation, setIsFullscreen } from "../features/responsiveDesign/responsiveDesingSlice";
-import { setDeviceType, setScreenDimensions } from "../features/userDevice/userDeviceSlice";
 import { store } from "./store";
-import defineDeviceType from "./defineFunctions/defineDeviceType";
-import defineScreenDimensions from "./defineFunctions/defineScreenDimensions";
-import defineDisplayOrientation from "./defineFunctions/defineDisplayOrientation";
-import defineIsFullscreen from "./defineFunctions/defineIsFullScreen";
-import defineDisplay from "./defineFunctions/defineDisplay";
-import defineColSize from "./defineFunctions/defineColSize";
-import defineGridPa from "./defineFunctions/defineGridPa";
-import {
-  handleSelectedTrack,
-  listenPlay,
-  listenPause,
-  listenProgress,
-  listenEnded,
-  listenPlaying,
-  listenTimeUpdate,
-  listenSeeking,
-  listenKeyDown
-} from "./audioPlayer";
-import { responsiveObject } from "./defineFunctions/responsiveDesignDashboard";
-import { setPlaylist } from "../features/audioPlayer/audioPlayerSlice";
-import { audiusApi } from "../services/audius";
-import {
-  createPlaylistObjectFromAudiusTracksArray,
-  createTracksArrayFromAudiusPlaylist,
-  createTracksArrayFromTag,
-  timeFormat,
-  createPlaylistFromTrackNames,
-} from "../_JS Functions/utils";
-import { defineNavBarH } from "./features/navBar/navBar";
-import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
-import { getUsersMostUsedTags } from "../_JS Functions/fetchAudius";
 import { startSession } from "../features/ethereum/ethereumSlice";
-import { createUserWeb3Account } from "../Database/factory/users_userWeb3Account";
 
 
 // =======

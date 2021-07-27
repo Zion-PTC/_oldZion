@@ -1,15 +1,21 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+
+import { createInput } from '../_JS Functions/utils'
 import database from '../Database/newDatas.json'
 
 let getSection2Datas = (_accountId, _database) => {
   let _menusOfAccount = _database.menus.filter(element => element.accountId === _accountId)
-  let _subMenusOfAccount = _database.subMenus.filter(element => element.accountId === _accountId)
+  let _subMenusOfAccount = _database.subMenus.filter(element => {
+    if (_accountId === 0) { return 'all' }
+    if (_accountId === 1) { return 'all' }
+    return element.accountId === _accountId
+  })
   let _navPagesOfAccount = _database.navigationPages.filter(element => element.accountId === _accountId)
-
   let { accounts, ...rest } = _database
   let listOfMenus = Object.keys(rest)
 
+  console.log(_subMenusOfAccount);
   let section2Datas = _subMenusOfAccount.map(submenu => {
     return {
       menu: _menusOfAccount.filter(element => element.id === submenu.parentMenu).map(menuObj => menuObj.name)[0],
@@ -18,12 +24,12 @@ let getSection2Datas = (_accountId, _database) => {
     }
   });
 
-  let returnOb = {
+  let returnObj = {
     headers: listOfMenus,
     datas: section2Datas
   }
 
-  return returnOb
+  return returnObj
 }
 
 let DisplayUsers = () => {
@@ -110,7 +116,6 @@ let DisplayUsers = () => {
   const [selectedAccount, setSelectedAccount] = useState()
 
   let handleClick = e => {
-    console.log(e);
     setSelectedAccount(e)
   }
 
@@ -195,21 +200,21 @@ let DisplayUsers = () => {
           <Section2>
             <Section2Head key={'section2Head'}>
               <Section2HeadRow>
-                {section2.headers.map(header=><th key={header}>{header}</th>)}
+                {section2.headers.map(header => <th key={header}>{header}</th>)}
               </Section2HeadRow>
             </Section2Head>
             <Section2Body>
-              {section2.datas.map(submenu=>{
-                return(
-                  <Section2Row key={submenu.subMenu+'.section2'}>
+              {section2.datas.map(submenu => {
+                return (
+                  <Section2Row key={submenu.subMenu + '.section2'}>
                     <Section2Data key={submenu.menu}>
                       {submenu.menu}
                     </Section2Data>
                     <Section2Data key={submenu.subMenu}>
                       {submenu.subMenu}
                     </Section2Data>
-                    <Section2Data key={submenu.subMenu+'navpages'}>
-                      {submenu.navigationPages.map(navpage=><p key={navpage}>{navpage}</p>)}
+                    <Section2Data key={submenu.subMenu + 'navpages'}>
+                      {submenu.navigationPages.map(navpage => <p key={navpage}>{navpage}</p>)}
                     </Section2Data>
                   </Section2Row>
                 )
@@ -264,36 +269,34 @@ let Form = () => {
     setValues(initialState)
   }
 
-  let createInput = (prop) => {
-    return (
-      <div key={prop + '/div'}>
-        <label
-          type='text'
-          key={prop}>
-          {prop}
-        </label>
-        <input
-          name={prop}
-          value={values[prop]}
-          type='input'
-          key={prop + '/input'}
-          onChange={handleChange} />
-      </div>
-    )
-  }
-  let id = createInput('id')
-  let name = createInput('name')
-  let logoUrl = createInput('logoUrl')
-  let navBarColor = createInput('navbarColor')
-  let nftInviteAddress = createInput('nftInviteAddress')
-
-  let fields = [
-    id, name, logoUrl, navBarColor, nftInviteAddress
+  let newFields = [
+    { id: 'id', name: 'Id' },
+    { id: 'name', name: 'Name' },
+    { id: 'logoUrl', name: 'Logo Url' },
+    { id: 'navbarColor', name: 'Navbar Color' },
+    { id: 'nftInviteAddress', name: 'NFT Invite Address' },
   ]
+
   return (
     <>
       <Form onSubmit={(e) => handleSubmit(e)}>
-        {fields}
+        {newFields.map(({ id, name }) => (
+          <div key={id+'/div'}>
+            <label
+              type='text'
+              key={id}
+            >
+              {name}
+            </label>
+            <input
+              name={id}
+              value={values[id]}
+              type='input'
+              key={id + '/input'}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
         <div />
         <input type='submit'></input>
       </Form>

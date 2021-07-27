@@ -8,19 +8,15 @@ import Nav from "./Components/Areas/Nav/Nav";
 import Content from "./Components/Areas/Content/Content";
 import Footer from "./Components/Areas/Footer/Footer";
 
-import AccountAvatar from "./Components/Areas/Nav/Content/AccountAvatar";
-import NavMenu from "./Components/Areas/Nav/Content/NavMenu";
-import Web3Connection from "./Components/Areas/Nav/Content/Web3Connection";
-import NavButton from "./Components/Areas/Nav/Content/NavButton";
 
-import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
+// import TNLAudiusPlaylist from './Components/Products/TNLAudiusPlaylist'
 // import TNL25Tags from "./Components/Products/TNL25Tags";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectNavBarMenu } from "./features/navBarMenu/navBarMenuSlice";
 import { selectAudioPlayer } from "./features/audioPlayer/audioPlayerSlice";
 import MusicPlayer from "./Components/Areas/Footer/MusicPlayer";
-import { connectToMetamask } from "./features/ethereum/ethereumSlice";
+// import { connectToMetamask } from "./features/ethereum/ethereumSlice";
 
 import appLogic from "./app/appLogic";
 $(appLogic())
@@ -51,10 +47,10 @@ export default function ZION() {
   return (
     <ZIONGRID className='Zion'>
       <Content
-      menuHidden={menuHidden}
-      menuBarH={menuBarH}
-      isEth={isEth}
-      isConnected={isConnected}>
+        menuHidden={menuHidden}
+        menuBarH={menuBarH}
+        isEth={isEth}
+        isConnected={isConnected}>
       </Content>
       <Nav
         numberOfNavBarMenus={numberOfNavBarMenus}
@@ -62,7 +58,7 @@ export default function ZION() {
         isEth={isEth}
       />
       <Footer>
-        {/* <MusicPlayer></MusicPlayer> */}
+        <MusicPlayer></MusicPlayer>
       </Footer>
     </ZIONGRID>
   )

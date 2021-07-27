@@ -117,8 +117,11 @@ let createTracksArrayFromTag = async (query) => {
   return trackNames
 }
 
-// ======================================================
+// ==========FORMS=============
 
+
+// ======================================================
+// EXPORT
 export {
   loadToLocalStorage,
   getFromLocalStorate,
@@ -129,7 +132,8 @@ export {
   createTracksArrayFromAudiusPlaylistWithUrl,
   createTracksArrayFromAudiusPlaylist,
   createPlaylistObjectFromAudiusTracksArray,
-  createTracksArrayFromTag
+  createTracksArrayFromTag,
+  // FORMS
 }
 
 
