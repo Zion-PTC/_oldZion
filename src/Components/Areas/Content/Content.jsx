@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux"
 import Product from "./Product/Product"
 import Lbar from "./LBar/Lbar"
 import Menu from "./Menu/Menu"
-import database from '../../../Database/Accounts.json'
+import { database } from "../../../Database/users/database"
 import { connectToMetamask } from "../../../features/ethereum/ethereumSlice";
+import FakeUsersCreation from "../../FakeUsersCreation"
 
 const CONTENT = styled.div`
   position: relative;
@@ -27,29 +28,46 @@ export default function Content({ children, menuHidden, menuBarH, isEth, isConne
   const top = menuHidden ? (-menuBarH + 'px') : ('0px')
   const playlistMenu = accounts[0].menus[0].subMenus[0].subMenus
   let checkMess = e => {
-    if (e === true) { return 'yes eth' }
-    if (e === false) { return 'no eth' }
-    if (e === null) { return 'null' }
+    let result
+    switch (e) {
+      case true: result = 'yes eth'; break;
+      case false: result = 'no eth'; break;
+      case null: result = 'null'; break;
+    }
+    return result
+  }
+  let checkMess2 = e => {
+    let result
+    switch (e) {
+      case true: result = 'connected'; break;
+      case false: result = 'not connected'; break;
+      case null: result = 'null'; break;
+    }
+    return result
   }
   let mess = checkMess(isEth)
-  let mess2 = isConnected ? 'connected' : 'not connected'
+  let mess2 = checkMess2(isConnected)
   const dispatch = useDispatch()
 
   return (
     <CONTENT top={top} gridTR={contentGridTR} height={contentHeight} id='content'>
-      <Menu playlistMenu={playlistMenu}>
-        </Menu>
-        <p>{mess}</p>
-        <p>{mess2}</p>
-        {/* <button
+
+      <FakeUsersCreation></FakeUsersCreation>
+      {/* <Menu playlistMenu={playlistMenu}>
+      </Menu>
+      <p>{mess}</p>
+      <p>{mess2}</p>
+      <button
           onClick={() => dispatch(connectToMetamask())}
         >
           META
-        </button> */}
-        <Product>
-          {/* <TNLAudiusPlaylist playlist={playlist}></TNLAudiusPlaylist> */}
-        </Product>
-        <Lbar></Lbar>
+        </button>
+      <Product>
+        <TNLAudiusPlaylist playlist={playlist}></TNLAudiusPlaylist>
+      </Product>
+      <Lbar>
+
+      </Lbar> */}
     </CONTENT>
   )
 }

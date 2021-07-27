@@ -35,7 +35,7 @@ import {
 import { defineNavBarH } from "./features/navBar/navBar";
 import { setMenuBarH } from "../features/navBarMenu/navBarMenuSlice";
 import { getUsersMostUsedTags } from "../_JS Functions/fetchAudius";
-import { connectUserToWeb3, isConnected, startSession } from "../features/ethereum/ethereumSlice";
+import { startSession } from "../features/ethereum/ethereumSlice";
 import { createUserWeb3Account } from "../Database/factory/users_userWeb3Account";
 
 
@@ -52,11 +52,8 @@ import { createUserWeb3Account } from "../Database/factory/users_userWeb3Account
 export default async function appLogic() {
   // ============================ETHERUM============================
   
-  const provider = await detectEthereumProvider();
-  store.dispatch(connectUserToWeb3(provider))
+  const provider = await detectEthereumProvider()
   store.dispatch(startSession(provider))
-  // let handleAccountChanged = () => {store.dispatch(isConnected(provider))}
-  // provider.on('accountsChanged', handleAccountChanged)
 
   // ============================TAG PLAYLIST============================
 

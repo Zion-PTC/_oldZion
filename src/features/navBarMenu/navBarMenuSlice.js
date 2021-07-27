@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import database from '../../Database/Accounts.json'
+import { database } from "../../Database/users/database"
 
 const accounts = database.accounts
 const nOfMenus = accounts[0].menus[0].subMenus.length
 const subMenus = accounts[0].menus[0].subMenus
 const subSubMenus = accounts[0].menus[0].subMenus[0].subMenus
-// const navBarColor = accounts[0].navbarColor
+// const navBarColor = accounts[0].navbarColorù
 
 let menus
 menus = subMenus.map(i => menus = i.name)

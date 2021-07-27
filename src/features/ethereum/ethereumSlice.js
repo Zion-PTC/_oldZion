@@ -5,82 +5,95 @@ import Web3 from 'web3'
 
 import { store } from '../../app/store'
 import { NFTInviteAbi } from "../../blockchain/ABIs/NFTInviteAbi"
-import database from '../../Database/Accounts.json'
+import { database } from "../../Database/users/database"
 // import { Accounts } from "web3-eth-accounts" da controllare
-import { userWeb3AccountObj } from "../../Database/factory/users_userWeb3Account"
 
-export let connectUserToWeb3 = createAsyncThunk(
-  'ethereum/connectUserToWeb3',
-  async (eth) => {
-    try {
-      let _isEth = await store.dispatch(isEth(eth))
-      // if (_isEth.payload) {
-      //   let _isConnected = await store.dispatch(isConnected(eth))
-      //   let checkIsConnected = (value) => {
-      //     // if (value.payload) { return true }
-      //     if (value.payload) { return store.dispatch(startSession(eth)) }
-      //     if (!value.payload) { return false }
-      //   }
-      //   let result = checkIsConnected(_isConnected)
-      //   return result
-      // }
-      return false
-    } catch (error) {
-      return error
+
+
+export let handleUserAddress = createAsyncThunk(
+  'ethereum/handleUserAddress',
+  async e => {
+    let provider = new ethers.providers.Web3Provider(e)
+    let network = await provider.getNetwork()
+    let userChain = network.name
+    let dispatch = store.dispatch
+    let userAddress = await e.request({ method: 'eth_accounts' })
+    let { payload } = await dispatch(isConnected(userAddress))
+    let { isConnected: _isConnected, userAddr } = payload
+    switch (_isConnected) {
+      case false:
+        dispatch(setIsConnected(false));
+        dispatch(setUserAddr(userAddr))
+        dispatch(setUserChain('user has not yet connected'))
+        break;
+      case true:
+        dispatch(setIsConnected(true));
+        dispatch(setUserAddr(userAddr))
+        dispatch(setUserChain(userChain))
+        console.log('is still working');
     }
+    return
+  }
+)
+
+export let startSession = createAsyncThunk(
+  'ethereum/startSession',
+  async eth => {
+    await new Promise((res, rej) => {})
+    let dispatch = store.dispatch
+    let res = await dispatch(isEth(eth))
+    let _isEth = res.payload
+    switch (_isEth) {
+      case false: dispatch(setIsEth(false)); break;
+      case true:
+        dispatch(setIsEth(true))
+        await eth.on('accountsChanged', () => dispatch(handleUserAddress(eth)))
+        await eth.on('chainChanged', () => dispatch(handleUserAddress(eth)))
+
+        await new Promise((res, rej) => {})
+    }
+    return 'session ended'
   }
 )
 
 export let isEth = createAsyncThunk(
   'ethereum/isEth',
   async e => {
-    try {
-      let _isEth = await new Promise((res, rej) => {
-        if (!e) { rej(false) }
-        if (e) { res(true) }
-      })
-      return _isEth
-    } catch (error) {
-      return error
-    }
+    if (!e) { return false }
+    if (e) { return true }
   }
 )
 
 export let isConnected = createAsyncThunk(
   'ethereum/isConnected',
-  async e => {
-    try {
-      let _userAddr = await new Promise(async (res, rej) => {
-        let address = await e.request({ method: 'eth_accounts' })
-        let chain = await e.request({ method: 'eth_chainId' })
-        if (address.length === 0) { rej(false) }
-        if (address.length !== 0) { res(true) }
-      })
-      return _userAddr
-    } catch (error) {
-      return error
+  async userAddress => {
+    let response = {
+      isConnected: null,
+      userAddr: null
     }
+    switch (true) {
+      case userAddress.length === 0:
+        response.isConnected = false
+        response.userAddr = 'no address found'
+        break;
+      case userAddress.length !== 0:
+        response.isConnected = true
+        response.userAddr = userAddress
+        break;
+    }
+    return response
   }
 )
 
 export let connectToMetamask = createAsyncThunk(
   'ethereum/connectToMetamask',
   async e => {
-    console.log(e);
-    let address = await e.request({ method: 'eth_requestAccounts' })
-    return address[0]
-  }
-)
-
-export let startSession = createAsyncThunk(
-  'ethereum/startSession',
-  async e => {
-      await new Promise((res, rej) => {
-        let handleChanged = () => { store.dispatch(isConnected(e)) }
-        e.on('accountsChanged', handleChanged)
-        // e.on('chainChanged', handleChanged)
-      })
-      return 'session started'
+    try {
+      let address = await e.request({ method: 'eth_requestAccounts' })
+      return address[0]
+    } catch (error) {
+      return error
+    }
   }
 )
 
@@ -93,87 +106,141 @@ export const ethereumMiddleware = (store) => {
   }
 }
 
+let getMainNetBalance = createAsyncThunk(
+  'ethereum/getMainNetBalance',
+  async (addr, provider) => {
+    const balance = await provider.getBalance(addr)
+    const decBalance = ethers.utils.formatEther(balance)
+    // store.dispatch(setUserMainNetBalance(decBalance))
+  }
+)
 
-// const accounts = database.accounts
-// const nftInviteAddr = accounts[0].nftInviteAddr
+let getTokenBalance = createAsyncThunk(
+  'ethereum/getInvitationTokenBalance',
+  async (addr, web3) => {
+    const accounts = database.accounts
+    const nftInviteAddr = accounts[0].nftInviteAddr
+    const chainID = store.getState().ethereum.userChain
+    if (chainID === 'rinkeby') {
+      const NFTInviteContract = new web3.eth.Contract(NFTInviteAbi, nftInviteAddr, { from: addr });
+      const result = await NFTInviteContract.methods.balanceOf(addr).call();
+      // store.dispatch(getUserInviteTokenBalance(result))
+    } else {
+      // this will set the token balance to initialized value
+      // store.dispatch(getUserInviteTokenBalance('0000'))
+    }
+  }
+)
 
-
-// async function getMainNetBalance(addr, provider) {
-//   const balance = await provider.getBalance(addr)
-//   const decBalance = ethers.utils.formatEther(balance)
-//   store.dispatch(getUserMainNetBalance(decBalance))
-// }
-
-// async function getInvitationTokenBalance(addr, web3) {
-//   const chainID = store.getState().ethereum.userChain
-//   if (chainID === 'rinkeby') {
-//     const NFTInviteContract = new web3.eth.Contract(NFTInviteAbi, nftInviteAddr, { from: addr });
-//     const result = await NFTInviteContract.methods.balanceOf(addr).call();
-//     store.dispatch(getUserInviteTokenBalance(result))
-//   } else {
-//     // this will set the token balance to initialized value
-//     store.dispatch(getUserInviteTokenBalance('0000'))
-//   }
-// }
-
-
+export const userWeb3AccountObj = {
+  id: null,
+  isSessionStarted: null,
+  isEth: null,
+  isEthLoading: null,
+  isConnected: null,
+  isConnectedLoading: null,
+  userAddr: null,
+  isUserAddrLoading: null,
+  userChain: null,
+  isUserChainLoading: null,
+  web3Balance: null,
+  isWeb3BalanceLoading: null
+}
 
 export const ethereumSlice = createSlice({
   name: 'ethereum',
   initialState: userWeb3AccountObj,
   reducers: {
+    setIsEth: (state, action) => {
+      state.isEth = action.payload
+    },
+    setIsConnected: (state, action) => {
+      state.isConnected = action.payload
+    },
+    setUserAddr: (state, action) => {
+      state.userAddr = action.payload
+    },
+    setUserChain: (state, action) => {
+      state.userChain = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(connectUserToWeb3.fulfilled, (state, action) => {
-        state.isConnected = action.payload
+      .addCase(startSession.fulfilled, (state, action) => {
+        state.isSessionStarted = false
       })
-      .addCase(connectUserToWeb3.rejected, (state, action) => {
-        state.isConnected = action.payload
+      .addCase(startSession.rejected, (state, action) => {  ////////
+        state.isSessionStarted = false
+        action.payload = 'there was a problem with your session'
       })
-      .addCase(connectUserToWeb3.pending, (state, action) => {
+      .addCase(startSession.pending, (state, action) => {
+        state.isSessionStarted = true
         action.payload = 'pending'
       })
     builder // isEth
       .addCase(isEth.fulfilled, (state, action) => {
-        state.isEth = action.payload
+        state.isEthLoading = false
       })
-      .addCase(isEth.rejected, (state, action) => {
-        state.isEth = action.payload
+      .addCase(isEth.rejected, (state, action) => {  ///////
+        state.isEthLoading = false
+        action.payload = 'there was a problem with your connection'
       })
       .addCase(isEth.pending, (state, action) => {
+        action.payload = 'pending'
+        state.isEthLoading = true
+      })
+    builder
+      .addCase(handleUserAddress.fulfilled, (state, action) => {
+        state.isUserAddrLoading = false
+      })
+      .addCase(handleUserAddress.rejected, (state, action) => { //////
+        state.isUserAddrLoading = false
+      })
+      .addCase(handleUserAddress.pending, (state, action) => {
+        state.isUserAddrLoading = true
         action.payload = 'pending'
       })
     builder // isConnected
       .addCase(isConnected.fulfilled, (state, action) => {
-        state.isConnected = action.payload
+        state.isConnectedLoading = false
       })
-      .addCase(isConnected.rejected, (state, action) => {
-        state.isConnected = action.payload
+      .addCase(isConnected.rejected, (state, action) => {  /////
+        state.isConnectedLoading = false
+        action.payload = 'there was a problem trying to retrieve your connection status'
       })
       .addCase(isConnected.pending, (state, action) => {
+        state.isConnectedLoading = true
         action.payload = 'pending'
       })
     builder
       .addCase(connectToMetamask.fulfilled, (state, action) => {
-        state.userAddr = action.payload
       })
       .addCase(connectToMetamask.rejected, (state, action) => {
       })
       .addCase(connectToMetamask.pending, (state, action) => {
-        action.payload = 'pending'
       })
     builder
-      .addCase(startSession.fulfilled, (state, action) => {
+      .addCase(getMainNetBalance.fulfilled, (state, action) => {
       })
-      .addCase(startSession.rejected, (state, action) => {
+      .addCase(getMainNetBalance.rejected, (state, action) => {
       })
-      .addCase(startSession.pending, (state, action) => {
+      .addCase(getMainNetBalance.pending, (state, action) => {
+      })
+    builder
+      .addCase(getTokenBalance.fulfilled, (state, action) => {
+      })
+      .addCase(getTokenBalance.rejected, (state, action) => {
+      })
+      .addCase(getTokenBalance.pending, (state, action) => {
       })
   }
 })
 
 export const selectEthereum = state => state.ethereum
 export const {
+  setIsEth,
+  setIsConnected,
+  setUserAddr,
+  setUserChain
 } = ethereumSlice.actions
 export default ethereumSlice.reducer

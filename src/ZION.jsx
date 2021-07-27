@@ -2,7 +2,7 @@ import styled from "styled-components";
 import $ from 'jquery'
 import './App.css'
 
-import database from './Database/Accounts.json'
+import { database } from "./Database/users/database";
 
 import Nav from "./Components/Areas/Nav/Nav";
 import Content from "./Components/Areas/Content/Content";

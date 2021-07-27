@@ -23,6 +23,7 @@ const MENUTITLE = styled.div`
   `
 
 export default function Menu({ playlistMenu }) {
+  console.log(playlistMenu);
   let active = true
   const playlistList = playlistMenu.map((list) =>
     <MENUTITLE

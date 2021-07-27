@@ -17,10 +17,12 @@ import { asyncThunksSlice } from "../features/asyncThunks/asyncThunksSlice";
 import { zionLoggerMiddleware } from "./middlewares/zionLoggerMiddleware";
 // import { ethereumMiddleware } from "./middlewares/ethereumMiddleware";
 import { ethereumMiddleware } from "../features/ethereum/ethereumSlice";
+import balancesReducer from "../features/ethereum/balancesSlice";
 
 export const store = configureStore({
   reducer: {
     ethereum: ethereumReducer,
+    balances: balancesReducer,
     userDevice: userDeviceReducer,
     responsiveDesign: responsiveDesingReducer,
     navBarMenu: navBarMenuReducer,

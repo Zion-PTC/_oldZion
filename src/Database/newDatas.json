@@ -1,0 +1,88 @@
+{
+  "accounts": [
+    {
+      "id":0,
+      "name": "TNL Records",
+      "logoURL": "https://ipfs.io/ipfs/Qme9rVovLmYdwRiETVApcYUoixqRiaPvksb33FrFX2QucG?filename=logo%20tnl%20White.png",
+      "navbarColor": "#0C3A6F",
+      "audiusLink": null,
+      "nftInviteAddr": "0xDc59783e7970D5f1313edD06f91baC178E5424bC"
+    },
+    { 
+      "id":1,
+      "name": "Psychoquake Records",
+      "logoURL": "",
+      "audiusLink": null,
+      "navBarColor": "#0C3A6F",
+      "nftInviteAddr": "0xDc59783e7970D5f1313edD06f91baC178E5424bC"
+    }
+  ],
+  "menus": [
+    {
+      "id": 0,
+      "name": "navbar",
+      "accountId": 0
+    },
+    {
+      "id": 1,
+      "name": "rbar",
+      "accountId": 0
+    },
+    {
+      "id": 2,
+      "name": "lBar",
+      "accountId": 0
+    },
+    {
+      "id": 3,
+      "name": "footer",
+      "accountId": 0
+    }
+  ],
+  "subMenus": [
+    {
+      "id": 0,
+      "name": "Playlists",
+      "accountId": 0,
+      "parentMenu": 0
+    },
+    {
+      "id": 1,
+      "name": "Tracks",
+      "accountId": 0,
+      "parentMenu": 0
+    },
+    {
+      "id": 2,
+      "name": "12",
+      "accountId": 0,
+      "parentMenu": 0
+    },
+    {
+      "id": 3,
+      "name": "Merchandise",
+      "accountId": 0,
+      "parentMenu": 0
+    }
+  ],
+  "navigationPages": [
+    {
+      "id":4,
+      "name":"TNLDGL",
+      "accountId": 0,
+      "parentSubMenu": 0
+    },
+    {
+      "id":5,
+      "name":"TNL25",
+      "accountId": 0,
+      "parentSubMenu": 0
+    },
+    {
+      "id":6,
+      "name":"PSYCHO",
+      "accountId": 1,
+      "parentSubMenu": 1
+    }
+  ]
+}

@@ -9,27 +9,19 @@ export const zionLoggerMiddleware = store => next => action => {
     ],
     payload: [
       "color: black",
-      "background-color: #eef606",
-      "padding: 2px 4px",
-      "border-radius: 2px"
+      "background-color: grey"
     ],
     fulfilled: [
       "color: black",
-      "background-color: green",
-      "padding: 2px 4px",
-      "border-radius: 2px"
+      "background-color: green"
     ],
     rejected: [
       "color: black",
-      "background-color: red",
-      "padding: 2px 4px",
-      "border-radius: 2px"
+      "background-color: red"
     ],
     pending: [
       "color: black",
-      "background-color: grey",
-      "padding: 2px 4px",
-      "border-radius: 2px"
+      "background-color: #eef606"
     ]
   }
   const log = (text, extra = [], payload) => {
@@ -37,30 +29,27 @@ export const zionLoggerMiddleware = store => next => action => {
     style += extra.join(';');
     console.log(`%c${text}`, style, payload);
   };
-  let defineStyle =  () => {
-    return 
-    
-  }
   if (action === undefined) { log('undefined action', Style.warning, undefined) }
-  else if (action.type !== 'audiusApi/config/middlewareRegistered' && action.type !==  '__rtkq/focused') {
-    
-    if (action.type.includes('fulfilled')) {
+  switch (true) {
+    case (action.type === 'audiusApi/config/middlewareRegistered'): break;
+    case (action.type === '__rtkq/focused'): break;
+    case (action.type.includes('fulfilled')):
       log('type:', undefined, returnValue.type);
       log('payload', Style.fulfilled, returnValue.payload);
-    }
-    if (action.type.includes('rejected')) {
+      break;
+    case (action.type.includes('rejected')):
       log('type:', undefined, returnValue.type);
       log('payload', Style.rejected, returnValue.payload);
-    }
-    if (action.type.includes('pending')) {
+      break;
+    case (action.type.includes('pending')):
       log('type:', undefined, returnValue.type);
       log('payload', Style.pending, returnValue.payload);
-    }
-    else {
+      break;
+    default:
       log('type:', undefined, returnValue.type);
       log('payload', Style.payload, returnValue.payload);
-    }
+      break;
+  }
+  return returnValue
 
-    return returnValue
-  };
 }

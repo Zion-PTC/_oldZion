@@ -11,6 +11,8 @@
     "bootstrap": "^4.6.0",
     "ethers": "^5.3.0",
     "flip": "^1.0.0",
+    "fs": "^0.0.1-security",
+    "fs-utilities": "^1.1.1",
     "gsap": "^3.7.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
