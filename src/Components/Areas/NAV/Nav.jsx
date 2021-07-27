@@ -2,7 +2,6 @@ import styled from "styled-components"
 import detectEthereumProvider from '@metamask/detect-provider'
 
 import AccountAvatar from "./Content/AccountAvatar"
-import database from '../../../Database/Accounts.json'
 import { useDispatch, useSelector } from "react-redux"
 import { selectNavBarMenu } from "../../../features/navBarMenu/navBarMenuSlice"
 
