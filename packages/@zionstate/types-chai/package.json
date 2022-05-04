@@ -1,0 +1,11 @@
+{
+  "name": "@zionstate/types-chai",
+  "version": "0.0.1",
+  "description": "",
+  "main": "/built/index.js",
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chai": "^4.3.1"
+  }
+}

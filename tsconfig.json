@@ -1,26 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "target": "esnext",
+    "watch": true,
+    "lib": ["DOM","ES2021"],
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "declaration": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "moduleResolution":"Node",
+    "outDir": "./built"
+    // "outFile": "src/Namespaces/Spaces.js",
+    // "module": "AMD"
+    // "paths": {}
+    // "strictNullChecks":true,
+    // "strictPropertyInitialization": true
+    // "allowJs": true,
   },
-  "include": [
-    "src"
-, "Archive/MenuOkWeb3.jsx", "Archive/MenuNoWeb3.jsx", "Archive/Content", "Archive/Contentasdf"  ]
+  "exclude": ["./_archive","./mystuff","./apps","blockchain","node_modules","packages"],
+  "include": ["./src/**/*"]
 }
