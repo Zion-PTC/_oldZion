@@ -1,0 +1,46 @@
+{
+  "accounts": [
+    {
+      "name": "TNL Records",
+      "logoURL": "https://ipfs.io/ipfs/Qme9rVovLmYdwRiETVApcYUoixqRiaPvksb33FrFX2QucG?filename=logo%20tnl%20White.png",
+      "navbarColor": "#0C3A6F",
+      "nftInviteAddr": "0xDc59783e7970D5f1313edD06f91baC178E5424bC",
+      "menus": [
+        {
+          "name": "navbar",
+          "subMenus": [
+            {
+              "name": "Playlists",
+              "subMenus": [
+                "TNLDGL",
+                "TNL25"
+              ]
+            },
+            {
+              "name": "Tracks"
+            },
+            {
+              "name": "12"
+            },
+            {
+              "name": "Merchandise"
+            }
+          ]
+        },
+        {
+          "name": "rBar"
+        },
+        {
+          "name": "lBar"
+        },
+        {
+          "name": "footer"
+        }
+      ]
+    },
+    {
+      "name": "Psychoquake Records",
+      "logoURL": ""
+    }
+  ]
+}
