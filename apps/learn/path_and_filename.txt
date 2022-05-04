@@ -1,0 +1,6 @@
+https://stackoverflow.com/questions/13829037/how-to-get-filename-of-script-being-executed-in-nodejs
+const __filename = new URL(import.meta.url).pathname;
+
+import path from 'path';
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
