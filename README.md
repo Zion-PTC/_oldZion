@@ -22,10 +22,6 @@ types-node<br>
 types-styledcomponents<br>
 web-vitals<br>
 @reduxjs <br>
-
-# Dependencies che devono ancora essere installate
-
-bootstrap ary sta facendo <br>
 ethers <br>
 flip <br>
 gsap <br>
@@ -38,13 +34,16 @@ web3 <br>
 axios <br>
 body-parser <br>
 express <br>
-http-server <br>
 mocha <br>
 mongoose <br>
-node-fetch <br>
 telegraf <br>
-
 canvas<br>
+
+# Dependencies che devono ancora essere installate
+
+bootstrap ary sta facendo <br>
+http-server <br>
+node-fetch <br>
 
 # applicationi installate
 
