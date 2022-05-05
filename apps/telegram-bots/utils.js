@@ -1,22 +1,45 @@
-require("dotenv").config()
-const { Telegraf } = require("telegraf");
+import dotenv from "dotenv"
+import { Telegraf } from "telegraf"
+import { zion_db } from "./zion_db.js"
 
 let stringQueryFIleFromTg = "https://api.telegram.org/bot<bot_token>/getFile?file_id=the_file_id"
 /// This will return an object with file_id, file_size and file_path. You can then use the file_path to download the file:
 let pathToFile = "https://api.telegram.org/file/bot<token>/<file_path>"
 
-let zionTelegraf = {
-  createAction: ({
-    bot,
-    title,
-    mess,
-    callback
-  }) => bot.action(title, ctx => {
-    ctx.deleteMessage();
-    ctx.answerCbQuery("Power to Creators");
-    bot.telegram.sendMessage(ctx.chat.id, mess, callback)
-  }),
-  createCommandList: (
+export let js = {
+  sliceArray: (size, array) => { /* fatto */
+    return new Promise((res, rej) => {
+      if (typeof size === "number" && Array.isArray(array)) {
+        console.log(typeof size);
+        var s = size;
+        var arrayOfArrays = [];
+        for (var i = 0; i < array.length; i += s) {
+          arrayOfArrays.push(array.slice(i, i + s));
+        }
+        res(arrayOfArrays)
+      } else {
+        rej(typeof size !== "number" ? "size is not a number" : "The second argument shall be an array")
+        return false
+      }
+    })
+  }
+}
+
+export let zionTelegraf = {
+  createAction: async ( /* fatto */
+    {
+      bot,
+      title,
+      mess,
+      callback
+    }) => {
+    return bot.action(title, ctx => {
+      ctx.deleteMessage()
+      ctx.answerCbQuery("Power to Creators")
+      bot.telegram.sendMessage(ctx.chat.id, mess, callback)
+    })
+  },
+  createCommandList: ( /* NON SERVE */
     array
   ) => {
     let string = ``
@@ -30,49 +53,71 @@ let zionTelegraf = {
     mess,
     array
   ) => {
-    // console.log(zionTelegraf.createReplyMarkup(array));
-    bot.telegram.sendMessage(ctx.chat.id, mess, zionTelegraf.createReplyMarkup(array))
+    bot.telegram.sendMessage(ctx.chat.id, mess, zionTelegraf.createReplyInlineKeyboard(array))
   },
-  createReplyMarkup: (
+  createReplyInlineKeyboard: ( /* fatto */
     array
   ) => {
+    let newArray = zionTelegraf.createKeyboard(array)
+    array = newArray
     return {
+      disable_notification: true,
       reply_markup: {
-        inline_keyboard: array
+        inline_keyboard: array,
       }
     }
   },
-  createReplyMarkupKeyboard: (array) => {
+  createReplyKeyboard: (array) => { /* fatto */
+    let newArray = zionTelegraf.createKeyboard(array)
+    array = newArray
     return {
-      reply_markup : {
-        keyboard: array
+      disable_notification: true,
+      reply_markup: {
+        keyboard: array,
+        resize_keyboard: true
       }
     }
   },
-  createSingleLineCallbackButtons: (
+  createKeyboard: ( /* NON SERVE */
     array
   ) => {
+    let menus = zionTelegraf.createArrayOfMenus(array)
+    return menus
+  },
+  createArrayOfMenus: (array) => { /* NON SERVE */
     let menus = []
     array.forEach(line => {
-      let buttons = []
-      line.forEach(button => {
-        let itemObj = { text: button[0], callback_data: button[1] }
-        return buttons.push(itemObj)
-      })
+      let buttons = zionTelegraf.createArrayOfButtons(line)
       return menus.push(buttons)
     })
     return menus
   },
-  createBotResponseForArrayOfWords: (ctx, { listOfWords, messages, type, limit }) => {
+  createArrayOfButtons: (array) => { /* NON SERVE */
+    let buttons = []
+    array.forEach(button => {
+      let item = zionTelegraf.createButtonObj(button)
+      return buttons.push(item)
+    })
+    return buttons
+  },
+  createButtonObj: (array) => { /* NON SERVE */
+    return { text: array[0], callback_data: array[1] }
+  },
+  createBotResponseForArrayOfWords: async ( ctx, {  /* fatto */
+    listOfWords, messages, type, limit }) => {
     let input = ctx.message.text
     let inputArray = input.split(" ")
     if (type === "or") {
       let wordsContainingTriggers = 0
       listOfWords.forEach(word => {
-        if (inputArray.includes(word)) { wordsContainingTriggers++ }
+        if (inputArray.includes(word)) {
+          wordsContainingTriggers++
+        }
       })
       if (wordsContainingTriggers > limit) {
-        messages.forEach(({ sec, text }) => zionTelegraf.timedOutMessage(sec, text, ctx))
+        messages.forEach(({
+          sec, text
+        }) => zionTelegraf.timedOutMessage(sec, text, ctx))
       }
     }
     if (type === "and") {
@@ -80,16 +125,24 @@ let zionTelegraf = {
       listOfWords.forEach(wordsArray => {
         let arrayContainsWord = false
         wordsArray.forEach(word => {
-          if (inputArray.includes(word)) { arrayContainsWord = true }
+          if (inputArray.includes(word)) {
+            arrayContainsWord = true
+          }
         })
-        if (arrayContainsWord) { groupContainingTriggers.push(true) }
+        if (arrayContainsWord) {
+          groupContainingTriggers.push(true)
+        }
       })
-      if (groupContainingTriggers.length === listOfWords.length) {
-        messages.forEach(({ sec, text }) => zionTelegraf.timedOutMessage(sec, text, ctx))
+      if (
+        groupContainingTriggers.length === listOfWords.length
+      ) {
+        messages.forEach(({
+          sec, text
+        }) => zionTelegraf.timedOutMessage(sec, text, ctx))
       }
     }
   },
-  timedOutMessage: (sec, mess, ctx) => {
+  timedOutMessage: async (sec, mess, ctx) => { /* fatto */
     if (sec === 0) {
       zionTelegraf.replyToMessage(ctx, mess)
     }
@@ -99,14 +152,99 @@ let zionTelegraf = {
       }, sec * 1000);
     }
   },
-  wordLimit: (ctx, { mess, limit }) => {
+  wordLimit: (ctx, { mess, limit }) => { /* fatto */
     let input = ctx.message.text
     let inputArray = input.split(" ")
     if (inputArray.length > limit) {
       zionTelegraf.replyToMessage(ctx, mess)
     }
   },
-  replyToMessage: (ctx, mess) => ctx.reply(mess, { reply_to_message_id: ctx.message.message_id })
+  replyToMessage: (ctx, mess) => { ctx.reply(mess, { reply_to_message_id: ctx.message.message_id }) },
+  ctx: {
+    botInfo: (ctx) => {
+      return ctx.botInfo
+    },
+    channelPost: (ctx) => {
+      return ctx.channelPost
+    },
+    chat: (ctx) => {
+      return ctx.chat
+    },
+    chatJoinRequest: (ctx) => {
+      return ctx.chatJoinRequest
+    },
+    chatMember: (ctx) => {
+      return ctx.chatMember
+    },
+    chosenInLineRequest: (ctx) => {
+      return ctx.chosenInlineRequest
+    },
+    getChatMembersCount: (csetx) => {
+      return ctx.getChatMembersCount()
+    }
+  },
+  sendMediaGroup: (bot, ctx, playlist) => { /* fatto */
+    console.log("called sendmediagroup");
+    let list = []
+    for (let index = 0; index < playlist.length; index++) {
+      const track = playlist[index];
+      let trk = track
+      let stream = trk.stream.stream
+      let title = trk.title
+      let duration = trk.duration
+      let name = trk.name
+      let thumb = trk.thumb
+      list.push({
+        type: "audio",
+        media: stream,
+        title: title,
+        duration: duration,
+        performer: name,
+        thumb: thumb
+      })
+      console.log("sendMediaGroup", list);
+    }
+    // let medialist = []
+    // list.forEach(async e => medialist.push(e))
+    return list.forEach(t => bot.telegram.sendMediaGroup(ctx.chat.id, [t]))
+  },
+  getListaDaFare: async () => {
+
+  },
+  startTasKInsertionProcess: async () => {
+    // create new object in database
+    // edit fields
+    // validate insertion (ask confiration)
+    // save record in database
+    // alert use with process result
+  },
+  askConfirmationMess: async (ctx) => { /* fatto */
+    let chatType = ctx.update.message.chat.type
+    let chatTitle = ctx.update.message.chat.title
+    let user = ctx.update.message.from.first_name
+    let getChatName = zionTelegraf.getChatName
+    zion_db
+    let chatName = await getChatName(chatType, chatTitle)
+    return "Ciao " + user + ". Hai richiesto di visualizzare le task della chat" + chatName + ". Confermi? Si o No"
+  },
+  getChatName: (chatType, chatTitle) => { /* fatto */
+    return new Promise((res, rej) => {
+      if (chatType === "private") { res("privata con te") }
+      else if (chatType === "supergroup") { res(": " + chatTitle) }
+      else if (chatType === "group") { res(": " + chatTitle) }
+      else (rej("Questa chat è di tipo ancora sconosciuto"))
+    })
+  },
+  testReply: async (ctx, text) => { /* fatto */
+    ctx.telegram.sendChatAction(ctx.chat.id, "typing")
+    return await ctx.reply(text, {
+      disable_notification: true,
+    })
+  },
+  botReply: async (ctx, text, keyboard) => { /* fatto */
+    ctx.telegram.sendChatAction(ctx.chat.id, "typing")
+    return await ctx.reply(text, keyboard)
+  },
 }
 
 let ctx = {
@@ -175,4 +313,3 @@ let ctx = {
   state: (ctx) => ctx.state
 }
 
-module.exports = zionTelegraf
