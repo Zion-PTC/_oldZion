@@ -25,7 +25,7 @@ web-vitals<br>
 
 # Dependencies che devono ancora essere installate
 
-bootstrap <br>
+bootstrap ary sta facendo <br>
 ethers <br>
 flip <br>
 gsap <br>
