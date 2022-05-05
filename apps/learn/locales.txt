@@ -1,0 +1,309 @@
+source https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes
+
+af-ZA
+am-ET
+ar-AE
+ar-BH
+ar-DZ
+ar-EG
+ar-IQ
+ar-JO
+ar-KW
+ar-LB
+ar-LY
+ar-MA
+arn-CL
+ar-OM
+ar-QA
+ar-SA
+ar-SD
+ar-SY
+ar-TN
+ar-YE
+as-IN
+az-az
+az-Cyrl-AZ
+az-Latn-AZ
+ba-RU
+be-BY
+bg-BG
+bn-BD
+bn-IN
+bo-CN
+br-FR
+bs-Cyrl-BA
+bs-Latn-BA
+ca-ES
+co-FR
+cs-CZ
+cy-GB
+da-DK
+de-AT
+de-CH
+de-DE
+de-LI
+de-LU
+dsb-DE
+dv-MV
+el-CY
+el-GR
+en-029
+en-AU
+en-BZ
+en-CA
+en-cb
+en-GB
+en-IE
+en-IN
+en-JM
+en-MT
+en-MY
+en-NZ
+en-PH
+en-SG
+en-TT
+en-US
+en-ZA
+en-ZW
+es-AR
+es-BO
+es-CL
+es-CO
+es-CR
+es-DO
+es-EC
+es-ES
+es-GT
+es-HN
+es-MX
+es-NI
+es-PA
+es-PE
+es-PR
+es-PY
+es-SV
+es-US
+es-UY
+es-VE
+et-EE
+eu-ES
+fa-IR
+fi-FI
+fil-PH
+fo-FO
+fr-BE
+fr-CA
+fr-CH
+fr-FR
+fr-LU
+fr-MC
+fy-NL
+ga-IE
+gd-GB
+gd-ie
+gl-ES
+gsw-FR
+gu-IN
+ha-Latn-NG
+he-IL
+hi-IN
+hr-BA
+hr-HR
+hsb-DE
+hu-HU
+hy-AM
+id-ID
+ig-NG
+ii-CN
+in-ID
+is-IS
+it-CH
+it-IT
+iu-Cans-CA
+iu-Latn-CA
+iw-IL
+ja-JP
+ka-GE
+kk-KZ
+kl-GL
+km-KH
+kn-IN
+kok-IN
+ko-KR
+ky-KG
+lb-LU
+lo-LA
+lt-LT
+lv-LV
+mi-NZ
+mk-MK
+ml-IN
+mn-MN
+mn-Mong-CN
+moh-CA
+mr-IN
+ms-BN
+ms-MY
+mt-MT
+nb-NO
+ne-NP
+nl-BE
+nl-NL
+nn-NO
+no-no
+nso-ZA
+oc-FR
+or-IN
+pa-IN
+pl-PL
+prs-AF
+ps-AF
+pt-BR
+pt-PT
+qut-GT
+quz-BO
+quz-EC
+quz-PE
+rm-CH
+ro-mo
+ro-RO
+ru-mo
+ru-RU
+rw-RW
+sah-RU
+sa-IN
+se-FI
+se-NO
+se-SE
+si-LK
+sk-SK
+sl-SI
+sma-NO
+sma-SE
+smj-NO
+smj-SE
+smn-FI
+sms-FI
+sq-AL
+sr-BA
+sr-CS
+sr-Cyrl-BA
+sr-Cyrl-CS
+sr-Cyrl-ME
+sr-Cyrl-RS
+sr-Latn-BA
+sr-Latn-CS
+sr-Latn-ME
+sr-Latn-RS
+sr-ME
+sr-RS
+sr-sp
+sv-FI
+sv-SE
+sw-KE
+syr-SY
+ta-IN
+te-IN
+tg-Cyrl-TJ
+th-TH
+tk-TM
+tlh-QS
+tn-ZA
+tr-TR
+tt-RU
+tzm-Latn-DZ
+ug-CN
+uk-UA
+ur-PK
+uz-Cy
+
+source https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp
+
+Syntax
+number.toLocaleString(locales, options)
+Parameters
+Parameter	Description
+locales
+
+Optional.
+The language specific format to use.
+Click on the "Try it" button to see all values in action.
+
+ar-SA Arabic (Saudi Arabia)
+bn-BD Bangla (Bangladesh)
+bn-IN Bangla (India)
+cs-CZ Czech (Czech Republic)
+da-DK Danish (Denmark)
+de-AT Austrian German
+de-CH "Swiss" German
+de-DE Standard German (as spoken in Germany)
+el-GR Modern Greek
+en-AU Australian English
+en-CA Canadian English
+en-GB British English
+en-IE Irish English
+en-IN Indian English
+en-NZ New Zealand English
+en-US US English
+en-ZA English (South Africa)
+es-AR Argentine Spanish
+es-CL Chilean Spanish
+es-CO Colombian Spanish
+es-ES Castilian Spanish (as spoken in Central-Northern Spain)
+es-MX Mexican Spanish
+es-US American Spanish
+fi-FI Finnish (Finland)
+fr-BE Belgian French
+fr-CA Canadian French
+fr-CH "Swiss" French
+fr-FR Standard French (especially in France)
+he-IL Hebrew (Israel)
+hi-IN Hindi (India)
+hu-HU Hungarian (Hungary)
+id-ID Indonesian (Indonesia)
+it-CH "Swiss" Italian
+it-IT Standard Italian (as spoken in Italy)
+ja-JP Japanese (Japan)
+ko-KR Korean (Republic of Korea)
+nl-BE Belgian Dutch
+nl-NL Standard Dutch (as spoken in The Netherlands)
+no-NO Norwegian (Norway)
+pl-PL Polish (Poland)
+pt-BR Brazilian Portuguese
+pt-PT European Portuguese (as written and spoken in Portugal)
+ro-RO Romanian (Romania)
+ru-RU Russian (Russian Federation)
+sk-SK Slovak (Slovakia)
+sv-SE Swedish (Sweden)
+ta-IN Indian Tamil
+ta-LK Sri Lankan Tamil
+th-TH Thai (Thailand)
+tr-TR Turkish (Turkey)
+zh-CN Mainland China, simplified characters
+zh-HK Hong Kong, traditional characters
+zh-TW Taiwan, traditional characters
+
+options:    Optional
+            An object with formatting options:
+            currency                  : Legal values:
+                                        any currency code (like "EUR", "USD", "INR", etc.)
+            currencyDisplay           : Legal values:
+                                        "symbol" (default), "code", "name"
+            localeMatcher             : Legal values:
+                                        "best-fit" (default), "lookup"
+            maximumFractionDigits     : A number from 0 to 20 (default is 3)
+            maximumSignificantDigits  : A number from 1 to 21 (default is 21)
+            minimumFractionDigits     : A number from 0 to 20 (default is 3)
+            minimumIntegerDigits      : A number from 1 to 21 (default is 1)
+            minimumSignificantDigits  : A number from 1 to 21 (default is 21)
+            style                     : Legal values:
+                                        "currency"
+                                        "decimal" (default)
+                                        "percent"
+            useGrouping               : Legal values:
+                                        "true" (default)
+                                        "false"
+
+Return Value
+Type            Description
+A string	      A string representing a number the local format.

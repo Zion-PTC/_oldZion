@@ -1,0 +1,65 @@
+Metodi per rappresentare un grafo con JavaScript
+
+Lista di Vertici e Lista di Lati
+Matrice di Adiacenza
+Lista di Adiacenza
+
+I grafi possono essere diretti o indiretti.
+DIRETTO, quando la connessione fra un node ed un altro va
+solo in una direzione, ad esempio come il link in una pagina
+web, o una strada a senso unico.
+INDIRETTO, quando la connessione fra i nodi è reciproca,
+quindi va in entrambi i sensi, come ad esempio un'amicizia
+su Facebook.
+Si definisce il grado di un nodo il numero di connessioni
+che ha con altri nodi.
+In un grafo diretto, i nodi hanno un ingrado e un fuorigrado
+(indegree, ourdegree), i quali descrivono il numero di
+connession DA e VERSO il nodo in questione.
+
+I Lati di un grafo possono essere pesati o non pesati
+PESATI, quando hanno un valore che li rappresenta, potrebbe
+ad esempio essere la distanza fra due punti su una mappa.
+NON PESATI, quando i lati sono tutti identici un all'altro.
+
+Possono essere ciclici o aciclici
+CICLICI, quando esiste almeno un ciclo, il che significa che
+come minimo un vertice che ha un percorso che ritorna verso
+sé stesso.
+ACICLICI, quando il nodo NON ci sono cicli, ovvero in
+nessuno caso un vertice ha un percorso che ritorna verso sé
+stesso.
+Entrambi questi grafi possono essere diretti o indiretti.
+
+Denso o Sparso
+DENSO, quando il numero di lati è vicino al numero massimo
+di lati possibili.
+SPARSO, quando il numero di lati è vicino al numero di
+vertici.
+
+SELF-LOOP, è quando un lato ha solo un vertice(come una
+pagina web che si collega a sé stessa)
+MULTI-EDGE, multi-lato, è quando fra due vertici esisono piu lati.
+SIMPLE-GRAPH, grafo semplice, quando non contiene SELF-LOOP
+né MULTI-EDGE
+
+In un grafo semplice diretto, il numero massimo di lati è
+uguale a : n*(n-1) dove n è il numero di vertici/nodi.
+In un grafo semplice indiretto, il numero massimo di lati è
+uguale a: n*(n-1)/2
+
+Per generare un grafo abbiamo bisogno di almeno due classi.
+•Nodo - classe con cui vengono generati istanze di nodi
+  •Proprietà:
+    - valore
+    - listaDiLati
+  •Metodi
+    - connect
+    - trovaVerticiAdiacenti
+    - èConnessoA
+•Graph - una classe che genera un istanza del graph in se
+stesso.
+  •Proprietà
+    - vertici
+  • Metodi
+    - aggiungiAlGrafo

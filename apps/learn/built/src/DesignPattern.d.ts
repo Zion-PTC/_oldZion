@@ -1,0 +1,70 @@
+import { IEsempio } from './Esempio';
+import { ISorgente } from './Sorgente';
+import { ITutorial } from './Tutorial';
+export declare type Priorità = 'Bassa' | 'Media' | 'Alta';
+export declare type DesignPatternsCategories = 'Creational' | 'Behavioral' | 'Structural' | 'Idempotency' | 'non definito';
+export interface IDesignPattern {
+    id: number;
+    nome: string;
+    categoria: DesignPatternsCategories;
+    sorgenti: ISorgente[];
+    esempi: IEsempio[];
+    tutorials: ITutorial[];
+    priorità: Priorità;
+    aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
+    aggiungiEsempio(esempio: IEsempio): IDesignPattern;
+    aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    mostraSorgenti(): IDesignPattern;
+    mostraEsempi(): IDesignPattern;
+}
+export declare abstract class ADesignPattern implements IDesignPattern {
+    #private;
+    id: number;
+    nome: string;
+    categoria: DesignPatternsCategories;
+    sorgenti: ISorgente[];
+    esempi: IEsempio[];
+    tutorials: ITutorial[];
+    priorità: Priorità;
+    static mostraPatternSenzaEsempi(): typeof ADesignPattern;
+    constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsempio[], tutorials?: ITutorial[], priorità?: Priorità);
+    abstract aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
+    abstract aggiungiEsempio(esempio: IEsempio): IDesignPattern;
+    abstract aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    abstract mostraSorgenti(): IDesignPattern;
+    abstract mostraEsempi(): IDesignPattern;
+}
+export declare class DesignPattern extends ADesignPattern {
+    #private;
+    aggiungiSorgente(sorgente: ISorgente): this;
+    aggiungiEsempio(esempio: IEsempio): IDesignPattern;
+    aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    mostraSorgenti(): this;
+    mostraEsempi(): IDesignPattern;
+}
+export declare const chainOfResp: DesignPattern;
+export declare const command: DesignPattern;
+export declare const interpreter: DesignPattern;
+export declare const iterator: DesignPattern;
+export declare const mediator: DesignPattern;
+export declare const memento: DesignPattern;
+export declare const observer: DesignPattern;
+export declare const state: DesignPattern;
+export declare const strategy: DesignPattern;
+export declare const templateMethod: DesignPattern;
+export declare const visitor: DesignPattern;
+export declare const abstractFactory: DesignPattern;
+export declare const builder: DesignPattern;
+export declare const factory: DesignPattern;
+export declare const prototype: DesignPattern;
+export declare const singleton: DesignPattern;
+export declare const adapter: DesignPattern;
+export declare const bridge: DesignPattern;
+export declare const composite: DesignPattern;
+export declare const decorator: DesignPattern;
+export declare const facade: DesignPattern;
+export declare const flyweight: DesignPattern;
+export declare const proxy: DesignPattern;
+export declare const nullObj: DesignPattern;
+export declare const lazyLoad: DesignPattern;
+export declare const interfacePattern: DesignPattern;

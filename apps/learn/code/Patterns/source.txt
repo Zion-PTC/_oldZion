@@ -1,0 +1,5 @@
+https://www.dofactory.com/javascript/design-patterns/strategy#example
+https://dev.to/carlillo/understanding-design-patterns-abstract-factory-23e7
+
+STRATEGY
+https://gist.github.com/Integralist/5736427

@@ -1,0 +1,15 @@
+import { decorator, factory } from './src/DesignPattern.js';
+import { Esempio } from './src/Esempio.js';
+import { DOFACTORY, PJDP } from './src/Sorgente';
+import { decTut1 } from './src/Tutorial';
+Esempio;
+DOFACTORY.mostraDesignPatternSenzaEsempi('Behavioral');
+DOFACTORY.mostraDesignPatternSenzaEsempi('Creational');
+DOFACTORY.mostraDesignPatternSenzaEsempi('Structural');
+DOFACTORY.contaDesignPatternSenzaEsempi();
+DOFACTORY.contaDesignPatternSenzaEsempi('Behavioral');
+DOFACTORY.contaDesignPatternSenzaEsempi('Creational');
+DOFACTORY.contaDesignPatternSenzaEsempi('Structural');
+factory.mostraSorgenti();
+PJDP.mostraPatternID(decorator);
+console.log(decTut1.file.path);
