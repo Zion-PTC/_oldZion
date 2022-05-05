@@ -44,16 +44,18 @@ mongoose <br>
 node-fetch <br>
 telegraf <br>
 
+canvas<br>
+
 # applicationi installate
 
 \_old_zion (da tirare fuori cose che si possano riusare)<br>
 learn (gestione sistema apprendimento)<br>
 zion-preseed (znft.tech frontend)<br>
 telegram-bot (genera dei bot per telegram)<br>
+GenerativeArt<br>
 
 # app da installare
 
-GenerativeArt<br>
 Generator<br>
 Minter<br>
 Ethereum (docker)<br>
