@@ -24,32 +24,32 @@ web-vitals<br>
 
 # Dependencies che devono ancora essere installate
 
-@reduxjs // cominciato da ari
-bootstrap
-ethers
-flip
-gsap
-react-bootstrap
-react-redux
-redux
-redux-thunk
-web3
+@reduxjs // cominciato da ari <br>
+bootstrap <br>
+ethers <br>
+flip <br>
+gsap <br>
+react-bootstrap <br>
+react-redux <br>
+redux <br>
+redux-thunk <br>
+web3 <br>
 
 # applicationi installate
 
-\_old_zion (da tirare fuori cose che si possano riusare)
-learn (gestione sistema apprendimento)
-zion-preseed (znft.tech frontend)
+\_old_zion (da tirare fuori cose che si possano riusare)<br>
+learn (gestione sistema apprendimento)<br>
+zion-preseed (znft.tech frontend)<br>
 
 # app da installare
 
-GenerativeArt
-Ethereum
-Generator
-IPFS
-Minter (applicazione per minare contratti su EVM)
-Mongo (database)
-telegram-bot (genera dei bot per telegram)
+GenerativeArt<br>
+Ethereum<br>
+Generator<br>
+IPFS<br>
+Minter (applicazione per minare contratti su EVM)<br>
+Mongo (database)<br>
+telegram-bot (genera dei bot per telegram)<br>
 
 # app da fare
 
