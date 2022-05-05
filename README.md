@@ -35,6 +35,15 @@ redux <br>
 redux-thunk <br>
 web3 <br>
 
+axios <br>
+body-parser <br>
+express <br>
+http-server <br>
+mocha <br>
+mongoose <br>
+node-fetch <br>
+telegraf <br>
+
 # applicationi installate
 
 \_old_zion (da tirare fuori cose che si possano riusare)<br>
