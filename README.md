@@ -49,16 +49,16 @@ telegraf <br>
 \_old_zion (da tirare fuori cose che si possano riusare)<br>
 learn (gestione sistema apprendimento)<br>
 zion-preseed (znft.tech frontend)<br>
+telegram-bot (genera dei bot per telegram)<br>
 
 # app da installare
 
 GenerativeArt<br>
-Ethereum<br>
 Generator<br>
-IPFS<br>
-Minter (applicazione per minare contratti su EVM)<br>
-Mongo (database)<br>
-telegram-bot (genera dei bot per telegram)<br>
+Minter<br>
+Ethereum (docker)<br>
+IPFS (docker)<br>
+Mongo (docker)<br>
 
 # app da fare
 
