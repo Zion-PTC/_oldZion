@@ -1,26 +1,26 @@
 # Dep installate
 
 chai<br>
-chart.js
-dotenv
-fortawesome-fontawesome-svg-core
-fortawesome-free-brands-svg-icons
-fortawesome-free-regular-svg-icons
-fortawesome-free-solid-svg-icons
-history
-react
-react-chartjs-2
-react-dom
-react-router-dom
-rect-scripts
-style-components
-testing-library-jest-dom
-testing-library-react
-testing-library-user-event
-types-chai
-types-node
-types-styledcomponents
-web-vitals
+chart.js<br>
+dotenv<br>
+fortawesome-fontawesome-svg-core<br>
+fortawesome-free-brands-svg-icons<br>
+fortawesome-free-regular-svg-icons<br>
+fortawesome-free-solid-svg-icons<br>
+history<br>
+react<br>
+react-chartjs-2<br>
+react-dom<br>
+react-router-dom<br>
+rect-scripts<br>
+style-components<br>
+testing-library-jest-dom<br>
+testing-library-react<br>
+testing-library-user-event<br>
+types-chai<br>
+types-node<br>
+types-styledcomponents<br>
+web-vitals<br>
 
 # Dependencies che devono ancora essere installate
 
