@@ -21,11 +21,11 @@ types-chai<br>
 types-node<br>
 types-styledcomponents<br>
 web-vitals<br>
+@reduxjs <br>
 
 # Dependencies che devono ancora essere installate
 
-@reduxjs // cominciato da ari <br>
-bootstrap <br>
+bootstrap ary sta facendo <br>
 ethers <br>
 flip <br>
 gsap <br>
