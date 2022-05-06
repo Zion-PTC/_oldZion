@@ -1,7 +1,7 @@
 {
   "name": "node",
   "workspaces": [
-    "../ZION/packages/_node/zion-util"
+    "../ZION/packages/"
   ],
   "version": "1.0.0",
   "description": "",
