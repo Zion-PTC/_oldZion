@@ -27,3 +27,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 apps/_old_zion/src/blockchain/test/.gitkeep
+.vscode/settings.json
