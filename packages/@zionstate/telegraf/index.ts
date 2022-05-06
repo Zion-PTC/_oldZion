@@ -13,18 +13,19 @@ import t, {
   TelegramError as tTelegramError,
   Types as tTypes,
 } from 'telegraf';
+import { Update } from 'telegraf/typings/core/types/typegram';
 
-// export type Composer<C extends Context<tg.Update>> = tComposer<C>;
-export type Context = tContext;
+export class Composer<C extends Context> extends tComposer<C> {}
+export class Context extends tContext {}
 export let Markup = tMarkup;
-// export type Middleware<C extends Context<Update>> = tMiddleware<C>;
-// export type MiddlewareFn<C extends Context<Update>> = tMiddlewareFn<C>;
+export type Middleware<C extends Context> = tMiddleware<C>;
+export type MiddlewareFn<C extends Context> = tMiddlewareFn<C>;
 export type MemorySessionStore<T> = tMemorySessionStore<T>;
-// export type NarrowedContext = tNarrowedContext;
-// export type Router<
-//   C extends Context<tg.Update>,
-//   U extends tg.Update
-// > = tRouter<C>;
+export type NarrowedContext<
+  C extends Context,
+  U extends Update
+> = tNarrowedContext<C, U>;
+export type Router<C extends Context> = tRouter<C>;
 export let Scenes = tScenes;
 export type Telegraf = tTelegraf;
 export type Telegram = tTelegram;
