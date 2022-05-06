@@ -22,6 +22,7 @@ class ClassMemebers {
     pt.x = 0;
     pt.y = 0;
   }
+  //@ts-ignore
   static ex2() {
     console.log(
       `Come per altre luoghi, l'annotazione di tipo annotazione è opzionale, ma sarà un any implicito se nulla viene specificato. I campi possono anche avere inizializatori; questi ultimi verranno avviati automaticamente quando la classe viene instanziata:`
@@ -32,13 +33,17 @@ class ClassMemebers {
     }
     const pt = new Point();
     console.log(`${pt.x}, ${pt.y}`); // 0, 0
-    return Point;
+    // return Point;
   }
   static par() {
     console.log(
       'come con const, let and var, gli inizializzatori della proprietà di una classe sarà utilissate per dedurne il tipo'
     );
-    let Point = ClassMemebers.ex2();
+    class Point {
+      x = 0;
+      y = 0;
+    }
+    // let Point = ClassMemebers.ex2();
     const pt = new Point();
     //@ts-expect-error
     pt.x = '0';
