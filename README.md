@@ -1,4 +1,4 @@
-# Dep installate
+# Dep installate ['string']
 
 chai<br>
 chart.js<br>
@@ -62,5 +62,10 @@ IPFS (docker)<br>
 Mongo (docker)<br>
 
 # app da fare
+
+Checklists
+Todo
+Lista della spesa
+Quiz
 
 AudiusPlaylist (applicazione per telegram, ed eventualmente webapp)
