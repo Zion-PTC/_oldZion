@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "User_response",
+  "description": "A product in the catalog",
+  "type": "object",
+  "properties": {
+    "data": {
+      "album_count": 0,
+      "bio": "string",
+      "cover_photo": {
+        "640x": "string",
+        "2000x": "string"
+      },
+      "followee_count": 0,
+      "follower_count": 0,
+      "handle": "string",
+      "id": "string",
+      "is_verified": true,
+      "location": "string",
+      "name": "string",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "string",
+        "480x480": "string",
+        "1000x1000": "string"
+      },
+      "repost_count": 0,
+      "track_count": 0
+    }
+  }
+}
