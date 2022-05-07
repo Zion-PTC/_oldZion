@@ -1,0 +1,8 @@
+//FOLDERS
+node_modules
+test
+//FILES
+.DS_Store
+era.js
+era.d.ts
+era.ts

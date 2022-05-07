@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "watch": true,
+    "lib": ["DOM","ES2021"],
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "outDir": "./built",
+    // "outFile": "src/Namespaces/Spaces.js",
+    // "module": "AMD"
+    // "paths": {}
+    // "strictNullChecks":true,
+    // "strictPropertyInitialization": true
+    // "allowJs": false,
+  },
+  "exclude": ["node_modules"],
+  "include": ["./src","./index.ts"]
+}
