@@ -7,9 +7,9 @@ let newApi = new AudiusApi('prova');
 // AudiusURL.searchUsers.setPaths('ccc').show();
 // AudiusURL.searchUsers.setParams('app_name', 'ccciiiii').show();
 let bob = new AudiusApi('bob', 'ZION');
-let response = await bob.fetchAudius2('searchUsers', 'gotek');
-console.log(bob.audiusApiURLs[13]);
-console.log(response);
+let response = await bob.fetchAudius2('searchHashtags', 'tnldao');
+console.log(response.data.tracks);
+// console.log(response);
 
 // console.log(bob.audiusApiURLs);
 // bob.fetchAudius2('getUser', 'gotek');

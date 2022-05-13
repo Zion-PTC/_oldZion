@@ -86,36 +86,44 @@ export namespace ApiResponses {
   interface IUser extends UserT, Base {}
   interface ITrack extends TrackT, Base, Base2<track_artwork> {}
   interface IPlaylist extends Playlist_T, Base, Base2<playlist_artwork> {}
+  interface IHashtags {
+    tracks: ITrack[];
+    users: IUser[];
+  }
   //
   interface IAudiusResponse<T> extends AudiusResponse_T<T>, IZionResponse {}
 
-  interface User extends IAudiusResponse<IUser> {}
-  interface Tracks extends IAudiusResponse<ITrack[]> {}
-  interface Reposts extends IAudiusResponse<IActivity[]> {}
-  interface Favorites extends IAudiusResponse<IFavoriTe[]> {}
-  interface Tags extends IAudiusResponse<string[]> {}
-  interface Playlist extends IAudiusResponse<IPlaylist[]> {}
-  interface Track extends IAudiusResponse<ITrack> {}
-  interface Playlist_tracks extends IAudiusResponse<ITrack[]> {}
-  interface User_search extends IAudiusResponse<IUser[]> {}
-  interface Playlist_search_result extends IAudiusResponse<IPlaylist[]> {}
-  interface Track_search extends IAudiusResponse<ITrack[]> {}
-  interface App_name_trailing extends IAudiusResponse<IApp_name_trailing[]> {}
+  interface IUser extends IAudiusResponse<IUser> {}
+  interface ITracks extends IAudiusResponse<ITrack[]> {}
+  interface IReposts extends IAudiusResponse<IActivity[]> {}
+  interface IFavorites extends IAudiusResponse<IFavoriTe[]> {}
+  interface ITags extends IAudiusResponse<string[]> {}
+  interface IPlaylist extends IAudiusResponse<IPlaylist[]> {}
+  interface ITrack extends IAudiusResponse<ITrack> {}
+  interface IPlaylist_tracks extends IAudiusResponse<ITrack[]> {}
+  interface IUser_search extends IAudiusResponse<IUser[]> {}
+  interface IPlaylist_search_result extends IAudiusResponse<IPlaylist[]> {}
+  interface ITrack_search extends IAudiusResponse<ITrack[]> {}
+  interface IApp_name_trailing extends IAudiusResponse<IApp_name_trailing[]> {}
+  interface IHashtag_search extends IAudiusResponse<IHashtags> {}
 
-  class AudiusResponse extends ZionResponse implements IAudi {}
+  export class AudiusResponse extends ZionResponse {}
 
   export type AudiusResponses =
-    | User
-    | Tracks
-    | Reposts
-    | Favorites
-    | Tags
-    | User
-    | User_search
-    | Playlist
-    | Playlist_tracks
-    | Playlist_search_result
-    | Track
-    | Track_search
-    | App_name_trailing;
+    | IUser
+    | ITracks
+    | IReposts
+    | IFavorites
+    | ITags
+    | IUser
+    | IUser_search
+    | IPlaylist
+    | IPlaylist_tracks
+    | IPlaylist_search_result
+    | ITrack
+    | ITrack_search
+    | IHashtag_search
+    | IApp_name_trailing;
+
+  let obj: IHashtag_search = {};
 }

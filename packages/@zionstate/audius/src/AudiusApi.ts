@@ -327,6 +327,7 @@ export class AudiusApi implements IAudiusApi {
       }
     });
   }
+  // TODO - [] cambiare la funzione crea playlist
   async createHashtagPlaylist(query: string) {
     console.log('createPlaylist called');
     const TAG_SEARC_URL_PREFIX =
@@ -487,7 +488,11 @@ export class AudiusApi implements IAudiusApi {
         audiusURL.setParams('query', query);
         break;
       case AudiusURLsEnum.trendingTracks:
-        audiusURL = this.audiusApiURLs[11];
+        audiusURL = this.audiusApiURLs[12];
+        audiusURL.setParams('query', query);
+        break;
+      case AudiusURLsEnum.searchHashtags:
+        audiusURL = this.audiusApiURLs[13];
         audiusURL.setParams('query', query);
         break;
       default:
