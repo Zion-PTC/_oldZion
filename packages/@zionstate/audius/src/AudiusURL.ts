@@ -37,7 +37,6 @@ export class AudiusURL extends ZionURL implements IAudiusURL {
 
 export class AudiusURL_v1 extends AudiusURL implements IAudiusURL {
   #URL: URL;
-
   constructor(
     url: Input,
     public pathnamePattern: string,

@@ -124,6 +124,4 @@ export namespace ApiResponses {
     | ITrack_search
     | IHashtag_search
     | IApp_name_trailing;
-
-  let obj: IHashtag_search = {};
 }

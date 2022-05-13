@@ -6,5 +6,4 @@ export var ApiResponses;
     class AudiusResponse extends ZionResponse {
     }
     ApiResponses.AudiusResponse = AudiusResponse;
-    let obj = {};
 })(ApiResponses || (ApiResponses = {}));

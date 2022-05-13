@@ -12,7 +12,6 @@ import AudiusURL, {
 } from './AudiusURL.js';
 
 export interface IAudiusRequest extends IZionRequest {
-  // setPathName(variable: string): IAudiusRequest;
   setPathname(string: string): IAudiusRequest;
 }
 
@@ -24,7 +23,6 @@ export class AudiusRequest<I> extends ZionRequest implements IAudiusRequest {
     public __type?: AudiusURLsTypes
   ) {
     super(input, init);
-    // this.__type = input.__type;
   }
   setPathname(string: string): IAudiusRequest {
     this.input.setPaths(string);
@@ -132,23 +130,6 @@ type SetTrendingTracksArgs = SetSearchParmsTypes<never>;
 type SetGetTrackArgs = SetSearchParmsTypes<never>;
 
 type SetStreamTrackArgs = SetSearchParmsTypes<never>;
-
-// export type FetchAudiusTypes =
-//   | 'searchUsers'
-//   | 'getUser'
-//   | 'getUserFavoriteTracks'
-//   | 'getUserRepost'
-//   | 'getUserMostUsedTags'
-//   | 'userTracks'
-//   | 'searchPlaylist'
-//   | 'getPlaylist'
-//   | 'getPlaylistTracks'
-//   | 'searchTrack'
-//   | 'trendingTracks'
-//   | 'getTrack'
-//   | 'streamTrack'
-//   | 'searchTag'
-//   | 'getTrailingMetrics';
 
 export {
   searchUsers,

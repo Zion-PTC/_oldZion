@@ -11,7 +11,6 @@ export class AudiusRequest extends ZionRequest {
         this.title = title;
         this.init = init;
         this.__type = __type;
-        // this.__type = input.__type;
     }
     setPathname(string) {
         this.input.setPaths(string);
@@ -68,20 +67,4 @@ var SearchParamsTypes;
     SearchParamsTypes["only_downloadable"] = "only_downloadable";
     SearchParamsTypes["user_id"] = "user_id";
 })(SearchParamsTypes || (SearchParamsTypes = {}));
-// export type FetchAudiusTypes =
-//   | 'searchUsers'
-//   | 'getUser'
-//   | 'getUserFavoriteTracks'
-//   | 'getUserRepost'
-//   | 'getUserMostUsedTags'
-//   | 'userTracks'
-//   | 'searchPlaylist'
-//   | 'getPlaylist'
-//   | 'getPlaylistTracks'
-//   | 'searchTrack'
-//   | 'trendingTracks'
-//   | 'getTrack'
-//   | 'streamTrack'
-//   | 'searchTag'
-//   | 'getTrailingMetrics';
 export { searchUsers, getUser, getUserFavorites, getUsersReposts, getUsersMostUsedTrackTags, getUsersTracks, searchPlaylist, getPlaylist, getPlaylistTracks, searchTracks, trendingTracks, getTrack, streamTrack, };

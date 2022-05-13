@@ -327,7 +327,6 @@ export class AudiusApi implements IAudiusApi {
       }
     });
   }
-  // TODO - [] cambiare la funzione crea playlist
   async createHashtagPlaylist(query: string) {
     console.log('createPlaylist called');
     const TAG_SEARC_URL_PREFIX =

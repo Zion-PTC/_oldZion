@@ -209,7 +209,6 @@ export class AudiusApi {
             }
         });
     }
-    // TODO - [] cambiare la funzione crea playlist
     async createHashtagPlaylist(query) {
         console.log('createPlaylist called');
         const TAG_SEARC_URL_PREFIX = '/search/tags?kind=all&limit=15&offset=0&query=';
