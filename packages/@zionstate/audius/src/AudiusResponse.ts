@@ -1,3 +1,7 @@
+import { ZionResponse, IZionResponse } from '@zionstate_node/node-fetch';
+import { searchUsers } from './AudiusRequest';
+searchUsers;
+
 export namespace ApiResponses {
   type Base = {
     id: string;
@@ -64,52 +68,54 @@ export namespace ApiResponses {
     playlist_name: string;
     total_play_count: number;
   };
-  type App_name_trailing_metric_T = {
+  type App_name_trailing_T = {
     count: number;
     name: string;
   };
-  type Response_T<T> = {
-    data: T;
+  type AudiusResponse_T<T> = {
+    data?: T;
   };
+  interface artwork<T> extends profile_picture {}
   interface track_artwork extends profile_picture {}
   interface playlist_artwork extends profile_picture {}
-  interface artwork<T> extends profile_picture {}
   interface IRemix_parent extends Remix_parent_T {}
   interface ITrack_element extends Track_element_T {}
   interface IActivity extends Activity_T {}
   interface IFavoriTe extends Favorite_T {}
-  interface IApp_name_trailing_metric extends App_name_trailing_metric_T {}
-  interface IResponse<T> extends Response_T<T> {}
+  interface IApp_name_trailing extends App_name_trailing_T {}
   interface IUser extends UserT, Base {}
   interface ITrack extends TrackT, Base, Base2<track_artwork> {}
   interface IPlaylist extends Playlist_T, Base, Base2<playlist_artwork> {}
+  //
+  interface IAudiusResponse<T> extends AudiusResponse_T<T>, IZionResponse {}
 
-  interface User_response extends IResponse<IUser> {}
-  interface Tracks_response extends IResponse<ITrack[]> {}
-  interface Reposts extends IResponse<IActivity[]> {}
-  interface Favorites_reponse extends IResponse<IFavoriTe[]> {}
-  interface Tags_response extends IResponse<string[]> {}
-  interface User_search extends IResponse<IUser[]> {}
-  interface Playlist_response extends IResponse<IPlaylist[]> {}
-  interface Playlist_tracks_response extends IResponse<ITrack[]> {}
-  interface Playlist_search_result extends IResponse<IPlaylist[]> {}
-  interface Track_response extends IResponse<ITrack> {}
-  interface Track_search extends IResponse<ITrack[]> {}
-  interface App_name_trailing_response
-    extends IResponse<IApp_name_trailing_metric[]> {}
+  interface User extends IAudiusResponse<IUser> {}
+  interface Tracks extends IAudiusResponse<ITrack[]> {}
+  interface Reposts extends IAudiusResponse<IActivity[]> {}
+  interface Favorites extends IAudiusResponse<IFavoriTe[]> {}
+  interface Tags extends IAudiusResponse<string[]> {}
+  interface Playlist extends IAudiusResponse<IPlaylist[]> {}
+  interface Track extends IAudiusResponse<ITrack> {}
+  interface Playlist_tracks extends IAudiusResponse<ITrack[]> {}
+  interface User_search extends IAudiusResponse<IUser[]> {}
+  interface Playlist_search_result extends IAudiusResponse<IPlaylist[]> {}
+  interface Track_search extends IAudiusResponse<ITrack[]> {}
+  interface App_name_trailing extends IAudiusResponse<IApp_name_trailing[]> {}
+
+  class AudiusResponse extends ZionResponse implements IAudi {}
 
   export type AudiusResponses =
-    | User_response
-    | Tracks_response
+    | User
+    | Tracks
     | Reposts
-    | Favorites_reponse
-    | Tags_response
-    | User_response
+    | Favorites
+    | Tags
+    | User
     | User_search
-    | Playlist_response
-    | Playlist_tracks_response
+    | Playlist
+    | Playlist_tracks
     | Playlist_search_result
-    | Track_response
+    | Track
     | Track_search
-    | App_name_trailing_response;
+    | App_name_trailing;
 }
