@@ -109,11 +109,15 @@ class GenericClasse {
     myGenericNumber.add = function (x, y) {
       return x + y;
     };
-    return GenericNumber;
+    // return GenericNumber;
   }
   static ex2() {
+    class GenericNumber1<NumType> {
+      zeroValue: NumType;
+      add: (x: NumType, y: NumType) => NumType;
+    }
     let GenericNumber = GenericClasse.ex1();
-    let stringNumeric = new GenericNumber<string>();
+    let stringNumeric = new GenericNumber1<string>();
     stringNumeric.zeroValue = 'ull';
     stringNumeric.add = function (x, y) {
       return x + y;
@@ -137,14 +141,14 @@ class GenericConstraints {
     console.log(
       'To do so, we’ll create an interface that describes our constraint. Here, we’ll create an interface that has a single .length property and then we’ll use this interface and the extends keyword to denote our constraint:'
     );
-    interface Lengthwise {
+    interface Lengthwise3 {
       length: number;
     }
-    function loggindIdentity<T extends Lengthwise>(arg: T): T {
+    function loggindIdentity<T extends Lengthwise3>(arg: T): T {
       console.log(arg.length);
       return arg;
     }
-    return loggindIdentity;
+    // return loggindIdentity;
   }
   ex3() {
     console.log(
