@@ -1,0 +1,13 @@
+{
+  "name": "@zionrepack/testing-library-user-event",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@testing-library/user-event": "^14.1.1"
+  }
+}

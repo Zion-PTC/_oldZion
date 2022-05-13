@@ -1,0 +1,16 @@
+declare let newUrl: URL;
+declare let newUrlOrigin: string;
+declare let searchParams: URLSearchParams;
+declare let hash: string;
+declare let host: string;
+declare let hostname: string;
+declare let href: string;
+declare let password: string;
+declare let pathname: string;
+declare let port: string;
+declare let protocol: string;
+declare let search: string;
+declare let username: string;
+declare let newUlrToJson: () => string;
+declare let newUrlToString: () => string;
+declare let append: (name: string, value: string) => void, spDelete: (name: string) => void, forEach: (callbackfn: (value: string, key: string, parent: URLSearchParams) => void, thisArg?: any) => void, get: (name: string) => string | null, getAll: (name: string) => string[], has: (name: string) => boolean, keys: () => IterableIterator<string>, set: (name: string, value: string) => void, sort: () => void, spToString: () => string, values: () => IterableIterator<string>;

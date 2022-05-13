@@ -1,0 +1,14 @@
+import * as webVitals from 'web-vitals';
+import { FirstInputPolyfillCallback as wv_FirstInputPolyfillCallback, FirstInputPolyfillEntry as wv_FirstInputPolyfillEntry, Metric as wv_Metric, NavigationTimingPolyfillEntry as wv_NavigationTimingPolyfillEntry, PerformanceEventTiming as wv_PerformanceEventTiming, ReportHandler as wv_ReportHandler, WebVitalsGlobal as wv_WebVitalsGlobal } from 'web-vitals';
+export declare type FirstInputPolyfillCallback = wv_FirstInputPolyfillCallback;
+export declare type FirstInputPolyfillEntry = wv_FirstInputPolyfillEntry;
+export declare type Metric = wv_Metric;
+export declare type NavigationTimingPolyfillEntry = wv_NavigationTimingPolyfillEntry;
+export declare type PerformanceEventTiming = wv_PerformanceEventTiming;
+export declare type ReportHandler = wv_ReportHandler;
+export declare type WebVitalsGlobal = wv_WebVitalsGlobal;
+export declare let getCLS: (onReport: webVitals.ReportHandler, reportAllChanges?: boolean) => void;
+export declare let getFCP: (onReport: webVitals.ReportHandler, reportAllChanges?: boolean) => void;
+export declare let getFID: (onReport: webVitals.ReportHandler, reportAllChanges?: boolean) => void;
+export declare let getLCP: (onReport: webVitals.ReportHandler, reportAllChanges?: boolean) => void;
+export declare let getTTFB: (onReport: webVitals.ReportHandler) => void;

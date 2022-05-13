@@ -1,0 +1,13 @@
+{
+  "name": "@zionrepack/testing-library-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@testing-library/react": "^13.2.0"
+  }
+}

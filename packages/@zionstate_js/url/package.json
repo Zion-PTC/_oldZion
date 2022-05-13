@@ -1,0 +1,13 @@
+{
+  "name": "@zionstate_js/url",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "scripts": {
+    "test": "nodemon test/test.js"
+  },
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@zionrepack/types-mocha",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/mocha": "^9.1.1"
+  }
+}
