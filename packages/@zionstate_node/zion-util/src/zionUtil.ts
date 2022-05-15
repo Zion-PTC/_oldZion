@@ -52,7 +52,7 @@ export interface IUtils {
   checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
   checkArrayElementsConstructor<T>(array: T[], constructor: Function): boolean;
   checkObjectConstructor(object: object, constructor: Function): boolean;
-  hasArrayObjectElements(array: object[]): boolean;
+  hasArrayObjectElements(array: object[]): boolean | string;
   isArrayEmpty(array?: any[]): boolean;
   changePosition<T>(array: T[], old: number, new_pos: number): T[] | string;
   extractSameElementsFromArray<T extends string | boolean | number>(
@@ -163,18 +163,18 @@ function checkArrayElementsConstructor<T>(
   array: T[],
   constructor: Function
 ): boolean {
-  let risultoControllo = [];
+  let risultatoControllo: boolean[] = [];
   const controllaIlConstructor = function (elemento: T) {
     //@ts-ignore
     let condizione = elemento.constructor === constructor;
-    risultoControllo.push(condizione);
-    return risultoControllo.some((el) => el === false);
+    risultatoControllo.push(condizione);
+    return risultatoControllo.some(el => el === false);
   };
-  const controlloFinale = function (element) {
+  const controlloFinale = function (element: boolean) {
     return element === false;
   };
   array.forEach(controllaIlConstructor);
-  return !risultoControllo.some(controlloFinale);
+  return !risultatoControllo.some(controlloFinale);
 }
 /**
  *
@@ -189,14 +189,15 @@ function checkObjectConstructor(
   const oggettoUgualeConstructor = object.constructor === constructor;
   return oggettoUgualeConstructor;
 }
+// TODO descrizione metodo
 /**
- *
  * @param type
  * @param string
  * @returns
  */
 function removeSpaceFromString(type: number, string: string): string {
-  let newString: string;
+  // TODO Migliorare inizializzazione
+  let newString: string = '';
   switch (type) {
     case 1:
       method1(string);
@@ -271,7 +272,7 @@ function extractSameElementsFromArray<T extends string | boolean | number>(
   array1: T[],
   array2: T[]
 ): T[] {
-  let sameValues = [];
+  let sameValues: T[] = [];
   if (
     // controllo se gli array sono vuoti
     !zionUtil.isArrayEmpty(array1) &&
@@ -289,36 +290,32 @@ function extractSameElementsFromArray<T extends string | boolean | number>(
       );
     }
     for (let element2 of array2) {
-      let match = array1.find((element1) => element1 === element2);
+      let match = array1.find(element1 => element1 === element2);
       match ? sameValues.push(match) : 'no match found';
     }
     return sameValues;
   }
   throw new Error('Uno dei due array è vuoto');
 }
+// TODO descrizione metodo
 /**
  *
  * @param array
  * @returns
  */
-function hasArrayObjectElements(array: object[]): boolean {
-  if (!this.isArrayEmpty(array)) {
-    let result = [];
-    array.forEach((element) => {
-      if (typeof element === 'object') {
-        result.push(true);
-      }
-      if (typeof element !== 'object') {
-        result.push(false);
-      }
-    });
-    if (result.includes(true)) {
-      return true;
-    }
-    if (!result.includes(true)) {
-      return false;
-    }
+function hasArrayObjectElements(array: object[]): boolean | string {
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
+  if (this.isArrayEmpty(array)) {
+    return 'Array is Empty';
   }
+  let result: boolean[] = [];
+  array.forEach(element => {
+    if (typeof element === 'object') result.push(true);
+    if (typeof element !== 'object') result.push(false);
+  });
+  if (!result.includes(true)) return false;
+  else return true;
 }
 /**
  *
@@ -326,11 +323,8 @@ function hasArrayObjectElements(array: object[]): boolean {
  * @returns
  */
 function isArrayEmpty(array: any[]): boolean {
-  if (array.length === 0) {
-    return true;
-  } else if (array.length !== 0) {
-    return false;
-  }
+  if (array.length !== 0) return false;
+  else return true;
 }
 /**
  *
@@ -357,9 +351,13 @@ function convertDecimalToFracionString(decimale: number): string {
   let frazioneInString: string;
   if (decimale === 1) return '1';
   if (decimale >= 1) return 'il valore passato deve essere un numero decimale!';
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
   const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
   let denominatore: number = Math.pow(10, numeriDopoLaVirgola);
   let numeratore: number = decimale * denominatore;
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
   const divisore: number = this.massimoComuneDivisore(numeratore, denominatore);
   numeratore /= divisore;
   denominatore /= divisore;
@@ -375,6 +373,8 @@ function convertDecimalToFracionString(decimale: number): string {
  */
 function massimoComuneDivisore(a: number, b: number): number {
   if (b < 0.0000001) return a;
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
   return this.massimoComuneDivisore(b, Math.floor(a % b));
 }
 /**

@@ -126,18 +126,18 @@ function checkArraysContent(array, nextArray) {
  * matcha la classe fornita.
  */
 function checkArrayElementsConstructor(array, constructor) {
-    let risultoControllo = [];
+    let risultatoControllo = [];
     const controllaIlConstructor = function (elemento) {
         //@ts-ignore
         let condizione = elemento.constructor === constructor;
-        risultoControllo.push(condizione);
-        return risultoControllo.some((el) => el === false);
+        risultatoControllo.push(condizione);
+        return risultatoControllo.some(el => el === false);
     };
     const controlloFinale = function (element) {
         return element === false;
     };
     array.forEach(controllaIlConstructor);
-    return !risultoControllo.some(controlloFinale);
+    return !risultatoControllo.some(controlloFinale);
 }
 /**
  *
@@ -149,14 +149,15 @@ function checkObjectConstructor(object, constructor) {
     const oggettoUgualeConstructor = object.constructor === constructor;
     return oggettoUgualeConstructor;
 }
+// TODO descrizione metodo
 /**
- *
  * @param type
  * @param string
  * @returns
  */
 function removeSpaceFromString(type, string) {
-    let newString;
+    // TODO Migliorare inizializzazione
+    let newString = '';
     switch (type) {
         case 1:
             method1(string);
@@ -236,36 +237,36 @@ function extractSameElementsFromArray(array1, array2) {
             throw new Error(`Uno dei due array contiente oggetti, questa funziona richiede che l'array contenga valori (string, number, boolan)`);
         }
         for (let element2 of array2) {
-            let match = array1.find((element1) => element1 === element2);
+            let match = array1.find(element1 => element1 === element2);
             match ? sameValues.push(match) : 'no match found';
         }
         return sameValues;
     }
     throw new Error('Uno dei due array è vuoto');
 }
+// TODO descrizione metodo
 /**
  *
  * @param array
  * @returns
  */
 function hasArrayObjectElements(array) {
-    if (!this.isArrayEmpty(array)) {
-        let result = [];
-        array.forEach((element) => {
-            if (typeof element === 'object') {
-                result.push(true);
-            }
-            if (typeof element !== 'object') {
-                result.push(false);
-            }
-        });
-        if (result.includes(true)) {
-            return true;
-        }
-        if (!result.includes(true)) {
-            return false;
-        }
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
+    if (this.isArrayEmpty(array)) {
+        return 'Array is Empty';
     }
+    let result = [];
+    array.forEach(element => {
+        if (typeof element === 'object')
+            result.push(true);
+        if (typeof element !== 'object')
+            result.push(false);
+    });
+    if (!result.includes(true))
+        return false;
+    else
+        return true;
 }
 /**
  *
@@ -273,12 +274,10 @@ function hasArrayObjectElements(array) {
  * @returns
  */
 function isArrayEmpty(array) {
-    if (array.length === 0) {
-        return true;
-    }
-    else if (array.length !== 0) {
+    if (array.length !== 0)
         return false;
-    }
+    else
+        return true;
 }
 /**
  *
@@ -307,9 +306,13 @@ function convertDecimalToFracionString(decimale) {
         return '1';
     if (decimale >= 1)
         return 'il valore passato deve essere un numero decimale!';
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
     const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
     let denominatore = Math.pow(10, numeriDopoLaVirgola);
     let numeratore = decimale * denominatore;
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
     const divisore = this.massimoComuneDivisore(numeratore, denominatore);
     numeratore /= divisore;
     denominatore /= divisore;
@@ -326,6 +329,8 @@ function convertDecimalToFracionString(decimale) {
 function massimoComuneDivisore(a, b) {
     if (b < 0.0000001)
         return a;
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
     return this.massimoComuneDivisore(b, Math.floor(a % b));
 }
 /**

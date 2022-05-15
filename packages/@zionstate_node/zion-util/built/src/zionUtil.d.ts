@@ -9,7 +9,7 @@ export interface IUtils {
     checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
     checkArrayElementsConstructor<T>(array: T[], constructor: Function): boolean;
     checkObjectConstructor(object: object, constructor: Function): boolean;
-    hasArrayObjectElements(array: object[]): boolean;
+    hasArrayObjectElements(array: object[]): boolean | string;
     isArrayEmpty(array?: any[]): boolean;
     changePosition<T>(array: T[], old: number, new_pos: number): T[] | string;
     extractSameElementsFromArray<T extends string | boolean | number>(array1: T[], array2: T[]): T[];

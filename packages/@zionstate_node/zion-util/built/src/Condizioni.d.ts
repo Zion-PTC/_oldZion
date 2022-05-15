@@ -1,20 +1,26 @@
+declare type StandardValues = string | number | boolean;
 export declare class Condizioni {
     constructor();
-    oggettoUgualeCostruttore(object: any, constructor: any): boolean;
-    proprietàNome(elemento: any, name: any): boolean;
+    oggettoUgualeCostruttore(object: object, constructor: Function): boolean;
+    proprietàNome(elemento: {
+        name: string;
+    }, name: string): boolean;
 }
 export declare class Condizionatore {
     #private;
-    get property(): any;
-    set property(property: any);
-    get value(): any;
-    set value(value: any);
-    get result(): any;
-    set result(result: any);
-    get servedArray(): any[];
-    set servedArray(servedArray: any[]);
-    id: any;
-    constructor(property: any, value: any);
-    condizione: (oggetto: any) => boolean;
-    condizioneForEach: (oggetto: any) => this;
+    get property(): string;
+    set property(property: string);
+    get value(): StandardValues;
+    set value(value: StandardValues);
+    get servedArray(): never[];
+    set servedArray(servedArray: never[]);
+    id: number;
+    constructor(property: string, value: string | number | boolean);
+    condizione: (oggetto: {
+        [key: string]: string;
+    }) => boolean;
+    condizioneForEach: (oggetto: {
+        [key: string]: string;
+    }) => this;
 }
+export {};

@@ -23,13 +23,14 @@ export class Condizionatore {
     set value(value) {
         this.#value = value;
     }
-    #result;
-    get result() {
-        return this.#result;
-    }
-    set result(result) {
-        this.#result = result;
-    }
+    // TODO eliminare - [ ] si /  - [ ] no
+    // #result;
+    // get result() {
+    //   return this.#result;
+    // }
+    // set result(result) {
+    //   this.#result = result;
+    // }
     #servedArray = [];
     get servedArray() {
         return this.#servedArray;
@@ -41,6 +42,8 @@ export class Condizionatore {
     constructor(property, value) {
         this.#property = property;
         this.#value = value;
+        // TODO capire uso di this in ext functions
+        //@ts-expect-error
         Condizionatore.#condizionatori.push(this);
         this.id = Condizionatore.#condizionatori.length;
     }

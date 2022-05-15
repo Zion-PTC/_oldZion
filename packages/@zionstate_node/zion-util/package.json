@@ -1,5 +1,5 @@
 {
-  "name": "@zionstate/zion-util",
+  "name": "@zionstate_node/zion-util",
   "version": "0.0.1",
   "description": "Estensione di node_module util",
   "main": "zion-util.js",
