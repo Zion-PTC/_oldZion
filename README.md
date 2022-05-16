@@ -68,4 +68,23 @@ Todo
 Lista della spesa
 Quiz
 
-AudiusPlaylist (applicazione per telegram, ed eventualmente webapp)
+AudiusPlaylist (applicazione per telegram, ed eventualmente
+webapp)
+
+# struttura folders packages
+
+root <nome_packaging>
+└──built
+├── index.js
+├── index.d.ts
+└── src
+├── <nome_packaging>.d.ts
+└── <nome_packaging>.js
+└──src
+└── <nome_packaging>.ts
+└──test
+├── .gitignore // **standard_configs
+├── index.ts
+├── LICENSE // generato da github. Al moment usiamo MIT
+├── package.json // **standard_configs
+└── tsconfig.json // \*\*standard_configs
