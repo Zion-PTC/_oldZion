@@ -47,6 +47,10 @@ interface IInspectArguments {
 export interface IUtils {
   ////// util
   inspect(obj: IInspectArguments): string;
+  debuglog(
+    section: string,
+    callback?: ((fn: util.DebugLoggerFunction) => void) | undefined
+  ): util.DebugLogger;
   ////// zion
   // ARRAY
   checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
@@ -78,6 +82,7 @@ class Utils implements IUtils {
   }
   ////// utils
   inspect = util.inspect;
+  debuglog = util.debuglog;
   ////// zion
   checkArraysContent = checkArraysContent;
   checkArrayElementsConstructor = checkArrayElementsConstructor;

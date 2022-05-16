@@ -42,6 +42,7 @@ class Utils {
     }
     ////// utils
     inspect = util.inspect;
+    debuglog = util.debuglog;
     ////// zion
     checkArraysContent = checkArraysContent;
     checkArrayElementsConstructor = checkArrayElementsConstructor;

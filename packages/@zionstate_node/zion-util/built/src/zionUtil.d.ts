@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import util from 'util';
 interface IInspectArguments {
     object: any;
     showHidden?: boolean;
@@ -6,6 +8,7 @@ interface IInspectArguments {
 }
 export interface IUtils {
     inspect(obj: IInspectArguments): string;
+    debuglog(section: string, callback?: ((fn: util.DebugLoggerFunction) => void) | undefined): util.DebugLogger;
     checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
     checkArrayElementsConstructor<T>(array: T[], constructor: Function): boolean;
     checkObjectConstructor(object: object, constructor: Function): boolean;
