@@ -1,0 +1,12 @@
+{
+  "name": "@zionstate/fortawesome-free-solid-svg-icons",
+  "version": "0.0.1",
+  "description": "",
+  "main": "builst/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.1.1"
+  }
+}
