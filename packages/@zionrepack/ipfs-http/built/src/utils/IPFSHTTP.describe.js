@@ -7,4 +7,5 @@ export let create = IPFSHTTP.create;
 export let globSource = IPFSHTTP.globSource;
 export let multiaddr = IPFSHTTP.multiaddr;
 export let urlSource = IPFSHTTP.urlSource;
+//@ts-ignore
 export let module = IPFSHTTP[Object.getOwnPropertySymbols(IPFSHTTP)[0]];

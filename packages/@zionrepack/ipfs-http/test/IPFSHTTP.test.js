@@ -5,14 +5,9 @@ import * as IPFSHTTP from 'ipfs-http-client';
 import all from 'it-all';
 
 const testRunner = new Mocha({ slow: 1000 });
-testRunner.suite.emit(
-  'pre-require',
-  global,
-  'nofile',
-  testRunner
-);
+testRunner.suite.emit('pre-require', global, 'nofile', testRunner);
 var suiteRun = testRunner.run();
-process.on('exit', (code) => {
+process.on('exit', code => {
   process.exit(suiteRun.stats.failures > 0);
 });
 let log = zionUtil.debuglog('log');
@@ -94,8 +89,7 @@ describe(`IPFSHTTP`, () => {
       });
     });
     describe(`Property bitswap`, () => {
-      const { stat, unwant, wantlist, wantlistForPeer } =
-        bitswap;
+      const { stat, unwant, wantlist, wantlistForPeer } = bitswap;
       it(`bitswap`, () => {
         log(bitswap);
       });
@@ -144,25 +138,12 @@ describe(`IPFSHTTP`, () => {
     });
     describe(`Property dag`, () => {
       it(`dag`, () => {
-        const {
-          export: exportDag,
-          get,
-          import: importDag,
-          put,
-          resolve,
-        } = dag;
+        const { export: exportDag, get, import: importDag, put, resolve } = dag;
       });
     });
     describe(`Property dht`, () => {
       it(`dht`, () => {
-        const {
-          findPeer,
-          findProvs,
-          get,
-          provide,
-          put,
-          query,
-        } = dht;
+        const { findPeer, findProvs, get, provide, put, query } = dht;
       });
     });
     describe(`Property diag`, () => {
@@ -292,11 +273,7 @@ describe(`IPFSHTTP`, () => {
             ls: lsRemore,
             rm: rmRemote,
             rmAll: rmAllRemote,
-            service: {
-              add: addService,
-              rm: rmService,
-              ls: lsService,
-            },
+            service: { add: addService, rm: rmService, ls: lsService },
           },
           rm,
           rmAll,
@@ -348,13 +325,7 @@ describe(`IPFSHTTP`, () => {
     });
     describe(`Property swarm`, () => {
       it(`swarm`, () => {
-        const {
-          addrs,
-          connect,
-          disconnect,
-          localAddrs,
-          peers,
-        } = swarm;
+        const { addrs, connect, disconnect, localAddrs, peers } = swarm;
       });
     });
     describe(`Method version()`, () => {
@@ -380,19 +351,10 @@ describe(`IPFSHTTP`, () => {
     it(`classe con cui creare un multiaddr`, () => {
       const multiaddr = IPFSHTTP.multiaddr;
       const {
-        protocols: {
-          lengthPrefixedVarSize,
-          V,
-          table,
-          names,
-          codes,
-          object,
-        },
+        protocols: { lengthPrefixedVarSize, V, table, names, codes, object },
         resolvers,
       } = multiaddr;
-      let newMulti = new multiaddr(
-        '/ip4/127.0.0.1/tcp/4001'
-      );
+      let newMulti = new multiaddr('/ip4/127.0.0.1/tcp/4001');
       log(multiaddr);
       log(newMulti);
       const {
