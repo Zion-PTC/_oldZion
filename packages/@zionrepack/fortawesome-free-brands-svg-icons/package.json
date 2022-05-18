@@ -1,0 +1,12 @@
+{
+  "name": "@zionrepack/fortawesome-free-brands-svg-icons",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.1.1"
+  }
+}
