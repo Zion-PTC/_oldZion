@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "esnext",
+    "watch": true,
+    "lib": ["DOM","ES2021"],
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution":"Node",
+    "outDir": "./built",
+  },
+  "include": ["./**/*"]
+}

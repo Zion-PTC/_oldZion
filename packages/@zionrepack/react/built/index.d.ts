@@ -1,0 +1,44 @@
+import def from 'react';
+export declare let cloneElement: typeof def.cloneElement;
+export declare let createContext: typeof def.createContext;
+export declare let createElement: typeof def.createElement;
+export declare let createFactory: typeof def.createFactory;
+export declare let createRef: typeof def.createRef;
+export declare let forwardRef: typeof def.forwardRef;
+export declare let isValidElement: typeof def.isValidElement;
+export declare let lazy: typeof def.lazy;
+export declare let memo: typeof def.memo;
+export declare let startTransition: typeof def.startTransition;
+export declare let useCallback: typeof def.useCallback;
+export declare let useContext: typeof def.useContext;
+export declare let useDebugValue: typeof def.useDebugValue;
+export declare let useDeferredValue: typeof def.useDeferredValue;
+export declare let useEffect: typeof def.useEffect;
+export declare let useId: typeof def.useId;
+export declare let useImperativeHandle: typeof def.useImperativeHandle;
+export declare let useInsertionEffect: typeof def.useInsertionEffect;
+export declare let useLayoutEffect: typeof def.useLayoutEffect;
+export declare let useMemo: typeof def.useMemo;
+export declare let useReducer: typeof def.useReducer;
+export declare let useRef: typeof def.useRef;
+export declare let useState: typeof def.useState;
+export declare let useSyncExternalStore: typeof def.useSyncExternalStore;
+export declare let useTransition: typeof def.useTransition;
+export declare let version: string;
+export declare let Children: {
+    map<T, C>(children: C | readonly C[], fn: (child: C, index: number) => T): C extends null ? C : Exclude<T, boolean>[];
+    forEach<C_1>(children: C_1 | readonly C_1[], fn: (child: C_1, index: number) => void): void;
+    count(children: any): number;
+    only<C_2>(children: C_2): C_2 extends any[] ? never : C_2;
+    toArray(children: def.ReactNode | def.ReactNode[]): (string | number | def.ReactElement<any, string | def.JSXElementConstructor<any>> | def.ReactFragment | def.ReactPortal)[];
+};
+export declare let Component: typeof def.Component;
+export declare let Fragment: def.ExoticComponent<{
+    children?: def.ReactNode;
+}>;
+export declare let Profiler: def.ExoticComponent<def.ProfilerProps>;
+export declare let PureComponent: typeof def.PureComponent;
+export declare let StrictMode: def.ExoticComponent<{
+    children?: def.ReactNode;
+}>;
+export declare let Suspense: def.ExoticComponent<def.SuspenseProps>;
