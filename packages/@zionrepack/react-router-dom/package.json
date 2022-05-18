@@ -1,0 +1,13 @@
+{
+  "name": "@zionrepack/react-router-dom",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "react-router-dom": "^6.3.0"
+  }
+}
