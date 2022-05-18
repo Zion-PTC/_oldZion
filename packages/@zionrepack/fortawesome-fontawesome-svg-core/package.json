@@ -1,0 +1,12 @@
+{
+  "name": "@zionrepack/fortawesome-fontawesome-svg-core",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1"
+  }
+}
