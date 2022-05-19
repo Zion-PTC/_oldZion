@@ -9,8 +9,8 @@ export declare class Picker<T extends {
      * quali estrarre.
      * @returns {number} ritorna un numero a caso.
      */
-    static scegliACasoNumeroFraNumeri(listaDiNumeri?: never[]): never;
-    static scegliACasoNumeroFraElementi(listaDiElementi?: never[]): never;
+    static scegliACasoNumeroFraNumeri(listaDiNumeri?: number[]): number;
+    static scegliACasoNumeroFraElementi<T>(listaDiElementi?: T[]): T;
     /**
      *
      * @param {Estrazione} estrazione
@@ -18,7 +18,7 @@ export declare class Picker<T extends {
      */
     static scegliACasoETogliElementoDaArray<T extends {
         name: string;
-    }>(estrazione: Estrazione<T>): Estrazione<T> | undefined;
+    }>(estrazione: Estrazione<T>): Estrazione<T> | string;
     static scegliNumeroNellIntervallo(intervallo: number): number;
     /**
      *

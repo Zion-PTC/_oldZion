@@ -1,6 +1,6 @@
 {
   "name": "@zionstate/system",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "",
   "main": "built/index.js",
   "keywords": [],

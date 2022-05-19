@@ -2,6 +2,7 @@
 import fs from 'fs';
 import { Tree } from './Tree.js';
 import { TreeNode } from './TreeNode.js';
+export declare type Dirent = fs.Dirent;
 export declare class System {
     #private;
     get blackListFileNames(): string[];

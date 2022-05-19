@@ -13,9 +13,8 @@ export class Picker {
      */
     static scegliACasoNumeroFraNumeri(listaDiNumeri = []) {
         let condizione = zionUtil.checkArrayElementsConstructor(listaDiNumeri, Number);
-        if (condizione) {
+        if (!condizione)
             throw new Error(`La lista contiene elementi che non sono numeri`);
-        }
         const elementoRandom = Picker.scegliACasoNumeroFraElementi(listaDiNumeri);
         return elementoRandom;
     }
@@ -29,17 +28,22 @@ export class Picker {
      * @returns
      */
     static scegliACasoETogliElementoDaArray(estrazione) {
+        // console.log(estrazione.elementiRimanenti);
         let lunghezzaArray = estrazione.elementiRimanenti.length - 1;
         let indiceEstratto = this.scegliNumeroNellIntervallo(lunghezzaArray);
         let elementoEstratto = estrazione.elementiRimanenti[indiceEstratto];
+        if (!estrazione.elementiRimanenti)
+            return 'no rimanenti';
         zionUtil.changePosition(estrazione.elementiRimanenti, indiceEstratto, lunghezzaArray);
         let elementoEstrattoCheck = estrazione.elementiRimanenti.pop();
-        if (!elementoEstrattoCheck)
-            return;
+        if (elementoEstrattoCheck === undefined)
+            return 'no popped';
         if (elementoEstratto.name !== elementoEstrattoCheck.name)
             throw new Error(`L'elemeto poppato dall'array non corrisponde con quello estratto`);
         estrazione.elementoEstratto = elementoEstratto;
         estrazione.elementiEstratti.push(elementoEstratto);
+        if (!estrazione)
+            return 'da fuk';
         return estrazione;
     }
     static scegliNumeroNellIntervallo(intervallo) {

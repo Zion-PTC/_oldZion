@@ -1,10 +1,14 @@
 {
   "name": "@zionstate/generator",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "main": "built/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "testGenerator": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/generator/test/Generator.test.js",
+    "testPicker": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/generator/test/Picker.test.js"
+  }
 }

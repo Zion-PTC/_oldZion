@@ -9,6 +9,7 @@ import { Folder } from './Folder.js';
 import { Root } from './Root.js';
 import { TreeNode } from './TreeNode.js';
 
+export type Dirent = fs.Dirent;
 export class System {
   #blackListFileNames = ['.DS_Store'];
   get blackListFileNames() {

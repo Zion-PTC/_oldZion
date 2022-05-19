@@ -1,18 +1,12 @@
 import { expect } from 'chai';
 import Mocha from 'mocha';
-import { Estrazione } from '../../Machines/GeneratorMachine/Estrazione.js';
-import { Picker } from '../../Machines/GeneratorMachine/Picker.js';
-import { zionUtil } from '/Users/WAW/Documents/Projects/telegram-bots/Classes/_Node Standard Modules/zionUtil.js';
+import { Estrazione, Picker } from '@zionstate/generator';
+import { zionUtil } from '@zionstate_node/zion-util';
 
 const testRunner = new Mocha({ slow: 1000 });
-testRunner.suite.emit(
-  'pre-require',
-  global,
-  'nofile',
-  testRunner
-);
+testRunner.suite.emit('pre-require', global, 'nofile', testRunner);
 var suiteRun = testRunner.run();
-process.on('exit', (code) => {
+process.on('exit', code => {
   process.exit(suiteRun.stats.failures > 0);
 });
 let log = zionUtil.debuglog('log');
@@ -28,9 +22,7 @@ let elementoB = new Elemento(2, 1);
 let elementoC = new Elemento(3, 1);
 
 let elementi = [elementoA, elementoB, elementoC];
-let valoriDegliElementi = elementi.map(
-  (elemento) => elemento.valore
-);
+let valoriDegliElementi = elementi.map(elemento => elemento.valore);
 
 describe(`STATIC METHODS`, () => {
   describe(`Method scegliACasoNumeroFraNumeri()`, () => {
@@ -38,10 +30,8 @@ describe(`STATIC METHODS`, () => {
     it(`Data una lista di numeri: ${JSON.stringify(
       numeri
     )} e ritorna un numero estratto a caso.`, () => {
-      let numeroRandom1 =
-        Picker.scegliACasoNumeroFraNumeri(numeri);
-      let numeroRandom2 =
-        Picker.scegliACasoNumeroFraNumeri(numeri);
+      let numeroRandom1 = Picker.scegliACasoNumeroFraNumeri(numeri);
+      let numeroRandom2 = Picker.scegliACasoNumeroFraNumeri(numeri);
       expect(numeroRandom1).not.to.be.null;
       expect(numeroRandom2).not.to.be.null;
       expect(numeri.includes(numeroRandom1)).to.be.true;
@@ -49,44 +39,24 @@ describe(`STATIC METHODS`, () => {
     });
   });
   describe(`Method scegliACasoETogliElementoDaArray()`, () => {
-    it.only(`dovrebbe scegliere un indice a caso e dovrebbe eliminare l'elemento scelto dall'array inviato`, () => {
+    it(`dovrebbe scegliere un indice a caso e dovrebbe eliminare l'elemento scelto dall'array inviato`, () => {
       const ARRAYPROVA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       let newEstrazione = new Picker.Estrazione(ARRAYPROVA);
-      let result =
-        Picker.scegliACasoETogliElementoDaArray(
-          newEstrazione
-        );
-      let result2 =
-        Picker.scegliACasoETogliElementoDaArray(result);
-      let result3 =
-        Picker.scegliACasoETogliElementoDaArray(result2);
+      let result = Picker.scegliACasoETogliElementoDaArray(newEstrazione);
+      let result2 = Picker.scegliACasoETogliElementoDaArray(result);
+      let result3 = Picker.scegliACasoETogliElementoDaArray(result2);
       expect(result3.arrayOriginale.length).to.be.equal(10);
-      let result4 =
-        Picker.scegliACasoETogliElementoDaArray(result3);
-      expect(result4.elementiRimanenti.length).to.be.equal(
-        6
-      );
-      let result5 =
-        Picker.scegliACasoETogliElementoDaArray(result4);
-      let result6 =
-        Picker.scegliACasoETogliElementoDaArray(result5);
-      let result7 =
-        Picker.scegliACasoETogliElementoDaArray(result6);
-      let result8 =
-        Picker.scegliACasoETogliElementoDaArray(result7);
-      let result9 =
-        Picker.scegliACasoETogliElementoDaArray(result8);
-      let result10 =
-        Picker.scegliACasoETogliElementoDaArray(result9);
-      expect(result10.elementiEstratti.length).to.be.equal(
-        10
-      );
-      expect(result10.arrayOriginale.length).to.be.equal(
-        10
-      );
-      expect(result10.elementiRimanenti.length).to.be.equal(
-        0
-      );
+      let result4 = Picker.scegliACasoETogliElementoDaArray(result3);
+      expect(result4.elementiRimanenti.length).to.be.equal(6);
+      let result5 = Picker.scegliACasoETogliElementoDaArray(result4);
+      let result6 = Picker.scegliACasoETogliElementoDaArray(result5);
+      let result7 = Picker.scegliACasoETogliElementoDaArray(result6);
+      let result8 = Picker.scegliACasoETogliElementoDaArray(result7);
+      let result9 = Picker.scegliACasoETogliElementoDaArray(result8);
+      let result10 = Picker.scegliACasoETogliElementoDaArray(result9);
+      expect(result10.elementiEstratti.length).to.be.equal(10);
+      expect(result10.arrayOriginale.length).to.be.equal(10);
+      expect(result10.elementiRimanenti.length).to.be.equal(0);
       expect(result10.elementoEstratto).to.be.not.null;
     });
   });
@@ -98,14 +68,8 @@ describe(`STATIC METHODS`, () => {
       `dovrebbe tornare la percentuale di volte che il numero: ${numero1},` +
         `\n\tè incluso nei primi risultati: [${risultati1}], e nei secondi risultati: [${risultati2}], ovvero rispettivamente 0.5 e 0.25`,
       () => {
-        let percentuale1 = Picker.calcolaPercentuale(
-          risultati1,
-          numero1
-        );
-        let percentuale2 = Picker.calcolaPercentuale(
-          risultati2,
-          numero1
-        );
+        let percentuale1 = Picker.calcolaPercentuale(risultati1, numero1);
+        let percentuale2 = Picker.calcolaPercentuale(risultati2, numero1);
         expect(percentuale1).to.be.equal(0.5);
         expect(percentuale2).to.be.equal(0.25);
       }
@@ -123,10 +87,8 @@ describe(`STATIC METHODS`, () => {
     estrazione1 = [1, 1, 2, 2, 3, 3, 4, 4];
     estrazione2 = [1, 1, 1, 1, 1, 1, 2, 3];
     estrazione3 = [1, 1, 1, 1, 1, 1, 1, 1];
-    risultato1Atteso =
-      '[[1,0.25],[2,0.25],[3,0.25],[4,0.25]]';
-    risultato2Atteso =
-      '[[1,0.75],[2,0.125],[3,0.125],[4,0]]';
+    risultato1Atteso = '[[1,0.25],[2,0.25],[3,0.25],[4,0.25]]';
+    risultato2Atteso = '[[1,0.75],[2,0.125],[3,0.125],[4,0]]';
     risultato3Atteso = '[[1,1],[2,0],[3,0],[4,0]]';
     it(`Riceve due argomenti:`, () => {
       //
@@ -135,27 +97,12 @@ describe(`STATIC METHODS`, () => {
     it(`•estrazione:[${estrazione1}]`, () => {});
     it(`e ritorna un array con il numero e la percentuale corrispondente,`, () => {});
     it(`risultato: ${risultato1Atteso}`, () => {
-      let risultati1 = Picker.quanteVolteEstratti(
-        numeri,
-        estrazione1
-      );
-      expect(JSON.stringify(risultati1)).to.be.equal(
-        risultato1Atteso
-      );
-      let risultati2 = Picker.quanteVolteEstratti(
-        numeri,
-        estrazione2
-      );
-      let risultati3 = Picker.quanteVolteEstratti(
-        numeri,
-        estrazione3
-      );
-      expect(JSON.stringify(risultati2)).to.be.equal(
-        risultato2Atteso
-      );
-      expect(JSON.stringify(risultati3)).to.be.equal(
-        risultato3Atteso
-      );
+      let risultati1 = Picker.quanteVolteEstratti(numeri, estrazione1);
+      expect(JSON.stringify(risultati1)).to.be.equal(risultato1Atteso);
+      let risultati2 = Picker.quanteVolteEstratti(numeri, estrazione2);
+      let risultati3 = Picker.quanteVolteEstratti(numeri, estrazione3);
+      expect(JSON.stringify(risultati2)).to.be.equal(risultato2Atteso);
+      expect(JSON.stringify(risultati3)).to.be.equal(risultato3Atteso);
     });
   });
   describe(`Method estraiERitornaPercentuali()`, () => {
@@ -182,12 +129,9 @@ describe(`STATIC METHODS`, () => {
     );
     it(`Dovrebbe lanciare un errore perché il contenuto dell'array non sono numeri.`, () => {
       let ARGOMENTOSBAGLIATO1 = ['1', 'b', 'occa', 12];
-      const ERRORMESSAGE =
-        'La lista contiene elementi che non sono numeri';
+      const ERRORMESSAGE = 'La lista contiene elementi che non sono numeri';
       expect(() =>
-        Picker.scegliACasoNumeroFraNumeri(
-          ARGOMENTOSBAGLIATO1
-        )
+        Picker.scegliACasoNumeroFraNumeri(ARGOMENTOSBAGLIATO1)
       ).to.throw(ERRORMESSAGE);
     });
   });
@@ -217,12 +161,8 @@ describe(`STATIC METHODS`, () => {
       arrayDiArrayDiTuple
     )}, e ritorna un oggetto con key value della tuple`, () => {
       //
-      let obj = Picker.creaObjWithKeysEMedie(
-        arrayDiArrayDiTuple
-      );
-      expect(JSON.stringify(obj)).to.be.equal(
-        risultatoAtteso
-      );
+      let obj = Picker.creaObjWithKeysEMedie(arrayDiArrayDiTuple);
+      expect(JSON.stringify(obj)).to.be.equal(risultatoAtteso);
     });
   });
   describe(`Method estraiConCalbacknVolte()`, () => {

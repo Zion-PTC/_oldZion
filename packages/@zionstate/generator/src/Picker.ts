@@ -13,18 +13,18 @@ export class Picker<T extends { name: string }> {
    * quali estrarre.
    * @returns {number} ritorna un numero a caso.
    */
-  static scegliACasoNumeroFraNumeri(listaDiNumeri = []) {
+  static scegliACasoNumeroFraNumeri(listaDiNumeri: number[] = []): number {
     let condizione = zionUtil.checkArrayElementsConstructor(
       listaDiNumeri,
       Number
     );
-    if (condizione) {
+    if (!condizione)
       throw new Error(`La lista contiene elementi che non sono numeri`);
-    }
-    const elementoRandom = Picker.scegliACasoNumeroFraElementi(listaDiNumeri);
+    const elementoRandom =
+      Picker.scegliACasoNumeroFraElementi<number>(listaDiNumeri);
     return elementoRandom;
   }
-  static scegliACasoNumeroFraElementi(listaDiElementi = []) {
+  static scegliACasoNumeroFraElementi<T>(listaDiElementi: T[] = []) {
     const elementoRandom =
       listaDiElementi[Math.floor(Math.random() * listaDiElementi.length)];
     return elementoRandom;
@@ -36,10 +36,13 @@ export class Picker<T extends { name: string }> {
    */
   static scegliACasoETogliElementoDaArray<T extends { name: string }>(
     estrazione: Estrazione<T>
-  ) {
+  ): Estrazione<T> | string {
+    // console.log(estrazione.elementiRimanenti);
+
     let lunghezzaArray = estrazione.elementiRimanenti.length - 1;
     let indiceEstratto = this.scegliNumeroNellIntervallo(lunghezzaArray);
     let elementoEstratto = estrazione.elementiRimanenti[indiceEstratto];
+    if (!estrazione.elementiRimanenti) return 'no rimanenti';
     zionUtil.changePosition(
       estrazione.elementiRimanenti,
       indiceEstratto,
@@ -47,13 +50,14 @@ export class Picker<T extends { name: string }> {
     );
     let elementoEstrattoCheck: T | undefined =
       estrazione.elementiRimanenti.pop();
-    if (!elementoEstrattoCheck) return;
+    if (elementoEstrattoCheck === undefined) return 'no popped';
     if (elementoEstratto.name !== elementoEstrattoCheck.name)
       throw new Error(
         `L'elemeto poppato dall'array non corrisponde con quello estratto`
       );
     estrazione.elementoEstratto = elementoEstratto;
     estrazione.elementiEstratti.push(elementoEstratto);
+    if (!estrazione) return 'da fuk';
     return estrazione;
   }
   static scegliNumeroNellIntervallo(intervallo: number) {
