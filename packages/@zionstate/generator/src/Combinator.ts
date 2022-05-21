@@ -51,10 +51,11 @@ export class Combinator {
    * combinazioni di ogni elemento m con ognuno degli elementi m di degli altri m array.
    * In sostanza tutte le combinazioni possibili fra gli array contenuti nell'array.
    */
-  static generateCombinations(array: unknown[]) {
+  static generateCombinations<T>(array: T[]): T[][] {
+    let combos: T[][];
     // TODO cercare di capire il conflitto (combine)
     //@ts-expect-error
-    let combos = array.reduce((p, c) => Combinator.combineArrays(p, c));
+    combos = array.reduce((p, c) => Combinator.combineArrays(p, c));
     return combos;
   }
 }

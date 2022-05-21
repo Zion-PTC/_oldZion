@@ -209,7 +209,7 @@ export class Picker<T extends { name: string }> {
   }
   estrazione: Estrazione<T>;
   constructor(arrayOriginale: T[] = []) {
-    this.estrazione = new Estrazione(arrayOriginale);
+    this.estrazione = new Estrazione<T>(arrayOriginale);
   }
   scegliACasoETogliElementoDaArray() {
     let lunghezzaArray = this.estrazione.elementiRimanenti.length - 1;

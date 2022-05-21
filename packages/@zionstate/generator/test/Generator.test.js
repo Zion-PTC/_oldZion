@@ -69,7 +69,7 @@ let arrayOfArrayElementsToString = (arrayOfArrays = []) => {
 };
 
 export let GeneratorMachineTest = describe(`GENERATOR MACHINE`, () => {
-  describe(`COMBINATOR CLASS`, () => {
+  describe.only(`COMBINATOR CLASS`, () => {
     describe(`Method changePosition()`, () => {
       let testArray = [];
       Object.assign(testArray, arrayOfArrays[0]);
@@ -152,6 +152,7 @@ export let GeneratorMachineTest = describe(`GENERATOR MACHINE`, () => {
         log(expectedCombinations);
         let combinations =
           GeneratorMachine.Combinator.generateCombinations(arrayOfArrays);
+        log(combinations);
         expect(combinations.length).to.be.equal(expectedNOfCombinations);
       });
     });
