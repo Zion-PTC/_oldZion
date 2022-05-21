@@ -378,9 +378,25 @@ function convertDecimalToFracionString(decimale: number): string {
  */
 function massimoComuneDivisore(a: number, b: number): number {
   if (b < 0.0000001) return a;
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
-  return this.massimoComuneDivisore(b, Math.floor(a % b));
+
+  function mcdmcm(A: number, B: number) {
+    var a, b, r, MCD, mcm;
+
+    a = parseInt(A.toString());
+    b = parseInt(B.toString());
+
+    r = a % b;
+    while (r != 0) {
+      a = b;
+      b = r;
+      r = a % b;
+    }
+
+    MCD = b;
+    mcm = (parseInt(A.toString()) * parseInt(B.toString())) / MCD;
+    return { MCD: MCD, mcm: mcm };
+  }
+  return mcdmcm(b, a % b).MCD;
 }
 /**
  *
@@ -392,7 +408,6 @@ function modulo(a: number, b: number): number {
   return a % b;
 }
 /**
- *
  * @param number
  * @returns
  */
