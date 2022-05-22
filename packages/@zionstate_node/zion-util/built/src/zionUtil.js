@@ -344,7 +344,7 @@ function massimoComuneDivisore(a, b) {
         mcm = (parseInt(A.toString()) * parseInt(B.toString())) / MCD;
         return { MCD: MCD, mcm: mcm };
     }
-    return mcdmcm(b, a % b).MCD;
+    return mcdmcm(a, b).MCD;
 }
 /**
  *
