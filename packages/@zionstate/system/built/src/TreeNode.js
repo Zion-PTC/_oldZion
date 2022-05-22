@@ -106,11 +106,13 @@ export class TreeNode {
     connettiAGenitore(node) {
         if (this.genitore)
             this.genitore.push(node);
+        return this;
     }
     connettiAFiglio(node) {
         if (this.figlio)
             this.figlio.push(node);
         node.connettiAGenitore(this);
+        return this;
     }
     isRoot() {
         if (this.root)
@@ -141,8 +143,13 @@ export class TreeNode {
         if (this.type === TreeNode.#types[1])
             throw new Error('I file non hanno figli');
         let servedArray = [];
-        if (this.figlio)
-            this.figlio.forEach(child => servedArray.push(child));
+        if (!this.figlio)
+            return 'no figlio';
+        this.figlio.forEach(child => {
+            if (!child)
+                return;
+            servedArray.push(child);
+        });
         Object.freeze(servedArray);
         return servedArray;
     }

@@ -147,7 +147,7 @@ export class System {
                         );
                         childNode.depth = currentNode.depth + 1;
                         nodes.push(childNode);
-                        console.log(childNode.depth);
+                        // console.log(childNode.depth);
                     }
                     currentNode.connettiAFiglio(childNode);
                     if (system.getTreeNodeType(childNode.path) === 0) {

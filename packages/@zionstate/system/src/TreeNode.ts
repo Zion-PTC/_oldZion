@@ -16,7 +16,40 @@ export namespace TreeNodeTs {
   };
 }
 
-export class TreeNode {
+export interface ITreeNode {
+  name: string;
+  path: string;
+  typeNumber: number;
+  treeId: unknown;
+  depth: number;
+  genitore?: ITreeNode[];
+  figlio?: ITreeNode[];
+  root?: boolean;
+  type?: string;
+  id?: number;
+  stringedDir?: string | undefined;
+  _isLastChild?: boolean;
+  toStringedTree(): string;
+  stringedName(
+    name: string,
+    type: unknown,
+    depth: number,
+    folders: string[][],
+    string: string,
+    folderId: number,
+    nomeDeiFileInNodeChildren: string[],
+    _isLastChild: boolean | undefined,
+    isRoot: boolean
+  ): { _string: string; _folders: string[][]; _folderId: number };
+  connettiAGenitore(node: TreeNode): ITreeNode;
+  connettiAFiglio(node: TreeNode): ITreeNode;
+  isRoot(): boolean;
+  trovaSiblings(): ITreeNode[];
+  trovaFigli(): ITreeNode[] | string;
+  trovaGenitore(): ITreeNode | undefined;
+}
+
+export class TreeNode implements ITreeNode {
   static #types: ('Folder' | 'File')[] = ['Folder', 'File'];
   static #treeNodes: TreeNode[] = [];
   static get treeNodes() {
@@ -31,8 +64,8 @@ export class TreeNode {
     public typeNumber: number,
     public treeId: unknown,
     public depth: number,
-    public genitore?: TreeNode[],
-    public figlio?: TreeNode[],
+    public genitore?: ITreeNode[],
+    public figlio?: ITreeNode[],
     public children?: TreeNode[],
     public root: boolean = false,
     public type?: string,
@@ -148,10 +181,12 @@ export class TreeNode {
   };
   connettiAGenitore(node: TreeNode) {
     if (this.genitore) this.genitore.push(node);
+    return this;
   }
   connettiAFiglio(node: TreeNode) {
     if (this.figlio) this.figlio.push(node);
     node.connettiAGenitore(this);
+    return this;
   }
   isRoot() {
     if (this.root) return true;
@@ -176,8 +211,12 @@ export class TreeNode {
   trovaFigli() {
     if (this.type === TreeNode.#types[1])
       throw new Error('I file non hanno figli');
-    let servedArray: TreeNode[] = [];
-    if (this.figlio) this.figlio.forEach(child => servedArray.push(child));
+    let servedArray: ITreeNode[] = [];
+    if (!this.figlio) return 'no figlio';
+    this.figlio.forEach(child => {
+      if (!child) return;
+      servedArray.push(child);
+    });
     Object.freeze(servedArray);
     return servedArray;
   }

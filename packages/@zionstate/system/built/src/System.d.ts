@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import fs from 'fs';
-import { Tree } from './Tree.js';
-import { TreeNode } from './TreeNode.js';
+import { Tree, ITree } from './Tree.js';
+import { TreeNode, ITreeNode } from './TreeNode.js';
 export declare type Dirent = fs.Dirent;
 export declare class System {
     #private;
@@ -98,4 +98,6 @@ export declare class System {
     getFileExtension(path: string): string;
 }
 export declare let TreeNodeExport: typeof TreeNode;
+export declare type ITreeNodeExport = ITreeNode;
+export declare type ITreeExport = ITree;
 export declare let system: System;

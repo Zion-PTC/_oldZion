@@ -2,7 +2,15 @@ import { File } from './File.js';
 import { Folder } from './Folder.js';
 import { Root } from './Root.js';
 import { TreeNode } from './TreeNode.js';
-export declare class Tree {
+export interface ITree {
+    id: number;
+    get nodes(): (File | Root | Folder | TreeNode)[];
+    add(node: File | Root | Folder | TreeNode): ITree;
+    remove(nodeToRemove: File | Root | Folder | TreeNode): number;
+    isPresent(nodoDaControllare: File | Root | Folder | TreeNode): boolean;
+    findByLevel(depth: number): (File | Root | Folder | TreeNode)[];
+}
+export declare class Tree implements ITree {
     #private;
     get nodes(): (TreeNode | File | Folder | Root)[];
     id: number;

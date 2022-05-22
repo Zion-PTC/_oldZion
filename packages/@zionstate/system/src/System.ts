@@ -3,11 +3,11 @@ import { dirname, extname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { zionUtil } from '@zionstate_node/zion-util';
-import { Tree } from './Tree.js';
+import { Tree, ITree } from './Tree.js';
 import { File } from './File.js';
 import { Folder } from './Folder.js';
 import { Root } from './Root.js';
-import { TreeNode } from './TreeNode.js';
+import { TreeNode, ITreeNode } from './TreeNode.js';
 
 export type Dirent = fs.Dirent;
 export class System {
@@ -166,7 +166,7 @@ export class System {
             );
             childNode.depth = currentNode.depth + 1;
             nodes.push(childNode);
-            console.log(childNode.depth);
+            // console.log(childNode.depth);
           }
           currentNode.connettiAFiglio(childNode);
           if (system.getTreeNodeType(childNode.path) === 0) {
@@ -250,5 +250,7 @@ export class System {
 }
 
 export let TreeNodeExport = TreeNode;
+export type ITreeNodeExport = ITreeNode;
+export type ITreeExport = ITree;
 export let system = new System();
 Object.assign(system, fs);
