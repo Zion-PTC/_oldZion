@@ -1,6 +1,11 @@
+import { ITreeNode } from '../index.js';
 import { TreeNode } from './TreeNode.js';
 
-export class Folder extends TreeNode {
+export interface IFolder extends ITreeNode {
+  depth: number;
+}
+
+export class Folder extends TreeNode implements ITreeNode, IFolder {
   constructor(
     public name: string,
     public path: string,

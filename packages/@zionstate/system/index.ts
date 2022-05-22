@@ -6,4 +6,7 @@ export default System;
 export let TreeNode = SystemExport.TreeNodeExport;
 export type ITreeNode = SystemExport.ITreeNodeExport;
 export type ITree = SystemExport.ITreeExport;
+export type IFile = SystemExport.IFileExport;
+export type IFolder = SystemExport.IFolderExport;
+export type IRoot = SystemExport.IRootExport;
 export let system = SystemExport.system;

@@ -1,6 +1,11 @@
+import { ITreeNode } from '../index.js';
 import { TreeNode } from './TreeNode.js';
 
-export class Root extends TreeNode {
+export interface IRoot extends ITreeNode {
+  root: boolean;
+}
+
+export class Root extends TreeNode implements ITreeNode, IRoot {
   static #roots: TreeNode[] = [];
   #type = 'root';
   constructor(

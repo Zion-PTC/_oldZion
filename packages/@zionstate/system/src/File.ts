@@ -1,7 +1,13 @@
 // import { Size } from '../../GenerativeArtMachine/Size.js';
+import { ITreeNode } from '../index.js';
 import { TreeNode } from './TreeNode.js';
 
-export class File extends TreeNode {
+export interface IFile extends ITreeNode {
+  extension?: string;
+  fileSize?: number;
+}
+
+export class File extends TreeNode implements ITreeNode, IFile {
   constructor(
     public name: string,
     public path: string,

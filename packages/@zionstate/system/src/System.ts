@@ -4,9 +4,9 @@ import { fileURLToPath } from 'url';
 
 import { zionUtil } from '@zionstate_node/zion-util';
 import { Tree, ITree } from './Tree.js';
-import { File } from './File.js';
-import { Folder } from './Folder.js';
-import { Root } from './Root.js';
+import { File, IFile } from './File.js';
+import { Folder, IFolder } from './Folder.js';
+import { Root, IRoot } from './Root.js';
 import { TreeNode, ITreeNode } from './TreeNode.js';
 
 export type Dirent = fs.Dirent;
@@ -252,5 +252,8 @@ export class System {
 export let TreeNodeExport = TreeNode;
 export type ITreeNodeExport = ITreeNode;
 export type ITreeExport = ITree;
+export type IFileExport = IFile;
+export type IFolderExport = IFolder;
+export type IRootExport = IRoot;
 export let system = new System();
 Object.assign(system, fs);
