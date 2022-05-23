@@ -28,6 +28,7 @@ function test() {
     function constr() {
         return (constructor) => { };
     }
+    // TODO sistemare errore
     //@ts-expect-error
     function too(clObj) {
         class V extends Ciao {
@@ -46,6 +47,7 @@ function test() {
     console.log(Bao(new Ciao()));
     let B = () => {
         let g;
+        // TODO sistemare errore
         //@ts-expect-error
         return g;
     };
@@ -71,6 +73,7 @@ function interfaceMaker() {
 function multipleInterfaceImplmentation() {
     function createClass(name) {
         let NEW = class NEW {
+            // TODO sistemare errore
             //@ts-expect-error
             static ids;
             id = 'id';
@@ -87,8 +90,10 @@ function multipleInterfaceImplmentation() {
     console.log(instance);
 }
 export class APrimitive {
+    // TODO sistemare errore
     //@ts-expect-error
     static id;
+    // TODO sistemare errore
     //@ts-expect-error
     id;
     constructor() { }

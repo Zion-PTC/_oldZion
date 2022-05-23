@@ -73,16 +73,22 @@ export interface ILibro extends ISorgente {
 export abstract class ASorgente implements ISorgente {
   static #sorgenti: ISorgente[] = [];
   id: number;
+  // TODO sistemare errore
   //@ts-expect-error
   titolo: string;
+  // TODO sistemare errore
   //@ts-expect-error
   autori: string[];
+  // TODO sistemare errore
   //@ts-expect-error
   tutorial: ITutorial[];
+  // TODO sistemare errore
   //@ts-expect-error
   tipo: Tipo;
+  // TODO sistemare errore
   //@ts-expect-error
   link: URL;
+  // TODO sistemare errore
   //@ts-expect-error
   github: URL;
   constructor(public designPatterns: IDesignPattern[] = []) {
@@ -108,9 +114,11 @@ export class Sorgente extends ASorgente {
   }
   show = function (): ISorgente {
     console.log(
+      // TODO sistemare errore
       //@ts-expect-error
       `Titolo del ${this.tipo}: ${this.titolo}, autori del ${this.tipo}: ${this.autori}`
     );
+    // TODO sistemare errore
     //@ts-expect-error
     return this;
   };
@@ -119,17 +127,22 @@ export class Sorgente extends ASorgente {
     let aggiungiNome = function (e: IDesignPattern) {
       array.push(e.nome);
     };
+    // TODO sistemare errore
     //@ts-expect-error
     this.designPatterns.forEach(aggiungiNome);
     console.log(array.join(', '));
+    // TODO sistemare errore
     //@ts-expect-error
     return this;
   };
   addDesignPattern = function (pattern: IDesignPattern): ISorgente {
+    // TODO sistemare errore
     //@ts-expect-error
     this.designPatterns.push(pattern);
+    // TODO sistemare errore
     //@ts-expect-error
     pattern.aggiungiSorgente(this);
+    // TODO sistemare errore
     //@ts-expect-error
     return this;
   };
@@ -166,12 +179,15 @@ export class Sorgente extends ASorgente {
     categoria?: DesignPatternsCategories
   ): ISorgente {
     if (!categoria) {
+      // TODO sistemare errore
       //@ts-expect-error
       let res = this.designPatternSenzaEsempi;
       console.log('Manacano', res.length, 'Pattern in totale');
     } else {
+      // TODO sistemare errore
       //@ts-expect-error
       let appartieneACategoria = this.#appartieneACategoria;
+      // TODO sistemare errore
       //@ts-expect-error
       let patternPerCategoria = this.designPatternSenzaEsempi.filter(
         appartieneACategoria,
@@ -179,22 +195,27 @@ export class Sorgente extends ASorgente {
       );
       console.log('Mancano', patternPerCategoria.length, categoria, 'pattern');
     }
+    // TODO sistemare errore
     //@ts-expect-error
     return this;
   };
   #aggiungiSenzaEsempio = function (pattern: IDesignPattern) {
+    // TODO sistemare errore
     //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern);
   };
   #aggiungiNome = function (pattern: IDesignPattern) {
+    // TODO sistemare errore
     //@ts-expect-error
     this.push(pattern.nome);
   };
   #aggiungiNomeSenzaEsempio = function (pattern: IDesignPattern) {
+    // TODO sistemare errore
     //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern.nome);
   };
   #appartieneACategoria = function (pattern: IDesignPattern) {
+    // TODO sistemare errore
     //@ts-expect-error
     if (pattern.categoria === this) return pattern;
   };

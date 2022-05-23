@@ -62,12 +62,14 @@ export class Esempio extends AEsempio {
     return this;
   }
   mostraOggetti(): IEsempio {
+    // TODO sistemare errore
     //@ts-expect-error
     let array = [];
     const aggiungiNomeOggetto = function (oggetto: IDesignPattern) {
       array.push(oggetto.nome);
     };
     this.oggetti.forEach(aggiungiNomeOggetto);
+    // TODO sistemare errore
     //@ts-expect-error
     console.log(array.join(', '));
     return this;

@@ -42,6 +42,7 @@ function test() {
     return <U extends T>(constructor: U) => {};
   }
 
+  // TODO sistemare errore
   //@ts-expect-error
   function too(clObj) {
     class V extends Ciao {}
@@ -61,12 +62,15 @@ function test() {
 
   let B = <U extends Ciao>() => {
     let g: U;
+    // TODO sistemare errore
     //@ts-expect-error
     return g;
   };
   interface Booo {
+    // TODO sistemare errore
     //@ts-expect-error
     culo;
+    // TODO sistemare errore
     //@ts-expect-error
     id;
   }
@@ -100,15 +104,18 @@ function interfaceMaker() {
 interface ISTATIC<T, X> {
   new (): T;
   new (): X;
+  // TODO sistemare errore
   //@ts-expect-error
   ids;
 }
 
 interface IF {
+  // TODO sistemare errore
   //@ts-expect-error
   id;
 }
 interface BOT {
+  // TODO sistemare errore
   //@ts-expect-error
   bot;
 }
@@ -117,6 +124,7 @@ function multipleInterfaceImplmentation() {
   function createClass(name: string) {
     @staticImplements<ISTATIC<IF, BOT>>()
     class NEW {
+      // TODO sistemare errore
       //@ts-expect-error
       static ids;
       id = 'id';
@@ -131,8 +139,10 @@ function multipleInterfaceImplmentation() {
 }
 
 export abstract class APrimitive {
+  // TODO sistemare errore
   //@ts-expect-error
   static id;
+  // TODO sistemare errore
   //@ts-expect-error
   id;
   constructor() {}
