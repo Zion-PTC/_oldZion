@@ -52,9 +52,10 @@ export class Combinator {
      * In sostanza tutte le combinazioni possibili fra gli array contenuti nell'array.
      */
     static generateCombinations(array) {
+        let combos;
         // TODO cercare di capire il conflitto (combine)
         //@ts-expect-error
-        let combos = array.reduce((p, c) => Combinator.combineArrays(p, c));
+        combos = array.reduce((p, c) => Combinator.combineArrays(p, c));
         return combos;
     }
 }

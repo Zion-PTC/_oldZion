@@ -5,7 +5,6 @@ export class Estrazione {
     elementiEstratti;
     constructor(arrayOriginale = []) {
         this.arrayOriginale = arrayOriginale;
-        this.elementoEstratto = undefined;
         this.elementiRimanenti = this.#copiaArray();
         this.elementiEstratti = [];
     }

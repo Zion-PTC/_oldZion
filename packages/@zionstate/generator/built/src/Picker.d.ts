@@ -1,7 +1,14 @@
-import { Estrazione } from './Estrazione.js';
-export declare class Picker<T extends {
+import { Estrazione, IEstrazione } from './Estrazione.js';
+export interface IPicker<T extends {
     name: string;
 }> {
+    estrazione: IEstrazione<T>;
+    scegliACasoETogliElementoDaArray(): IEstrazione<T> | undefined;
+    estraiConCallbacknVolte(volte: number, callback: Function): T[];
+}
+export declare class Picker<T extends {
+    name: string;
+}> implements IPicker<T> {
     static Estrazione: typeof Estrazione;
     /**
      *
@@ -85,5 +92,5 @@ export declare class Picker<T extends {
     estrazione: Estrazione<T>;
     constructor(arrayOriginale?: T[]);
     scegliACasoETogliElementoDaArray(): Estrazione<T> | undefined;
-    estraiConCallbacknVolte(volte: number, callback: Function): any[];
+    estraiConCallbacknVolte(volte: number, callback: Function): T[];
 }

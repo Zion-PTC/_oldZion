@@ -1,11 +1,17 @@
-export class Estrazione<T> {
+export interface IEstrazione<T> {
   arrayOriginale: T[];
-  elementoEstratto: T | unknown;
+  elementoEstratto?: T;
+  elementiRimanenti: T[];
+  elementiEstratti: T[];
+}
+
+export class Estrazione<T> implements IEstrazione<T> {
+  arrayOriginale: T[];
+  elementoEstratto?: T;
   elementiRimanenti: T[];
   elementiEstratti: T[];
   constructor(arrayOriginale: T[] = []) {
     this.arrayOriginale = arrayOriginale;
-    this.elementoEstratto = undefined;
     this.elementiRimanenti = this.#copiaArray();
     this.elementiEstratti = [];
   }

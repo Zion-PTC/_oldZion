@@ -1,11 +1,17 @@
 import { zionUtil, Media } from '@zionstate_node/zion-util';
-import { Estrazione } from './Estrazione.js';
+import { Estrazione, IEstrazione } from './Estrazione.js';
 
 let b = 0;
 let x = { a: 1, b: 5, c: [1, 2, 3] };
 x.c[2];
 
-export class Picker<T extends { name: string }> {
+export interface IPicker<T extends { name: string }> {
+  estrazione: IEstrazione<T>;
+  scegliACasoETogliElementoDaArray(): IEstrazione<T> | undefined;
+  estraiConCallbacknVolte(volte: number, callback: Function): T[];
+}
+
+export class Picker<T extends { name: string }> implements IPicker<T> {
   static Estrazione = Estrazione;
   /**
    *
@@ -232,7 +238,7 @@ export class Picker<T extends { name: string }> {
     return this.estrazione;
   }
   estraiConCallbacknVolte(volte: number, callback: Function) {
-    let risultati = [];
+    let risultati: T[] = [];
     while (volte) {
       risultati.push(callback());
       volte--;
