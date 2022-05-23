@@ -1,0 +1,20 @@
+{
+  "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../packages/@zionrepack/chai"
+		},
+		{
+			"path": "../../packages/@zionrepack/dotenv"
+		},
+		{
+			"path": "../../packages/@zionrepack/types-chai"
+		},
+		{
+			"path": "../../packages/@zionrepack/types-node"
+		}
+	],
+  "settings": {}
+}

@@ -1,3 +1,4 @@
+"use strict";
 function abstract1() {
     class A {
         a;

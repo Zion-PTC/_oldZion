@@ -1,3 +1,4 @@
+"use strict";
 let appendEmoji = (fixed) => (dynamic) => fixed + dynamic;
 let sun = appendEmoji('☄️');
 let rain = appendEmoji('🌧');

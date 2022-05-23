@@ -52,7 +52,7 @@ export declare class Sorgente extends ASorgente {
     aggiungiTutorial(tutorial: ITutorial): ISorgente;
     mostraPatternID(pattern: IDesignPattern): number;
     mostraDesignPatternSenzaEsempi(categoria?: DesignPatternsCategories): ISorgente;
-    contaDesignPatternSenzaEsempi: (categoria?: DesignPatternsCategories) => ISorgente;
+    contaDesignPatternSenzaEsempi: (categoria?: DesignPatternsCategories | undefined) => ISorgente;
 }
 export declare const PJDP: Sorgente;
 export declare const DOFACTORY: Sorgente;

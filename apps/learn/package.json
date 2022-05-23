@@ -3,15 +3,10 @@
   "workspaces": [
     "../ZION/packages/"
   ],
-  "version": "1.0.0",
+  "version": "0.0.89",
   "description": "",
   "main": "index.js",
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@types/node": "^17.0.27",
-    "chai": "^4.3.6",
-    "dotenv": "^16.0.0"
-  }
+  "type": "module"
 }

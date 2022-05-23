@@ -1,7 +1,9 @@
-import { decorator, factory } from './src/DesignPattern.js';
-import { Esempio } from './src/Esempio.js';
-import { DOFACTORY, PJDP } from './src/Sorgente';
-import { decTut1 } from './src/Tutorial';
+import { decorator, DesignPattern, factory } from '../src/DesignPattern.js';
+import { singleton, strategy } from '../src/DesignPattern.js';
+import { Esempio, singleton1, singleton2, strategy1 } from '../src/Esempio.js';
+import { CARLOS, DOFACTORY, PJDP } from '../src/Sorgente';
+import { decTut1 } from '../src/Tutorial';
+
 Esempio;
 DOFACTORY.mostraDesignPatternSenzaEsempi('Behavioral');
 DOFACTORY.mostraDesignPatternSenzaEsempi('Creational');

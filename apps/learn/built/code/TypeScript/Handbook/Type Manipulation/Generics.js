@@ -1,3 +1,4 @@
+"use strict";
 class helloWorldOfGenerics {
     example1() {
         function identity(arg) {

@@ -1,11 +1,11 @@
-import { expect } from 'chai';
+import { expect } from '@zionrepack/chai';
 import Mocha from 'mocha';
 import { zionUtil } from '@zionstate/zion-util';
 
 const testRunner = new Mocha({ slow: 1000 });
 testRunner.suite.emit('pre-require', global, 'nofile', testRunner);
 var suiteRun = testRunner.run();
-process.on('exit', (code) => {
+process.on('exit', code => {
   process.exit(suiteRun.stats.failures > 0);
 });
 let log = zionUtil.debuglog('log');
@@ -54,7 +54,7 @@ describe(`CLASSNAME Class`, () => {
           });
         }
       };
-      frameworkThatThrowAgain().catch((err) =>
+      frameworkThatThrowAgain().catch(err =>
         expect(err.cause.cause).to.be.equal(OPTION.cause)
       );
     });

@@ -13,14 +13,14 @@ declare const v4: string[];
 declare const v5: (string | number)[];
 declare const v6a: (string | number)[];
 declare const v6b: (string | number)[];
-declare const v6c: (string | number)[];
+declare const v6c: (string | number | null)[];
 declare const makeTuple: <X, Y>(x: X, y: Y) => [X, Y];
 declare const v7: [number, number];
 declare const v8: [string, string];
 declare const v9: [number, string];
-declare const v10: [number, string];
+declare const v10: [number | null, string];
 declare const makeTupleDefault: <X, Y = string>(x: X, y: Y) => (X | Y)[];
-declare const v11: (string | number)[];
+declare const v11: (string | number | null)[];
 declare const makeFullName: (obj: {
     firstName: string;
     lastName: string;

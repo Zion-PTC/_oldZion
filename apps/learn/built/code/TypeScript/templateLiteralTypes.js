@@ -1,3 +1,4 @@
+"use strict";
 // String Unions in Types
 const passedObject = {
     firstName: 'Saoirse',

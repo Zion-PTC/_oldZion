@@ -1,3 +1,4 @@
+"use strict";
 const foo1 = function () {
     console.log(this.membro);
 };

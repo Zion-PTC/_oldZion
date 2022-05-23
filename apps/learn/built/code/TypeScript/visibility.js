@@ -1,3 +1,4 @@
+"use strict";
 // fourth
 class Invoice {
     client;

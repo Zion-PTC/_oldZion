@@ -1,3 +1,4 @@
+"use strict";
 class AbsFactoryDigOcean {
     static part1() {
         const p1 = 'Organizzare il codice ci può salvare da un mucchio di grane. Utlizzando le features dei linguaggi di programmazione da oggetti, possiamo utilizzae determinati pattern che ci aiutano a rendere il nostro codice più leggibile, ridurre le ridondanze e creare astrazioni, se necessario. Uno di questi pattern è il Factory Patter:';

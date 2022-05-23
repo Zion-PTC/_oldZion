@@ -13,8 +13,8 @@ declare let myIdentity1: GenericIdentityFn1<number>;
 declare type fun = {
     <T>(a: T): T;
 };
-declare function concatNumbers<T, U>(a: T | U, b: T): any;
-declare let concatRes: any;
+declare function concatNumbers<T, U>(a: T | U, b: T): string | number | undefined;
+declare let concatRes: string | number | undefined;
 declare type union = string | number;
 declare let a: union;
 declare function define(a: number): number;

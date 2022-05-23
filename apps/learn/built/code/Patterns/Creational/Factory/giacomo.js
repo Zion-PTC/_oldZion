@@ -1,3 +1,4 @@
+"use strict";
 function esempio1() {
     class DynamicFactory {
         creaDynamic(tipo) { }

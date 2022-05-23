@@ -1,3 +1,4 @@
+"use strict";
 // Functions
 function greet(name) {
     console.log('Hello, ' + name.toUpperCase() + '!!');

@@ -1,3 +1,4 @@
+"use strict";
 const const1 = 0;
 let let1;
 var var1;

@@ -1,3 +1,4 @@
+"use strict";
 function test1() {
     let obj = {
         id: 'id',
