@@ -1,0 +1,12 @@
+const LARGEHEIGHT = "8vw"
+const MIDHEIGHT = "3.5em"
+const SMALLHEIGHT = "3vw"
+
+const RADIUMMID = "0.5em"
+
+export {
+  LARGEHEIGHT,
+  MIDHEIGHT,
+  SMALLHEIGHT,
+  RADIUMMID
+}

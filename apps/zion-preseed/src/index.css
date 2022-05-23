@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Epilogue', sans-serif;
+
+  --color-Dark: #010814;
+  --color-Mid-Dark: #0642a4;
+  --color-Mid: #105fb4;
+  --color-Mid-Bright: #0688cf;
+  --color-Bright: #e1eaf9;
+
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

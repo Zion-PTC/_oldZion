@@ -1,0 +1,47 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../../packages/@zionrepack/fortawesome-fontawesome-svg-core"
+	},
+	{
+		"path": "../../packages/@zionrepack/fortawesome-free-brands-svg-icons"
+	},
+	{
+		"path": "../../packages/@zionrepack/fortawesome-free-regular-svg-icons"
+	},
+	{
+		"path": "../../packages/@zionrepack/fortawesome-free-solid-svg-icons"
+	},
+	{
+		"path": "../../packages/@zionrepack/chart.js"
+	},
+	{
+		"path": "../../packages/@zionrepack/history"
+	},
+	{
+		"path": "../../packages/@zionrepack/react"
+	},
+	{
+		"path": "../../packages/@zionrepack/react-chartjs-2"
+	},
+	{
+		"path": "../../packages/@zionrepack/react-dom"
+	},
+	{
+		"path": "../../packages/@zionrepack/react-router-dom"
+	},
+	{
+		"path": "../../packages/@zionrepack/react-scripts"
+	},
+	{
+		"path": "../../packages/@zionrepack/styled-components"
+	},
+	{
+		"path": "../../packages/@zionrepack/web-vitals"
+	}
+],
+  "settings": {}
+}
