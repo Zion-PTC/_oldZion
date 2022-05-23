@@ -70,6 +70,7 @@ export abstract class ATutorial implements ITutorial {
   set links(links: URL[]) {
     this.#links.push(...links);
   }
+  // TODO sistemare errore
   //@ts-expect-error
   #github: URL;
   get github(): URL {
@@ -79,8 +80,10 @@ export abstract class ATutorial implements ITutorial {
     this.#github = repo;
   }
   id: number;
+  // TODO sistemare errore
   //@ts-expect-error
   nome: string;
+  // TODO sistemare errore
   //@ts-expect-error
   annotazioni: string[];
   file?: IFile;

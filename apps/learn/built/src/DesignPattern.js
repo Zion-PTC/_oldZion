@@ -14,11 +14,14 @@ export class ADesignPattern {
     priorità;
     static #designPatterns = [];
     static mostraPatternSenzaEsempi() {
+        // TODO sistemare errore
         //@ts-expect-error
         let array = [];
         let aggiungiNome = ADesignPattern.#aggiungiNome;
+        // TODO sistemare errore
         //@ts-expect-error
         ADesignPattern.#designPatterns.forEach(aggiungiNome, array);
+        // TODO sistemare errore
         //@ts-expect-error
         if (array.length !== 0)
             ADesignPattern.#logArray(array);
@@ -27,6 +30,7 @@ export class ADesignPattern {
         return this;
     }
     static #aggiungiNome = function (pattern) {
+        // TODO sistemare errore
         //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern.nome);
@@ -80,9 +84,11 @@ export class DesignPattern extends ADesignPattern {
         return this;
     }
     #aggiungiLink = function (sorgente) {
+        // TODO sistemare errore
         //@ts-expect-error
         if (sorgente.link)
             this.push(sorgente.link.href);
+        // TODO sistemare errore
         //@ts-expect-error
         if (!sorgente.link)
             this.push(sorgente.titolo);
