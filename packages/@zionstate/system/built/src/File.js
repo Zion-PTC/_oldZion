@@ -1,4 +1,3 @@
-// import { Size } from '../../GenerativeArtMachine/Size.js';
 import { TreeNode } from './TreeNode.js';
 export class File extends TreeNode {
     name;

@@ -1,6 +1,9 @@
 /// <reference types="node" />
 import fs from 'fs';
 import { Tree, ITree } from './Tree.js';
+import { IFile } from './File.js';
+import { IFolder } from './Folder.js';
+import { IRoot } from './Root.js';
 import { TreeNode, ITreeNode } from './TreeNode.js';
 export declare type Dirent = fs.Dirent;
 export declare class System {
@@ -100,4 +103,7 @@ export declare class System {
 export declare let TreeNodeExport: typeof TreeNode;
 export declare type ITreeNodeExport = ITreeNode;
 export declare type ITreeExport = ITree;
+export declare type IFileExport = IFile;
+export declare type IFolderExport = IFolder;
+export declare type IRootExport = IRoot;
 export declare let system: System;

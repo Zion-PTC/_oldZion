@@ -1,5 +1,10 @@
+import { ITreeNode } from '../index.js';
 import { TreeNode } from './TreeNode.js';
-export declare class File extends TreeNode {
+export interface IFile extends ITreeNode {
+    extension?: string;
+    fileSize?: number;
+}
+export declare class File extends TreeNode implements ITreeNode, IFile {
     name: string;
     path: string;
     typeNumber: number;
