@@ -21,6 +21,7 @@ interface IVertice {
 }
 var vertice1: IVertice = {
   valore: 'vertice1',
+  //@ts-expect-error
   lati: [vertice2],
   aggiungiLato(lato) {
     return this;
@@ -28,6 +29,7 @@ var vertice1: IVertice = {
 };
 var vertice2: IVertice = {
   valore: 'vertice2',
+  //@ts-expect-error
   lati: [vertice1, vertice3],
   aggiungiLato(lato) {
     return this;

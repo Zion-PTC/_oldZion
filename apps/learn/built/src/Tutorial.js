@@ -35,6 +35,7 @@ export class ATutorial {
     set links(links) {
         this.#links.push(...links);
     }
+    //@ts-expect-error
     #github;
     get github() {
         return this.#github;
@@ -43,7 +44,9 @@ export class ATutorial {
         this.#github = repo;
     }
     id;
+    //@ts-expect-error
     nome;
+    //@ts-expect-error
     annotazioni;
     file;
     constructor() {

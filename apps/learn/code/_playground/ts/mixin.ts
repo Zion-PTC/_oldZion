@@ -1,20 +1,19 @@
 class CanSayHi {
-  name;
+  constructor(public name: string) {}
   sayHi() {
     return `Hello, ${this.name}`;
   }
 }
 
 class HasSuperPower {
-  heroName;
+  constructor(public heroName: string) {}
   superPower() {
     return `${this.heroName} 🔥🔥🔥`;
   }
 }
 
 class SuperHero {
-  name;
-  constructor(name) {
+  constructor(public name: string) {
     this.name = name;
     this.heroName = `SUPER ${this.name}`;
   }
@@ -57,8 +56,8 @@ console.log(player.x, player.y);
 
 // This can live anywhere in your codebase:
 function applyMixins(derivedCtor: any, constructors: any[]) {
-  constructors.forEach((baseCtor) => {
-    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+  constructors.forEach(baseCtor => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
       Object.defineProperty(
         derivedCtor.prototype,
         name,

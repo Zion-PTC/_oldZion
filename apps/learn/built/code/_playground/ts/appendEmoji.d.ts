@@ -1,3 +1,3 @@
-declare let appendEmoji: (fixed: any) => (dynamic: any) => any;
-declare let sun: (dynamic: any) => any;
-declare let rain: (dynamic: any) => any;
+declare let appendEmoji: (fixed: string) => (dynamic: string) => string;
+declare let sun: (dynamic: string) => string;
+declare let rain: (dynamic: string) => string;

@@ -22,6 +22,7 @@ export class LinksAri implements ILinksAri {
   static LinkAri = LinkAri;
   ul1: ILinkAri[];
   ul2: ILinkAri[];
+  //@ts-expect-error
   constructor(ul1, ul2) {
     this.ul1 = [...ul1];
     this.ul2 = [...ul2];
@@ -36,6 +37,7 @@ type visualizzazione = string;
 interface BoottomPanel {
   vis1: visualizzazione;
   vis2: visualizzazione;
+  //@ts-expect-error
   createreact(vis: visualizzazione);
 }
 

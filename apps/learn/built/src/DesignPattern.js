@@ -14,9 +14,12 @@ export class ADesignPattern {
     priorità;
     static #designPatterns = [];
     static mostraPatternSenzaEsempi() {
+        //@ts-expect-error
         let array = [];
         let aggiungiNome = ADesignPattern.#aggiungiNome;
+        //@ts-expect-error
         ADesignPattern.#designPatterns.forEach(aggiungiNome, array);
+        //@ts-expect-error
         if (array.length !== 0)
             ADesignPattern.#logArray(array);
         if (array.length === 0)
@@ -24,6 +27,7 @@ export class ADesignPattern {
         return this;
     }
     static #aggiungiNome = function (pattern) {
+        //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern.nome);
     };
@@ -67,7 +71,8 @@ export class DesignPattern extends ADesignPattern {
     }
     mostraEsempi() {
         const aggiungiNome = function (esempio) {
-            array.push(esempio.nome);
+            if (esempio.nome)
+                array.push(esempio.nome);
         };
         let array = [];
         this.esempi.forEach(aggiungiNome);
@@ -75,8 +80,10 @@ export class DesignPattern extends ADesignPattern {
         return this;
     }
     #aggiungiLink = function (sorgente) {
+        //@ts-expect-error
         if (sorgente.link)
             this.push(sorgente.link.href);
+        //@ts-expect-error
         if (!sorgente.link)
             this.push(sorgente.titolo);
     };

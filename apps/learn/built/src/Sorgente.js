@@ -3,11 +3,17 @@ export class ASorgente {
     designPatterns;
     static #sorgenti = [];
     id;
+    //@ts-expect-error
     titolo;
+    //@ts-expect-error
     autori;
+    //@ts-expect-error
     tutorial;
+    //@ts-expect-error
     tipo;
+    //@ts-expect-error
     link;
+    //@ts-expect-error
     github;
     constructor(designPatterns = []) {
         this.designPatterns = designPatterns;
@@ -23,7 +29,10 @@ export class Sorgente extends ASorgente {
         return array;
     }
     show = function () {
-        console.log(`Titolo del ${this.tipo}: ${this.titolo}, autori del ${this.tipo}: ${this.autori}`);
+        console.log(
+        //@ts-expect-error
+        `Titolo del ${this.tipo}: ${this.titolo}, autori del ${this.tipo}: ${this.autori}`);
+        //@ts-expect-error
         return this;
     };
     showPatterns = function () {
@@ -31,13 +40,18 @@ export class Sorgente extends ASorgente {
         let aggiungiNome = function (e) {
             array.push(e.nome);
         };
+        //@ts-expect-error
         this.designPatterns.forEach(aggiungiNome);
         console.log(array.join(', '));
+        //@ts-expect-error
         return this;
     };
     addDesignPattern = function (pattern) {
+        //@ts-expect-error
         this.designPatterns.push(pattern);
+        //@ts-expect-error
         pattern.aggiungiSorgente(this);
+        //@ts-expect-error
         return this;
     };
     aggiungiTutorial(tutorial) {
@@ -67,28 +81,36 @@ export class Sorgente extends ASorgente {
     }
     contaDesignPatternSenzaEsempi = function (categoria) {
         if (!categoria) {
+            //@ts-expect-error
             let res = this.designPatternSenzaEsempi;
             console.log('Manacano', res.length, 'Pattern in totale');
         }
         else {
+            //@ts-expect-error
             let appartieneACategoria = this.#appartieneACategoria;
+            //@ts-expect-error
             let patternPerCategoria = this.designPatternSenzaEsempi.filter(appartieneACategoria, categoria);
             console.log('Mancano', patternPerCategoria.length, categoria, 'pattern');
         }
+        //@ts-expect-error
         return this;
     };
     #aggiungiSenzaEsempio = function (pattern) {
+        //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern);
     };
     #aggiungiNome = function (pattern) {
+        //@ts-expect-error
         this.push(pattern.nome);
     };
     #aggiungiNomeSenzaEsempio = function (pattern) {
+        //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern.nome);
     };
     #appartieneACategoria = function (pattern) {
+        //@ts-expect-error
         if (pattern.categoria === this)
             return pattern;
     };

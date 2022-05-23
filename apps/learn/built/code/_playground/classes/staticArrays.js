@@ -10,6 +10,7 @@ class Root {
     static mostraRoots() {
         console.log(this.roots);
     }
+    //@ts-expect-error
     nome;
     id;
     constructor() {

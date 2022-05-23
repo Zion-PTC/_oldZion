@@ -101,7 +101,9 @@ class GenericClasse {
       'Una classe generica ha una forma simile alle Interfacce generiche. Le classi generiche hanno una lista di parametri di tipo generico incluse in <> dopo il nome della classe'
     );
     class GenericNumber<NumType> {
+      //@ts-expect-error
       zeroValue: NumType;
+      //@ts-expect-error
       add: (x: NumType, y: NumType) => NumType;
     }
     let myGenericNumber = new GenericNumber<number>();
@@ -113,7 +115,9 @@ class GenericClasse {
   }
   static ex2() {
     class GenericNumber1<NumType> {
+      //@ts-expect-error
       zeroValue: NumType;
+      //@ts-expect-error
       add: (x: NumType, y: NumType) => NumType;
     }
     let GenericNumber = GenericClasse.ex1();

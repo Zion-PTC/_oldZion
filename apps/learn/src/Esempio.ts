@@ -14,11 +14,11 @@ import {
 import { IFile } from './File';
 
 export interface IEsempio {
-  id: number;
-  nome: string;
-  autore: string;
-  file: IFile;
-  oggetti: IDesignPattern[];
+  id?: number;
+  nome?: string;
+  autore?: string;
+  file?: IFile;
+  oggetti?: IDesignPattern[];
   // metodi
   // graph
   aggiungiOggetto(oggetto: IDesignPattern): IEsempio;
@@ -29,12 +29,14 @@ export interface IEsempio {
 }
 
 export abstract class AEsempio implements IEsempio {
-  static #esempi: Esempio[] = [];
-  public id: number;
-  public nome: string;
-  public autore: string;
-  public file: IFile;
-  constructor(public oggetti: IDesignPattern[] = []) {
+  static #esempi: AEsempio[] = [];
+  constructor(
+    public oggetti: IDesignPattern[] = [],
+    public id?: number,
+    public nome?: string,
+    public autore?: string,
+    public file?: IFile
+  ) {
     AEsempio.#esempi.push(this);
     this.id = AEsempio.#esempi.length;
   }
@@ -45,8 +47,14 @@ export abstract class AEsempio implements IEsempio {
 }
 
 export class Esempio extends AEsempio {
-  constructor() {
-    super();
+  constructor(
+    public oggetti: IDesignPattern[] = [],
+    public id?: number,
+    public nome?: string,
+    public autore?: string,
+    public file?: IFile
+  ) {
+    super(oggetti, id, nome, autore, file);
   }
   aggiungiOggetto(oggetto: IDesignPattern): IEsempio {
     this.oggetti.push(oggetto);
@@ -54,11 +62,13 @@ export class Esempio extends AEsempio {
     return this;
   }
   mostraOggetti(): IEsempio {
+    //@ts-expect-error
     let array = [];
     const aggiungiNomeOggetto = function (oggetto: IDesignPattern) {
       array.push(oggetto.nome);
     };
     this.oggetti.forEach(aggiungiNomeOggetto);
+    //@ts-expect-error
     console.log(array.join(', '));
     return this;
   }

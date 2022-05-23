@@ -18,6 +18,7 @@ class DecoratedUser implements IUser {
     public name: string = user.name,
     public say = function () {
       console.log(
+        //@ts-expect-error
         'Decorated User: ' + this.name + ', ' + this.street + ', ' + this.city
       );
     }

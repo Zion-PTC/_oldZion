@@ -1,12 +1,18 @@
 "use strict";
 class CanSayHi {
     name;
+    constructor(name) {
+        this.name = name;
+    }
     sayHi() {
         return `Hello, ${this.name}`;
     }
 }
 class HasSuperPower {
     heroName;
+    constructor(heroName) {
+        this.heroName = heroName;
+    }
     superPower() {
         return `${this.heroName} 🔥🔥🔥`;
     }
@@ -14,6 +20,7 @@ class HasSuperPower {
 class SuperHero {
     name;
     constructor(name) {
+        this.name = name;
         this.name = name;
         this.heroName = `SUPER ${this.name}`;
     }
@@ -43,8 +50,8 @@ player.jump();
 console.log(player.x, player.y);
 // This can live anywhere in your codebase:
 function applyMixins(derivedCtor, constructors) {
-    constructors.forEach((baseCtor) => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+    constructors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name) ||
                 Object.create(null));
         });

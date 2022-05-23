@@ -73,11 +73,17 @@ export interface ILibro extends ISorgente {
 export abstract class ASorgente implements ISorgente {
   static #sorgenti: ISorgente[] = [];
   id: number;
+  //@ts-expect-error
   titolo: string;
+  //@ts-expect-error
   autori: string[];
+  //@ts-expect-error
   tutorial: ITutorial[];
+  //@ts-expect-error
   tipo: Tipo;
+  //@ts-expect-error
   link: URL;
+  //@ts-expect-error
   github: URL;
   constructor(public designPatterns: IDesignPattern[] = []) {
     ASorgente.#sorgenti.push(this);
@@ -102,8 +108,10 @@ export class Sorgente extends ASorgente {
   }
   show = function (): ISorgente {
     console.log(
+      //@ts-expect-error
       `Titolo del ${this.tipo}: ${this.titolo}, autori del ${this.tipo}: ${this.autori}`
     );
+    //@ts-expect-error
     return this;
   };
   showPatterns = function (): ISorgente {
@@ -111,13 +119,18 @@ export class Sorgente extends ASorgente {
     let aggiungiNome = function (e: IDesignPattern) {
       array.push(e.nome);
     };
+    //@ts-expect-error
     this.designPatterns.forEach(aggiungiNome);
     console.log(array.join(', '));
+    //@ts-expect-error
     return this;
   };
   addDesignPattern = function (pattern: IDesignPattern): ISorgente {
+    //@ts-expect-error
     this.designPatterns.push(pattern);
+    //@ts-expect-error
     pattern.aggiungiSorgente(this);
+    //@ts-expect-error
     return this;
   };
   aggiungiTutorial(tutorial: ITutorial): ISorgente {
@@ -153,28 +166,36 @@ export class Sorgente extends ASorgente {
     categoria?: DesignPatternsCategories
   ): ISorgente {
     if (!categoria) {
+      //@ts-expect-error
       let res = this.designPatternSenzaEsempi;
       console.log('Manacano', res.length, 'Pattern in totale');
     } else {
+      //@ts-expect-error
       let appartieneACategoria = this.#appartieneACategoria;
+      //@ts-expect-error
       let patternPerCategoria = this.designPatternSenzaEsempi.filter(
         appartieneACategoria,
         categoria
       );
       console.log('Mancano', patternPerCategoria.length, categoria, 'pattern');
     }
+    //@ts-expect-error
     return this;
   };
   #aggiungiSenzaEsempio = function (pattern: IDesignPattern) {
+    //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern);
   };
   #aggiungiNome = function (pattern: IDesignPattern) {
+    //@ts-expect-error
     this.push(pattern.nome);
   };
   #aggiungiNomeSenzaEsempio = function (pattern: IDesignPattern) {
+    //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern.nome);
   };
   #appartieneACategoria = function (pattern: IDesignPattern) {
+    //@ts-expect-error
     if (pattern.categoria === this) return pattern;
   };
   #trovaViaId(pattern: IDesignPattern) {

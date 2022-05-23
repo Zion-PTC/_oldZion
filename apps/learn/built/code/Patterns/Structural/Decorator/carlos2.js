@@ -108,7 +108,9 @@ console.table(humans);
 let human;
 let whiteWalker;
 while (!isWarFinished(humans, whiteWalkers)) {
+    //@ts-expect-error
     human = humans.pop();
+    //@ts-expect-error
     whiteWalker = whiteWalkers.pop();
     while (human.isAlive() && whiteWalker.isAlive()) {
         whiteWalker.receiveHit(human.attack());

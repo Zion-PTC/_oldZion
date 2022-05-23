@@ -28,6 +28,7 @@ function test() {
     function constr() {
         return (constructor) => { };
     }
+    //@ts-expect-error
     function too(clObj) {
         class V extends Ciao {
         }
@@ -45,6 +46,7 @@ function test() {
     console.log(Bao(new Ciao()));
     let B = () => {
         let g;
+        //@ts-expect-error
         return g;
     };
     let bobo = B();
@@ -69,6 +71,7 @@ function interfaceMaker() {
 function multipleInterfaceImplmentation() {
     function createClass(name) {
         let NEW = class NEW {
+            //@ts-expect-error
             static ids;
             id = 'id';
             bot = 'bot';
@@ -84,7 +87,9 @@ function multipleInterfaceImplmentation() {
     console.log(instance);
 }
 export class APrimitive {
+    //@ts-expect-error
     static id;
+    //@ts-expect-error
     id;
     constructor() { }
 }

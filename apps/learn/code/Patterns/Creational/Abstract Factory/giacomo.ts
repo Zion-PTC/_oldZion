@@ -1,30 +1,31 @@
 function abstract1() {
   class A {
-    a;
-    constructor(a) {
+    constructor(public a: string) {
       this.a = a;
     }
   }
   class B {
-    b;
-    constructor(b) {
+    constructor(public b: string) {
       this.b = b;
     }
   }
   class C {
-    c;
-    constructor(c) {
+    constructor(public c: string) {
       this.c = c;
     }
   }
-  let registeredFactories = {};
-  function registraFactory(factory: typeof A | typeof B | typeof C): void {
-    registeredFactories[factory.constructor.name] = factory;
+  let registeredFactories: { [key: string]: typeof A | typeof B | typeof C } =
+    {};
+  function registraFactory(
+    factory: typeof A | typeof B | typeof C
+  ): typeof A | typeof B | typeof C {
+    return (registeredFactories[factory.constructor.name] = factory);
   }
   const recFac = [A, B, C];
   recFac.forEach(registraFactory);
   class Factory {
-    constructor(type, props) {
+    constructor(type: string, props: { [key: string]: number }) {
+      //@ts-expect-error
       return new registeredFactories[type](props);
     }
     registraFactory(factory: typeof A | typeof B | typeof C): void {
@@ -69,9 +70,12 @@ function abstract2() {
   type typeB = keyof typeof factoriesT;
   class AbstractFactory {
     factories: factory = {};
+    //@ts-expect-error
     istanzaCreata;
+    //@ts-expect-error
     aggiungiFactory<T extends { prototype }>(constructor: T, type?: string) {
       type = constructor.prototype.constructor.name;
+      //@ts-expect-error
       this.factories[type] = constructor;
       return this;
     }
@@ -89,6 +93,7 @@ function abstract2() {
   newAbstract.aggiungiFactory(A);
   newAbstract.aggiungiFactory(B);
   newAbstract.aggiungiFactory(C);
+  //@ts-expect-error
   let newA = newAbstract.factory<B>('A', pop).istanzaCreata;
   console.log(newAbstract);
 }

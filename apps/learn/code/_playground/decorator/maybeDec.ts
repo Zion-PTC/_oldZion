@@ -1,6 +1,8 @@
 export abstract class APrimitive {
   static #primitives: APrimitive[];
+  //@ts-expect-error
   id: string;
+  //@ts-expect-error
   ciao: string;
   static get primitives() {
     return APrimitive.#primitives;
@@ -51,6 +53,7 @@ const j: Gee = {
 j.show();
 
 class Ooob {
+  //@ts-expect-error
   id: string;
   showId() {
     console.log(this.id);
@@ -63,7 +66,9 @@ oob.id = 'ciao';
 oob.showId();
 
 function ooobFoo() {
+  //@ts-expect-error
   console.log(this.id);
+  //@ts-expect-error
   return this;
 }
 
@@ -72,6 +77,7 @@ let oob2: Ooob = {
   showId: ooobFoo,
 };
 
+//@ts-expect-error
 function makeObj(obj): Bla {
   obj = {
     ...obj,

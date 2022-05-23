@@ -9,18 +9,21 @@ class AbsFactoryDigOcean {
     function example1() {
       class TailFactory {
         tailLength;
+        //@ts-expect-error
         constructor(props) {
           this.tailLength = props.tailLength;
         }
       }
       class TorsoFactory {
         color;
+        //@ts-expect-error
         constructor(props) {
           this.color = props.color;
         }
       }
       class HeadFactory {
         snoutLength;
+        //@ts-expect-error
         constructor(props) {
           this.snoutLength = props.snoutLength;
         }
@@ -33,18 +36,21 @@ class AbsFactoryDigOcean {
   static part2() {
     class TailFactory {
       tailLength;
+      //@ts-expect-error
       constructor(props) {
         this.tailLength = props.tailLength;
       }
     }
     class TorsoFactory {
       color;
+      //@ts-expect-error
       constructor(props) {
         this.color = props.color;
       }
     }
     class HeadFactory {
       snoutLength;
+      //@ts-expect-error
       constructor(props) {
         this.snoutLength = props.snoutLength;
       }
@@ -53,6 +59,7 @@ class AbsFactoryDigOcean {
     const par1 = `Ora creaiamo una classe che agisce da intermediario fra le factories e lo user. Chiamiamola Reptile Factory`;
     console.log(par1);
     class ReptilePartFactory {
+      //@ts-expect-error
       constructor(type, props) {
         if (type === 'tail') return new TailFactory(props);
         if (type === 'torso') return new TorsoFactory(props);
@@ -101,24 +108,30 @@ class AbsFactoryDigOcean {
     function esempio1() {
       class TailFactory {
         tailLength;
+        //@ts-expect-error
         constructor(props) {
           this.tailLength = props.tailLength;
         }
       }
       class TorsoFactory {
         color;
+        //@ts-expect-error
         constructor(props) {
           this.color = props.color;
         }
       }
       class HeadFactory {
         snoutLength;
+        //@ts-expect-error
         constructor(props) {
           this.snoutLength = props.snoutLength;
         }
       }
+      //@ts-expect-error
       registeredPartFactories['tail'] = TailFactory;
+      //@ts-expect-error
       registeredPartFactories['torso'] = TorsoFactory;
+      //@ts-expect-error
       registeredPartFactories['head'] = HeadFactory;
     }
     esempio1();
@@ -126,7 +139,9 @@ class AbsFactoryDigOcean {
     const par4 = `E ora, il layer di astrazione puo chiamare le factories in questo modo:`;
     console.log(par4);
     class ReptileFactory {
+      //@ts-expect-error
       constructor(type, props) {
+        //@ts-expect-error
         return new registeredPartFactories[type](props);
       }
     }

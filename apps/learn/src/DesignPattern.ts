@@ -102,14 +102,18 @@ type Functions = 'Arrow functions' | 'Default parameters' | 'Rest parameters';
 export abstract class ADesignPattern implements IDesignPattern {
   static #designPatterns: ADesignPattern[] = [];
   static mostraPatternSenzaEsempi() {
+    //@ts-expect-error
     let array = [];
     let aggiungiNome = ADesignPattern.#aggiungiNome;
+    //@ts-expect-error
     ADesignPattern.#designPatterns.forEach(aggiungiNome, array);
+    //@ts-expect-error
     if (array.length !== 0) ADesignPattern.#logArray(array);
     if (array.length === 0) ADesignPattern.#logComplete();
     return this;
   }
   static #aggiungiNome = function (pattern: IDesignPattern) {
+    //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern.nome);
   };
   static #logArray(array: string[]) {
@@ -159,7 +163,7 @@ export class DesignPattern extends ADesignPattern {
   }
   mostraEsempi(): IDesignPattern {
     const aggiungiNome = function (esempio: IEsempio) {
-      array.push(esempio.nome);
+      if (esempio.nome) array.push(esempio.nome);
     };
     let array: string[] = [];
     this.esempi.forEach(aggiungiNome);
@@ -167,7 +171,9 @@ export class DesignPattern extends ADesignPattern {
     return this;
   }
   #aggiungiLink = function (sorgente: ISorgente) {
+    //@ts-expect-error
     if (sorgente.link) this.push(sorgente.link.href);
+    //@ts-expect-error
     if (!sorgente.link) this.push(sorgente.titolo);
   };
 }

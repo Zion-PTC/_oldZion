@@ -13,6 +13,7 @@ export class LinksAri {
     static LinkAri = LinkAri;
     ul1;
     ul2;
+    //@ts-expect-error
     constructor(ul1, ul2) {
         this.ul1 = [...ul1];
         this.ul2 = [...ul2];

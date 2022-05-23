@@ -14,6 +14,7 @@ let set1 = new Set();
 let map1 = new Map();
 var vertice1 = {
     valore: 'vertice1',
+    //@ts-expect-error
     lati: [vertice2],
     aggiungiLato(lato) {
         return this;
@@ -21,6 +22,7 @@ var vertice1 = {
 };
 var vertice2 = {
     valore: 'vertice2',
+    //@ts-expect-error
     lati: [vertice1, vertice3],
     aggiungiLato(lato) {
         return this;

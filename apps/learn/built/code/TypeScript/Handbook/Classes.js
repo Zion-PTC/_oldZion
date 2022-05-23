@@ -13,7 +13,9 @@ class ClassMemebers {
         console.log('_Fields');
         console.log('--------');
         class Point {
+            //@ts-expect-error
             x;
+            //@ts-expect-error
             y;
         }
         const pt = new Point();
@@ -46,6 +48,7 @@ class ClassMemebers {
         console.log('--strictPropertyInitialization');
         console.log('The strictPropertyInitialization setting controls whether class fields need to be initialized in the constructor.');
         class BadGreeter {
+            //@ts-expect-error
             name;
         }
         class GoodGreeter {
@@ -66,6 +69,7 @@ class ClassMemebers {
         class Greeter {
             name = 'world';
             constructor(otherName) {
+                //@ts-expect-error
                 this.name = otherName;
             }
             err() {
@@ -250,6 +254,7 @@ class ClassHeritage {
                 // 'check' include implicitamente un tipo restituito
                 // 'any', ma è possibile dedurre un tipo migliore
                 // dall'utilizzo.ts(7050)
+                //@ts-expect-error
                 check(s) {
                     // notare come qui non da errore
                     return s.toLowercse() === 'ok';
@@ -402,6 +407,7 @@ class ClassHeritage {
             ex8();
         }
         catch (error) {
+            //@ts-expect-error
             console.log(error.message);
         }
         const h2_3 = `Dichiarazione di campo Type-only`;

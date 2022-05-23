@@ -9,6 +9,7 @@ class Root {
   static mostraRoots() {
     console.log(this.roots);
   }
+  //@ts-expect-error
   nome: string;
   id: number;
   constructor() {

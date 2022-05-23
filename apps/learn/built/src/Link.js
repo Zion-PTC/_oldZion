@@ -1,6 +1,8 @@
 // /// <reference path='../Namespaces/Knowledge.ts'/>
 // type IStaticLink = Knowledge.IStaticLink;
-class Link {
+export class Link {
     id;
+    constructor(id) {
+        this.id = id;
+    }
 }
-export {};

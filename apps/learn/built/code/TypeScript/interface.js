@@ -1,7 +1,10 @@
 "use strict";
 class Ball {
+    //@ts-expect-error
     name;
+    //@ts-expect-error
     dimension;
+    //@ts-expect-error
     creationDate;
 }
 let date = new Date().getDate();

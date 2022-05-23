@@ -1,14 +1,16 @@
 declare class CanSayHi {
-    name: any;
+    name: string;
+    constructor(name: string);
     sayHi(): string;
 }
 declare class HasSuperPower {
-    heroName: any;
+    heroName: string;
+    constructor(heroName: string);
     superPower(): string;
 }
 declare class SuperHero {
-    name: any;
-    constructor(name: any);
+    name: string;
+    constructor(name: string);
 }
 interface SuperHero extends CanSayHi, HasSuperPower {
 }

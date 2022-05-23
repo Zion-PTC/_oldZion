@@ -1,11 +1,11 @@
 import { IDesignPattern } from './DesignPattern.js';
 import { IFile } from './File';
 export interface IEsempio {
-    id: number;
-    nome: string;
-    autore: string;
-    file: IFile;
-    oggetti: IDesignPattern[];
+    id?: number;
+    nome?: string;
+    autore?: string;
+    file?: IFile;
+    oggetti?: IDesignPattern[];
     aggiungiOggetto(oggetto: IDesignPattern): IEsempio;
     runFile(): void;
     showCode(): void;
@@ -14,18 +14,23 @@ export interface IEsempio {
 export declare abstract class AEsempio implements IEsempio {
     #private;
     oggetti: IDesignPattern[];
-    id: number;
-    nome: string;
-    autore: string;
-    file: IFile;
-    constructor(oggetti?: IDesignPattern[]);
+    id?: number | undefined;
+    nome?: string | undefined;
+    autore?: string | undefined;
+    file?: IFile | undefined;
+    constructor(oggetti?: IDesignPattern[], id?: number | undefined, nome?: string | undefined, autore?: string | undefined, file?: IFile | undefined);
     abstract aggiungiOggetto(oggetto: IDesignPattern): IEsempio;
     abstract runFile(): Esempio;
     abstract showCode(): Esempio;
     abstract mostraOggetti(): IEsempio;
 }
 export declare class Esempio extends AEsempio {
-    constructor();
+    oggetti: IDesignPattern[];
+    id?: number | undefined;
+    nome?: string | undefined;
+    autore?: string | undefined;
+    file?: IFile | undefined;
+    constructor(oggetti?: IDesignPattern[], id?: number | undefined, nome?: string | undefined, autore?: string | undefined, file?: IFile | undefined);
     aggiungiOggetto(oggetto: IDesignPattern): IEsempio;
     mostraOggetti(): IEsempio;
     runFile(): this;

@@ -10,6 +10,7 @@ export class Client1 {
         this.spiderman = Spiderman.getHero();
     }
     showHero(hero) {
+        //@ts-expect-error
         return this[hero].toString();
     }
 }
@@ -23,6 +24,7 @@ export class Client2 {
         this.spiderman = Spiderman.getHero();
     }
     showHero(hero) {
+        //@ts-expect-error
         return this[hero].toString();
     }
 }

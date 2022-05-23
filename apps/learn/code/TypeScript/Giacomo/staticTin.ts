@@ -15,9 +15,11 @@ function sITestA<T>() {
 @sITestA<IStaticProva>()
 class ThatThing {
   static get prove() {
+    //@ts-expect-error
     return;
   }
   static set prove(prova: IProva) {}
+  //@ts-expect-error
   id: string;
 }
 
@@ -44,6 +46,7 @@ interface NewTin {
 @sITestB<NewTin>()
 class MyTin {
   static id: string;
+  //@ts-expect-error
   id: string;
 }
 let bob = new MyTin();
@@ -56,12 +59,16 @@ function sITestC<X>() {
   };
 }
 interface NewStatic<T> extends IStatic<T> {
+  //@ts-expect-error
   foo;
 }
 
 @sITestC<NewStatic<NewTin>>()
 class Ouch {
+  //@ts-expect-error
   static id;
+  //@ts-expect-error
   static foo;
+  //@ts-expect-error
   id;
 }

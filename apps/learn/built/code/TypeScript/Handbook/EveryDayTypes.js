@@ -31,6 +31,7 @@ function printName3(obj) {
     if (condition) {
         return;
     }
+    //@ts-expect-error
     console.log('printName4: ' + obj.last.toUpperCase());
 }
 printName3({ first: 'Bob' });

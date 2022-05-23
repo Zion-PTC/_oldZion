@@ -1,7 +1,7 @@
 import { staticImplements } from '../../../src/Primitive';
 
 interface MyType {
-  instanceMethod();
+  instanceMethod(): unknown;
 }
 
 interface MyTypeStatic {

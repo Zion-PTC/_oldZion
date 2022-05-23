@@ -6,11 +6,14 @@ interface IClass {
 
 type foo1Type = typeof foo1;
 const foo1 = function () {
+  //@ts-expect-error
   console.log(this.membro);
 };
 
 class Class implements IClass {
+  //@ts-expect-error
   membro: string;
+  //@ts-expect-error
   membri: Class[];
   foo1: foo1Type = foo1;
 }
@@ -38,6 +41,7 @@ child.foo1();
 // cosi funziona ma non mostra i metodi quando si logga
 // l'oggetto in console.
 class Blarg {
+  //@ts-expect-error
   id: string;
   public show() {
     console.log(this.id);

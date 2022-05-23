@@ -1,13 +1,10 @@
 const array = [1, 2, 3, 4, 5, 6];
 
-const callback = function <V, I, A>(
-  value: V,
-  index: I,
-  array: A
-) {
+const callback = function <V, I, A>(value: V, index: I, array: A) {
   console.log('value', value);
   console.log('index', index);
   console.log('array', array);
+  //@ts-expect-error
   console.log('this', this);
 };
 

@@ -2,20 +2,34 @@
 import { decorator, factory, singleton, strategy, } from './DesignPattern.js';
 export class AEsempio {
     oggetti;
-    static #esempi = [];
     id;
     nome;
     autore;
     file;
-    constructor(oggetti = []) {
+    static #esempi = [];
+    constructor(oggetti = [], id, nome, autore, file) {
         this.oggetti = oggetti;
+        this.id = id;
+        this.nome = nome;
+        this.autore = autore;
+        this.file = file;
         AEsempio.#esempi.push(this);
         this.id = AEsempio.#esempi.length;
     }
 }
 export class Esempio extends AEsempio {
-    constructor() {
-        super();
+    oggetti;
+    id;
+    nome;
+    autore;
+    file;
+    constructor(oggetti = [], id, nome, autore, file) {
+        super(oggetti, id, nome, autore, file);
+        this.oggetti = oggetti;
+        this.id = id;
+        this.nome = nome;
+        this.autore = autore;
+        this.file = file;
     }
     aggiungiOggetto(oggetto) {
         this.oggetti.push(oggetto);
@@ -23,11 +37,13 @@ export class Esempio extends AEsempio {
         return this;
     }
     mostraOggetti() {
+        //@ts-expect-error
         let array = [];
         const aggiungiNomeOggetto = function (oggetto) {
             array.push(oggetto.nome);
         };
         this.oggetti.forEach(aggiungiNomeOggetto);
+        //@ts-expect-error
         console.log(array.join(', '));
         return this;
     }

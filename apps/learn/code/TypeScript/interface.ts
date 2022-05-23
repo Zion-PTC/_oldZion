@@ -6,8 +6,11 @@ interface IBall {
 }
 
 class Ball implements IBall {
+  //@ts-expect-error
   name: string;
+  //@ts-expect-error
   dimension: number;
+  //@ts-expect-error
   creationDate: Date;
 }
 

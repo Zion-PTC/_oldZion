@@ -8,6 +8,6 @@ export interface IStaticLink {
 }
 interface ILink {}
 
-abstract class Link implements IStaticLink {
-  id: string;
+export abstract class Link implements IStaticLink {
+  constructor(public id: string) {}
 }

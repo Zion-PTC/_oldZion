@@ -1,9 +1,9 @@
 export interface IStaticPrimitive<T> {
     new (): T;
-    id: any;
+    id: number;
 }
 export interface IPrimitive {
-    id: any;
+    id: number;
 }
 export declare function staticImplements<T>(): <U extends T>(constructor: U) => void;
 export declare abstract class APrimitive {

@@ -1,6 +1,7 @@
 class Arithmetic {
   value: number;
   constructor() {
+    //@ts-expect-error
     this.value = null;
   }
   get val() {
@@ -21,6 +22,7 @@ class Arithmetic {
     return this;
   }
   average(...args: number[]) {
+    //@ts-expect-error
     this.value = args.length
       ? this.sum(...args).value / args.length
       : undefined;

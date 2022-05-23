@@ -1,9 +1,9 @@
-//@ts-expect-error
 import util from 'util';
 const a = { a: 1, b: 2, c: 3, d: 4 };
 class B {
     static coo = 'coo';
     #id;
+    //@ts-expect-error
     constructor(id) {
         this.#id = id;
     }
@@ -18,6 +18,7 @@ class B {
     }
 }
 const b = new B('10');
+//@ts-expect-error
 delete B.coo;
 const inspected = util.inspect(Object.getPrototypeOf(B), {
     showHidden: true,

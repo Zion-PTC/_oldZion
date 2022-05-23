@@ -4,11 +4,13 @@ function abstract1() {
         a;
         constructor(a) {
             this.a = a;
+            this.a = a;
         }
     }
     class B {
         b;
         constructor(b) {
+            this.b = b;
             this.b = b;
         }
     }
@@ -16,16 +18,18 @@ function abstract1() {
         c;
         constructor(c) {
             this.c = c;
+            this.c = c;
         }
     }
     let registeredFactories = {};
     function registraFactory(factory) {
-        registeredFactories[factory.constructor.name] = factory;
+        return (registeredFactories[factory.constructor.name] = factory);
     }
     const recFac = [A, B, C];
     recFac.forEach(registraFactory);
     class Factory {
         constructor(type, props) {
+            //@ts-expect-error
             return new registeredFactories[type](props);
         }
         registraFactory(factory) {
@@ -61,9 +65,12 @@ function abstract2() {
     let factoriesT = { a: 1, b: 2 };
     class AbstractFactory {
         factories = {};
+        //@ts-expect-error
         istanzaCreata;
+        //@ts-expect-error
         aggiungiFactory(constructor, type) {
             type = constructor.prototype.constructor.name;
+            //@ts-expect-error
             this.factories[type] = constructor;
             return this;
         }
@@ -81,6 +88,7 @@ function abstract2() {
     newAbstract.aggiungiFactory(A);
     newAbstract.aggiungiFactory(B);
     newAbstract.aggiungiFactory(C);
+    //@ts-expect-error
     let newA = newAbstract.factory('A', pop).istanzaCreata;
     console.log(newAbstract);
 }
