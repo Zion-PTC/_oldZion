@@ -1,6 +1,6 @@
 {
   "name": "@zionstate_node/zion-util",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Estensione di node_module util",
   "main": "built/index.js",
   "scripts": {

@@ -19,6 +19,7 @@ export interface IUtils {
     popFirst<T>(array: T[]): T[];
     removeSpaceFromString(type: number, string: string): string;
     sliceArray<T>(size: number, array: T): T[][] | string;
+    sortDescending<T>(a: T[], b: T[], index: number): number | undefined;
     chiamaNVolteCallback<T>(volte: number, callback: Function): T[];
     quantiDecimaliDopoLaVirgola(number: number): number;
     massimoComuneDivisore(a: number, b: number): number;

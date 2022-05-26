@@ -66,6 +66,8 @@ export interface IUtils {
   popFirst<T>(array: T[]): T[];
   removeSpaceFromString(type: number, string: string): string;
   sliceArray<T>(size: number, array: T): T[][] | string;
+  //SORTING
+  sortDescending<T>(a: T[], b: T[], index: number): number | undefined;
   // CALLBACK
   chiamaNVolteCallback<T>(volte: number, callback: Function): T[];
   // MATH
@@ -94,6 +96,8 @@ class Utils implements IUtils {
   popFirst = popFirst;
   removeSpaceFromString = removeSpaceFromString;
   sliceArray = sliceArray;
+  // sorting
+  sortDescending = sortDescending;
   // callback
   chiamaNVolteCallback = chiamaNVolteCallback;
   // Maths
@@ -104,28 +108,6 @@ class Utils implements IUtils {
 }
 
 export let zionUtil: IUtils = new Utils();
-/**
- *
- * @param size : ;
- * @param array
- * @returns
- */
-function sliceArray<T>(size: number, array: T): T[][] | string {
-  if (typeof size === 'number' && Array.isArray(array)) {
-    var s: number = size;
-    var arrayOfArrays: T[][] = [];
-    for (var i = 0; i < array.length; i += s) {
-      arrayOfArrays.push(array.slice(i, i + s));
-    }
-    return arrayOfArrays;
-  } else {
-    let res: string;
-    typeof size !== 'number'
-      ? (res = 'size is not a number')
-      : (res = 'The second argument shall be an array');
-    return res;
-  }
-}
 /**
  * Il contenuto degli array deve essere identico anche nell'ordine
  * @param {*} array
@@ -196,36 +178,32 @@ function checkObjectConstructor(
 }
 // TODO descrizione metodo
 /**
- * @param type
- * @param string
+ *
+ * @param array
  * @returns
  */
-function removeSpaceFromString(type: number, string: string): string {
-  // TODO Migliorare inizializzazione
-  let newString: string = '';
-  switch (type) {
-    case 1:
-      method1(string);
-      break;
-    case 2:
-      method2(string);
-      break;
-    case 3:
-      method3(string);
-      break;
-    default:
-      break;
+function hasArrayObjectElements(array: object[]): boolean | string {
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
+  if (this.isArrayEmpty(array)) {
+    return 'Array is Empty';
   }
-  function method1(string: string) {
-    newString = string.replace(/ /g, '');
-  }
-  function method2(string: string) {
-    newString = string.replace(/\s+/g, '');
-  }
-  function method3(string: string) {
-    newString = string.split(' ').join('');
-  }
-  return newString;
+  let result: boolean[] = [];
+  array.forEach(element => {
+    if (typeof element === 'object') result.push(true);
+    if (typeof element !== 'object') result.push(false);
+  });
+  if (!result.includes(true)) return false;
+  else return true;
+}
+/**
+ *
+ * @param array
+ * @returns
+ */
+function isArrayEmpty(array: any[]): boolean {
+  if (array.length !== 0) return false;
+  else return true;
 }
 /**
  *
@@ -254,17 +232,6 @@ function changePosition<T>(
     return 'not';
   }
   array.splice(new_pos, 0, array.splice(old, 1)[0]);
-  return array;
-}
-/**
- *
- * @param {*[]} array Array sorgente di lunghezza n.
- * @returns Ritorna un array ricomposto, dove il primo
- * elemeno del array è stato eliminato. L'array risultato
- * ha un lunghezza n-1.
- */
-function popFirst<T>(array: T[]): T[] {
-  array.shift();
   return array;
 }
 /**
@@ -302,34 +269,79 @@ function extractSameElementsFromArray<T extends string | boolean | number>(
   }
   throw new Error('Uno dei due array è vuoto');
 }
-// TODO descrizione metodo
 /**
  *
- * @param array
+ * @param {*[]} array Array sorgente di lunghezza n.
+ * @returns Ritorna un array ricomposto, dove il primo
+ * elemeno del array è stato eliminato. L'array risultato
+ * ha un lunghezza n-1.
+ */
+function popFirst<T>(array: T[]): T[] {
+  array.shift();
+  return array;
+}
+// TODO descrizione metodo
+/**
+ * @param type
+ * @param string
  * @returns
  */
-function hasArrayObjectElements(array: object[]): boolean | string {
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
-  if (this.isArrayEmpty(array)) {
-    return 'Array is Empty';
+function removeSpaceFromString(type: number, string: string): string {
+  // TODO Migliorare inizializzazione
+  let newString: string = '';
+  switch (type) {
+    case 1:
+      method1(string);
+      break;
+    case 2:
+      method2(string);
+      break;
+    case 3:
+      method3(string);
+      break;
+    default:
+      break;
   }
-  let result: boolean[] = [];
-  array.forEach(element => {
-    if (typeof element === 'object') result.push(true);
-    if (typeof element !== 'object') result.push(false);
-  });
-  if (!result.includes(true)) return false;
-  else return true;
+  function method1(string: string) {
+    newString = string.replace(/ /g, '');
+  }
+  function method2(string: string) {
+    newString = string.replace(/\s+/g, '');
+  }
+  function method3(string: string) {
+    newString = string.split(' ').join('');
+  }
+  return newString;
 }
 /**
  *
+ * @param size : ;
  * @param array
  * @returns
  */
-function isArrayEmpty(array: any[]): boolean {
-  if (array.length !== 0) return false;
-  else return true;
+function sliceArray<T>(size: number, array: T): T[][] | string {
+  if (typeof size === 'number' && Array.isArray(array)) {
+    var s: number = size;
+    var arrayOfArrays: T[][] = [];
+    for (var i = 0; i < array.length; i += s) {
+      arrayOfArrays.push(array.slice(i, i + s));
+    }
+    return arrayOfArrays;
+  } else {
+    let res: string;
+    typeof size !== 'number'
+      ? (res = 'size is not a number')
+      : (res = 'The second argument shall be an array');
+    return res;
+  }
+}
+function sortDescending<T extends []>(
+  a: T,
+  b: T,
+  index: number
+): number | undefined {
+  if (typeof a[index] !== 'number' && typeof b[index] !== 'number') return;
+  return b[index] - a[index];
 }
 /**
  *
@@ -346,29 +358,12 @@ function chiamaNVolteCallback<T>(volte: number, callback: Function): T[] {
   return array;
 }
 /**
- * Crea una string con il formato di frazione a partire da
- * un numero con la virgola.
- * @param decimale numero con virgola per il quale deve
- * essere creata la string.
- * @returns una string con formato frazione (0,2 => '1/5')
+ * @param number
+ * @returns
  */
-function convertDecimalToFracionString(decimale: number): string {
-  let frazioneInString: string;
-  if (decimale === 1) return '1';
-  if (decimale >= 1) return 'il valore passato deve essere un numero decimale!';
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
-  const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
-  let denominatore: number = Math.pow(10, numeriDopoLaVirgola);
-  let numeratore: number = decimale * denominatore;
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
-  const divisore: number = this.massimoComuneDivisore(numeratore, denominatore);
-  numeratore /= divisore;
-  denominatore /= divisore;
-  frazioneInString =
-    `${Math.floor(numeratore)}` + `/${Math.floor(denominatore)}`;
-  return frazioneInString;
+function quantiDecimaliDopoLaVirgola(number: number): number {
+  const len = number.toString().length - 2;
+  return len;
 }
 /**
  *
@@ -408,10 +403,27 @@ function modulo(a: number, b: number): number {
   return a % b;
 }
 /**
- * @param number
- * @returns
+ * Crea una string con il formato di frazione a partire da
+ * un numero con la virgola.
+ * @param decimale numero con virgola per il quale deve
+ * essere creata la string.
+ * @returns una string con formato frazione (0,2 => '1/5')
  */
-function quantiDecimaliDopoLaVirgola(number: number): number {
-  const len = number.toString().length - 2;
-  return len;
+function convertDecimalToFracionString(decimale: number): string {
+  let frazioneInString: string;
+  if (decimale === 1) return '1';
+  if (decimale >= 1) return 'il valore passato deve essere un numero decimale!';
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
+  const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
+  let denominatore: number = Math.pow(10, numeriDopoLaVirgola);
+  let numeratore: number = decimale * denominatore;
+  // TODO capire uso di this in ext functions
+  //@ts-expect-error
+  const divisore: number = this.massimoComuneDivisore(numeratore, denominatore);
+  numeratore /= divisore;
+  denominatore /= divisore;
+  frazioneInString =
+    `${Math.floor(numeratore)}` + `/${Math.floor(denominatore)}`;
+  return frazioneInString;
 }

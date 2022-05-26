@@ -54,6 +54,8 @@ class Utils {
     popFirst = popFirst;
     removeSpaceFromString = removeSpaceFromString;
     sliceArray = sliceArray;
+    // sorting
+    sortDescending = sortDescending;
     // callback
     chiamaNVolteCallback = chiamaNVolteCallback;
     // Maths
@@ -63,29 +65,6 @@ class Utils {
     convertDecimalToFracionString = convertDecimalToFracionString;
 }
 export let zionUtil = new Utils();
-/**
- *
- * @param size : ;
- * @param array
- * @returns
- */
-function sliceArray(size, array) {
-    if (typeof size === 'number' && Array.isArray(array)) {
-        var s = size;
-        var arrayOfArrays = [];
-        for (var i = 0; i < array.length; i += s) {
-            arrayOfArrays.push(array.slice(i, i + s));
-        }
-        return arrayOfArrays;
-    }
-    else {
-        let res;
-        typeof size !== 'number'
-            ? (res = 'size is not a number')
-            : (res = 'The second argument shall be an array');
-        return res;
-    }
-}
 /**
  * Il contenuto degli array deve essere identico anche nell'ordine
  * @param {*} array
@@ -152,101 +131,6 @@ function checkObjectConstructor(object, constructor) {
 }
 // TODO descrizione metodo
 /**
- * @param type
- * @param string
- * @returns
- */
-function removeSpaceFromString(type, string) {
-    // TODO Migliorare inizializzazione
-    let newString = '';
-    switch (type) {
-        case 1:
-            method1(string);
-            break;
-        case 2:
-            method2(string);
-            break;
-        case 3:
-            method3(string);
-            break;
-        default:
-            break;
-    }
-    function method1(string) {
-        newString = string.replace(/ /g, '');
-    }
-    function method2(string) {
-        newString = string.replace(/\s+/g, '');
-    }
-    function method3(string) {
-        newString = string.split(' ').join('');
-    }
-    return newString;
-}
-/**
- *
- * @param {*[]} array Array da ricomporre
- * @param {number} old Indice di orgine dell'elemento da
- * spostare.
- * @param {number} new_pos Indice della posizione target
- * dell'elemento.
- * @returns Un array ricomposto nel quale l'elemento
- * situato precedentement all'indice di origine è situato,
- * nel risultato di ritorno, all'indice target.
- */
-function changePosition(array, old, new_pos) {
-    // i numeri devono essere inclusi nella lunghezza
-    // massima
-    if (new_pos > array.length - 1 ||
-        old > array.length ||
-        new_pos < 0 ||
-        old < 0) {
-        return 'not';
-    }
-    array.splice(new_pos, 0, array.splice(old, 1)[0]);
-    return array;
-}
-/**
- *
- * @param {*[]} array Array sorgente di lunghezza n.
- * @returns Ritorna un array ricomposto, dove il primo
- * elemeno del array è stato eliminato. L'array risultato
- * ha un lunghezza n-1.
- */
-function popFirst(array) {
-    array.shift();
-    return array;
-}
-/**
- *
- * @param array1
- * @param array2
- * @returns
- */
-function extractSameElementsFromArray(array1, array2) {
-    let sameValues = [];
-    if (
-    // controllo se gli array sono vuoti
-    !zionUtil.isArrayEmpty(array1) &&
-        !zionUtil.isArrayEmpty(array2)) {
-        // controllo se uno dei due array contiene oggetti
-        if (
-        //@ts-expect-error
-        zionUtil.hasArrayObjectElements(array1) ||
-            //@ts-expect-error
-            zionUtil.hasArrayObjectElements(array2)) {
-            throw new Error(`Uno dei due array contiente oggetti, questa funziona richiede che l'array contenga valori (string, number, boolan)`);
-        }
-        for (let element2 of array2) {
-            let match = array1.find(element1 => element1 === element2);
-            match ? sameValues.push(match) : 'no match found';
-        }
-        return sameValues;
-    }
-    throw new Error('Uno dei due array è vuoto');
-}
-// TODO descrizione metodo
-/**
  *
  * @param array
  * @returns
@@ -282,6 +166,129 @@ function isArrayEmpty(array) {
 }
 /**
  *
+ * @param {*[]} array Array da ricomporre
+ * @param {number} old Indice di orgine dell'elemento da
+ * spostare.
+ * @param {number} new_pos Indice della posizione target
+ * dell'elemento.
+ * @returns Un array ricomposto nel quale l'elemento
+ * situato precedentement all'indice di origine è situato,
+ * nel risultato di ritorno, all'indice target.
+ */
+function changePosition(array, old, new_pos) {
+    // i numeri devono essere inclusi nella lunghezza
+    // massima
+    if (new_pos > array.length - 1 ||
+        old > array.length ||
+        new_pos < 0 ||
+        old < 0) {
+        return 'not';
+    }
+    array.splice(new_pos, 0, array.splice(old, 1)[0]);
+    return array;
+}
+/**
+ *
+ * @param array1
+ * @param array2
+ * @returns
+ */
+function extractSameElementsFromArray(array1, array2) {
+    let sameValues = [];
+    if (
+    // controllo se gli array sono vuoti
+    !zionUtil.isArrayEmpty(array1) &&
+        !zionUtil.isArrayEmpty(array2)) {
+        // controllo se uno dei due array contiene oggetti
+        if (
+        //@ts-expect-error
+        zionUtil.hasArrayObjectElements(array1) ||
+            //@ts-expect-error
+            zionUtil.hasArrayObjectElements(array2)) {
+            throw new Error(`Uno dei due array contiente oggetti, questa funziona richiede che l'array contenga valori (string, number, boolan)`);
+        }
+        for (let element2 of array2) {
+            let match = array1.find(element1 => element1 === element2);
+            match ? sameValues.push(match) : 'no match found';
+        }
+        return sameValues;
+    }
+    throw new Error('Uno dei due array è vuoto');
+}
+/**
+ *
+ * @param {*[]} array Array sorgente di lunghezza n.
+ * @returns Ritorna un array ricomposto, dove il primo
+ * elemeno del array è stato eliminato. L'array risultato
+ * ha un lunghezza n-1.
+ */
+function popFirst(array) {
+    array.shift();
+    return array;
+}
+// TODO descrizione metodo
+/**
+ * @param type
+ * @param string
+ * @returns
+ */
+function removeSpaceFromString(type, string) {
+    // TODO Migliorare inizializzazione
+    let newString = '';
+    switch (type) {
+        case 1:
+            method1(string);
+            break;
+        case 2:
+            method2(string);
+            break;
+        case 3:
+            method3(string);
+            break;
+        default:
+            break;
+    }
+    function method1(string) {
+        newString = string.replace(/ /g, '');
+    }
+    function method2(string) {
+        newString = string.replace(/\s+/g, '');
+    }
+    function method3(string) {
+        newString = string.split(' ').join('');
+    }
+    return newString;
+}
+/**
+ *
+ * @param size : ;
+ * @param array
+ * @returns
+ */
+function sliceArray(size, array) {
+    if (typeof size === 'number' && Array.isArray(array)) {
+        var s = size;
+        var arrayOfArrays = [];
+        for (var i = 0; i < array.length; i += s) {
+            arrayOfArrays.push(array.slice(i, i + s));
+        }
+        return arrayOfArrays;
+    }
+    else {
+        let res;
+        typeof size !== 'number'
+            ? (res = 'size is not a number')
+            : (res = 'The second argument shall be an array');
+        return res;
+    }
+}
+function sortDescending(a, b, index) {
+    if (typeof a[index] !== 'number' && typeof b[index] !== 'number')
+        return;
+    return b[index] - a[index];
+}
+/**
+ *
  * @param volte
  * @param callback
  * @returns
@@ -295,31 +302,12 @@ function chiamaNVolteCallback(volte, callback) {
     return array;
 }
 /**
- * Crea una string con il formato di frazione a partire da
- * un numero con la virgola.
- * @param decimale numero con virgola per il quale deve
- * essere creata la string.
- * @returns una string con formato frazione (0,2 => '1/5')
+ * @param number
+ * @returns
  */
-function convertDecimalToFracionString(decimale) {
-    let frazioneInString;
-    if (decimale === 1)
-        return '1';
-    if (decimale >= 1)
-        return 'il valore passato deve essere un numero decimale!';
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
-    const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
-    let denominatore = Math.pow(10, numeriDopoLaVirgola);
-    let numeratore = decimale * denominatore;
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
-    const divisore = this.massimoComuneDivisore(numeratore, denominatore);
-    numeratore /= divisore;
-    denominatore /= divisore;
-    frazioneInString =
-        `${Math.floor(numeratore)}` + `/${Math.floor(denominatore)}`;
-    return frazioneInString;
+function quantiDecimaliDopoLaVirgola(number) {
+    const len = number.toString().length - 2;
+    return len;
 }
 /**
  *
@@ -356,10 +344,29 @@ function modulo(a, b) {
     return a % b;
 }
 /**
- * @param number
- * @returns
+ * Crea una string con il formato di frazione a partire da
+ * un numero con la virgola.
+ * @param decimale numero con virgola per il quale deve
+ * essere creata la string.
+ * @returns una string con formato frazione (0,2 => '1/5')
  */
-function quantiDecimaliDopoLaVirgola(number) {
-    const len = number.toString().length - 2;
-    return len;
+function convertDecimalToFracionString(decimale) {
+    let frazioneInString;
+    if (decimale === 1)
+        return '1';
+    if (decimale >= 1)
+        return 'il valore passato deve essere un numero decimale!';
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
+    const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
+    let denominatore = Math.pow(10, numeriDopoLaVirgola);
+    let numeratore = decimale * denominatore;
+    // TODO capire uso di this in ext functions
+    //@ts-expect-error
+    const divisore = this.massimoComuneDivisore(numeratore, denominatore);
+    numeratore /= divisore;
+    denominatore /= divisore;
+    frazioneInString =
+        `${Math.floor(numeratore)}` + `/${Math.floor(denominatore)}`;
+    return frazioneInString;
 }
