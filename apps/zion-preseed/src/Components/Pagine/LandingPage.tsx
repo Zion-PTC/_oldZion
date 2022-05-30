@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { businessModelData } from '../Datas/businessModel';
+import { coverData } from '../Datas/cover';
+import { introData } from '../Datas/intro';
+import { missionData } from '../Datas/mission';
+import { problemData } from '../Datas/problem';
+import { product1Data } from '../Datas/product1';
+import { product2Data } from '../Datas/product2';
+import { product3Data } from '../Datas/product3';
+import { product4Data } from '../Datas/product4';
 import { product5Data } from '../Datas/product5';
+import { solution1Data } from '../Datas/solution1';
+import { solution2Data } from '../Datas/solution2';
 import { tokenomicsData } from '../Datas/tokenomics';
 
 import BusinessModel from './Landing Page/BusinessModel';
@@ -11,18 +21,6 @@ import Problem from './Landing Page/Problem';
 import Product from './Landing Page/Product';
 import Solution from './Landing Page/Solution';
 import Tokenomics from './Landing Page/Tokenomics';
-import {
-  coverData,
-  introData,
-  missionData,
-  problemData,
-  product1Data,
-  product2Data,
-  product3Data,
-  product4Data,
-  solution1Data,
-  solution2Data,
-} from './LandingPageData';
 
 export default function LandingPage() {
   let Area = styled.div`

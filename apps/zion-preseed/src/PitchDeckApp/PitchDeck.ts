@@ -108,10 +108,6 @@ export namespace PitchDeck {
     | 'div'
     | '';
   type Css = 'grid-area' | 'background-color';
-  type YouTube = {
-    url: URL;
-    youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues;
-  };
   type IDynamic = {
     dynamic: FlattenSimpleInterpolation;
     tipo: DynType;
@@ -127,20 +123,6 @@ export namespace PitchDeck {
   };
 
   type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
-  type Testo = {
-    tipo: number;
-    testoColore?: SfumatureDiBlu;
-    gridArea?: string;
-    par1?: string;
-    list?: string[];
-    par2?: string;
-    youTube?: YouTube;
-  };
-  type Cornice = {
-    id: string;
-    backgroundColor: SfumatureDiBlu;
-    gridArea: string;
-  };
   type Icona = {
     // gridDiv = new Dynamic('gridDiv');
     gridDiv: IDynamic;
@@ -166,6 +148,52 @@ export namespace PitchDeck {
     title: string;
     url: string;
   };
+
+  type IYouTube = {
+    url: string;
+    youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues;
+  };
+  export class YouTube implements IYouTube {
+    constructor(
+      public url: string,
+      public youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues
+    ) {}
+  }
+
+  type TCornice = {
+    id: string;
+    backgroundColor: string;
+    gridArea: string;
+  };
+  export class Cornice implements TCornice {
+    constructor(
+      public id: string,
+      public backgroundColor: string,
+      public gridArea: string
+    ) {}
+  }
+
+  type TTesto = {
+    tipo: number;
+    testoColore?: string;
+    gridArea?: string;
+    par1?: string;
+    list?: (string | (string | string[])[])[];
+    par2?: string;
+    youTube?: YouTube;
+  };
+  export class Testo implements TTesto {
+    constructor(
+      public tipo: number,
+      public color?: string,
+      public testoColore?: string,
+      public gridArea?: string,
+      public par1?: string,
+      public list?: (string | (string | string[])[])[],
+      public par2?: string,
+      public youTube?: YouTube
+    ) {}
+  }
 
   type TImg = {
     src: string;
@@ -234,14 +262,14 @@ export namespace PitchDeck {
     tipo: number;
     children: string;
     div: Div;
-    sottotitolo?: string;
+    sottoTitolo?: string;
   };
   export class Titolo implements Titolo_T {
     constructor(
       public tipo: number,
       public children: string,
       public div: Div,
-      public sottotitolo?: string
+      public sottoTitolo: string = 'sub-title'
     ) {}
   }
 
@@ -295,21 +323,45 @@ export namespace PitchDeck {
     slug: string;
     titolo: Titolo;
   }
-  // interface IBasic extends ISuperBasic {
-  //   wrapper: IWrapper;
-  // }
+  interface IBasic extends ISuperBasic {
+    wrapper: Wrapper;
+  }
   // interface IConCarosello extends IBasic {
   //   iconeCarosello: IconeCarosello;
   // }
-  // interface IIntro extends IBasic {
-  //   testo: Testo;
-  //   youTube: YouTube;
-  // }
-  // interface ICover extends IBasic {
-  //   cornice: Cornice;
-  //   img: TImg;
-  //   background: Background;
-  // }
+  interface IIntro extends IBasic {
+    testo: TTesto;
+    youTube: YouTube;
+  }
+  export class Intro implements IIntro {
+    constructor(
+      public id: number,
+      public page: Page,
+      public slug: string,
+      public titolo: Titolo,
+      public wrapper: Wrapper,
+      public testo: TTesto,
+      public youTube: YouTube
+    ) {}
+  }
+
+  interface ICover extends IBasic {
+    cornice: Cornice;
+    img: TImg;
+    background: Background;
+  }
+  export class Cover implements ICover {
+    constructor(
+      public id: number,
+      public page: Page,
+      public slug: string,
+      public titolo: Titolo,
+      public wrapper: Wrapper,
+      public cornice: Cornice,
+      public img: TImg,
+      public background: Background
+    ) {}
+  }
   // interface IProblem extends IBasic {
   //   ul: IDynamic;
   //   li: Li;
@@ -324,16 +376,29 @@ export namespace PitchDeck {
   //   titolo: Titolo;
   //   iconeCarosello: IconeCarosello;
   // }
-  // interface IProduct {
-  //   tipo: number;
-  //   productPage: IDynamic;
-  //   productWrapper: IWrapper;
-  //   titolo: Titolo;
-  //   testo: Testo;
-  //   background: Background;
-  //   children: string;
-  //   list: (string | any[])[];
-  // }
+  interface IProduct {
+    tipo: number;
+    productWrapper: Wrapper;
+    background: Background;
+    children?: string;
+    titolo?: Titolo;
+    productPage?: FlattenSimpleInterpolation;
+    testo?: Testo;
+    list?: (string | any[])[];
+  }
+  export class ProductDatas implements IProduct {
+    constructor(
+      public tipo: number,
+      public productWrapper: Wrapper,
+      public background: Background,
+      public children?: string,
+      public titolo?: Titolo,
+      public productPage?: FlattenSimpleInterpolation,
+      public testo?: Testo,
+      public list?: (string | any[])[]
+    ) {}
+  }
+
   interface IBusinessModel extends ISuperBasic {
     businessWrapper: TWrapper;
     chart: ChartStuff.Chart;
@@ -371,25 +436,25 @@ export namespace PitchDeck {
 //   /////////////////
 //   /// CLASSES
 //   /////////////////
-//   class SuperBasic implements ISuperBasic {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo
-//     ) {}
+// class SuperBasic implements ISuperBasic {
+//   constructor(
+//     public id: number,
+//     public slug: string,
+//     public page: Page,
+//     public titolo: Titolo
+//   ) {}
+// }
+// class Basic extends SuperBasic implements IBasic {
+//   constructor(
+//     public id: number,
+//     public slug: string,
+//     public page: Page,
+//     public titolo: Titolo,
+//     public wrapper: Wrapper
+//   ) {
+//     super(id, slug, page, titolo);
 //   }
-//   class Basic extends SuperBasic implements IBasic {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper
-//     ) {
-//       super(id, slug, page, titolo);
-//     }
-//   }
+// }
 //   class ConCarosello extends Basic implements IConCarosello {
 //     constructor(
 //       public id: number,
@@ -409,26 +474,26 @@ export namespace PitchDeck {
 //       public page: Page,
 //       public titolo: Titolo,
 //       public wrapper: IWrapper,
-//       public testo: Testo,
+//       public testo: TTesto,
 //       public youTube: YouTube
 //     ) {
 //       super(id, slug, page, titolo, wrapper);
 //     }
 //   }
-//   class Cover extends Basic implements ICover {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper,
-//       public cornice: Cornice,
-//       public img: TImg,
-//       public background: Background
-//     ) {
-//       super(id, slug, page, titolo, wrapper);
-//     }
+// class Cover extends Basic implements ICover {
+//   constructor(
+//     public id: number,
+//     public slug: string,
+//     public page: Page,
+//     public titolo: Titolo,
+//     public wrapper: IWrapper,
+//     public cornice: Cornice,
+//     public img: TImg,
+//     public background: Background
+//   ) {
+//     super(id, slug, page, titolo, wrapper);
 //   }
+// }
 //   class Problem extends Basic implements IProblem {
 //     constructor(
 //       public id: number,
@@ -476,7 +541,7 @@ export namespace PitchDeck {
 //       // public productWrapper = new ProducWrapper(),
 //       public titolo: Titolo,
 //       //
-//       public testo: Testo,
+//       public testo: TTesto,
 //       public background: Background,
 //       public children: string, // opzionale
 //       public list = ['', []] // opzionale){)

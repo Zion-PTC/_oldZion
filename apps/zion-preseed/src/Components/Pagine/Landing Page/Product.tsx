@@ -4,10 +4,10 @@ import Background from '../../Compositori/Background';
 import Titolo from '../../Compositori/Titolo';
 import { Wrapper, Page, Div } from '../../Elementi/Div';
 
-let ProductWrapper = styled(Wrapper)<{ $tipo: number }>`
+let ProductWrapper = styled(Wrapper)<{ tipo: number }>`
   height: ${window.innerHeight + 'px'};
-  grid-template-rows: ${props => (props.$tipo === 2 ? '30% 70%' : '100%')};
-  grid-template-areas: ${props => (props.$tipo === 2 ? "'a' 'b'" : "'a'")};
+  grid-template-rows: ${props => (props.tipo === 2 ? '30% 70%' : '100%')};
+  grid-template-areas: ${props => (props.tipo === 2 ? "'a' 'b'" : "'a'")};
 `;
 
 let ProductPage = styled(Page)`
@@ -68,6 +68,7 @@ export default function Product({
       break;
   }
 
+  // TODO decouple Ul
   if (list) {
     let liEl1 = list[0];
     let liEl2 = list[1];

@@ -35,26 +35,27 @@ const slug = 'bmodel';
 const stringId = slug + id;
 const tag = 'background-image';
 const ovFlId = 'business-background-overflow-area';
-const bmPage = new PitchDeck.Page('business-model-page', css``);
-const bmDiv = new PitchDeck.Div('solution2-titolo', bmCss);
-const bmTitolo = new PitchDeck.Titolo(2, 'Business Model', bmDiv);
 const color1 = 'rgba(23, 58, 51, 1)';
 const color2 = 'rgba(52, 131, 115, 1)';
 const color3 = 'rgba(21, 191, 157, 1)';
 const color4 = 'rgba(106, 178, 248, 1)';
 const color5 = 'rgba(153, 102, 255, 1)';
-const bkgCol = [color1, color2, color3, color4, color5];
-const borderColor = bkgCol;
-const borWid = 1;
-
 const l1 = 'Platform Fee';
 const l2 = 'Smart Contract Usage';
 const l3 = 'Audius Node';
 const l4 = 'Staking';
 const l5 = 'Interest';
 const chTitle = 'Revenue Sources';
+
+const bkgCol = [color1, color2, color3, color4, color5];
+const borderColor = bkgCol;
+const borWid = 1;
 const labels = [l1, l2, l3, l4, l5];
 const dataCh = [70, 20, 3, 5, 2];
+
+const bmPage = new PitchDeck.Page('business-model-page', css``);
+const bmDiv = new PitchDeck.Div('solution2-titolo', bmCss);
+const bmTitolo = new PitchDeck.Titolo(2, 'Business Model', bmDiv);
 const legend = new PitchDeck.ChartStuff.Legend(true, { color: BRIGHT });
 const title = new PitchDeck.ChartStuff.Title(true);
 const plugins = new PitchDeck.ChartStuff.Plugins(title, legend);

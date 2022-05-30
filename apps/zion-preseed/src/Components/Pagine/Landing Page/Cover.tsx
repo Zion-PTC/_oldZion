@@ -49,6 +49,7 @@ export default function Cover({
   background,
 }: ICover) {
   let { id } = page;
+  console.log(titolo.sottoTitolo);
 
   return (
     <Wrapper {...wrapper}>
