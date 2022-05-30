@@ -1,6 +1,6 @@
 {
-  "name": "@zionstate/fortawesome-free-solid-svg-icons",
-  "version": "0.0.1",
+  "name": "@zionrepack/fortawesome-free-solid-svg-icons",
+  "version": "0.0.2",
   "description": "",
   "main": "builst/index.js",
   "keywords": [],
