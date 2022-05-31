@@ -106,21 +106,34 @@ export namespace PitchDeck {
     | 'div'
     | '';
   type Css = 'grid-area' | 'background-color';
-
-  type IDynamic = {
-    dynamic: FlattenSimpleInterpolation;
-    tipo?: DynType;
-  };
-  type Li = {
-    dynamic: IDynamic;
-    pars: string[];
-  };
   type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
   type Path = string;
   type Link = {
     title: string;
     url: string;
   };
+
+  type TDynamic = {
+    dynamic: FlattenSimpleInterpolation;
+    tipo?: DynType;
+  };
+  export class Dynamic implements TDynamic {
+    constructor(
+      public dynamic: FlattenSimpleInterpolation,
+      public tipo?: DynType
+    ) {}
+  }
+
+  type TLi = {
+    dynamic: FlattenSimpleInterpolation;
+    pars: string[];
+  };
+  export class Li implements TLi {
+    constructor(
+      public dynamic: FlattenSimpleInterpolation,
+      public pars: string[]
+    ) {}
+  }
 
   type TIcona = {
     icona: Path;
@@ -147,18 +160,18 @@ export namespace PitchDeck {
   }
 
   type TIconaSettings = {
-    gridDiv: IDynamic;
-    cerchio: IDynamic;
-    p: IDynamic;
+    gridDiv: Dynamic;
+    cerchio: Dynamic;
+    p: Dynamic;
   };
   export class IconaSettings implements TIconaSettings {
     constructor(
       gridInput: FlattenSimpleInterpolation,
       cerchioInput: FlattenSimpleInterpolation,
       pInput: FlattenSimpleInterpolation,
-      public gridDiv: IDynamic = { dynamic: gridInput },
-      public cerchio: IDynamic = { dynamic: cerchioInput },
-      public p: IDynamic = { dynamic: pInput }
+      public gridDiv: Dynamic = { dynamic: gridInput },
+      public cerchio: Dynamic = { dynamic: cerchioInput },
+      public p: Dynamic = { dynamic: pInput }
     ) {}
   }
 
@@ -390,11 +403,24 @@ export namespace PitchDeck {
       public background: Background
     ) {}
   }
-  // interface IProblem extends IBasic {
-  //   ul: IDynamic;
-  //   li: Li;
-  //   background: Background;
-  // }
+
+  interface IProblem extends IBasic {
+    ul: Dynamic;
+    li: Li;
+    background: Background;
+  }
+  export class Problem implements IProblem {
+    constructor(
+      public id: number,
+      public page: Page,
+      public slug: string,
+      public titolo: Titolo | string,
+      public wrapper: Wrapper,
+      public ul: Dynamic,
+      public li: Li,
+      public background: Background
+    ) {}
+  }
   // interface IMission {
   //   page: Page;
   //   titolo: Titolo;
@@ -544,7 +570,7 @@ export namespace PitchDeck {
 //       public page: Page,
 //       public titolo: Titolo,
 //       public wrapper: IWrapper,
-//       public ul: IDynamic,
+//       public ul: Dynamic,
 //       public li: Li,
 //       public background: Background
 //     ) {
@@ -579,7 +605,7 @@ export namespace PitchDeck {
 //     constructor(
 //       //_____
 //       public tipo: number,
-//       public productPage: IDynamic,
+//       public productPage: Dynamic,
 //       public productWrapper: IWrapper,
 //       // public productWrapper = new ProducWrapper(),
 //       public titolo: Titolo,

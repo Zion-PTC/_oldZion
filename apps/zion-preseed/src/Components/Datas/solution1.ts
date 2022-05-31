@@ -3,7 +3,6 @@ import { BRIGHT, MIDBRIGHT } from '../../js/colori';
 import { combine, functionalities, manage, wrap } from '../../js/icone';
 import { server } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
-// TODO #5 usare classi
 
 const slug = 'solution';
 const id = 1;
