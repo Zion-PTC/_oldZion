@@ -38,7 +38,6 @@ export namespace PitchDeck {
       maintainAspectRatio: boolean;
       plugins: TPlugins;
     };
-
     export class Options implements TOptions {
       constructor(
         public responsive: boolean,
@@ -90,7 +89,6 @@ export namespace PitchDeck {
     width: number;
     height: number;
   };
-
   type YouTubeFrameResponsiveValues = {
     mobile: Size;
     portrait: Size;
@@ -108,52 +106,67 @@ export namespace PitchDeck {
     | 'div'
     | '';
   type Css = 'grid-area' | 'background-color';
+
   type IDynamic = {
     dynamic: FlattenSimpleInterpolation;
-    tipo: DynType;
+    tipo?: DynType;
   };
-
   type Li = {
     dynamic: IDynamic;
     pars: string[];
   };
-  type ResponsiveGrid = {
-    id: string;
-    dynamic: IDynamic;
-  };
-
   type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
-  type Icona = {
-    // gridDiv = new Dynamic('gridDiv');
-    gridDiv: IDynamic;
-    // cerchio = new Dynamic('cerchio');
-    cerchio: IDynamic;
-    // p = new Dynamic('paragrafo');
-    p: IDynamic;
-  };
   type Path = string;
-  type IconaDetails = {
-    icona: Path;
-    dynamic: IDynamic;
-    testo: string;
-  };
-  type IconeCarosello = {
-    titolo: string;
-    icona: Icona;
-    responsiveGrid: ResponsiveGrid;
-    icone: IconaDetails[];
-    testi?: string[];
-  };
   type Link = {
     title: string;
     url: string;
   };
 
-  type IYouTube = {
+  type TIcona = {
+    icona: Path;
+    dynamic: FlattenSimpleInterpolation;
+    testo: string;
+  };
+  export class Icona implements TIcona {
+    constructor(
+      public icona: Path,
+      public dynamic: FlattenSimpleInterpolation,
+      public testo: string
+    ) {}
+  }
+
+  type TResponsiveGrid = {
+    id: string;
+    dynamic: FlattenSimpleInterpolation;
+  };
+  export class ResponsiveGrid implements TResponsiveGrid {
+    constructor(
+      public id: string,
+      public dynamic: FlattenSimpleInterpolation
+    ) {}
+  }
+
+  type TIconaSettings = {
+    gridDiv: IDynamic;
+    cerchio: IDynamic;
+    p: IDynamic;
+  };
+  export class IconaSettings implements TIconaSettings {
+    constructor(
+      gridInput: FlattenSimpleInterpolation,
+      cerchioInput: FlattenSimpleInterpolation,
+      pInput: FlattenSimpleInterpolation,
+      public gridDiv: IDynamic = { dynamic: gridInput },
+      public cerchio: IDynamic = { dynamic: cerchioInput },
+      public p: IDynamic = { dynamic: pInput }
+    ) {}
+  }
+
+  type TYouTube = {
     url: string;
     youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues;
   };
-  export class YouTube implements IYouTube {
+  export class YouTube implements TYouTube {
     constructor(
       public url: string,
       public youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues
@@ -278,14 +291,14 @@ export namespace PitchDeck {
     id: string;
     type?: WrapperType;
     tipo?: number;
-    dynamic?: Css;
+    dynamic?: FlattenSimpleInterpolation;
   };
   export class Wrapper implements TWrapper {
     constructor(
       public id: string,
       public type?: WrapperType,
       public tipo?: number,
-      public dynamic?: Css
+      public dynamic?: FlattenSimpleInterpolation
     ) {}
   }
 
@@ -321,14 +334,29 @@ export namespace PitchDeck {
     id: number;
     page: Page;
     slug: string;
-    titolo: Titolo;
+    titolo: Titolo | string;
   }
   interface IBasic extends ISuperBasic {
     wrapper: Wrapper;
   }
-  // interface IConCarosello extends IBasic {
-  //   iconeCarosello: IconeCarosello;
-  // }
+
+  type IIConCarosello = {
+    titolo: string;
+    icona: IconaSettings;
+    responsiveGridDiv: ResponsiveGrid;
+    icone: Icona[];
+    testi?: string[];
+  };
+  export class IconeCarosello implements IIConCarosello {
+    constructor(
+      public titolo: string,
+      public icona: IconaSettings,
+      public responsiveGridDiv: ResponsiveGrid,
+      public icone: Icona[],
+      public testi?: string[]
+    ) {}
+  }
+
   interface IIntro extends IBasic {
     testo: TTesto;
     youTube: YouTube;
@@ -367,15 +395,30 @@ export namespace PitchDeck {
   //   li: Li;
   //   background: Background;
   // }
-  // interface ISolution extends IBasic {
-  //   id: number;
-  //   slug: string;
-  // }
   // interface IMission {
   //   page: Page;
   //   titolo: Titolo;
   //   iconeCarosello: IconeCarosello;
   // }
+  interface ISolution {
+    slug: string;
+    id: number;
+    wrapper: Wrapper;
+    titolo: Titolo;
+    iconeCarosello: IconeCarosello;
+    background: Background;
+  }
+  export class Solution implements ISolution {
+    constructor(
+      public slug: string,
+      public id: number,
+      public wrapper: Wrapper,
+      public titolo: Titolo,
+      public iconeCarosello: IconeCarosello,
+      public background: Background
+    ) {}
+  }
+
   interface IProduct {
     tipo: number;
     productWrapper: Wrapper;
