@@ -105,13 +105,13 @@ export namespace PitchDeck {
     | 'productPage'
     | 'div'
     | '';
-  type Css = 'grid-area' | 'background-color';
-  type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
-  type Path = string;
-  type Link = {
-    title: string;
-    url: string;
-  };
+  // type Css = 'grid-area' | 'background-color';
+  // type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
+  // type Link = {
+  //   title: string;
+  //   url: string;
+  // };
+  export type Path = string;
 
   type TDynamic = {
     dynamic: FlattenSimpleInterpolation;
@@ -135,16 +135,18 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type TIcona = {
+  interface IIcona {
     icona: Path;
     dynamic: FlattenSimpleInterpolation;
     testo: string;
-  };
-  export class Icona implements TIcona {
+    img?: Img;
+  }
+  export class Icona implements IIcona {
     constructor(
       public icona: Path,
       public dynamic: FlattenSimpleInterpolation,
-      public testo: string
+      public testo: string,
+      public img?: Img
     ) {}
   }
 
@@ -163,6 +165,7 @@ export namespace PitchDeck {
     gridDiv: Dynamic;
     cerchio: Dynamic;
     p: Dynamic;
+    img?: Img;
   };
   export class IconaSettings implements TIconaSettings {
     constructor(
@@ -171,7 +174,8 @@ export namespace PitchDeck {
       pInput: FlattenSimpleInterpolation,
       public gridDiv: Dynamic = { dynamic: gridInput },
       public cerchio: Dynamic = { dynamic: cerchioInput },
-      public p: Dynamic = { dynamic: pInput }
+      public p: Dynamic = { dynamic: pInput },
+      public img?: Img
     ) {}
   }
 
@@ -199,7 +203,7 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type TTesto = {
+  export type TTesto = {
     tipo: number;
     testoColore?: string;
     gridArea?: string;
@@ -221,16 +225,16 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type TImg = {
+  export type TImg = {
     src: string;
-    alt: string;
+    alt?: string;
     id?: string;
     dynamic?: FlattenSimpleInterpolation;
   };
   export class Img implements TImg {
     constructor(
       public src: string,
-      public alt: string,
+      public alt?: string,
       public id?: string,
       public dynamic?: FlattenSimpleInterpolation
     ) {}
@@ -262,11 +266,11 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type Div_T = {
+  type TDiv = {
     id?: string;
     dynamic?: FlattenSimpleInterpolation;
   };
-  export class Div implements Div_T {
+  export class Div implements TDiv {
     constructor(
       public id?: string,
       public dynamic?: FlattenSimpleInterpolation
@@ -284,23 +288,24 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type Titolo_T = {
+  type TTitolo = {
     tipo: number;
     children: string;
     div: Div;
     sottoTitolo?: string;
   };
-  export class Titolo implements Titolo_T {
+  export class Titolo implements TTitolo {
     constructor(
       public tipo: number,
       public children: string,
       public div: Div,
-      public sottoTitolo: string = 'sub-title'
+      public sottoTitolo?: string
     ) {}
   }
 
+  // TODO cancellare
   type WrapperType = 'product' | 'business' | 'normal';
-  type TWrapper = {
+  export type TWrapper = {
     id: string;
     type?: WrapperType;
     tipo?: number;
@@ -315,14 +320,15 @@ export namespace PitchDeck {
     ) {}
   }
 
+  // TODO cancellare
   type TPage = {
     id: string;
-    dynamic: FlattenSimpleInterpolation;
+    dynamic?: FlattenSimpleInterpolation;
   };
   export class Page implements TPage {
     constructor(
       public id: string,
-      public dynamic: FlattenSimpleInterpolation
+      public dynamic?: FlattenSimpleInterpolation
     ) {}
   }
   /////////////////
@@ -343,350 +349,13 @@ export namespace PitchDeck {
   /////////////////
   /// INTERFACES
   /////////////////
-  interface ISuperBasic {
+  export interface ISuperBasic {
     id: number;
-    page: Page;
+    // page?: Page;
     slug: string;
     titolo: Titolo | string;
   }
-  interface IBasic extends ISuperBasic {
-    wrapper: Wrapper;
-  }
-
-  type IIConCarosello = {
-    titolo: string;
-    icona: IconaSettings;
-    responsiveGridDiv: ResponsiveGrid;
-    icone: Icona[];
-    testi?: string[];
-  };
-  export class IconeCarosello implements IIConCarosello {
-    constructor(
-      public titolo: string,
-      public icona: IconaSettings,
-      public responsiveGridDiv: ResponsiveGrid,
-      public icone: Icona[],
-      public testi?: string[]
-    ) {}
-  }
-
-  interface IIntro extends IBasic {
-    testo: TTesto;
-    youTube: YouTube;
-  }
-  export class Intro implements IIntro {
-    constructor(
-      public id: number,
-      public page: Page,
-      public slug: string,
-      public titolo: Titolo,
-      public wrapper: Wrapper,
-      public testo: TTesto,
-      public youTube: YouTube
-    ) {}
-  }
-
-  interface ICover extends IBasic {
-    cornice: Cornice;
-    img: TImg;
-    background: Background;
-  }
-  export class Cover implements ICover {
-    constructor(
-      public id: number,
-      public page: Page,
-      public slug: string,
-      public titolo: Titolo,
-      public wrapper: Wrapper,
-      public cornice: Cornice,
-      public img: TImg,
-      public background: Background
-    ) {}
-  }
-
-  interface IProblem extends IBasic {
-    ul: Dynamic;
-    li: Li;
-    background: Background;
-  }
-  export class Problem implements IProblem {
-    constructor(
-      public id: number,
-      public page: Page,
-      public slug: string,
-      public titolo: Titolo | string,
-      public wrapper: Wrapper,
-      public ul: Dynamic,
-      public li: Li,
-      public background: Background
-    ) {}
-  }
-  // interface IMission {
-  //   page: Page;
-  //   titolo: Titolo;
-  //   iconeCarosello: IconeCarosello;
-  // }
-  interface ISolution {
-    slug: string;
-    id: number;
-    wrapper: Wrapper;
-    titolo: Titolo;
-    iconeCarosello: IconeCarosello;
-    background: Background;
-  }
-  export class Solution implements ISolution {
-    constructor(
-      public slug: string,
-      public id: number,
-      public wrapper: Wrapper,
-      public titolo: Titolo,
-      public iconeCarosello: IconeCarosello,
-      public background: Background
-    ) {}
-  }
-
-  interface IProduct {
-    tipo: number;
-    productWrapper: Wrapper;
-    background: Background;
-    children?: string;
-    titolo?: Titolo;
-    productPage?: FlattenSimpleInterpolation;
-    testo?: Testo;
-    list?: (string | any[])[];
-  }
-  export class ProductDatas implements IProduct {
-    constructor(
-      public tipo: number,
-      public productWrapper: Wrapper,
-      public background: Background,
-      public children?: string,
-      public titolo?: Titolo,
-      public productPage?: FlattenSimpleInterpolation,
-      public testo?: Testo,
-      public list?: (string | any[])[]
-    ) {}
-  }
-
-  interface IBusinessModel extends ISuperBasic {
-    businessWrapper: TWrapper;
-    chart: ChartStuff.Chart;
-    background: Background;
-  }
-  export class BusinessModelDatas implements IBusinessModel {
-    constructor(
-      public id: number,
-      public page: Page,
-      public slug: string,
-      public titolo: Titolo,
-      public businessWrapper: Wrapper,
-      public chart: ChartStuff.Chart,
-      public background: Background
-    ) {}
-  }
-
-  interface ITokenomics extends ISuperBasic {
-    chart1: ChartStuff.Chart;
-    chart2: ChartStuff.Chart;
-    div: Div;
-  }
-  export class TokenomicsDatas implements ITokenomics {
-    constructor(
-      public id: number,
-      public page: Page,
-      public slug: string,
-      public titolo: Titolo,
-      public chart1: ChartStuff.Chart,
-      public chart2: ChartStuff.Chart,
-      public div: Div
-    ) {}
+  export interface IBasic extends ISuperBasic {
+    wrapper?: Wrapper;
   }
 }
-//   /////////////////
-//   /// CLASSES
-//   /////////////////
-// class SuperBasic implements ISuperBasic {
-//   constructor(
-//     public id: number,
-//     public slug: string,
-//     public page: Page,
-//     public titolo: Titolo
-//   ) {}
-// }
-// class Basic extends SuperBasic implements IBasic {
-//   constructor(
-//     public id: number,
-//     public slug: string,
-//     public page: Page,
-//     public titolo: Titolo,
-//     public wrapper: Wrapper
-//   ) {
-//     super(id, slug, page, titolo);
-//   }
-// }
-//   class ConCarosello extends Basic implements IConCarosello {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper,
-//       public iconeCarosello: IconeCarosello
-//     ) {
-//       super(id, slug, page, titolo, wrapper);
-//     }
-//   }
-//   class Intro extends Basic implements IIntro {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper,
-//       public testo: TTesto,
-//       public youTube: YouTube
-//     ) {
-//       super(id, slug, page, titolo, wrapper);
-//     }
-//   }
-// class Cover extends Basic implements ICover {
-//   constructor(
-//     public id: number,
-//     public slug: string,
-//     public page: Page,
-//     public titolo: Titolo,
-//     public wrapper: IWrapper,
-//     public cornice: Cornice,
-//     public img: TImg,
-//     public background: Background
-//   ) {
-//     super(id, slug, page, titolo, wrapper);
-//   }
-// }
-//   class Problem extends Basic implements IProblem {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper,
-//       public ul: Dynamic,
-//       public li: Li,
-//       public background: Background
-//     ) {
-//       super(id, slug, page, titolo, wrapper);
-//     }
-//   }
-//   class Solution extends Basic implements ISolution {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public wrapper: IWrapper,
-//       public iconeCarosello: IConCarosello,
-//       public background: Background
-//     ) {
-//       super(id, slug, page, titolo, wrapper);
-//     }
-//   }
-//   class Mission extends SuperBasic implements IMission {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public iconeCarosello: IconeCarosello
-//     ) {
-//       super(id, slug, page, titolo);
-//     }
-//   }
-//   class Product implements IProduct {
-//     constructor(
-//       //_____
-//       public tipo: number,
-//       public productPage: Dynamic,
-//       public productWrapper: IWrapper,
-//       // public productWrapper = new ProducWrapper(),
-//       public titolo: Titolo,
-//       //
-//       public testo: TTesto,
-//       public background: Background,
-//       public children: string, // opzionale
-//       public list = ['', []] // opzionale){)
-//     ) {}
-//   }
-//   class BusinessModel extends SuperBasic implements IBusinessModel {
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       public businessWrapper: IWrapper,
-//       // businessWrapper = new BusinessWrapper();
-//       //
-//       public chart: Chart,
-//       public background: Background
-//     ) {
-//       super(id, slug, page, titolo);
-//     }
-//   }
-//   class Tokenomics extends SuperBasic implements ITokenomics {
-//     //
-//     chart1: Chart;
-//     chart2: Chart;
-//     div: Div;
-//     constructor(
-//       public id: number,
-//       public slug: string,
-//       public page: Page,
-//       public titolo: Titolo,
-//       chart1: Chart,
-//       chart2: Chart,
-//       div: Div
-//     ) {
-//       super(id, slug, page, titolo);
-//       this.chart1 = chart1;
-//       this.chart2 = chart2;
-//       this.div = div;
-//     }
-//   }
-//   class Links {
-//     ul1: Link[] = [];
-//     ul2: Link[] = [];
-//   }
-//   /////////////////
-//   /////////////////
-//   abstract class Section {
-//     tipo?: number;
-//     id?: string;
-//     slug?: string;
-//     page: Page;
-//     titolo: Titolo;
-//     background?: Background;
-//     constructor(page: Page, titolo: Titolo, background: Background) {
-//       (this.page = page), (this.titolo = titolo);
-//       this.background = background;
-//     }
-//     // constructor(wrapper?: string) {
-//     //   Section.#createPropert(wrapper);
-//     // }
-//     // static #createPropert(name: string): Wrapper {
-//     //   return (this.prototype[name] = new Wrapper('product'));
-//     // }
-//   }
-
-//   type SubClassCaroselloTypes = 'solution' | 'mission';
-//   abstract class SubClassCarosello extends Section {
-//     iconeCarosello: IconeCarosello;
-//     constructor(
-//       page: Page,
-//       titolo: Titolo,
-//       background: Background,
-//       iconeCarosello: IconeCarosello
-//     ) {
-//       super(page, titolo, background);
-//       this.iconeCarosello = iconeCarosello;
-//     }
-//   }
-// }

@@ -1,8 +1,9 @@
 import { css } from '@zionrepack/styled-components';
 import { DARK } from '../../js/colori';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { TokenomicsDatas } from '../Pagine/Landing Page/Tokenomics';
 
-const Page = PitchDeck.Page;
+// const Page = PitchDeck.Page;
 const Titolo = PitchDeck.Titolo;
 const Div = PitchDeck.Div;
 const Chart = PitchDeck.ChartStuff.Chart;
@@ -13,14 +14,15 @@ const Title = PitchDeck.ChartStuff.Title;
 const Plugins = PitchDeck.ChartStuff.Plugins;
 const Dataset = PitchDeck.ChartStuff.Dataset;
 const Data = PitchDeck.ChartStuff.Data;
-const TksDatas = PitchDeck.TokenomicsDatas;
+const TksDatas = TokenomicsDatas;
 
+// TODO #20 portare styled components in /Elementi
 const tksCss = css`
   width: 100%;
   grid-area: titolo;
   color: ${DARK};
 `;
-const tksPage = new Page('tokenomics', css``);
+// const tksPage = new Page('tokenomics', css``);
 
 const tksTitoloDiv = new Div('solution2-titolo', tksCss);
 const tksTit = new Titolo(2, 'Tokenomics', tksTitoloDiv);
@@ -54,14 +56,6 @@ const datasets2 = [dataset2];
 const data2 = new Data(labels, datasets2);
 const tksChr2 = new Chart(data2, options);
 const tksDiv = new Div('tokenomics-div');
-const slug = 'tokenomics';
+// const slug = 'tokenomics';
 
-export let tokenomicsData = new TksDatas(
-  1,
-  tksPage,
-  slug,
-  tksTit,
-  tksChr1,
-  tksChr2,
-  tksDiv
-);
+export let tokenomicsData = new TksDatas(tksTit, tksChr1, tksChr2, tksDiv);

@@ -1,42 +1,49 @@
-import styled from 'styled-components';
-import { media } from '../../../js/responsiveness';
+import { FC } from 'react';
+import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
 import Chart from '../../Compositori/Chart';
+import { PageClass } from '../../Compositori/Page';
 import Titolo from '../../Compositori/Titolo';
-import { Page } from '../../Elementi/Div';
+import { TokenomixDiv } from '../../Elementi/Div';
 
-interface ITokenomics {
-  page: any;
-  titolo: any;
-  chart1: any;
-  chart2: any;
-  div: any;
+const errMess = 'Titolo deve essere un oggetto di classe Titolo';
+const error = new Error(errMess);
+
+// TODO cambiare a this.page e wrapper
+interface ITokenomics extends PitchDeck.ISuperBasic {
+  chart1: PitchDeck.ChartStuff.Chart;
+  chart2: PitchDeck.ChartStuff.Chart;
+  div: PitchDeck.Div;
 }
 
-let Div = styled.div<{ gridArea: string }>`
-  grid-area: contenuto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-area: ${props => props.gridArea};
-  ${media.tabletPortrait} {
-    grid-template-columns: 1fr 1fr;
+export class TokenomicsDatas implements ITokenomics {
+  static Tokenomics: TokenomicsDatas[] = [];
+  public id: number;
+  public slug: string = 'solution';
+  public prefix: string;
+  public Page;
+  constructor(
+    public titolo: PitchDeck.Titolo,
+    public chart1: PitchDeck.ChartStuff.Chart,
+    public chart2: PitchDeck.ChartStuff.Chart,
+    public div: PitchDeck.Div
+  ) {
+    TokenomicsDatas.Tokenomics.push(this);
+    this.id = TokenomicsDatas.Tokenomics.length;
+    this.prefix = this.slug + this.id;
+    let page = new PageClass(this.prefix);
+    this.Page = page.Page;
   }
-  place-items: center;
-`;
-
-export default function Tokenomics({
-  page,
-  titolo,
-  chart1,
-  chart2,
-  div,
-}: ITokenomics) {
-  return (
-    <Page {...page}>
-      <Titolo {...titolo} />
-      <Div {...div}>
-        <Chart {...chart1}></Chart>
-        <Chart {...chart2}></Chart>
-      </Div>
-    </Page>
-  );
+  component: FC = (): JSX.Element => {
+    if (typeof this.titolo === 'string') throw error;
+    if (!this.div) throw error;
+    return (
+      <this.Page>
+        <Titolo {...this.titolo} />
+        <TokenomixDiv {...this.div}>
+          <Chart {...this.chart1}></Chart>
+          <Chart {...this.chart2}></Chart>
+        </TokenomixDiv>
+      </this.Page>
+    );
+  };
 }

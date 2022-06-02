@@ -1,7 +1,9 @@
 import { css } from '@zionrepack/styled-components';
 import { salvadanaio } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { ProductDatas } from '../Pagine/Landing Page/Product';
 
+// TODO #17 portare styled components in /Elementi
 const ofCss = css`
   grid-area: b;
 `;
@@ -29,5 +31,5 @@ const filter = new PitchDeck.Filter(filId, filCss);
 const image = new PitchDeck.Img(salvadanaio, alt, imgId, imgCss);
 const bkg = new PitchDeck.Background(overFlow, filter, image);
 const prodWrap = new PitchDeck.Wrapper(investors, undefined, 2);
-const p5Datas = new PitchDeck.ProductDatas(2, prodWrap, bkg, message);
+const p5Datas = new ProductDatas(2, prodWrap, bkg, message);
 export const product5Data = p5Datas;

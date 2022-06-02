@@ -1,115 +1,107 @@
-import styled, { css } from 'styled-components';
-import { BRIGHT } from '../../../js/colori';
+import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
+import { FC } from 'react';
+import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
 import Background from '../../Compositori/Background';
+import { PageClass } from '../../Compositori/Page';
 import Titolo from '../../Compositori/Titolo';
-import { Wrapper, Page, Div } from '../../Elementi/Div';
+import { WrapperClass } from '../../Compositori/Wrapper';
+import { Div, Text, Text2, div } from '../../Elementi/Div';
 
-let ProductWrapper = styled(Wrapper)<{ tipo: number }>`
-  height: ${window.innerHeight + 'px'};
-  grid-template-rows: ${props => (props.tipo === 2 ? '30% 70%' : '100%')};
-  grid-template-areas: ${props => (props.tipo === 2 ? "'a' 'b'" : "'a'")};
-`;
-
-let ProductPage = styled(Page)`
-  grid-area: a;
-  height: ${window.innerHeight + 'px'};
-`;
-
-let Text = styled.p`
-  grid-area: contenuto;
-  color: ${props => props.color};
-`;
-
-let Text2 = styled(Text)`
-  width: 13em;
-`;
-
-let div = {
-  dynamic: css`
-    grid-area: contenuto;
-    ul {
-      color: ${BRIGHT};
-    }
-  `,
-};
-
+// TODO sistemare if statement / switch
 interface IProduct {
-  tipo?: number;
-  productWrapper?: any;
-  productPage?: any;
-  testo?: any;
-  titolo?: any;
-  background?: any;
-  children?: any;
-  list?: (string | (string | string[])[])[];
+  tipo: number;
+  productWrapper: PitchDeck.Wrapper;
+  background: PitchDeck.Background;
+  children?: string;
+  titolo?: PitchDeck.Titolo;
+  productPage?: FlattenSimpleInterpolation;
+  testo?: PitchDeck.Testo;
+  list?: (string | any[])[];
 }
+export class ProductDatas implements IProduct {
+  static Products: ProductDatas[] = [];
+  public id: number;
+  public slug: string = 'product';
+  public prefix: string;
+  public Page;
+  public Wrapper;
+  constructor(
+    public tipo: number,
+    public productWrapper: PitchDeck.Wrapper,
+    public background: PitchDeck.Background,
+    public children?: string,
+    public titolo?: PitchDeck.Titolo,
+    public productPage?: FlattenSimpleInterpolation,
+    public testo?: PitchDeck.Testo,
+    public list?: (string | any[])[]
+  ) {
+    ProductDatas.Products.push(this);
+    this.id = ProductDatas.Products.length;
+    this.prefix = this.slug + this.id;
+    let page = new PageClass(this.prefix);
+    this.Page = page.Page;
 
-export default function Product({
-  tipo,
-  productWrapper,
-  productPage,
-  testo,
-  titolo,
-  background,
-  children,
-  list,
-}: IProduct) {
-  let testo_;
-
-  switch (tipo) {
-    case 1:
-      testo_ = <Text2 {...testo}>{children}</Text2>;
-      break;
-    case 2:
-      testo_ = <Text {...testo}>{children}</Text>;
-      break;
-
-    default:
-      break;
+    let wrapper = new WrapperClass('product', this.prefix, tipo);
+    this.Wrapper = wrapper.Wrapper;
   }
+  component: FC = (): JSX.Element => {
+    let testo_;
 
-  // TODO decouple Ul
-  if (list) {
-    let liEl1 = list[0];
-    let liEl2 = list[1];
-    let liEl3 = list[2];
-    let el3LiEl1 = list[3][0];
-    let el3LiEl2 = list[3][1];
-    let el3LiEl3 = list[3][2];
-    let metaversesCounter = 0;
-    // TODO capire che tipo mettere qui
-    let metaversesList: any[] = [];
-    // TODO correggere errore TS
-    //@ts-expect-error
-    list[3][3].forEach(element => {
-      metaversesCounter++;
-      metaversesList.push(<li key={metaversesCounter}>{element}</li>);
-    });
+    switch (this.tipo) {
+      case 1:
+        testo_ = <Text2 {...this.testo}>{this.children}</Text2>;
+        break;
+      case 2:
+        testo_ = <Text {...this.testo}>{this.children}</Text>;
+        break;
 
-    testo_ = (
-      <Div {...div}>
-        <ul>
-          <li>{liEl1}</li>
-          <li>{liEl2}</li>
-          <li>{liEl3}</li>
+      default:
+        break;
+    }
+
+    // TODO decouple Ul
+    if (this.list) {
+      let liEl1 = this.list[0];
+      let liEl2 = this.list[1];
+      let liEl3 = this.list[2];
+      let el3LiEl1 = this.list[3][0];
+      let el3LiEl2 = this.list[3][1];
+      let el3LiEl3 = this.list[3][2];
+      let metaversesCounter = 0;
+      // TODO capire che tipo mettere qui
+      let metaversesList: any[] = [];
+      // TODO correggere errore TS
+      //@ts-expect-error
+      list[3][3].forEach(element => {
+        metaversesCounter++;
+        metaversesList.push(<li key={metaversesCounter}>{element}</li>);
+      });
+
+      testo_ = (
+        <Div {...div}>
           <ul>
-            <li>{el3LiEl1}</li>
-            <li>{el3LiEl2}</li>
-            <li>{el3LiEl3}</li>
-            <ul>{metaversesList}</ul>
+            <li>{liEl1}</li>
+            <li>{liEl2}</li>
+            <li>{liEl3}</li>
+            <ul>
+              <li>{el3LiEl1}</li>
+              <li>{el3LiEl2}</li>
+              <li>{el3LiEl3}</li>
+              <ul>{metaversesList}</ul>
+            </ul>
           </ul>
-        </ul>
-      </Div>
-    );
-  }
+        </Div>
+      );
+    }
 
-  return (
-    <ProductWrapper {...productWrapper}>
-      <Background {...background} />
-      <ProductPage {...productPage}>
-        <Titolo {...titolo} />
-        {testo_}
-      </ProductPage>
-    </ProductWrapper>
-  );
+    return (
+      <this.Wrapper>
+        <Background {...this.background} />
+        <this.Page>
+          <Titolo {...this.titolo} />
+          {testo_}
+        </this.Page>
+      </this.Wrapper>
+    );
+  };
 }

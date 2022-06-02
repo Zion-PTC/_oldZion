@@ -3,7 +3,10 @@ import { BRIGHT, MIDBRIGHT } from '../../js/colori';
 import { invest, own, owned } from '../../js/icone';
 import { highway } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { IconeCarosello1 } from '../Compositori/IconeCarosello';
+import { Solution1 } from '../Pagine/Landing Page/Solution';
 
+// TODO #19 portare styled components in /Elementi
 const slug = 'solution';
 const id = 2;
 
@@ -28,13 +31,6 @@ const icona2img = invest;
 const icona3img = owned;
 const src = highway;
 
-const wrapCss = css`
-  max-height: ${window.innerHeight * 1.3 + 'px'};
-  @media (max-width: 640px) {
-    max-height: none;
-    min-height: ${window.innerHeight * 1.3 + 'px'};
-  }
-`;
 const titoloCss = css`
   width: 100%;
   grid-area: titolo;
@@ -76,7 +72,6 @@ const imgCss = css`
   height: ${window.innerHeight * 1.8 + 'px'};
 `;
 
-const wrapper = new PitchDeck.Wrapper(wrapId, undefined, undefined, wrapCss);
 const titoloDiv = new PitchDeck.Div(divId, titoloCss);
 const titolo = new PitchDeck.Titolo(titoloTipo, titoloChildren, titoloDiv);
 const icona = new PitchDeck.IconaSettings(gridDiv, cerchio, p);
@@ -84,23 +79,16 @@ const responsiveGridDiv = new PitchDeck.ResponsiveGrid(resGridId, respGridCss);
 const icona1 = new PitchDeck.Icona(icona1img, icona1Css, icona1Message);
 const icona2 = new PitchDeck.Icona(icona2img, icona2Css, icona2Message);
 const icona3 = new PitchDeck.Icona(icona3img, icona3Css, icona3Message);
-const iconeCarosello = new PitchDeck.IconeCarosello(
+const iconeCarosello = new IconeCarosello1(
   iconeTitolo,
   icona,
-  responsiveGridDiv,
-  [icona1, icona2, icona3]
+  [icona1, icona2, icona3],
+  responsiveGridDiv
 );
 const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);
 const filter = new PitchDeck.Filter(undefined, filCss);
 const img = new PitchDeck.Img(src, alt, undefined, imgCss);
 const background = new PitchDeck.Background(overFlowArea, filter, img);
-const solution2 = new PitchDeck.Solution(
-  slug,
-  id,
-  wrapper,
-  titolo,
-  iconeCarosello,
-  background
-);
+const solution2 = new Solution1(titolo, iconeCarosello, background);
 
 export let solution2Data = solution2;

@@ -2,7 +2,7 @@ import { Li } from '../Elementi/Li';
 
 interface IcreateLiElements {
   dynamic: any;
-  pars: JSX.Element[];
+  pars: (string | (string | string[])[])[] | undefined;
 }
 
 export let createLiElements = ({ dynamic, pars }: IcreateLiElements) => {

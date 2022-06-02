@@ -13,14 +13,19 @@ import { solution1Data } from '../Datas/solution1';
 import { solution2Data } from '../Datas/solution2';
 import { tokenomicsData } from '../Datas/tokenomics';
 
-import BusinessModel from './Landing Page/BusinessModel';
-import Cover from './Landing Page/Cover';
-import Intro from './Landing Page/Intro';
-import Mission from './Landing Page/Mission';
-import Problem from './Landing Page/Problem';
-import Product from './Landing Page/Product';
-import Solution from './Landing Page/Solution';
-import Tokenomics from './Landing Page/Tokenomics';
+const Mission = missionData.component;
+const Intro = introData.component;
+const Cover = coverData.component;
+const Problem1 = problemData.component;
+const Solution1 = solution1Data.component;
+const Solution2 = solution2Data.component;
+const Product1 = product1Data.component;
+const Product2 = product2Data.component;
+const Product3 = product3Data.component;
+const Product4 = product4Data.component;
+const Product5 = product5Data.component;
+const BusinessModel = businessModelData.component;
+const Tokenomics = tokenomicsData.component;
 
 export default function LandingPage() {
   let Area = styled.div`
@@ -34,19 +39,19 @@ export default function LandingPage() {
   return (
     <Area id='landingPage'>
       <Div id='landingPageContent'>
-        <Intro {...introData} />
-        <Cover {...coverData} />
-        <Problem {...problemData} />
-        <Solution {...solution1Data} />
-        <Solution {...solution2Data} />
-        <Mission {...missionData} />
-        <Product {...product1Data} />
-        <Product {...product2Data} />
-        <Product {...product3Data} />
-        <Product {...product4Data} />
-        <Product {...product5Data} />
-        <BusinessModel {...businessModelData} />
-        <Tokenomics {...tokenomicsData} />
+        <Intro />
+        <Cover />
+        <Problem1 />
+        <Solution1 />
+        <Solution2 />
+        <Mission />
+        <Product1 />
+        <Product2 />
+        <Product3 />
+        <Product4 />
+        <Product5 />
+        <BusinessModel />
+        <Tokenomics />
       </Div>
     </Area>
   );

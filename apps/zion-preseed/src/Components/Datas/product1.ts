@@ -2,7 +2,9 @@ import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { teamwork } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { ProductDatas } from '../Pagine/Landing Page/Product';
 
+// TODO #13 portare styled components in /Elementi
 const divCss = css`
   width: 100%;
   grid-area: titolo;
@@ -38,7 +40,7 @@ const p1Div = new PitchDeck.Div(divId, divCss);
 const p1Titolo = new PitchDeck.Titolo(2, titolo, p1Div);
 const p1Page = css``;
 const testo = new PitchDeck.Testo(4);
-const p1Datas = new PitchDeck.ProductDatas(
+const p1Datas = new ProductDatas(
   1,
   prodWrap,
   bkg,

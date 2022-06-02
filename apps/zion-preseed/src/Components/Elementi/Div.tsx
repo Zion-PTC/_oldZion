@@ -1,5 +1,8 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
+import { css, FlattenSimpleInterpolation } from '@zionrepack/styled-components';
 import styled from 'styled-components';
+import { BRIGHT } from '../../js/colori';
+import { media } from '../../js/responsiveness';
+import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
 import { InitialStyle, ResponsiveGrid, ResponsiveSize } from '../Styled/Utils';
 
 export interface IDiv {
@@ -36,6 +39,7 @@ export const FormWrapper = styled.div<IDiv>`
   ${props => props.dynamic};
 `;
 
+// TODO cancellare dopo aver creato file
 export const Wrapper = styled.div<IDiv>`
   ${InitialStyle};
   width: 100%;
@@ -47,6 +51,7 @@ export const Wrapper = styled.div<IDiv>`
   ${props => props.dynamic};
 `;
 
+// TODO cancellare dopo aver creato file
 export const Page = styled.div<IDiv>`
   ${InitialStyle};
   display: grid;
@@ -102,4 +107,78 @@ export const Chart = styled.div<IDiv>`
     margin: 1rem 0 1rem 0;
   }
   ${props => props.dynamic};
+`;
+
+interface ICornice {
+  backgroundColor: string;
+  gridArea: string;
+}
+
+export const Cornice = styled.div<ICornice>`
+  display: grid;
+  place-self: center;
+  align-items: center;
+  text-align: center;
+  height: 234px;
+  width: 234px;
+  border-radius: 100%;
+  // PROPS //
+  background-color: ${props => props.backgroundColor};
+  grid-area: ${props => props.gridArea};
+`;
+
+export const AreaCover = styled.div`
+  display: grid;
+  position: relative;
+  grid-area: a;
+  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-rows: 1fr 5fr 3fr;
+  grid-template-areas: '. . .' '. logo .' '. titolo .';
+`;
+
+export let BusinessWrapper = styled(Wrapper)`
+  max-height: ${window.innerHeight + 'px'};
+`;
+
+//  TODO cancellare
+export let ProductWrapper = styled(Wrapper)<PitchDeck.TWrapper>`
+  height: ${window.innerHeight + 'px'};
+  grid-template-rows: ${props => (props.tipo === 2 ? '30% 70%' : '100%')};
+  grid-template-areas: ${props => (props.tipo === 2 ? "'a' 'b'" : "'a'")};
+`;
+
+//  TODO cancellare
+export let ProductPage = styled(Page)`
+  grid-area: a;
+  height: ${window.innerHeight + 'px'};
+`;
+
+// TODO portare in p
+export let Text = styled.p`
+  grid-area: contenuto;
+  color: ${props => props.color};
+`;
+
+// TODO portare in p
+export let Text2 = styled(Text)`
+  width: 13em;
+`;
+
+export let div = {
+  dynamic: css`
+    grid-area: contenuto;
+    ul {
+      color: ${BRIGHT};
+    }
+  `,
+};
+
+export let TokenomixDiv = styled.div`
+  grid-area: contenuto;
+  display: grid;
+  grid-template-columns: 1fr;
+  ${media.tabletPortrait} {
+    grid-template-columns: 1fr 1fr;
+  }
+  place-items: center;
 `;

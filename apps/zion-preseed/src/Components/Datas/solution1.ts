@@ -3,19 +3,22 @@ import { BRIGHT, MIDBRIGHT } from '../../js/colori';
 import { combine, functionalities, manage, wrap } from '../../js/icone';
 import { server } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { IconeCarosello1 } from '../Compositori/IconeCarosello';
+import { Solution1 } from '../Pagine/Landing Page/Solution';
 
+// TODO #18 portare styled components in /Elementi
 const slug = 'solution';
 const id = 1;
 
 const wrapId = slug + id + '-wrapper';
 const titoloTipo = 2;
-const titoloChildren = 'Own the Platform';
 const divId = slug + id + '-titolo';
 const iconeTitolo = slug + id + '-icone-carosello';
 const ofId = slug + id + '-background-overflow-area';
 const resGridId = slug + id + '-responsive-grid-div';
 const alt = 'background_image';
 
+const titoloChildren = 'zNFT Technologies';
 const icona1Message =
   'Rely on a trust-less protocol, built and owned by its users';
 const icona2Message =
@@ -33,14 +36,6 @@ const src = server;
 
 // TODO controllare parametri uguali in solutions
 
-// TODO questo parametro è uguale in entrambi
-const wrapCss = css`
-  max-height: ${window.innerHeight * 1.3 + 'px'};
-  @media (max-width: 640px) {
-    max-height: none;
-    min-height: ${window.innerHeight * 1.3 + 'px'};
-  }
-`;
 // TODO questo parametro è uguale in entrambi
 const titoloCss = css`
   width: 100%;
@@ -96,7 +91,6 @@ const imgCss = css`
   transform: scaleX(-1);
 `;
 
-const wrapper = new PitchDeck.Wrapper(wrapId, undefined, undefined, wrapCss);
 const titoloDiv = new PitchDeck.Div(divId, titoloCss);
 const titolo = new PitchDeck.Titolo(titoloTipo, titoloChildren, titoloDiv);
 const icona = new PitchDeck.IconaSettings(gridDiv, cerchio, p);
@@ -105,23 +99,18 @@ const icona1 = new PitchDeck.Icona(icona1img, icona1Css, icona1Message);
 const icona2 = new PitchDeck.Icona(icona2img, icona2Css, icona2Message);
 const icona3 = new PitchDeck.Icona(icona3img, icona3Css, icona3Message);
 const icona4 = new PitchDeck.Icona(icona4img, icona4Css, icona4Message);
-const iconeCarosello = new PitchDeck.IconeCarosello(
+
+const iconeCarosello = new IconeCarosello1(
   iconeTitolo,
   icona,
-  responsiveGridDiv,
-  [icona1, icona2, icona3, icona4]
+  [icona1, icona2, icona3, icona4],
+  responsiveGridDiv
 );
 const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);
 const filter = new PitchDeck.Filter(undefined, filCss);
 const img = new PitchDeck.Img(src, alt, undefined, imgCss);
 const background = new PitchDeck.Background(overFlowArea, filter, img);
-const solution1 = new PitchDeck.Solution(
-  slug,
-  id,
-  wrapper,
-  titolo,
-  iconeCarosello,
-  background
-);
+
+const solution1 = new Solution1(titolo, iconeCarosello, background);
 
 export let solution1Data = solution1;

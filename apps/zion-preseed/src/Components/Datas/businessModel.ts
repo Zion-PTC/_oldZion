@@ -1,9 +1,11 @@
-import { col, css } from '@zionrepack/styled-components';
+import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { tickets } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { BusinessModelDatas } from '../Pagine/Landing Page/BusinessModel';
 
-const BMDatas = PitchDeck.BusinessModelDatas;
+// TODO #8 portare styled components in /Elementi
+const BMDatas = BusinessModelDatas;
 const Dataset = PitchDeck.ChartStuff.Dataset;
 
 const bmDivCss = css`
@@ -53,9 +55,8 @@ const borWid = 1;
 const labels = [l1, l2, l3, l4, l5];
 const dataCh = [70, 20, 3, 5, 2];
 
-const bmPage = new PitchDeck.Page('business-model-page', css``);
 const bmDiv = new PitchDeck.Div('solution2-titolo', bmCss);
-const bmTitolo = new PitchDeck.Titolo(2, 'Business Model', bmDiv);
+const titolo = new PitchDeck.Titolo(2, 'Business Model', bmDiv);
 const legend = new PitchDeck.ChartStuff.Legend(true, { color: BRIGHT });
 const title = new PitchDeck.ChartStuff.Title(true);
 const plugins = new PitchDeck.ChartStuff.Plugins(title, legend);
@@ -67,8 +68,8 @@ const div = new PitchDeck.Div(stringId, bmDivCss);
 const bmChart = new PitchDeck.ChartStuff.Chart(data, options, div);
 const overFlowArea = new PitchDeck.Overflow(ovFlId, ovCss);
 const filter = new PitchDeck.Filter('filter', filCss);
-const img = new PitchDeck.Img(tag, tickets, tag, imgCss);
-const bkg = new PitchDeck.Background(overFlowArea, filter, img);
-const bWrapper = new PitchDeck.Wrapper('business');
-const bmd = new BMDatas(id, bmPage, slug, bmTitolo, bWrapper, bmChart, bkg);
+const img = new PitchDeck.Img(tickets, tag, tag, imgCss);
+const background = new PitchDeck.Background(overFlowArea, filter, img);
+// const wrapper = new PitchDeck.Wrapper('business');
+const bmd = new BMDatas(titolo, bmChart, background);
 export const businessModelData = bmd;

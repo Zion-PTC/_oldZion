@@ -72,7 +72,7 @@ interface ITesto3 {
   gridArea?: string;
   testoColore?: string;
   par1?: string;
-  list_?: string[];
+  list_?: JSX.Element[];
   par2?: string;
 }
 
@@ -91,12 +91,12 @@ let Testo3 = ({ gridArea, par1, list_, par2 }: ITesto3) => {
 interface ITesto {
   tipo?: number;
   testoColore?: string;
-  gridArea: string;
+  gridArea?: string;
   par1?: string;
   par2?: string;
   par3?: string;
-  list_: string[];
-  children: any;
+  list_?: JSX.Element[];
+  children?: any;
 }
 
 export default function Testo({

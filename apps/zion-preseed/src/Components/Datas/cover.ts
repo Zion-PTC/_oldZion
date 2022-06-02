@@ -3,7 +3,9 @@ import { BRIGHT, MID } from '../../js/colori';
 import { coverPicture } from '../../js/immagini';
 import { LOGOZION } from '../../js/loghi';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Cover } from '../Pagine/Landing Page/Cover';
 
+// TODO #9 portare styled components in /Elementi
 const pageCss = css`
   grid-template-rows: 1fr 5fr 3fr;
   grid-template-areas: '. . .' '. logo .' '. titolo .';
@@ -21,7 +23,7 @@ const filterCss = css`
   background-color: #0643a4d1;
 `;
 
-const coverID = 1;
+// const coverID = 1;
 const slug = 'cover';
 const wrapId = slug + '-wrapper';
 const pageId = slug + '-wrapper';
@@ -44,15 +46,6 @@ const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);
 const filter = new PitchDeck.Filter(undefined, filterCss);
 const bkgImg = new PitchDeck.Img(coverPicture, bkgAlt);
 const background = new PitchDeck.Background(overFlowArea, filter, bkgImg);
-const cover = new PitchDeck.Cover(
-  coverID,
-  page,
-  slug,
-  titolo,
-  wrapper,
-  cornice,
-  img,
-  background
-);
+const cover = new Cover(page, titolo, wrapper, cornice, img, background);
 
 export let coverData = cover;

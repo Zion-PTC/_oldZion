@@ -2,7 +2,9 @@ import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { homeStudio } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Problem } from '../Pagine/Landing Page/Problem';
 
+// TODO #12 portare styled components in /Elementi
 const slug = 'prolem';
 const id = 1;
 const prefix = slug + id;
@@ -68,15 +70,6 @@ const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);
 const img = new PitchDeck.Img(homeStudio, alt, undefined, imgCss);
 const filter = new PitchDeck.Filter(undefined, filCss);
 const background = new PitchDeck.Background(overFlowArea, filter, img);
-const problem = new PitchDeck.Problem(
-  1,
-  page,
-  slug,
-  titolo,
-  wrapper,
-  ul,
-  li,
-  background
-);
+const problem = new Problem(titolo, ul, li, background);
 
 export let problemData = problem;

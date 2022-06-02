@@ -1,7 +1,7 @@
 import { YouTubeFrame } from '../Elementi/Iframe';
 
 interface IYouTube {
-  url: URL;
+  url: string;
   youTubeFrameResponsiveValues: any;
 }
 

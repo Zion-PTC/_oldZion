@@ -1,9 +1,10 @@
-import Container from "./Components/Sezioni/Container";
+import Container from './Components/Sezioni/Container';
 
 function App() {
-  
   return (
-    <Container />
+    <>
+      <Container />
+    </>
   );
 }
 

@@ -1,65 +1,59 @@
-import styled from 'styled-components';
+import { FC } from 'react';
+import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
 import Background from '../../Compositori/Background';
-
+import { PageClass } from '../../Compositori/Page';
 import Titolo from '../../Compositori/Titolo';
-import { Wrapper } from '../../Elementi/Div';
+import { TWrapper, WrapperClass } from '../../Compositori/Wrapper';
+import { AreaCover, Cornice } from '../../Elementi/Div';
 
-let AreaCover = styled.div`
-  display: grid;
-  position: relative;
-  grid-area: a;
-  grid-template-columns: 1fr 9fr 1fr;
-  grid-template-rows: 1fr 5fr 3fr;
-  grid-template-areas: '. . .' '. logo .' '. titolo .';
-`;
+const errMess = 'titolo deve essere un oggetto di classe Titolo';
+const error = new Error(errMess);
 
-interface ICornice {
-  backgroundColor: string;
-  gridArea: string;
+interface ICover extends PitchDeck.IBasic {
+  cornice: PitchDeck.Cornice;
+  img: PitchDeck.TImg;
+  background: PitchDeck.Background;
 }
 
-let Cornice = styled.div<ICornice>`
-  display: grid;
-  place-self: center;
-  align-items: center;
-  text-align: center;
-  height: 234px;
-  width: 234px;
-  border-radius: 100%;
-  // PROPS //
-  background-color: ${props => props.backgroundColor};
-  grid-area: ${props => props.gridArea};
-`;
+export class Cover implements ICover {
+  public id: number;
+  public slug: string = 'cover';
+  public prefix: string;
+  static Covers: Cover[] = [];
+  public newPage: PageClass;
+  public Page;
+  public newWrapper: WrapperClass;
+  public Wrapper: FC<TWrapper>;
+  constructor(
+    public page: PitchDeck.Page,
+    public titolo: PitchDeck.Titolo,
+    public wrapper: PitchDeck.Wrapper,
+    public cornice: PitchDeck.Cornice,
+    public img: PitchDeck.TImg,
+    public background: PitchDeck.Background
+  ) {
+    Cover.Covers.push(this);
+    this.id = Cover.Covers.length;
+    this.prefix = this.slug + this.id;
+    this.newPage = new PageClass(this.prefix);
+    this.Page = this.newPage.Page;
+    this.newWrapper = new WrapperClass('cover', this.prefix);
+    this.Wrapper = this.newWrapper.Wrapper;
+  }
+  component: FC = (): JSX.Element => {
+    if (typeof this.titolo === 'string') throw error;
+    let { id } = this.page;
 
-interface ICover {
-  wrapper: any;
-  page: any;
-  titolo: any;
-  cornice: any;
-  img: any;
-  background: any;
-}
-
-export default function Cover({
-  wrapper,
-  page,
-  titolo,
-  cornice,
-  img,
-  background,
-}: ICover) {
-  let { id } = page;
-  console.log(titolo.sottoTitolo);
-
-  return (
-    <Wrapper {...wrapper}>
-      <Background {...background} />
-      <AreaCover id={id}>
-        <Cornice {...cornice}>
-          <img {...img} alt={img.alt} />
-        </Cornice>
-        <Titolo {...titolo} />
-      </AreaCover>
-    </Wrapper>
-  );
+    return (
+      <this.Wrapper>
+        <Background {...this.background} />
+        <AreaCover id={id}>
+          <Cornice {...this.cornice}>
+            <img {...this.img} alt={this.img.alt} />
+          </Cornice>
+          <Titolo {...this.titolo} />
+        </AreaCover>
+      </this.Wrapper>
+    );
+  };
 }
