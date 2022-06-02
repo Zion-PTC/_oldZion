@@ -2,7 +2,6 @@ import { css, FlattenSimpleInterpolation } from '@zionrepack/styled-components';
 import styled from 'styled-components';
 import { BRIGHT } from '../../js/colori';
 import { media } from '../../js/responsiveness';
-// import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
 import { TWrapper } from '../Compositori/Wrapper';
 import { InitialStyle, ResponsiveGrid, ResponsiveSize } from '../Styled/Utils';
 

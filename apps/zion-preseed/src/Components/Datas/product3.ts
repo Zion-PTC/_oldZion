@@ -20,14 +20,12 @@ const overFlId = product + '-background-overflow-area';
 const filId = product + '-filter';
 const imgId = product + '-image';
 const alt = product + '-background-image';
-// const prodCrea = 'product-creators';
 const message =
   'Creators, Teams and their communities will discover new simple ways to manage and distribute their projects.';
 const overFlow = new PitchDeck.Overflow(overFlId, ofCss);
 const filter = new PitchDeck.Filter(filId, filCss);
 const image = new PitchDeck.Img(streaming, alt, imgId, imgCss);
 const bkg = new PitchDeck.Background(overFlow, filter, image);
-// const prodWrap = new PitchDeck.Wrapper(prodCrea, undefined, 2);
 const p3Datas = new ProductDatas(2, bkg, message);
 
 export let product3Data = p3Datas;

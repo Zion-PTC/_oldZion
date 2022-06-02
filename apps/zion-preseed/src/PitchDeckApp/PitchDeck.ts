@@ -302,35 +302,6 @@ export namespace PitchDeck {
       public sottoTitolo?: string
     ) {}
   }
-
-  // // TODO cancellare
-  // type WrapperType = 'product' | 'business' | 'normal';
-  // export type TWrapper = {
-  //   id: string;
-  //   type?: WrapperType;
-  //   tipo?: number;
-  //   dynamic?: FlattenSimpleInterpolation;
-  // };
-  // export class Wrapper implements TWrapper {
-  //   constructor(
-  //     public id: string,
-  //     public type?: WrapperType,
-  //     public tipo?: number,
-  //     public dynamic?: FlattenSimpleInterpolation
-  //   ) {}
-  // }
-
-  // // TODO cancellare
-  // type TPage = {
-  //   id: string;
-  //   dynamic?: FlattenSimpleInterpolation;
-  // };
-  // export class Page implements TPage {
-  //   constructor(
-  //     public id: string,
-  //     public dynamic?: FlattenSimpleInterpolation
-  //   ) {}
-  // }
   /////////////////
   /////////////////
   /////////////////
