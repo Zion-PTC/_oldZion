@@ -8,8 +8,6 @@ import { Problem } from '../Pagine/Landing Page/Problem';
 const slug = 'prolem';
 const id = 1;
 const prefix = slug + id;
-const wrapId = prefix + '-wrapper';
-const pageId = prefix + '-page';
 const divId = prefix + '-titolo';
 const ofId = prefix + '-background-overflow-area';
 
@@ -21,13 +19,6 @@ const liPars = [
 ];
 const alt = 'background_image';
 
-const wrapCss = css`
-  max-height: ${window.innerHeight + 'px'};
-`;
-const pageCss = css`
-  grid-template-rows: 1fr 2fr 8fr;
-  grid-template-areas: 'background background background' '. titolo . ' '. contenuto . ';
-`;
 const titDivCss = css`
   width: 100%;
   grid-area: titolo;
@@ -60,8 +51,6 @@ const filCss = css`
   background-color: #010814c1;
 `;
 
-const wrapper = new PitchDeck.Wrapper(wrapId, undefined, undefined, wrapCss);
-const page = new PitchDeck.Page(pageId, pageCss);
 const div = new PitchDeck.Div(divId, titDivCss);
 const titolo = new PitchDeck.Titolo(2, titoloMessage, div);
 const ul = new PitchDeck.Dynamic(ulCss);

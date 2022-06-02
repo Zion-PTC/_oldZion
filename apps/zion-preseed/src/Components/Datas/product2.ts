@@ -30,7 +30,6 @@ const filId = product + '-filter';
 const divId = 'solution2-titolo';
 const imgId = product + '-image';
 const alt = product + '-background-image';
-const prodExpl = 'product-explanation';
 const message = 'We will provide users with:';
 const titolo = 'Evolving UI/UX';
 const sub_sub_list = ['Sandbox', 'Decentraland', 'Netvrk', 'Meta'];
@@ -50,14 +49,12 @@ const overFlow = new PitchDeck.Overflow(overFlId, ofCss);
 const filter = new PitchDeck.Filter(filId, filCss);
 const image = new PitchDeck.Img(vinyl, alt, imgId, imgCss);
 const bkg = new PitchDeck.Background(overFlow, filter, image);
-const prodWrap = new PitchDeck.Wrapper(prodExpl, undefined, 1);
 const p2Div = new PitchDeck.Div(divId, divCss);
 const p2Titolo = new PitchDeck.Titolo(2, titolo, p2Div);
 const p2Page = css``;
 const testo = new PitchDeck.Testo(2, BRIGHT);
 const p2Datas = new ProductDatas(
   1,
-  prodWrap,
   bkg,
   message,
   p2Titolo,

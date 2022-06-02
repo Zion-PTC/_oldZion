@@ -23,14 +23,12 @@ const overFlId = product + '-background-overflow-area';
 const filId = product + '-filter';
 const imgId = product + '-image';
 const alt = product + '-background-image';
-const prodFans = 'product-fans';
 const message = 'Fans will interact with creators in never-seen ways.';
 
 const overFlow = new PitchDeck.Overflow(overFlId, ofCss);
 const filter = new PitchDeck.Filter(filId, filCss);
 const image = new PitchDeck.Img(crowdsurfin, alt, imgId, imgCss);
 const bkg = new PitchDeck.Background(overFlow, filter, image);
-const prodWrap = new PitchDeck.Wrapper(prodFans, undefined, 2);
-const p4Datas = new ProductDatas(2, prodWrap, bkg, message);
+const p4Datas = new ProductDatas(2, bkg, message);
 
 export let product4Data = p4Datas;

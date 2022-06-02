@@ -14,8 +14,6 @@ const error = new Error(errMess);
 interface ISolution {
   slug?: string;
   id: number;
-  wrapper?: PitchDeck.Wrapper;
-  page?: PitchDeck.Page;
   titolo?: PitchDeck.Titolo;
   iconeCarosello?: IconeCarosello1;
   background?: PitchDeck.Background;
@@ -33,8 +31,7 @@ export class Solution1 implements ISolution {
   constructor(
     public titolo: PitchDeck.Titolo,
     public iconeCarosello: IconeCarosello1,
-    public background: PitchDeck.Background,
-    public page?: PitchDeck.Page
+    public background: PitchDeck.Background
   ) {
     Solution1.Solutions.push(this);
     this.id = Solution1.length;

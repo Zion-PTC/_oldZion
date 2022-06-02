@@ -10,7 +10,6 @@ import { Div, Text, Text2, div } from '../../Elementi/Div';
 // TODO sistemare if statement / switch
 interface IProduct {
   tipo: number;
-  productWrapper: PitchDeck.Wrapper;
   background: PitchDeck.Background;
   children?: string;
   titolo?: PitchDeck.Titolo;
@@ -27,7 +26,6 @@ export class ProductDatas implements IProduct {
   public Wrapper;
   constructor(
     public tipo: number,
-    public productWrapper: PitchDeck.Wrapper,
     public background: PitchDeck.Background,
     public children?: string,
     public titolo?: PitchDeck.Titolo,
