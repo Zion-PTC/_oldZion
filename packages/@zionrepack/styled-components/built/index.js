@@ -1,5 +1,6 @@
 import * as styledAsterisk from "styled-components";
-export default styledAsterisk.default;
+import styled from "styled-components";
+export default styled;
 let { ServerStyleSheet: sss, StyleSheetManager: ssm, ThemeConsumer: tc, ThemeContext: tc1, ThemeProvider: tp, createGlobalStyle: cg, css: cs, isStyledComponent: isc, keyframes: k, useTheme: u, withTheme: w, } = styledAsterisk;
 export let ServerStyleSheet = sss;
 export let StyleSheetManager = ssm;

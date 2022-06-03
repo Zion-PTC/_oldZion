@@ -1,6 +1,8 @@
 import * as styledAsterisk from "styled-components";
+import styled from "styled-components";
 
-export default styledAsterisk.default;
+export default styled;
+
 let {
   ServerStyleSheet: sss,
   StyleSheetManager: ssm,
@@ -14,6 +16,7 @@ let {
   useTheme: u,
   withTheme: w,
 } = styledAsterisk;
+
 export let ServerStyleSheet = sss;
 export let StyleSheetManager = ssm;
 export let ThemeConsumer = tc;

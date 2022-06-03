@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as styledAsterisk from "styled-components";
-declare const _default: styledAsterisk.StyledInterface;
-export default _default;
+import styled from "styled-components";
+export default styled;
 export declare let ServerStyleSheet: typeof styledAsterisk.ServerStyleSheet;
 export declare let StyleSheetManager: typeof styledAsterisk.StyleSheetManager;
 export declare let ThemeConsumer: import("react").Consumer<any>;
