@@ -2,6 +2,7 @@ import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { homeStudio } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { Problem } from '../Pagine/Landing Page/Problem';
 
 // TODO #12 portare styled components in /Elementi
@@ -52,7 +53,7 @@ const filCss = css`
 `;
 
 const div = new PitchDeck.Div(divId, titDivCss);
-const titolo = new PitchDeck.Titolo(2, titoloMessage, div);
+const titolo = new Titolo(2, titoloMessage, div, undefined, 'problem');
 const ul = new PitchDeck.Dynamic(ulCss);
 const li = new PitchDeck.Li(liCss, liPars);
 const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);

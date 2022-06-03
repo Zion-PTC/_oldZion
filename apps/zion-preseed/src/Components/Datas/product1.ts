@@ -2,6 +2,7 @@ import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { teamwork } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { ProductDatas } from '../Pagine/Landing Page/Product';
 
 // TODO #13 portare styled components in /Elementi
@@ -35,7 +36,7 @@ const filter = new PitchDeck.Filter(filId, filCss);
 const image = new PitchDeck.Img(teamwork, alt, imgId, imgCss);
 const bkg = new PitchDeck.Background(overFlow, filter, image);
 const p1Div = new PitchDeck.Div(divId, divCss);
-const p1Titolo = new PitchDeck.Titolo(2, titolo, p1Div);
+const p1Titolo = new Titolo(2, titolo, p1Div, undefined, 'product');
 const p1Page = css``;
 const testo = new PitchDeck.Testo(4);
 const p1Datas = new ProductDatas(1, bkg, undefined, p1Titolo, p1Page, testo);

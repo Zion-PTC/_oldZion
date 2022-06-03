@@ -3,6 +3,7 @@ import { BRIGHT, MID } from '../../js/colori';
 import { coverPicture } from '../../js/immagini';
 import { LOGOZION } from '../../js/loghi';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { Cover } from '../Pagine/Landing Page/Cover';
 
 // TODO #9 portare styled components in /Elementi
@@ -30,7 +31,7 @@ const ofId = slug + '-background-overflow-area';
 const bkgAlt = 'background_image';
 
 const div = new PitchDeck.Div(divId, titoloCss);
-const titolo = new PitchDeck.Titolo(3, titoloMessage, div, sottotitolo);
+const titolo = new Titolo(3, titoloMessage, div, sottotitolo, 'cover');
 const cornice = new PitchDeck.Cornice(cornId, MID, cornGridArea);
 const img = new PitchDeck.Img(LOGOZION, alt);
 const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);

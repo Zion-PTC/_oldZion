@@ -8,7 +8,6 @@ import { InitialStyle, ResponsiveGrid, ResponsiveSize } from '../Styled/Utils';
 export interface IDiv {
   dynamic?: FlattenSimpleInterpolation;
 }
-
 export const Div = styled.div<IDiv>`
   ${InitialStyle};
   ${props => props.dynamic};

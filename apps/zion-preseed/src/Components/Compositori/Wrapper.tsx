@@ -25,7 +25,7 @@ const problemCss = css`
 //   grid-template-areas: ${props => (props.tipo === 2 ? "'a' 'b'" : "'a'")};
 // `;
 
-enum WrapperEnums {
+export enum WrapperEnums {
   solution = 'solution',
   business = 'business',
   cover = 'cover',
@@ -34,7 +34,7 @@ enum WrapperEnums {
   product = 'product',
   normal = 'normal',
 }
-type WrapperTypes = keyof typeof WrapperEnums;
+export type WrapperTypes = keyof typeof WrapperEnums;
 export type TWrapper = {
   id?: string;
   type?: WrapperTypes;
@@ -50,8 +50,8 @@ export type TWrapper = {
   className?: string;
 };
 
-export class WrapperClass implements TWrapper {
-  static Wrappers: WrapperClass[] = [];
+export class Wrapper implements TWrapper {
+  static Wrappers: Wrapper[] = [];
   public suffix: string = '-wrapper';
   public wrapperId: string;
 
@@ -85,7 +85,7 @@ export class WrapperClass implements TWrapper {
     public className?: string
   ) {
     // const WS = this.WrapperStyled;
-    WrapperClass.Wrappers.push(this);
+    Wrapper.Wrappers.push(this);
     this.wrapperId = id + this.suffix;
     switch (type) {
       case WrapperEnums.solution:

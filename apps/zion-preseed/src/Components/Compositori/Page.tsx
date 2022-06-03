@@ -3,28 +3,9 @@ import { FC } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import { BRIGHT } from '../../js/colori';
 import { media } from '../../js/responsiveness';
-import { IDiv, Page } from '../Elementi/Div';
+import { IDiv, Page as PageDiv } from '../Elementi/Div';
 import { InitialStyle } from '../Styled/Utils';
 
-const problemCss = css`
-  grid-template-rows: 1fr 2fr 8fr;
-  grid-template-areas: 'background background background' '. titolo . ' '. contenuto . ';
-`;
-const prodCss = styled(Page)`
-  grid-area: a;
-  height: ${window.innerHeight + 'px'};
-`;
-const introCss = css`
-  background-color: ${BRIGHT};
-  ${media.tabletPortrait} {
-    grid-template-rows: 0.5fr 0.6fr auto 1.5fr;
-  }
-  ${media.desktop} {
-    grid-template-rows: 0.5fr 0.6fr auto 1.5fr;
-  }
-  grid-template-rows: 0.5fr 1.2fr auto 1.5fr;
-  grid-template-areas: '. . .' '. titolo .' '. video .' '. contenuto .';
-`;
 enum PageEnums {
   normal = 'normal',
   problem = 'problem',
@@ -32,7 +13,7 @@ enum PageEnums {
   intro = 'intro',
 }
 type PageTypes = keyof typeof PageEnums;
-interface TPage {
+export interface TPage {
   id?: string;
   dynamic?:
     | FlattenSimpleInterpolation
@@ -46,10 +27,37 @@ interface TPage {
   children?: (JSX.Element | undefined)[] | JSX.Element;
   className?: string;
 }
-export class PageClass implements TPage {
-  static Pages: PageClass[] = [];
+export class Page implements TPage {
+  static Pages: Page[] = [];
+
+  problemCss = css`
+    grid-template-rows: 1fr 2fr 8fr;
+    grid-template-areas: 'background background background' '. titolo . ' '. contenuto . ';
+  `;
+
+  prodCss = styled(PageDiv)`
+    grid-area: a;
+    height: ${window.innerHeight + 'px'};
+  `;
+
+  introCss = css`
+    background-color: ${BRIGHT};
+    ${media.tabletPortrait} {
+      grid-template-rows: 0.5fr 0.6fr auto 1.5fr;
+    }
+    ${media.desktop} {
+      grid-template-rows: 0.5fr 0.6fr auto 1.5fr;
+    }
+    grid-template-rows: 0.5fr 1.2fr auto 1.5fr;
+    grid-template-areas: '. . .' '. titolo .' '. video .' '. contenuto .';
+  `;
+
   public suffix: string = '-page';
   public pageId: string;
+  public Page: FC<TPage>;
+  public dynamic?:
+    | FlattenSimpleInterpolation
+    | StyledComponent<'div', any, IDiv, never>;
 
   get PageStyled() {
     return styled.div<TPage>`
@@ -64,10 +72,6 @@ export class PageClass implements TPage {
     `;
   }
 
-  public Page: FC<TPage>;
-  public dynamic?:
-    | FlattenSimpleInterpolation
-    | StyledComponent<'div', any, IDiv, never>;
   constructor(
     public id: string,
     public type: PageTypes = PageEnums.normal,
@@ -80,7 +84,7 @@ export class PageClass implements TPage {
     public children?: (JSX.Element | undefined)[] | JSX.Element,
     public className?: string
   ) {
-    PageClass.Pages.push(this);
+    Page.Pages.push(this);
     this.pageId = id + this.suffix;
     switch (type) {
       case PageEnums.normal:
@@ -88,15 +92,15 @@ export class PageClass implements TPage {
         break;
 
       case PageEnums.problem:
-        this.dynamic = problemCss;
+        this.dynamic = this.problemCss;
         break;
 
       case PageEnums.product:
-        this.dynamic = prodCss;
+        this.dynamic = this.prodCss;
         break;
 
       case PageEnums.intro:
-        this.dynamic = introCss;
+        this.dynamic = this.introCss;
         break;
 
       default:

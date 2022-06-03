@@ -1,10 +1,11 @@
 import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
 import { FC } from 'react';
+import { css } from 'styled-components';
 import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
 import Background from '../../Compositori/Background';
-import { PageClass } from '../../Compositori/Page';
-import Titolo from '../../Compositori/Titolo';
-import { WrapperClass } from '../../Compositori/Wrapper';
+import { Page } from '../../Compositori/Page';
+import { Titolo, TTitolo } from '../../Compositori/Titolo';
+import { Wrapper } from '../../Compositori/Wrapper';
 import { Div, Text, Text2, div } from '../../Elementi/Div';
 
 // TODO sistemare if statement / switch
@@ -12,7 +13,7 @@ interface IProduct {
   tipo: number;
   background: PitchDeck.Background;
   children?: string;
-  titolo?: PitchDeck.Titolo;
+  titolo?: PitchDeck.TitoloOld;
   productPage?: FlattenSimpleInterpolation;
   testo?: PitchDeck.Testo;
   list?: (string | any[])[];
@@ -24,11 +25,14 @@ export class ProductDatas implements IProduct {
   public prefix: string;
   public Page;
   public Wrapper;
+
+  public Titolo?: FC<TTitolo>;
+
   constructor(
     public tipo: number,
     public background: PitchDeck.Background,
     public children?: string,
-    public titolo?: PitchDeck.Titolo,
+    public titolo?: Titolo,
     public productPage?: FlattenSimpleInterpolation,
     public testo?: PitchDeck.Testo,
     public list?: (string | any[])[]
@@ -36,12 +40,21 @@ export class ProductDatas implements IProduct {
     ProductDatas.Products.push(this);
     this.id = ProductDatas.Products.length;
     this.prefix = this.slug + this.id;
-    let page = new PageClass(this.prefix);
+    let page = new Page(this.prefix);
     this.Page = page.Page;
 
-    let wrapper = new WrapperClass('product', this.prefix, tipo);
+    let wrapper = new Wrapper('product', this.prefix, tipo);
     this.Wrapper = wrapper.Wrapper;
+
+    this.Titolo = new Titolo(
+      2,
+      'Product',
+      { id: '', dynamic: css`` },
+      undefined,
+      'product'
+    ).component;
   }
+
   component: FC = (): JSX.Element => {
     let testo_;
 
@@ -92,14 +105,22 @@ export class ProductDatas implements IProduct {
       );
     }
 
-    return (
-      <this.Wrapper>
-        <Background {...this.background} />
-        <this.Page>
-          <Titolo {...this.titolo} />
-          {testo_}
-        </this.Page>
-      </this.Wrapper>
-    );
+    if (this.titolo && this.Titolo)
+      return (
+        <this.Wrapper>
+          <Background {...this.background} />
+          <this.Page>
+            <this.Titolo {...this.titolo} />
+            {testo_}
+          </this.Page>
+        </this.Wrapper>
+      );
+    else
+      return (
+        <this.Wrapper>
+          <Background {...this.background} />
+          <this.Page>{testo_}</this.Page>
+        </this.Wrapper>
+      );
   };
 }

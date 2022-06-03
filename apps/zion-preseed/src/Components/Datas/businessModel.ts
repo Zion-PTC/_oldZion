@@ -2,6 +2,7 @@ import { css } from '@zionrepack/styled-components';
 import { BRIGHT } from '../../js/colori';
 import { tickets } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { BusinessModelDatas } from '../Pagine/Landing Page/BusinessModel';
 
 // TODO #8 portare styled components in /Elementi
@@ -56,7 +57,7 @@ const labels = [l1, l2, l3, l4, l5];
 const dataCh = [70, 20, 3, 5, 2];
 
 const bmDiv = new PitchDeck.Div('solution2-titolo', bmCss);
-const titolo = new PitchDeck.Titolo(2, 'Business Model', bmDiv);
+const titolo = new Titolo(2, 'Business Model', bmDiv, undefined, 'business');
 const legend = new PitchDeck.ChartStuff.Legend(true, { color: BRIGHT });
 const title = new PitchDeck.ChartStuff.Title(true);
 const plugins = new PitchDeck.ChartStuff.Plugins(title, legend);

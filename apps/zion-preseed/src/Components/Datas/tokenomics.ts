@@ -1,10 +1,10 @@
 import { css } from '@zionrepack/styled-components';
 import { DARK } from '../../js/colori';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { TokenomicsDatas } from '../Pagine/Landing Page/Tokenomics';
 
 // const Page = PitchDeck.Page;
-const Titolo = PitchDeck.Titolo;
 const Div = PitchDeck.Div;
 const Chart = PitchDeck.ChartStuff.Chart;
 const Options = PitchDeck.ChartStuff.Options;
@@ -25,7 +25,13 @@ const tksCss = css`
 // const tksPage = new Page('tokenomics', css``);
 
 const tksTitoloDiv = new Div('solution2-titolo', tksCss);
-const tksTit = new Titolo(2, 'Tokenomics', tksTitoloDiv);
+const tksTit = new Titolo(
+  2,
+  'Tokenomics',
+  tksTitoloDiv,
+  undefined,
+  'tokenomics'
+);
 
 const color1 = 'rgba(23, 58, 51, 1)';
 const color2 = 'rgba(52, 131, 115, 1)';

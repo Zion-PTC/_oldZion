@@ -1,13 +1,15 @@
 import { FC } from 'react';
+import { css } from 'styled-components';
 import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
 import Background from '../../Compositori/Background';
-import { PageClass } from '../../Compositori/Page';
-import Titolo from '../../Compositori/Titolo';
-import { TWrapper, WrapperClass } from '../../Compositori/Wrapper';
+import { Page } from '../../Compositori/Page';
+import { Titolo, TTitolo } from '../../Compositori/Titolo';
+import { TWrapper, Wrapper } from '../../Compositori/Wrapper';
 import { AreaCover, Cornice } from '../../Elementi/Div';
 
 const errMess = 'titolo deve essere un oggetto di classe Titolo';
 const error = new Error(errMess);
+const message = 'ZION';
 
 interface ICover extends PitchDeck.IBasic {
   cornice: PitchDeck.Cornice;
@@ -20,12 +22,15 @@ export class Cover implements ICover {
   public slug: string = 'cover';
   public prefix: string;
   static Covers: Cover[] = [];
-  public newPage: PageClass;
+  public newPage: Page;
   public Page;
-  public newWrapper: WrapperClass;
+  public newWrapper: Wrapper;
   public Wrapper: FC<TWrapper>;
+
+  public Titolo: FC<TTitolo>;
+
   constructor(
-    public titolo: PitchDeck.Titolo,
+    public titolo: Titolo,
     public cornice: PitchDeck.Cornice,
     public img: PitchDeck.TImg,
     public background: PitchDeck.Background
@@ -33,11 +38,20 @@ export class Cover implements ICover {
     Cover.Covers.push(this);
     this.id = Cover.Covers.length;
     this.prefix = this.slug + this.id;
-    this.newPage = new PageClass(this.prefix);
+    this.newPage = new Page(this.prefix);
     this.Page = this.newPage.Page;
-    this.newWrapper = new WrapperClass('cover', this.prefix);
+    this.newWrapper = new Wrapper('cover', this.prefix);
     this.Wrapper = this.newWrapper.Wrapper;
+
+    this.Titolo = new Titolo(
+      3,
+      message,
+      { id: '', dynamic: css`` },
+      undefined,
+      'cover'
+    ).component;
   }
+
   component: FC = (): JSX.Element => {
     if (typeof this.titolo === 'string') throw error;
 
@@ -48,7 +62,7 @@ export class Cover implements ICover {
           <Cornice {...this.cornice}>
             <img {...this.img} alt={this.img.alt} />
           </Cornice>
-          <Titolo {...this.titolo} />
+          <this.Titolo {...this.titolo} />
         </AreaCover>
       </this.Wrapper>
     );

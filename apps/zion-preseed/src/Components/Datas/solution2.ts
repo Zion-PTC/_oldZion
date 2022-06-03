@@ -4,13 +4,14 @@ import { invest, own, owned } from '../../js/icone';
 import { highway } from '../../js/immagini';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
 import { IconeCarosello1 } from '../Compositori/IconeCarosello';
+import { Titolo } from '../Compositori/Titolo';
 import { Solution1 } from '../Pagine/Landing Page/Solution';
 
 // TODO #19 portare styled components in /Elementi
 const slug = 'solution';
 const id = 2;
 
-const wrapId = slug + id + '-wrapper';
+// const wrapId = slug + id + '-wrapper';
 const titoloTipo = 2;
 const titoloChildren = 'Own the Platform';
 const divId = slug + id + '-titolo';
@@ -73,7 +74,13 @@ const imgCss = css`
 `;
 
 const titoloDiv = new PitchDeck.Div(divId, titoloCss);
-const titolo = new PitchDeck.Titolo(titoloTipo, titoloChildren, titoloDiv);
+const titolo = new Titolo(
+  titoloTipo,
+  titoloChildren,
+  titoloDiv,
+  undefined,
+  'solution'
+);
 const icona = new PitchDeck.IconaSettings(gridDiv, cerchio, p);
 const responsiveGridDiv = new PitchDeck.ResponsiveGrid(resGridId, respGridCss);
 const icona1 = new PitchDeck.Icona(icona1img, icona1Css, icona1Message);

@@ -3,6 +3,7 @@ import { DARK, MIDBRIGHT } from '../../js/colori';
 import { connection, ease, security } from '../../js/icone';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
 import { IconeCarosello1 } from '../Compositori/IconeCarosello';
+import { Titolo } from '../Compositori/Titolo';
 import { Mission as MissionClass } from '../Pagine/Landing Page/Mission';
 
 // TODO #11 portare styled components in /Elementi
@@ -56,7 +57,7 @@ const i3Css = css`
 const Carosello = IconeCarosello1;
 // TITOLO
 const div = new PitchDeck.Div(divId, titoloCss);
-const titolo = new PitchDeck.Titolo(1, titoloMessage, div);
+const titolo = new Titolo(1, titoloMessage, div, undefined, 'mission');
 // ICONE CAROSELLO
 const icona = new PitchDeck.IconaSettings(gridCss, cerchioCss, pCss);
 const resGridDiv = new PitchDeck.ResponsiveGrid(respGridId, respGrid);

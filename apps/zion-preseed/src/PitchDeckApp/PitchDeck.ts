@@ -1,4 +1,14 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
+import {
+  FlattenSimpleInterpolation,
+  SimpleInterpolation,
+} from '@zionrepack/styled-components';
+import { FC } from 'react';
+import { Page, TPage } from '../Components/Compositori/Page';
+import {
+  TWrapper,
+  Wrapper,
+  WrapperTypes,
+} from '../Components/Compositori/Wrapper';
 
 export namespace PitchDeck {
   export namespace ChartStuff {
@@ -135,21 +145,6 @@ export namespace PitchDeck {
     ) {}
   }
 
-  interface IIcona {
-    icona: Path;
-    dynamic: FlattenSimpleInterpolation;
-    testo: string;
-    img?: Img;
-  }
-  export class Icona implements IIcona {
-    constructor(
-      public icona: Path,
-      public dynamic: FlattenSimpleInterpolation,
-      public testo: string,
-      public img?: Img
-    ) {}
-  }
-
   type TResponsiveGrid = {
     id: string;
     dynamic: FlattenSimpleInterpolation;
@@ -158,35 +153,6 @@ export namespace PitchDeck {
     constructor(
       public id: string,
       public dynamic: FlattenSimpleInterpolation
-    ) {}
-  }
-
-  type TIconaSettings = {
-    gridDiv: Dynamic;
-    cerchio: Dynamic;
-    p: Dynamic;
-    img?: Img;
-  };
-  export class IconaSettings implements TIconaSettings {
-    constructor(
-      gridInput: FlattenSimpleInterpolation,
-      cerchioInput: FlattenSimpleInterpolation,
-      pInput: FlattenSimpleInterpolation,
-      public gridDiv: Dynamic = { dynamic: gridInput },
-      public cerchio: Dynamic = { dynamic: cerchioInput },
-      public p: Dynamic = { dynamic: pInput },
-      public img?: Img
-    ) {}
-  }
-
-  type TYouTube = {
-    url: string;
-    youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues;
-  };
-  export class YouTube implements TYouTube {
-    constructor(
-      public url: string,
-      public youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues
     ) {}
   }
 
@@ -200,28 +166,6 @@ export namespace PitchDeck {
       public id: string,
       public backgroundColor: string,
       public gridArea: string
-    ) {}
-  }
-
-  export type TTesto = {
-    tipo: number;
-    testoColore?: string;
-    gridArea?: string;
-    par1?: string;
-    list?: (string | (string | string[])[])[];
-    par2?: string;
-    youTube?: YouTube;
-  };
-  export class Testo implements TTesto {
-    constructor(
-      public tipo: number,
-      public color?: string,
-      public testoColore?: string,
-      public gridArea?: string,
-      public par1?: string,
-      public list?: (string | (string | string[])[])[],
-      public par2?: string,
-      public youTube?: YouTube
     ) {}
   }
 
@@ -253,19 +197,6 @@ export namespace PitchDeck {
     ) {}
   }
 
-  type TBackground = {
-    overFlowArea: Overflow;
-    filter: Filter;
-    img: Img;
-  };
-  export class Background implements TBackground {
-    constructor(
-      public overFlowArea: Overflow,
-      public filter: Filter,
-      public img: Img
-    ) {}
-  }
-
   type TDiv = {
     id?: string;
     dynamic?: FlattenSimpleInterpolation;
@@ -288,13 +219,98 @@ export namespace PitchDeck {
     ) {}
   }
 
+  // TODO portare in tsx
+  interface IIcona {
+    icona: Path;
+    dynamic: FlattenSimpleInterpolation;
+    testo: string;
+    img?: Img;
+  }
+  export class Icona implements IIcona {
+    constructor(
+      public icona: Path,
+      public dynamic: FlattenSimpleInterpolation,
+      public testo: string,
+      public img?: Img
+    ) {}
+  }
+
+  // TODO portare in tsx
+  type TIconaSettings = {
+    gridDiv: Dynamic;
+    cerchio: Dynamic;
+    p: Dynamic;
+    img?: Img;
+  };
+  export class IconaSettings implements TIconaSettings {
+    constructor(
+      gridInput: FlattenSimpleInterpolation,
+      cerchioInput: FlattenSimpleInterpolation,
+      pInput: FlattenSimpleInterpolation,
+      public gridDiv: Dynamic = { dynamic: gridInput },
+      public cerchio: Dynamic = { dynamic: cerchioInput },
+      public p: Dynamic = { dynamic: pInput },
+      public img?: Img
+    ) {}
+  }
+
+  // TODO portare in tsx
+  type TYouTube = {
+    url: string;
+    youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues;
+  };
+  export class YouTube implements TYouTube {
+    constructor(
+      public url: string,
+      public youTubeFrameResponsiveValues: YouTubeFrameResponsiveValues
+    ) {}
+  }
+
+  // TODO portare in tsx
+  export type TTesto = {
+    tipo: number;
+    testoColore?: string;
+    gridArea?: string;
+    par1?: string;
+    list?: (string | (string | string[])[])[];
+    par2?: string;
+    youTube?: YouTube;
+  };
+  export class Testo implements TTesto {
+    constructor(
+      public tipo: number,
+      public color?: string,
+      public testoColore?: string,
+      public gridArea?: string,
+      public par1?: string,
+      public list?: (string | (string | string[])[])[],
+      public par2?: string,
+      public youTube?: YouTube
+    ) {}
+  }
+
+  // TODO portare in tsx
+  type TBackground = {
+    overFlowArea: Overflow;
+    filter: Filter;
+    img: Img;
+  };
+  export class Background implements TBackground {
+    constructor(
+      public overFlowArea: Overflow,
+      public filter: Filter,
+      public img: Img
+    ) {}
+  }
+
+  // TODO portare in tsx
   type TTitolo = {
     tipo: number;
     children: string;
     div: Div;
     sottoTitolo?: string;
   };
-  export class Titolo implements TTitolo {
+  export class TitoloOld implements TTitolo {
     constructor(
       public tipo: number,
       public children: string,
@@ -302,6 +318,7 @@ export namespace PitchDeck {
       public sottoTitolo?: string
     ) {}
   }
+
   /////////////////
   /////////////////
   /////////////////
@@ -324,8 +341,42 @@ export namespace PitchDeck {
     id: number;
     // page?: Page;
     slug: string;
-    titolo: Titolo | string;
+    prefix: string;
+    titolo: TitoloOld | string;
   }
+  export class SuperBasic implements ISuperBasic {
+    public id: number = 0;
+    public prefix: string;
+    public slug: string = 'add slug here';
+    constructor(public titolo: TitoloOld) {
+      this.prefix = this.slug + this.id;
+    }
+  }
+
+  export interface IPageBase extends ISuperBasic {
+    Page: FC<TPage>;
+  }
+  export class PageBase extends SuperBasic implements IPageBase {
+    public Page: FC<TPage>;
+    constructor(public titolo: TitoloOld) {
+      super(titolo);
+      let page = new Page(this.prefix);
+      this.Page = page.Page;
+    }
+  }
+
+  export interface IWrapperBase extends ISuperBasic {
+    Wrapper: FC<TWrapper>;
+  }
+  export class WrapperBase extends SuperBasic implements IWrapperBase {
+    public Wrapper: FC<TWrapper>;
+    constructor(public wrapperType: WrapperTypes, public titolo: TitoloOld) {
+      super(titolo);
+      let wrapper = new Wrapper(wrapperType, this.prefix);
+      this.Wrapper = wrapper.Wrapper;
+    }
+  }
+
   export interface IBasic extends ISuperBasic {
     // wrapper?: Wrapper;
   }

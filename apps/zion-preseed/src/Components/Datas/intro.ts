@@ -2,6 +2,7 @@ import { css } from '@zionrepack/styled-components';
 import { DARK } from '../../js/colori';
 import { calculateYouTubeResponsiveValues } from '../../js/responsiveness';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
+import { Titolo } from '../Compositori/Titolo';
 import { Intro } from '../Pagine/Landing Page/Intro';
 
 // TODO #10 portare styled components in /Elementi
@@ -46,7 +47,7 @@ const youTubeFrameResponsiveValues = calculateYouTubeResponsiveValues(200);
 // const wrapper = new PitchDeck.Wrapper(wrapId);
 // const page = new PitchDeck.Page(pageId, pageCss);
 const div = new PitchDeck.Div(divId, divCss);
-const titolo = new PitchDeck.Titolo(2, message, div);
+const titolo = new Titolo(2, message, div, undefined, 'intro');
 const youtube = new PitchDeck.YouTube(url, youTubeFrameResponsiveValues);
 const testo = new PitchDeck.Testo(
   3,
