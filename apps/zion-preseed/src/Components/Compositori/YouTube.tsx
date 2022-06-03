@@ -1,4 +1,4 @@
-import { YouTubeFrame } from '../Elementi/Iframe';
+import { YouTubeFrame } from "../Elementi/Iframe";
 
 interface IYouTube {
   url: string;
@@ -12,11 +12,9 @@ export default function YouTube({
   return (
     <YouTubeFrame
       src={url}
-      title='YouTube video player'
-      frameborder='0'
-      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-      // TODO correggere errore ts
-      //@ts-expect-error
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
       youTubeFrameResponsiveValues={youTubeFrameResponsiveValues}
     />

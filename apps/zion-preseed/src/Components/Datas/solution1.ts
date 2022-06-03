@@ -1,33 +1,29 @@
-import { css } from '@zionrepack/styled-components';
-import { BRIGHT, MIDBRIGHT } from '../../js/colori';
-import { combine, functionalities, manage, wrap } from '../../js/icone';
-import { server } from '../../js/immagini';
-import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
-import { IconeCarosello1 } from '../Compositori/IconeCarosello';
-import { Titolo } from '../Compositori/Titolo';
-import { Solution1 } from '../Pagine/Landing Page/Solution';
+import { css } from "styled-components";
+import { BRIGHT } from "../../js/colori";
+import { combine, functionalities, manage, wrap } from "../../js/icone";
+import { server } from "../../js/immagini";
+import { Solution1 } from "../Pagine/Landing Page/Solution";
 
 // TODO #18 portare styled components in /Elementi
-const slug = 'solution';
+const slug = "solution";
 const id = 1;
 
-// const wrapId = slug + id + '-wrapper';
 const titoloTipo = 2;
-const divId = slug + id + '-titolo';
-const iconeTitolo = slug + id + '-icone-carosello';
-const ofId = slug + id + '-background-overflow-area';
-const resGridId = slug + id + '-responsive-grid-div';
-const alt = 'background_image';
+const divId = slug + id + "-titolo";
+const iconeTitolo = slug + id + "-icone-carosello";
+const ofId = slug + id + "-background-overflow-area";
+const resGridId = slug + id + "-responsive-grid-div";
+const alt = "background_image";
 
-const titoloChildren = 'zNFT Technologies';
+const titoloChildren = "zNFT Technologies";
 const icona1Message =
-  'Rely on a trust-less protocol, built and owned by its users';
+  "Rely on a trust-less protocol, built and owned by its users";
 const icona2Message =
-  'Invest in micro and macro cap artists, products, projects, studio, clubs, events ......';
+  "Invest in micro and macro cap artists, products, projects, studio, clubs, events ......";
 const icona3Message =
-  'Own, Share, Launch, Lend, Borrow physical/digital storage space, assets and services';
+  "Own, Share, Launch, Lend, Borrow physical/digital storage space, assets and services";
 const icona4Message =
-  'Add functionalities to NFT via plug-in gamified applications';
+  "Add functionalities to NFT via plug-in gamified applications";
 
 const icona1img = wrap;
 const icona2img = combine;
@@ -48,18 +44,6 @@ const respGridCss = css`
   grid-area: contenuto;
 `;
 // TODO questo parametro è uguale in entrambi
-const gridDiv = css`
-  margin: 0 0 1em 0;
-`;
-// TODO questo parametro è uguale in entrambi
-const cerchio = css`
-  background-color: ${MIDBRIGHT};
-`;
-// TODO questo parametro è uguale in entrambi
-const p = css`
-  color: ${BRIGHT};
-`;
-// TODO questo parametro è uguale in entrambi
 const icona1Css = css`
   height: 65%;
   place-self: center;
@@ -78,46 +62,38 @@ const icona4Css = css`
   height: 65%;
   place-self: center;
 `;
-// TODO questo parametro è uguale in entrambi
-const ofCss = css`
-  grid-area: a;
-`;
-// TODO questo parametro è uguale in entrambi
-const filCss = css`
-  background-color: #010814c1;
-`;
 const imgCss = css`
   position: relative;
-  height: ${window.innerHeight * 2.4 + 'px'};
+  height: ${window.innerHeight * 2.4 + "px"};
   transform: scaleX(-1);
 `;
 
-const titoloDiv = new PitchDeck.Div(divId, titoloCss);
-const titolo = new Titolo(
-  titoloTipo,
-  titoloChildren,
-  titoloDiv,
-  undefined,
-  'solution'
-);
-const icona = new PitchDeck.IconaSettings(gridDiv, cerchio, p);
-const responsiveGridDiv = new PitchDeck.ResponsiveGrid(resGridId, respGridCss);
-const icona1 = new PitchDeck.Icona(icona1img, icona1Css, icona1Message);
-const icona2 = new PitchDeck.Icona(icona2img, icona2Css, icona2Message);
-const icona3 = new PitchDeck.Icona(icona3img, icona3Css, icona3Message);
-const icona4 = new PitchDeck.Icona(icona4img, icona4Css, icona4Message);
+const icone = [
+  { icona: icona1img, dynamic: icona1Css, testo: icona1Message },
+  { icona: icona2img, dynamic: icona2Css, testo: icona2Message },
+  { icona: icona3img, dynamic: icona3Css, testo: icona3Message },
+  { icona: icona4img, dynamic: icona4Css, testo: icona4Message },
+];
 
-const iconeCarosello = new IconeCarosello1(
-  iconeTitolo,
-  icona,
-  [icona1, icona2, icona3, icona4],
-  responsiveGridDiv
+const solution1 = new Solution1(
+  {
+    tipo: titoloTipo,
+    children: titoloChildren,
+    div: { id: divId, dynamic: titoloCss },
+    sottoTitolo: undefined,
+    type: "solution",
+  },
+  {
+    titolo: iconeTitolo,
+    icone,
+    responsiveGridDiv: { id: resGridId, dynamic: respGridCss },
+  },
+  {
+    overFlowArea: { id: ofId },
+    filter: { id: undefined },
+    img: { src: server, alt, dynamic: imgCss },
+    type: "solution",
+  }
 );
-const overFlowArea = new PitchDeck.Overflow(ofId, ofCss);
-const filter = new PitchDeck.Filter(undefined, filCss);
-const img = new PitchDeck.Img(src, alt, undefined, imgCss);
-const background = new PitchDeck.Background(overFlowArea, filter, img);
-
-const solution1 = new Solution1(titolo, iconeCarosello, background);
 
 export let solution1Data = solution1;

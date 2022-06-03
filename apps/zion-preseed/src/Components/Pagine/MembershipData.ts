@@ -2,11 +2,11 @@ import {
   FlattenInterpolation,
   FlattenSimpleInterpolation,
   ThemedStyledProps,
-} from '@zionrepack/styled-components';
-import { css } from 'styled-components';
-import { MIDHEIGHT, RADIUMMID } from '../../js/altezze';
-import { BRIGHT, DARK, MID, RED } from '../../js/colori';
-import { checkColor } from '../Styled/Utils';
+} from "styled-components";
+import { css } from "styled-components";
+import { MIDHEIGHT, RADIUMMID } from "../../js/altezze";
+import { BRIGHT, DARK, MID, RED } from "../../js/colori";
+import { checkColor } from "../Styled/Utils";
 
 interface ICheckColor {
   red: boolean;
@@ -32,7 +32,7 @@ interface IMembershipPageData {
       dynamic: FlattenSimpleInterpolation;
     };
   };
-  button: { type: 'button' | 'submit' | 'reset'; children: string };
+  button: { type: "button" | "submit" | "reset"; children: string };
   errorMessage: {
     dynamic: FlattenInterpolation<ThemedStyledProps<ICheckColor, any>>;
   };
@@ -40,7 +40,7 @@ interface IMembershipPageData {
 
 export let membershipPageObj: IMembershipPageData = {
   formWrapper: {
-    id: 'membership-form-wrapper',
+    id: "membership-form-wrapper",
   },
   form: {
     backgroundColor: MID,
@@ -52,13 +52,13 @@ export let membershipPageObj: IMembershipPageData = {
         font-size: 80%;
         align-self: end;
       `,
-      htmlFor: 'indirizzo',
+      htmlFor: "indirizzo",
       children: "Indirizzo dell'invitato",
     },
     input: {
-      type: 'text',
-      placeholder: 'invia a..',
-      name: 'indirizzo',
+      type: "text",
+      placeholder: "invia a..",
+      name: "indirizzo",
       dynamic: css`
         border-color: ${DARK};
         height: ${MIDHEIGHT};
@@ -67,8 +67,8 @@ export let membershipPageObj: IMembershipPageData = {
     },
   },
   button: {
-    type: 'submit',
-    children: 'invia',
+    type: "submit",
+    children: "invia",
   },
   errorMessage: {
     dynamic: css`

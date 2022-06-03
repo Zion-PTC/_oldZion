@@ -1,14 +1,16 @@
 import {
+  FlattenInterpolation,
   FlattenSimpleInterpolation,
   SimpleInterpolation,
-} from '@zionrepack/styled-components';
-import { FC } from 'react';
-import { Page, TPage } from '../Components/Compositori/Page';
+  ThemeProps,
+} from "styled-components";
+import { FC, ReactElement } from "react";
+import { Page, TPage } from "../Components/Compositori/Page";
 import {
   TWrapper,
   Wrapper,
   WrapperTypes,
-} from '../Components/Compositori/Wrapper';
+} from "../Components/Compositori/Wrapper";
 
 export namespace PitchDeck {
   export namespace ChartStuff {
@@ -106,15 +108,15 @@ export namespace PitchDeck {
   };
 
   type DynType =
-    | 'paragrafo'
-    | 'cerchio'
-    | 'gridDiv'
-    | 'ul'
-    | 'filter'
-    | 'productPage'
-    | 'productPage'
-    | 'div'
-    | '';
+    | "paragrafo"
+    | "cerchio"
+    | "gridDiv"
+    | "ul"
+    | "filter"
+    | "productPage"
+    | "productPage"
+    | "div"
+    | "";
   // type Css = 'grid-area' | 'background-color';
   // type SfumatureDiBlu = 'DARK' | 'MIDDARK' | 'MID' | 'MIDGRIGHT' | 'BRIGHT';
   // type Link = {
@@ -123,16 +125,10 @@ export namespace PitchDeck {
   // };
   export type Path = string;
 
-  type TDynamic = {
+  export type TDynamic = {
     dynamic: FlattenSimpleInterpolation;
     tipo?: DynType;
   };
-  export class Dynamic implements TDynamic {
-    constructor(
-      public dynamic: FlattenSimpleInterpolation,
-      public tipo?: DynType
-    ) {}
-  }
 
   type TLi = {
     dynamic: FlattenSimpleInterpolation;
@@ -146,13 +142,13 @@ export namespace PitchDeck {
   }
 
   type TResponsiveGrid = {
-    id: string;
-    dynamic: FlattenSimpleInterpolation;
+    id?: string;
+    dynamic?: FlattenSimpleInterpolation;
   };
   export class ResponsiveGrid implements TResponsiveGrid {
     constructor(
-      public id: string,
-      public dynamic: FlattenSimpleInterpolation
+      public id?: string,
+      public dynamic?: FlattenSimpleInterpolation
     ) {}
   }
 
@@ -169,88 +165,18 @@ export namespace PitchDeck {
     ) {}
   }
 
-  export type TImg = {
-    src: string;
-    alt?: string;
-    id?: string;
-    dynamic?: FlattenSimpleInterpolation;
-  };
-  export class Img implements TImg {
-    constructor(
-      public src: string,
-      public alt?: string,
-      public id?: string,
-      public dynamic?: FlattenSimpleInterpolation
-    ) {}
-  }
-
-  type TFilter = {
-    id?: string;
-    dynamic?: FlattenSimpleInterpolation;
-    backgroundColor?: string;
-  };
-  export class Filter implements TFilter {
-    constructor(
-      public id?: string,
-      public dynamic?: FlattenSimpleInterpolation,
-      public backgroundColor?: string
-    ) {}
-  }
-
   type TDiv = {
     id?: string;
-    dynamic?: FlattenSimpleInterpolation;
+    dynamic?:
+      | FlattenSimpleInterpolation
+      | FlattenInterpolation<ThemeProps<any>>;
   };
   export class Div implements TDiv {
     constructor(
       public id?: string,
-      public dynamic?: FlattenSimpleInterpolation
-    ) {}
-  }
-
-  type TOverflow = {
-    id: string;
-    dynamic: FlattenSimpleInterpolation;
-  };
-  export class Overflow implements TOverflow {
-    constructor(
-      public id: string,
-      public dynamic: FlattenSimpleInterpolation
-    ) {}
-  }
-
-  // TODO portare in tsx
-  interface IIcona {
-    icona: Path;
-    dynamic: FlattenSimpleInterpolation;
-    testo: string;
-    img?: Img;
-  }
-  export class Icona implements IIcona {
-    constructor(
-      public icona: Path,
-      public dynamic: FlattenSimpleInterpolation,
-      public testo: string,
-      public img?: Img
-    ) {}
-  }
-
-  // TODO portare in tsx
-  type TIconaSettings = {
-    gridDiv: Dynamic;
-    cerchio: Dynamic;
-    p: Dynamic;
-    img?: Img;
-  };
-  export class IconaSettings implements TIconaSettings {
-    constructor(
-      gridInput: FlattenSimpleInterpolation,
-      cerchioInput: FlattenSimpleInterpolation,
-      pInput: FlattenSimpleInterpolation,
-      public gridDiv: Dynamic = { dynamic: gridInput },
-      public cerchio: Dynamic = { dynamic: cerchioInput },
-      public p: Dynamic = { dynamic: pInput },
-      public img?: Img
+      public dynamic?:
+        | FlattenSimpleInterpolation
+        | FlattenInterpolation<ThemeProps<any>>
     ) {}
   }
 
@@ -286,20 +212,6 @@ export namespace PitchDeck {
       public list?: (string | (string | string[])[])[],
       public par2?: string,
       public youTube?: YouTube
-    ) {}
-  }
-
-  // TODO portare in tsx
-  type TBackground = {
-    overFlowArea: Overflow;
-    filter: Filter;
-    img: Img;
-  };
-  export class Background implements TBackground {
-    constructor(
-      public overFlowArea: Overflow,
-      public filter: Filter,
-      public img: Img
     ) {}
   }
 
@@ -342,13 +254,14 @@ export namespace PitchDeck {
     // page?: Page;
     slug: string;
     prefix: string;
-    titolo: TitoloOld | string;
+    titolo: TTitolo;
+    children?: any;
   }
   export class SuperBasic implements ISuperBasic {
     public id: number = 0;
     public prefix: string;
-    public slug: string = 'add slug here';
-    constructor(public titolo: TitoloOld) {
+    public slug: string = "add slug here";
+    constructor(public titolo: TTitolo) {
       this.prefix = this.slug + this.id;
     }
   }
@@ -358,7 +271,7 @@ export namespace PitchDeck {
   }
   export class PageBase extends SuperBasic implements IPageBase {
     public Page: FC<TPage>;
-    constructor(public titolo: TitoloOld) {
+    constructor(public titolo: TTitolo) {
       super(titolo);
       let page = new Page(this.prefix);
       this.Page = page.Page;
@@ -370,7 +283,7 @@ export namespace PitchDeck {
   }
   export class WrapperBase extends SuperBasic implements IWrapperBase {
     public Wrapper: FC<TWrapper>;
-    constructor(public wrapperType: WrapperTypes, public titolo: TitoloOld) {
+    constructor(public wrapperType: WrapperTypes, public titolo: TTitolo) {
       super(titolo);
       let wrapper = new Wrapper(wrapperType, this.prefix);
       this.Wrapper = wrapper.Wrapper;

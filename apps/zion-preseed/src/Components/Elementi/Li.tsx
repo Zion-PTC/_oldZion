@@ -1,6 +1,6 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
-import styled from 'styled-components';
-import { InitialStyle } from '../Styled/Utils';
+import { FlattenSimpleInterpolation } from "styled-components";
+import styled from "styled-components";
+import { InitialStyle } from "../Styled/Utils";
 
 interface ILi {
   dynamic?: FlattenSimpleInterpolation;
@@ -8,5 +8,5 @@ interface ILi {
 
 export let Li = styled.li<ILi>`
   ${InitialStyle};
-  ${props => props.dynamic};
+  ${(props) => props.dynamic};
 `;

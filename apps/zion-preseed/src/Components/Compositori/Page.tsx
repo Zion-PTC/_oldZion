@@ -1,23 +1,26 @@
-import { css, FlattenSimpleInterpolation } from '@zionrepack/styled-components';
-import { FC } from 'react';
-import styled, { StyledComponent } from 'styled-components';
-import { BRIGHT } from '../../js/colori';
-import { media } from '../../js/responsiveness';
-import { IDiv, Page as PageDiv } from '../Elementi/Div';
-import { InitialStyle } from '../Styled/Utils';
+import { FC } from "react";
+import styled, {
+  StyledComponent,
+  css,
+  FlattenSimpleInterpolation,
+} from "styled-components";
+import { BRIGHT } from "../../js/colori";
+import { media } from "../../js/responsiveness";
+import { IDiv, Page as PageDiv } from "../Elementi/Div";
+import { InitialStyle } from "../Styled/Utils";
 
 enum PageEnums {
-  normal = 'normal',
-  problem = 'problem',
-  product = 'product',
-  intro = 'intro',
+  normal = "normal",
+  problem = "problem",
+  product = "product",
+  intro = "intro",
 }
 type PageTypes = keyof typeof PageEnums;
 export interface TPage {
   id?: string;
   dynamic?:
     | FlattenSimpleInterpolation
-    | StyledComponent<'div', any, IDiv, never>;
+    | StyledComponent<"div", any, IDiv, never>;
   display?: string;
   gridArea?: string;
   position?: string;
@@ -32,12 +35,12 @@ export class Page implements TPage {
 
   problemCss = css`
     grid-template-rows: 1fr 2fr 8fr;
-    grid-template-areas: 'background background background' '. titolo . ' '. contenuto . ';
+    grid-template-areas: "background background background" ". titolo . " ". contenuto . ";
   `;
 
   prodCss = styled(PageDiv)`
     grid-area: a;
-    height: ${window.innerHeight + 'px'};
+    height: ${window.innerHeight + "px"};
   `;
 
   introCss = css`
@@ -49,15 +52,15 @@ export class Page implements TPage {
       grid-template-rows: 0.5fr 0.6fr auto 1.5fr;
     }
     grid-template-rows: 0.5fr 1.2fr auto 1.5fr;
-    grid-template-areas: '. . .' '. titolo .' '. video .' '. contenuto .';
+    grid-template-areas: ". . ." ". titolo ." ". video ." ". contenuto .";
   `;
 
-  public suffix: string = '-page';
+  public suffix: string = "-page";
   public pageId: string;
   public Page: FC<TPage>;
   public dynamic?:
     | FlattenSimpleInterpolation
-    | StyledComponent<'div', any, IDiv, never>;
+    | StyledComponent<"div", any, IDiv, never>;
 
   get PageStyled() {
     return styled.div<TPage>`
@@ -75,11 +78,11 @@ export class Page implements TPage {
   constructor(
     public id: string,
     public type: PageTypes = PageEnums.normal,
-    public display: string = 'grid',
-    public gridArea: string = 'a',
-    public position: string = 'relative',
-    public gridTemplateColumns: string = '1fr 9fr 1fr',
-    public gridTemplateRows: string = '1fr 1fr 12fr',
+    public display: string = "grid",
+    public gridArea: string = "a",
+    public position: string = "relative",
+    public gridTemplateColumns: string = "1fr 9fr 1fr",
+    public gridTemplateRows: string = "1fr 1fr 12fr",
     public gritTemplateAreas: string = `'. . .' '. titolo .' '. contenuto .'`,
     public children?: (JSX.Element | undefined)[] | JSX.Element,
     public className?: string
@@ -107,7 +110,7 @@ export class Page implements TPage {
         this.dynamic = css``;
         break;
     }
-    this.Page = props => {
+    this.Page = (props) => {
       return (
         <this.PageStyled
           className={props.className}

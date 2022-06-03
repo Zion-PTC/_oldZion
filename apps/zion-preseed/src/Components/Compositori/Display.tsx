@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { P } from '../Elementi/P';
+import styled from "styled-components";
+import { P } from "../Elementi/P";
 
 let Label = styled.label`
-  color: ${props => props.color};
+  color: ${(props) => props.color};
 `;
 
 interface IArea {
@@ -16,10 +16,10 @@ interface IArea {
 let Area = styled.div<IArea>`
   padding: 0;
   border: none;
-  color: ${props => props.color};
-  height: ${props => props.height};
-  background-color: ${props => props.bkgColor};
-  border-radius: ${props => props.borderRadius};
+  color: ${(props) => props.color};
+  height: ${(props) => props.height};
+  background-color: ${(props) => props.bkgColor};
+  border-radius: ${(props) => props.borderRadius};
   display: grid;
   align-content: center;
   justify-content: center;
@@ -28,7 +28,7 @@ let Area = styled.div<IArea>`
 interface IDisplay {
   display: {
     data?: string;
-    type?: 'text';
+    type?: "text";
     name?: string;
     color?: string;
     height?: string;

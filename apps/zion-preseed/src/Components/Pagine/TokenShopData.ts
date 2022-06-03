@@ -2,10 +2,10 @@ import {
   FlattenInterpolation,
   FlattenSimpleInterpolation,
   ThemedStyledProps,
-} from '@zionrepack/styled-components';
-import { css } from 'styled-components';
-import { MIDHEIGHT, RADIUMMID } from '../../js/altezze';
-import { BRIGHT, DARK, MID, MIDDARK } from '../../js/colori';
+} from "styled-components";
+import { css } from "styled-components";
+import { MIDHEIGHT, RADIUMMID } from "../../js/altezze";
+import { BRIGHT, DARK, MID, MIDDARK } from "../../js/colori";
 
 interface ITokenShopPageObj {
   formWrapper: {
@@ -23,7 +23,7 @@ interface ITokenShopPageObj {
       children?: string;
     };
     input?: {
-      type?: 'text';
+      type?: "text";
       placeholder?: string;
       name?: string;
       dynamic?: FlattenInterpolation<ThemedStyledProps<{}, any>>;
@@ -31,7 +31,7 @@ interface ITokenShopPageObj {
   };
   display: {
     data?: string;
-    type?: 'text';
+    type?: "text";
     name?: string;
     color?: string;
     height?: string;
@@ -44,18 +44,18 @@ interface ITokenShopPageObj {
     };
   };
   button: {
-    type?: 'button' | 'submit' | 'reset';
+    type?: "button" | "submit" | "reset";
     children?: string;
   };
 }
 
 export let tokenShopPageObj: ITokenShopPageObj = {
   formWrapper: {
-    id: 'token-shop-form-wrapper',
+    id: "token-shop-form-wrapper",
     dynamic: css`
       grid-template-columns: 1fr 1.5fr 1fr;
       grid-template-rows: 1fr 1.5fr 1fr;
-      grid-template-areas: '. . .' '. a .' '. . .';
+      grid-template-areas: ". . ." ". a ." ". . .";
     `,
   },
   form: {
@@ -69,13 +69,13 @@ export let tokenShopPageObj: ITokenShopPageObj = {
       dynamic: css`
         color: ${BRIGHT};
       `,
-      htmlFor: 'amount',
-      children: 'Amount of Tokens',
+      htmlFor: "amount",
+      children: "Amount of Tokens",
     },
     input: {
-      type: 'text',
-      placeholder: 'insert amount here....',
-      name: 'amount',
+      type: "text",
+      placeholder: "insert amount here....",
+      name: "amount",
       dynamic: css`
         border-color: ${DARK};
         height: ${MIDHEIGHT};
@@ -84,21 +84,21 @@ export let tokenShopPageObj: ITokenShopPageObj = {
     },
   },
   display: {
-    data: '1',
-    type: 'text',
-    name: 'token-price',
+    data: "1",
+    type: "text",
+    name: "token-price",
     color: BRIGHT,
     height: MIDHEIGHT,
     bkgColor: MIDDARK,
     borderRadius: RADIUMMID,
     label: {
       color: BRIGHT,
-      htmlFor: 'token-price',
-      children: 'Token Price',
+      htmlFor: "token-price",
+      children: "Token Price",
     },
   },
   button: {
-    type: 'submit',
-    children: 'acquista ZION tokens',
+    type: "submit",
+    children: "acquista ZION tokens",
   },
 };

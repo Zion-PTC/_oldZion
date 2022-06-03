@@ -1,6 +1,6 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
-import styled from 'styled-components';
-import { InitialStyle } from '../Styled/Utils';
+import { FlattenSimpleInterpolation } from "styled-components";
+import styled from "styled-components";
+import { InitialStyle } from "../Styled/Utils";
 
 interface IInput {
   dynamic?: FlattenSimpleInterpolation;
@@ -18,7 +18,7 @@ export const Input = styled.input<IInput>`
   box-sizing: border-box;
   border: 0.05em solid;
   border-radius: 0.1em;
-  ${props => props.dynamic}
+  ${(props) => props.dynamic}
   ::placeholder {
     font-size: 90%;
   }

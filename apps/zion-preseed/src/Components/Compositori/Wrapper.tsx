@@ -1,22 +1,22 @@
-import {
+import { FC } from "react";
+import styled, {
   css,
   FlattenSimpleInterpolation,
   ThemedStyledProps,
-} from '@zionrepack/styled-components';
-import { FC } from 'react';
-import styled, { Interpolation } from 'styled-components';
-import { InitialStyle } from '../Styled/Utils';
+  Interpolation,
+} from "styled-components";
+import { InitialStyle } from "../Styled/Utils";
 
 const solutionCss = css`
-  max-height: ${window.innerHeight * 1.3 + 'px'};
+  max-height: ${window.innerHeight * 1.3 + "px"};
   @media (max-width: 640px) {
     max-height: none;
-    min-height: ${window.innerHeight * 1.3 + 'px'};
+    min-height: ${window.innerHeight * 1.3 + "px"};
   }
 `;
 
 const problemCss = css`
-  max-height: ${window.innerHeight + 'px'};
+  max-height: ${window.innerHeight + "px"};
 `;
 
 // const productCss = css<TWrapper>`
@@ -26,13 +26,13 @@ const problemCss = css`
 // `;
 
 export enum WrapperEnums {
-  solution = 'solution',
-  business = 'business',
-  cover = 'cover',
-  intro = 'intro',
-  problem = 'problem',
-  product = 'product',
-  normal = 'normal',
+  solution = "solution",
+  business = "business",
+  cover = "cover",
+  intro = "intro",
+  problem = "problem",
+  product = "product",
+  normal = "normal",
 }
 export type WrapperTypes = keyof typeof WrapperEnums;
 export type TWrapper = {
@@ -52,19 +52,19 @@ export type TWrapper = {
 
 export class Wrapper implements TWrapper {
   static Wrappers: Wrapper[] = [];
-  public suffix: string = '-wrapper';
+  public suffix: string = "-wrapper";
   public wrapperId: string;
 
   get WrapperStyled() {
     return styled.div<TWrapper>`
       ${InitialStyle};
       width: ${this.width};
-      min-height: ${window.innerHeight + 'px'};
+      min-height: ${window.innerHeight + "px"};
       display: ${this.display};
       grid-template-columns: ${this.gridTemplateColumns};
       grid-template-rows: ${this.gridTemplateRows};
       grid-template-areas: ${this.gridTemplateAreas};
-      ${props => props.dynamic};
+      ${(props) => props.dynamic};
     `;
   }
 
@@ -76,10 +76,10 @@ export class Wrapper implements TWrapper {
     public type: WrapperTypes,
     public id: string,
     public tipo?: number,
-    public width: string | number = '100%',
-    public display: string = 'grid',
-    public gridTemplateRows: string = '100%',
-    public gridTemplateColumns: string = '100%',
+    public width: string | number = "100%",
+    public display: string = "grid",
+    public gridTemplateRows: string = "100%",
+    public gridTemplateColumns: string = "100%",
     public gridTemplateAreas: string = `'a'`,
     public children?: JSX.Element[],
     public className?: string
@@ -110,16 +110,16 @@ export class Wrapper implements TWrapper {
 
       case WrapperEnums.product:
         this.dynamic = css`
-          height: ${window.innerHeight + 'px'};
+          height: ${window.innerHeight + "px"};
         `;
         switch (tipo) {
           case 1:
-            this.gridTemplateRows = '100%';
+            this.gridTemplateRows = "100%";
             this.gridTemplateAreas = `'a'`;
             break;
 
           case 2:
-            this.gridTemplateRows = '30% 70%';
+            this.gridTemplateRows = "30% 70%";
             this.gridTemplateAreas = "'a' 'b'";
             break;
 
@@ -132,7 +132,7 @@ export class Wrapper implements TWrapper {
         break;
     }
 
-    this.Wrapper = props => {
+    this.Wrapper = (props) => {
       return (
         <this.WrapperStyled
           id={this.wrapperId}

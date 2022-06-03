@@ -1,14 +1,14 @@
-import * as styled from '@zionrepack/styled-components';
-import { FC, ReactElement } from 'react';
-import {
+import styled, {
   css,
   FlattenInterpolation,
   FlattenSimpleInterpolation,
-} from 'styled-components';
-import { BRIGHT, DARK, MID } from '../../js/colori';
-import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
-import { Div } from '../Elementi/Div';
-import { InitialStyle } from '../Styled/Utils';
+  ThemeProps,
+} from "styled-components";
+import { FC, ReactElement } from "react";
+import { BRIGHT, DARK, MID } from "../../js/colori";
+import { PitchDeck } from "../../PitchDeckApp/PitchDeck";
+import { Div } from "../Elementi/Div";
+import { InitialStyle } from "../Styled/Utils";
 
 type TitoloDivProps = {
   bright?: boolean;
@@ -18,15 +18,15 @@ type TitoloDivProps = {
 };
 
 enum TitoloEnums {
-  solution = 'solution',
-  business = 'business',
-  cover = 'cover',
-  intro = 'intro',
-  problem = 'problem',
-  product = 'product',
-  tokenomics = 'tokenomics',
-  mission = 'mission',
-  normal = 'normal',
+  solution = "solution",
+  business = "business",
+  cover = "cover",
+  intro = "intro",
+  problem = "problem",
+  product = "product",
+  tokenomics = "tokenomics",
+  mission = "mission",
+  normal = "normal",
 }
 type TitoloTypes = keyof typeof TitoloEnums;
 
@@ -69,27 +69,29 @@ let TestoSmall = styled.p`
   padding: 0;
   color: ${({ color }) => color};
 `;
-
+// ReactElement[] | ReactElement | string
 interface ITitolo {
   div?: any;
   tipo?: number;
   color?: string;
   sottoTitolo?: string;
+  type?: TitoloTypes;
   barraColor?: string;
-  children?: ReactElement[] | ReactElement | string;
+  children?: any;
 }
 export type TTitolo = {
   tipo: number;
   div: PitchDeck.Div;
   color?: string;
   sottoTitolo?: string;
+  type?: TitoloTypes;
   barraColor?: string;
-  children?: ReactElement[] | ReactElement | string;
+  children: any | undefined;
 };
 export class Titolo implements TTitolo {
   static Titoli: Titolo[] = [];
 
-  public suffix: string = '-titolo';
+  public suffix: string = "-titolo";
   public pageId: string;
   public Titolo: FC<TTitolo>;
   public dynamic?: FlattenSimpleInterpolation;
@@ -101,7 +103,7 @@ export class Titolo implements TTitolo {
     `;
   }
 
-  get TitoloStyled2(): FlattenInterpolation<styled.ThemeProps<any>> {
+  get TitoloStyled2(): FlattenInterpolation<ThemeProps<any>> {
     return css`
       grid-area: titolo;
       color: ${() => {
@@ -111,14 +113,14 @@ export class Titolo implements TTitolo {
         }
       }};
       width: ${() => {
-        if (this.divCss) if (this.divCss.width) return '100%';
+        if (this.divCss) if (this.divCss.width) return "100%";
       }};
     `;
   }
 
   constructor(
     public tipo: number,
-    public children: string,
+    public children: any,
     public div: PitchDeck.Div,
     public sottoTitolo?: string,
     public type?: TitoloTypes,
@@ -128,7 +130,7 @@ export class Titolo implements TTitolo {
   ) {
     Titolo.Titoli.push(this);
     this.pageId = this.suffix;
-    this.Titolo = props => <this.component {...props} />;
+    this.Titolo = (props) => <this.component {...props} />;
 
     switch (type) {
       case TitoloEnums.business:
@@ -206,22 +208,22 @@ export class Titolo implements TTitolo {
     );
 
     let Titolo2 = (
-      <AreaTitolo2 id='titolo-tipo2'>
-        <Barra2 id='barra2' barraColor={this.barraColor}></Barra2>
-        <Testo id='testo' color={this.color}>
+      <AreaTitolo2 id="titolo-tipo2">
+        <Barra2 id="barra2" barraColor={this.barraColor}></Barra2>
+        <Testo id="testo" color={this.color}>
           {this.children}
         </Testo>
       </AreaTitolo2>
     );
 
     let Titolo3 = (
-      <AreaTitolo2 id='titolo-tipo3'>
-        <Barra3 id='barra3' barraColor={this.barraColor}></Barra3>
+      <AreaTitolo2 id="titolo-tipo3">
+        <Barra3 id="barra3" barraColor={this.barraColor}></Barra3>
         <div>
-          <Testo id='testo' color={this.color}>
+          <Testo id="testo" color={this.color}>
             {this.children}
           </Testo>
-          <TestoSmall id='testoSmall' color={this.color}>
+          <TestoSmall id="testoSmall" color={this.color}>
             {this.sottoTitolo}
           </TestoSmall>
         </div>

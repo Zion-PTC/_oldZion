@@ -1,6 +1,6 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
-import styled, { css } from 'styled-components';
-import { RADIUMMID } from '../../js/altezze';
+import { FlattenSimpleInterpolation } from "styled-components";
+import styled, { css } from "styled-components";
+import { RADIUMMID } from "../../js/altezze";
 import {
   BLUE,
   BRIGHT,
@@ -11,7 +11,7 @@ import {
   RED,
   VIOLET,
   YELLOW,
-} from '../../js/colori';
+} from "../../js/colori";
 
 let checkColor = (props: IButton) => {
   let color;
@@ -53,7 +53,7 @@ let checkColor = (props: IButton) => {
 };
 
 interface IButton {
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   children?: string | JSX.Element;
   tipo?: string;
   message?: string;
@@ -132,5 +132,5 @@ export const Button = styled.button<IButton>`
   :active {
     color: ${MIDBRIGHT};
   }
-  ${props => props.dynamic};
+  ${(props) => props.dynamic};
 `;

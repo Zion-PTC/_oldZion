@@ -1,17 +1,17 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
-import { FC } from 'react';
-import { css } from 'styled-components';
-import { PitchDeck } from '../../../PitchDeckApp/PitchDeck';
-import Background from '../../Compositori/Background';
-import { Page } from '../../Compositori/Page';
-import { Titolo, TTitolo } from '../../Compositori/Titolo';
-import { Wrapper } from '../../Compositori/Wrapper';
-import { Div, Text, Text2, div } from '../../Elementi/Div';
+import { FlattenSimpleInterpolation } from "styled-components";
+import { FC } from "react";
+import { css } from "styled-components";
+import { PitchDeck } from "../../../PitchDeckApp/PitchDeck";
+import { Background, TBackground } from "../../Compositori/Background";
+import { Page } from "../../Compositori/Page";
+import { Titolo, TTitolo } from "../../Compositori/Titolo";
+import { Wrapper } from "../../Compositori/Wrapper";
+import { Div, Text, Text2, div } from "../../Elementi/Div";
 
 // TODO sistemare if statement / switch
 interface IProduct {
   tipo: number;
-  background: PitchDeck.Background;
+  background: TBackground;
   children?: string;
   titolo?: PitchDeck.TitoloOld;
   productPage?: FlattenSimpleInterpolation;
@@ -21,18 +21,22 @@ interface IProduct {
 export class ProductDatas implements IProduct {
   static Products: ProductDatas[] = [];
   public id: number;
-  public slug: string = 'product';
+  public slug: string = "product";
   public prefix: string;
+
   public Page;
+
   public Wrapper;
 
   public Titolo?: FC<TTitolo>;
 
+  public Background;
+
   constructor(
     public tipo: number,
-    public background: PitchDeck.Background,
+    public background: TBackground,
     public children?: string,
-    public titolo?: Titolo,
+    public titolo?: TTitolo,
     public productPage?: FlattenSimpleInterpolation,
     public testo?: PitchDeck.Testo,
     public list?: (string | any[])[]
@@ -40,19 +44,28 @@ export class ProductDatas implements IProduct {
     ProductDatas.Products.push(this);
     this.id = ProductDatas.Products.length;
     this.prefix = this.slug + this.id;
+
     let page = new Page(this.prefix);
     this.Page = page.Page;
 
-    let wrapper = new Wrapper('product', this.prefix, tipo);
+    let wrapper = new Wrapper("product", this.prefix, tipo);
     this.Wrapper = wrapper.Wrapper;
 
-    this.Titolo = new Titolo(
+    let newtitolo = new Titolo(
       2,
-      'Product',
-      { id: '', dynamic: css`` },
+      "Product",
+      { id: "", dynamic: css`` },
       undefined,
-      'product'
-    ).component;
+      "product"
+    );
+    this.Titolo = newtitolo.component;
+
+    let newbackground = new Background(
+      background.overFlowArea,
+      background.filter,
+      background.img
+    );
+    this.Background = newbackground.component;
   }
 
   component: FC = (): JSX.Element => {
@@ -83,7 +96,7 @@ export class ProductDatas implements IProduct {
       let metaversesList: any[] = [];
       // TODO correggere errore TS
       //@ts-expect-error
-      list[3][3].forEach(element => {
+      list[3][3].forEach((element) => {
         metaversesCounter++;
         metaversesList.push(<li key={metaversesCounter}>{element}</li>);
       });
@@ -108,7 +121,7 @@ export class ProductDatas implements IProduct {
     if (this.titolo && this.Titolo)
       return (
         <this.Wrapper>
-          <Background {...this.background} />
+          <this.Background {...this.background} />
           <this.Page>
             <this.Titolo {...this.titolo} />
             {testo_}
@@ -118,7 +131,7 @@ export class ProductDatas implements IProduct {
     else
       return (
         <this.Wrapper>
-          <Background {...this.background} />
+          <this.Background {...this.background} />
           <this.Page>{testo_}</this.Page>
         </this.Wrapper>
       );
