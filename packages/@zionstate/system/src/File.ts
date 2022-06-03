@@ -23,7 +23,7 @@ export class File extends TreeNode implements ITreeNode, IFile {
     this.fileSize = fileSize; // MB size of file
   }
 }
-// TODO portare questa classe in generative-artwork
+// TODO #1 estendere file a immagine
 // class Image extends File {
 //   constructor(name, path, type, width, height) {
 //     super(name, path, type);

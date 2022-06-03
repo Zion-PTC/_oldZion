@@ -183,7 +183,7 @@ export let SystemTest = describe('System.js', () => {
             tree.remove(giorgio);
           });
         });
-        // TODO sistemare
+        // TODO #3 testare findByLevel()
         describe.skip(`Method findByLevel()`, () => {
           it(`dovrebbe tornare piu nodi??`, () => {
             const folderContenutoNelLivello1 = 'Tree';

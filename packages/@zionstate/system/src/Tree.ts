@@ -10,6 +10,7 @@ export interface ITree {
   add(node: File | Root | Folder | TreeNode): ITree;
   remove(nodeToRemove: File | Root | Folder | TreeNode): number;
   isPresent(nodoDaControllare: File | Root | Folder | TreeNode): boolean;
+  // TODO #2 mettere a posto fidnByLeverl()
   findByLevel(depth: number): (File | Root | Folder | TreeNode)[];
 }
 
