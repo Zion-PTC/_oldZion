@@ -1,36 +1,4 @@
-import { css } from 'styled-components';
-import { BRIGHT, DARK, MID, MIDBRIGHT } from '../../js/colori';
-import {
-  combine,
-  connection,
-  ease,
-  functionalities,
-  invest,
-  manage,
-  own,
-  owned,
-  security,
-  wrap,
-} from '../../js/icone';
-import {
-  coverPicture,
-  crowdsurfin,
-  highway,
-  homeStudio,
-  salvadanaio,
-  server,
-  streaming,
-  teamwork,
-  tickets,
-  vinyl,
-} from '../../js/immagini';
-import { LOGOZION } from '../../js/loghi';
-import {
-  calculateYouTubeResponsiveValues,
-  media,
-} from '../../js/responsiveness';
-import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
-import { P } from '../Elementi/P';
+import { BRIGHT} from '../../js/colori';
 
 export let landingPageData = {
   pageBkg: BRIGHT,

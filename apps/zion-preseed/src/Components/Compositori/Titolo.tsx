@@ -2,10 +2,8 @@ import * as styled from '@zionrepack/styled-components';
 import { FC, ReactElement } from 'react';
 import {
   css,
-  DefaultTheme,
   FlattenInterpolation,
   FlattenSimpleInterpolation,
-  ThemedCssFunction,
 } from 'styled-components';
 import { BRIGHT, DARK, MID } from '../../js/colori';
 import { PitchDeck } from '../../PitchDeckApp/PitchDeck';

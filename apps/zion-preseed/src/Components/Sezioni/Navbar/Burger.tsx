@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { BRIGHT, MIDBRIGHT } from '../../../js/colori';
 import { breakPoints } from '../../../js/responsiveness';

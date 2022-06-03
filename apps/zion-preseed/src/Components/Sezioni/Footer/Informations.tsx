@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { DARK } from '../../../js/colori';
 import { LOGOZION } from '../../../js/loghi';

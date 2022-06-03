@@ -73,4 +73,5 @@ export class Intro implements IIntro {
       </this.Wrapper>
     );
   };
+  // component = () => <p>ciao</p>
 }

@@ -1,6 +1,4 @@
-import { FlattenSimpleInterpolation } from '@zionrepack/styled-components';
 import styled, { css } from 'styled-components';
-import { PitchDeck } from '../../PitchDeckApp/PitchDeck';
 import { Cerchio, GridDiv } from '../Elementi/Div';
 import { Img } from '../Elementi/Img';
 import { P } from '../Elementi/P';
