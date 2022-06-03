@@ -162,6 +162,8 @@ export let ThemeConsumer = styled.ThemeConsumer;
 export let ThemeContext = styled.ThemeContext;
 export let ThemeProvider = styled.ThemeProvider;
 
+export default styled;
+
 export let a = def.a;
 export let abbr = def.abbr;
 export let address = def.address;

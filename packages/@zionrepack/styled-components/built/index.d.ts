@@ -59,6 +59,7 @@ export declare let StyleSheetManager: typeof styled.StyleSheetManager;
 export declare let ThemeConsumer: import("react").Consumer<any>;
 export declare let ThemeContext: import("react").Context<any>;
 export declare let ThemeProvider: styled.ThemeProviderComponent<any, any>;
+export default styled;
 export declare let a: styled.ThemedStyledFunction<"a", any, {}, never>;
 export declare let abbr: styled.ThemedStyledFunction<"abbr", any, {}, never>;
 export declare let address: styled.ThemedStyledFunction<"address", any, {}, never>;
