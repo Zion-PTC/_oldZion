@@ -30,6 +30,7 @@ export interface TPage {
   children?: (JSX.Element | undefined)[] | JSX.Element;
   className?: string;
 }
+
 export class Page implements TPage {
   static Pages: Page[] = [];
 
