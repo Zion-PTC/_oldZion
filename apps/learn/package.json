@@ -3,6 +3,9 @@
   "workspaces": [
     "../ZION/packages/"
   ],
+  "scripts": {
+    "test": "nodemon /test/init.js"
+  },
   "version": "0.0.89",
   "description": "",
   "main": "index.js",
