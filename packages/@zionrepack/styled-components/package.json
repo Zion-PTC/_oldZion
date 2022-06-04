@@ -9,5 +9,8 @@
   "type": "module",
   "dependencies": {
     "styled-components": "^5.3.5"
+  },
+  "scripts": {
+    "tsc": "tsc"
   }
 }
