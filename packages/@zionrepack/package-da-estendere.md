@@ -1,0 +1,17 @@
+- [x] telegraf
+- [ ] telegram
+- [x] styled-components
+- [x] ethers
+- [ ] ipfs
+- [ ] ipfs-http
+- [ ] react-parcel </br>
+  - dev dependencies
+    - [x] eslint
+    - [x] eslint-plugin-import
+    - [x] eslint-plugin-react
+    - [x] parcel
+    - [x] typescript </br>
+  - dependencies
+    - [x] bundler
+    - [ ] react
+    - [ ] react-dom
