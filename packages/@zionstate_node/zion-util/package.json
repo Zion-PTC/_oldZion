@@ -1,10 +1,11 @@
 {
   "name": "@zionstate_node/zion-util",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Estensione di node_module util",
   "main": "built/index.js",
   "scripts": {
-    "test": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.test.js"
+    "test": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.test.js",
+    "tsc": "tsc"
   },
   "author": "Gagliano Giacomo",
   "license": "ISC",

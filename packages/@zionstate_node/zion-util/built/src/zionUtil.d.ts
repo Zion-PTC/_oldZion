@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import util from 'util';
+import util from "util";
 interface IInspectArguments {
     object: any;
     showHidden?: boolean;
@@ -19,6 +19,7 @@ export interface IUtils {
     popFirst<T>(array: T[]): T[];
     removeSpaceFromString(type: number, string: string): string;
     sliceArray<T>(size: number, array: T): T[][] | string;
+    subtractArrays(arr1: string[], arr2: string[]): string[];
     sortDescending<T>(a: T[], b: T[], index: number): number | undefined;
     chiamaNVolteCallback<T>(volte: number, callback: Function): T[];
     quantiDecimaliDopoLaVirgola(number: number): number;

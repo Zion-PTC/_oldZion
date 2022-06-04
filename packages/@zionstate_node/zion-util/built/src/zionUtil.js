@@ -1,40 +1,5 @@
-import util from 'util';
-import { Condizioni } from './Condizioni.js';
-let o = {
-    debug: util.debug,
-    debuglog: util.debug,
-    deprecate: util.deprecate,
-    callbackify: util.callbackify,
-    format: util.format,
-    formatWithOptions: util.formatWithOptions,
-    getSystemErrorMap: util.getSystemErrorMap,
-    getSystemErrorName: util.getSystemErrorName,
-    inspect: util.inspect,
-    isDeepStrictEqual: util.isDeepStrictEqual,
-    isArray: util.isArray,
-    isBoolean: util.isBoolean,
-    isBuffer: util.isBuffer,
-    inherits: util.inherits,
-    isDate: util.isDate,
-    isError: util.isError,
-    isFunction: util.isFunction,
-    isNull: util.isNull,
-    isNullOrUndefined: util.isNullOrUndefined,
-    isNumber: util.isNumber,
-    isObject: util.isObject,
-    isPrimitive: util.isPrimitive,
-    isRegExp: util.isRegExp,
-    isString: util.isString,
-    isSymbol: util.isSymbol,
-    isUndefined: util.isUndefined,
-    log: util.log,
-    promisify: util.promisify,
-    stripVTControlCharacters: util.stripVTControlCharacters,
-    toUSVString: util.toUSVString,
-    types: util.types,
-    TextDecoder: util.TextDecoder,
-    TextEncoder: util.TextEncoder,
-};
+import util from "util";
+import { Condizioni } from "./Condizioni.js";
 class Utils {
     condizioni;
     constructor() {
@@ -54,6 +19,7 @@ class Utils {
     popFirst = popFirst;
     removeSpaceFromString = removeSpaceFromString;
     sliceArray = sliceArray;
+    subtractArrays = subtractArrays;
     // sorting
     sortDescending = sortDescending;
     // callback
@@ -111,7 +77,7 @@ function checkArrayElementsConstructor(array, constructor) {
         //@ts-ignore
         let condizione = elemento.constructor === constructor;
         risultatoControllo.push(condizione);
-        return risultatoControllo.some(el => el === false);
+        return risultatoControllo.some((el) => el === false);
     };
     const controlloFinale = function (element) {
         return element === false;
@@ -139,13 +105,13 @@ function hasArrayObjectElements(array) {
     // TODO capire uso di this in ext functions
     //@ts-expect-error
     if (this.isArrayEmpty(array)) {
-        return 'Array is Empty';
+        return "Array is Empty";
     }
     let result = [];
-    array.forEach(element => {
-        if (typeof element === 'object')
+    array.forEach((element) => {
+        if (typeof element === "object")
             result.push(true);
-        if (typeof element !== 'object')
+        if (typeof element !== "object")
             result.push(false);
     });
     if (!result.includes(true))
@@ -182,7 +148,7 @@ function changePosition(array, old, new_pos) {
         old > array.length ||
         new_pos < 0 ||
         old < 0) {
-        return 'not';
+        return "not";
     }
     array.splice(new_pos, 0, array.splice(old, 1)[0]);
     return array;
@@ -208,12 +174,12 @@ function extractSameElementsFromArray(array1, array2) {
             throw new Error(`Uno dei due array contiente oggetti, questa funziona richiede che l'array contenga valori (string, number, boolan)`);
         }
         for (let element2 of array2) {
-            let match = array1.find(element1 => element1 === element2);
-            match ? sameValues.push(match) : 'no match found';
+            let match = array1.find((element1) => element1 === element2);
+            match ? sameValues.push(match) : "no match found";
         }
         return sameValues;
     }
-    throw new Error('Uno dei due array è vuoto');
+    throw new Error("Uno dei due array è vuoto");
 }
 /**
  *
@@ -234,7 +200,7 @@ function popFirst(array) {
  */
 function removeSpaceFromString(type, string) {
     // TODO Migliorare inizializzazione
-    let newString = '';
+    let newString = "";
     switch (type) {
         case 1:
             method1(string);
@@ -249,13 +215,13 @@ function removeSpaceFromString(type, string) {
             break;
     }
     function method1(string) {
-        newString = string.replace(/ /g, '');
+        newString = string.replace(/ /g, "");
     }
     function method2(string) {
-        newString = string.replace(/\s+/g, '');
+        newString = string.replace(/\s+/g, "");
     }
     function method3(string) {
-        newString = string.split(' ').join('');
+        newString = string.split(" ").join("");
     }
     return newString;
 }
@@ -266,7 +232,7 @@ function removeSpaceFromString(type, string) {
  * @returns
  */
 function sliceArray(size, array) {
-    if (typeof size === 'number' && Array.isArray(array)) {
+    if (typeof size === "number" && Array.isArray(array)) {
         var s = size;
         var arrayOfArrays = [];
         for (var i = 0; i < array.length; i += s) {
@@ -276,14 +242,26 @@ function sliceArray(size, array) {
     }
     else {
         let res;
-        typeof size !== 'number'
-            ? (res = 'size is not a number')
-            : (res = 'The second argument shall be an array');
+        typeof size !== "number"
+            ? (res = "size is not a number")
+            : (res = "The second argument shall be an array");
         return res;
     }
 }
+function subtractArrays(arr1, arr2) {
+    return arr1
+        .concat(arr2)
+        .filter((item) => !arr1.includes(item) || !arr2.includes(item));
+}
+/**
+ *
+ * @param a
+ * @param b
+ * @param index
+ * @returns
+ */
 function sortDescending(a, b, index) {
-    if (typeof a[index] !== 'number' && typeof b[index] !== 'number')
+    if (typeof a[index] !== "number" && typeof b[index] !== "number")
         return;
     return b[index] - a[index];
 }
@@ -353,9 +331,9 @@ function modulo(a, b) {
 function convertDecimalToFracionString(decimale) {
     let frazioneInString;
     if (decimale === 1)
-        return '1';
+        return "1";
     if (decimale >= 1)
-        return 'il valore passato deve essere un numero decimale!';
+        return "il valore passato deve essere un numero decimale!";
     // TODO capire uso di this in ext functions
     //@ts-expect-error
     const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
