@@ -4,8 +4,8 @@ import {
   abstractFactory,
   facade,
   IDesignPattern,
-} from './DesignPattern.js';
-import { CARLOS, DOCOMMUNITY, DOFACTORY } from './Sorgente.js';
+} from "./DesignPattern.js";
+import { CARLOS, DOCOMMUNITY, DOFACTORY } from "./Sorgente.js";
 // /// <reference path='../Namespaces/Knowledge.ts'/>
 
 // type IStaticTutorial = Knowledge.IStaticTutorial;
@@ -13,8 +13,8 @@ import { CARLOS, DOCOMMUNITY, DOFACTORY } from './Sorgente.js';
 // type ISorgente = Knowledge.ISorgente;
 // type IStaticSorgente = Knowledge.IStaticSorgente;
 // type IDesignPattern = Knowledge.IDesignPattern;
-import { ISorgente } from './Sorgente';
-import { IFile } from './File';
+import { ISorgente } from "./Sorgente";
+import { IFile } from "./File";
 
 type path = string;
 
@@ -80,12 +80,8 @@ export abstract class ATutorial implements ITutorial {
     this.#github = repo;
   }
   id: number;
-  // TODO sistemare errore
-  //@ts-expect-error
-  nome: string;
-  // TODO sistemare errore
-  //@ts-expect-error
-  annotazioni: string[];
+  nome: string = "name here";
+  annotazioni: string[] = [];
   file?: IFile;
   constructor() {
     ATutorial.#tutorials.push(this);
@@ -120,55 +116,55 @@ export class Tutorial extends ATutorial {
 }
 
 export let decTut1 = new Tutorial();
-decTut1.nome = 'Decorator Tutorial 1';
+decTut1.nome = "Decorator Tutorial 1";
 decTut1.aggiungiSorgente(DOFACTORY);
 decTut1.aggiungiOggetto(decorator);
 decTut1.file = {
-  path: '/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator.js',
+  path: "/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator.js",
 };
 decTut1.links = [
-  new URL('https://www.dofactory.com/javascript/design-patterns/decorator'),
+  new URL("https://www.dofactory.com/javascript/design-patterns/decorator"),
 ];
 export let decTut3 = new Tutorial();
-decTut3.nome = 'Decorator Tutorial 3';
+decTut3.nome = "Decorator Tutorial 3";
 decTut3.aggiungiSorgente(CARLOS);
 decTut3.aggiungiOggetto(decorator);
 decTut3.file = {
-  path: '/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator/carlos2.js',
+  path: "/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator/carlos2.js",
 };
 decTut3.links = [
   new URL(
-    'https://dev.to/carlillo/understanding-design-patterns-decorator-using-long-night-got-example-276c'
+    "https://dev.to/carlillo/understanding-design-patterns-decorator-using-long-night-got-example-276c"
   ),
-  new URL('https://www.carloscaballero.io/design-patterns-decorator/'),
+  new URL("https://www.carloscaballero.io/design-patterns-decorator/"),
 ];
 export let decTut2 = new Tutorial();
-decTut2.nome = 'Decorator Tutorial 2';
+decTut2.nome = "Decorator Tutorial 2";
 decTut2.aggiungiSorgente(CARLOS);
 decTut2.aggiungiOggetto(decorator);
 decTut2.file = {
-  path: '/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator/carlos1.js',
+  path: "/Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator/carlos1.js",
 };
 decTut2.links = [
   new URL(
-    'https://dev.to/carlillo/understanding-design-patterns-decorator-using-long-night-got-example-276c'
+    "https://dev.to/carlillo/understanding-design-patterns-decorator-using-long-night-got-example-276c"
   ),
 ];
 decTut2.github = new URL(
-  'https://github.com/Caballerog/blog/tree/master/adapter-pattern'
+  "https://github.com/Caballerog/blog/tree/master/adapter-pattern"
 );
 
 export let TSGenerics = new Tutorial();
-TSGenerics.nome = 'Generics';
+TSGenerics.nome = "Generics";
 TSGenerics.links = [
-  new URL('https://www.typescriptlang.org/docs/handbook/2/generics.html'),
+  new URL("https://www.typescriptlang.org/docs/handbook/2/generics.html"),
 ];
 
 export let factoryTutorial = new Tutorial();
-factoryTutorial.nome = 'JavaScript Factory Method';
+factoryTutorial.nome = "JavaScript Factory Method";
 factoryTutorial.links = [
   new URL(
-    'https://www.dofactory.com/javascript/design-patterns/factory-method'
+    "https://www.dofactory.com/javascript/design-patterns/factory-method"
   ),
 ];
 factoryTutorial.aggiungiSorgente(DOFACTORY);
@@ -177,29 +173,29 @@ factoryTutorial.aggiungiOggetto(factory);
 //// ABSTRACT FACTORY
 
 export let abstractFactory1 = new Tutorial();
-abstractFactory1.nome = 'JavaScript Abstract Factory';
+abstractFactory1.nome = "JavaScript Abstract Factory";
 abstractFactory1.links = [
   new URL(
-    'https://www.dofactory.com/javascript/design-patterns/abstract-factory'
+    "https://www.dofactory.com/javascript/design-patterns/abstract-factory"
   ),
 ];
 abstractFactory1.aggiungiSorgente(DOFACTORY);
 abstractFactory1.aggiungiOggetto(abstractFactory);
 
 export let abstractFactory2 = new Tutorial();
-abstractFactory2.nome = 'JavaScript Object Oriented Patterns: Factory Pattern';
+abstractFactory2.nome = "JavaScript Object Oriented Patterns: Factory Pattern";
 abstractFactory2.links = [
   new URL(
-    'https://www.digitalocean.com/community/tutorials/js-factory-pattern'
+    "https://www.digitalocean.com/community/tutorials/js-factory-pattern"
   ),
 ];
 abstractFactory2.aggiungiSorgente(DOCOMMUNITY);
 abstractFactory2.aggiungiOggetto(abstractFactory);
 
 export let facade1 = new Tutorial();
-facade1.nome = 'JavaScript Façade';
+facade1.nome = "JavaScript Façade";
 facade1.links = [
-  new URL('https://www.dofactory.com/javascript/design-patterns/facade'),
+  new URL("https://www.dofactory.com/javascript/design-patterns/facade"),
 ];
 facade1.aggiungiOggetto(facade);
 facade.aggiungiSorgente(DOFACTORY);

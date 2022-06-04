@@ -1,6 +1,6 @@
-import { IDesignPattern } from './DesignPattern.js';
-import { ISorgente } from './Sorgente';
-import { IFile } from './File';
+import { IDesignPattern } from "./DesignPattern.js";
+import { ISorgente } from "./Sorgente";
+import { IFile } from "./File";
 export interface IStaticTutorial {
     get tutorials(): ITutorial[];
     mostraTutorials(): ITutorial[];
