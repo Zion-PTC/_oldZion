@@ -8,14 +8,9 @@
     "declaration": false,
     "allowSyntheticDefaultImports": true,
     "moduleResolution":"Node",
-    "outDir": "./built"
-    // "outFile": "src/Namespaces/Spaces.js",
-    // "module": "AMD"
-    // "paths": {}
-    // "strictNullChecks":true,
-    // "strictPropertyInitialization": true
-    // "allowJs": true,
+    "outDir": "./built",
+    "skipLibCheck": true // to avoid errors in node_modules
   },
-  "exclude": ["./_archive","./mystuff","./apps","blockchain","node_modules","packages"],
+  "exclude": ["_archive","_mystuff","apps","blockchain","node_modules","packages"],
   "include": ["./src/**/*"]
 }
