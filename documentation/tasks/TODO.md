@@ -2,9 +2,9 @@
 
 ## Packages
 
-controllare quali packages vanno effettivamente estesi e
-togliere i repo di quelli che non vanno estesi.
-Ci possono essere due tipo di package:
+- [x] controllare quali packages vanno effettivamente estesi e
+      togliere i repo di quelli che non vanno estesi.
+      Ci possono essere due tipo di package:
 
 1. da estendere: sono i package che possono beneficiare di
    classi proprietarie. Questi package vanno installati nel
@@ -19,6 +19,16 @@ Ci possono essere due tipo di package:
    2. installandoli nell cartella packages. Siccome questi
       pacchetti non necessitano estensione non cè bisognon
       di creare un repo su github
+
+## Testare applicazioni
+
+### Installazione MiniKube su rasp
+
+- [ ] dispiegare un app su minikube
+  - [ ] installare minikube su rasp
+    - [ ] dispegare pod mongo
+    - [ ] dispiegare pod zion-preseed
+    - [ ] deploy app per ricette
 
 ## Migrare sito da fleek a raspberry
 
@@ -48,6 +58,23 @@ Ci possono essere due tipo di package:
 
 ## Creare Pagine statica per blog in .md
 
+Per creare quest'app viene usato il package
+[markdown-it](https://www.npmjs.com/package/markdown-it).
+
+- [x] generare html da .md
+- [ ] creare classe che estenda markdown-it e
+      styled-components per creare di temi di visualizzazione
+      dei blog posts.
+- [ ] tradurre il contenuto del blog in automatico.
+  - [ ] preleva testo
+  - [ ] traduci testo con http
+  - [ ] registra traduzione su database
+  - [ ] validare correzione
+
+### Requirements
+
+- [ ] mongo db
+
 ## Generative Artwork
 
 - [x] Drawer: dovrebbe essere funzionante
@@ -60,6 +87,10 @@ Ci possono essere due tipo di package:
   - [ ] test deploy on mumbai
     - [ ] test UI
   - [ ] deploy on polygon
+
+# Server
+
+- [ ] fare in modo che docker riparta all'avvio
 
 # Gotek - Propaganda (AudioNFT_PFP)
 
@@ -162,10 +193,26 @@ cartella all'interno di packages.
 
 - ## Idee
 
+  - [ ] app database URLs
+  - [ ] app per creare velocemente
+  - [ ] applicazione per provare codice
+    - [ ] ci sono soluzioni framework?
+    - [ ] creare una soluzione home-made?
+  - [ ] app gestion git
+    - [ ] creazione di un remote su github
+    - [ ] gestione degli issue e integrazione degli stessi
+          con sistema interno di gestione tasks.
+    - [ ] contrallo rules dei repo: ad
+          esempio che il contenuto delle cartelle in
+          /packages/@zionstate sia uguale in tutte
+      - [ ] funzione per contralllare se il contenuto di una
+            cartella è uguale al contenuto di un'altra.
   - [ ] checklist
   - [ ] todo
   - [ ] simple smart contract UI
   - [ ] Blog app
+  - [ ] sondaggi
+  - [ ] reports
   - [ ] Ricette e ordine supermercato
     - [ ] Generatore Pagine statiche da .md
       - [ ] CI/CD a partire da file caricati nel repo (il sito
@@ -177,6 +224,7 @@ cartella all'interno di packages.
     - [ ] creazione playlist
     - [ ] mint playlist (bot recupera dati da blockchain)
   - [ ] Zion account HomePage (per label che supportano)
+  - [ ] dashboard per performance device (server)
   - [ ] applicazione CLI per installare sistema ZION
   - [ ] quiz app
     - generazione transazioni (proposte)
@@ -204,6 +252,13 @@ cartella all'interno di packages.
 
   - [ ] Applicazione per aggiungere contesto ai
         bookmark/preferiti del browser.
+  - [ ] translate validation
+
+# Dimostrazione
+
+- [ ] distribuzione decentralizzata global vs nodes
+  - _global_: senza nodi
+  - _nodes_: con nodi
 
 # Docker Images
 
