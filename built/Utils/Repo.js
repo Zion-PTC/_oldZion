@@ -27,6 +27,12 @@ class Repo {
     };
 }
 // 5/6/2022
+/**
+ * é stato necessario trovare la lista dei repo da
+ * cancellare da github. Ho inizialmente fatto una lista di
+ * repo da tenere perchè vanno estesi e in seguito l'ho
+ * sottratta alla lista di file presenti nella cartella.
+ */
 const repacks = new Repo().getPackageTypeDirectoryNames("@zionrepack");
 const toKeep = [
     "telegraf",
