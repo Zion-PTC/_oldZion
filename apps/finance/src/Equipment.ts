@@ -1,3 +1,5 @@
+import { Price } from "./Price.js";
+
 enum EquipmentScopes {
   softwareDevelopment = "software-development",
   music = "music",
@@ -6,7 +8,7 @@ enum EquipmentScopes {
 }
 type EquipmentScopeTypes = keyof typeof EquipmentScopes;
 
-class Equipment {
+export class Equipment {
   constructor(
     public name: string,
     public price: Price,
@@ -18,7 +20,7 @@ class Equipment {
   ) {}
 }
 
-let raspBerryPi4 = new Equipment("Raspberry Pi 4", new Price(100));
+export let raspBerryPi4 = new Equipment("Raspberry Pi 4", new Price(150));
 raspBerryPi4.scopes.pop();
 raspBerryPi4.scopes.push("server");
 raspBerryPi4.link = [
@@ -27,10 +29,12 @@ raspBerryPi4.link = [
   ),
 ];
 
-let iPadPro = new Equipment("IPad Pro", new Price(1000));
+export let iPadPro = new Equipment("IPad Pro", new Price(1000));
 iPadPro.scopes.push("visualArt");
 
-let macBookPro = new Equipment('MacBookPro 15"', new Price(2900));
+export let iPadPencil = new Equipment("iPad Pencil", new Price(90));
+
+export let macBookPro = new Equipment('MacBookPro 15"', new Price(2900));
 macBookPro.scopes.push("softwareDevelopment");
 macBookPro.scopes.push("visualArt");
 macBookPro.link = [
@@ -39,8 +43,11 @@ macBookPro.link = [
   ),
 ];
 
-let superWideScreen = new Equipment("SuperWideScreen", new Price(1000));
+export let superWideScreen = new Equipment("SuperWideScreen", new Price(1000));
 macBookPro.scopes.push("softwareDevelopment");
 macBookPro.scopes.push("visualArt");
 
-let raspBerryCase = new Equipment("Raspberry Cluster Case", new Price(90));
+export let raspBerryCase = new Equipment(
+  "Raspberry Cluster Case",
+  new Price(90)
+);
