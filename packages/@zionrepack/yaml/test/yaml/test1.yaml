@@ -1,0 +1,10 @@
+nome: giacomo
+cognome: gagliano
+indirizzo:
+  via: Fuori le Mura
+  n: 10
+  cap: 58100
+array:
+  - ciao
+  - come
+  - stai
