@@ -8,6 +8,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "test": "nodemon ./built/Budget.js"
   }
 }

@@ -20,15 +20,6 @@ export class Equipment {
   ) {}
 }
 
-export let raspBerryPi4 = new Equipment("Raspberry Pi 4", new Price(150));
-raspBerryPi4.scopes.pop();
-raspBerryPi4.scopes.push("server");
-raspBerryPi4.link = [
-  new URL(
-    "https://www.kubii.it/raspberry-pi-4-modello-b/3011-kit-raspberry-pi4-4gb-3272496302112.html"
-  ),
-];
-
 export let iPadPro = new Equipment("IPad Pro", new Price(1000));
 iPadPro.scopes.push("visualArt");
 
@@ -51,3 +42,12 @@ export let raspBerryCase = new Equipment(
   "Raspberry Cluster Case",
   new Price(90)
 );
+
+export let raspBerryPi4 = new Equipment("Raspberry Pi 4", new Price(150));
+raspBerryPi4.scopes.pop();
+raspBerryPi4.scopes.push("server");
+raspBerryPi4.link = [
+  new URL(
+    "https://www.kubii.it/raspberry-pi-4-modello-b/3011-kit-raspberry-pi4-4gb-3272496302112.html"
+  ),
+];

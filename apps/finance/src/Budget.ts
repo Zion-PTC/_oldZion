@@ -45,6 +45,9 @@ class Budget {
     this.#name = name;
     if (items) this.#items.push(...items);
   }
+  showTableBudget() {
+    console.table(createObj(totalBudgets));
+  }
   #prices(item: [Equipment, number]) {
     return item[0].price.amount * item[1];
   }
