@@ -1,11 +1,10 @@
 {
   "name": "zion",
   "workspaces": [
-    "./packages/@zionrepack/**/*",
-    "./packages/@zionstate/**/*",
-    "./packages/@zionstate_node/**/*",
-    "./packages/@zionstate_js/**/*",
-    "./apps/**/*"
+    "./packages/@zionstate/*",
+    "./packages/@zionrepack/*",
+    "./packages/@zionstate_js/*",
+    "./packages/@zionstate_node/*"
   ],
   "version": "1.0.0",
   "description": "",
