@@ -230,6 +230,8 @@ export class System {
         let extension = extname(path);
         return extension;
     }
+    stringifyFile(path) {
+    }
 }
 export let TreeNodeExport = TreeNode;
 export let system = new System();

@@ -99,6 +99,7 @@ export declare class System {
     getTreeNodeType(path: fs.PathLike): number;
     getFileSize(path: fs.PathLike): number;
     getFileExtension(path: string): string;
+    stringifyFile(path: string): void;
 }
 export declare let TreeNodeExport: typeof TreeNode;
 export declare type ITreeNodeExport = ITreeNode;

@@ -247,6 +247,9 @@ export class System {
     let extension = extname(path);
     return extension;
   }
+  stringifyFile(path:string){
+
+  }
 }
 
 export let TreeNodeExport = TreeNode;
