@@ -1,4 +1,5 @@
-import * as SystemExport from './src/System.js';
+import * as SystemExport from "./src/System.js";
+import * as PathExport from "./src/Path.js";
 declare let System: typeof SystemExport.System;
 export default System;
 export declare let TreeNode: typeof import("./src/TreeNode.js").TreeNode;
@@ -9,3 +10,4 @@ export declare type IFile = SystemExport.IFileExport;
 export declare type IFolder = SystemExport.IFolderExport;
 export declare type IRoot = SystemExport.IRootExport;
 export declare let system: SystemExport.System;
+export declare let ZionPath: typeof PathExport.ZionPath;
