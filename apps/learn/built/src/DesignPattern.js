@@ -1,69 +1,73 @@
-// /// <reference path='../Namespaces/Knowledge.ts'/>
-// // type ADesignPattern = Knowledge.ADesignPattern;
-// type ISorgente = Knowledge.ISorgente;
-// // type IEsempio = Knowledge.IEsempio
-// type ITutorial = Knowledge.ITutorial;
-// type IDesignPattern = Knowledge.IDesignPattern;
-export class ADesignPattern {
+var Folders;
+(function (Folders) {
+    Folders["compEInher"] = "Composition vs Inheritance";
+    Folders["dataStructure"] = "Data Structure";
+    Folders["developerModzilla"] = "Developer Modizilla";
+    Folders["nodeModules"] = "Node Modules";
+    Folders["patterns"] = "Patterns";
+    Folders["proJavascriptPatternsDesign"] = "Pro Javascript Pattern Design";
+    Folders["typescript"] = "TypeScript";
+})(Folders || (Folders = {}));
+export class DesignPattern {
     id;
     nome;
     categoria;
     sorgenti;
     esempi;
     tutorials;
+    posts;
     priorità;
+    isInCheatSheet;
     static #designPatterns = [];
     static mostraPatternSenzaEsempi() {
-        // TODO sistemare errore
-        //@ts-expect-error
         let array = [];
-        let aggiungiNome = ADesignPattern.#aggiungiNome;
-        // TODO sistemare errore
-        //@ts-expect-error
-        ADesignPattern.#designPatterns.forEach(aggiungiNome, array);
-        // TODO sistemare errore
-        //@ts-expect-error
+        let aggiungiNome = DesignPattern.#aggiungiNome;
+        DesignPattern.#designPatterns.forEach(aggiungiNome, array);
         if (array.length !== 0)
-            ADesignPattern.#logArray(array);
+            DesignPattern.#logArray(array);
         if (array.length === 0)
-            ADesignPattern.#logComplete();
+            DesignPattern.#logComplete();
         return this;
     }
     static #aggiungiNome = function (pattern) {
-        // TODO sistemare errore
+        // TODO capire come far riferire al thisArg passato dal forEach
         //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern.nome);
     };
     static #logArray(array) {
-        console.log('Pattern ancora da fare', array.join(', '));
+        console.log("Pattern ancora da fare", array.join(", "));
     }
     static #logComplete() {
-        console.log('Missione Completa!');
+        console.log("Missione Completa!");
     }
-    constructor(id = 0, nome = 'Aggiungere un nome per il design pattern', categoria = 'non definito', sorgenti = [], esempi = [], tutorials = [], priorità = 'Bassa') {
+    constructor(id = 0, nome = "Aggiungere un nome per il design pattern", categoria = "non definito", sorgenti = [], esempi = [], tutorials = [], posts = [], priorità = "Bassa", isInCheatSheet = false) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
         this.sorgenti = sorgenti;
         this.esempi = esempi;
         this.tutorials = tutorials;
+        this.posts = posts;
         this.priorità = priorità;
-        ADesignPattern.#designPatterns.push(this);
-        this.id = ADesignPattern.#designPatterns.length;
+        this.isInCheatSheet = isInCheatSheet;
+        DesignPattern.#designPatterns.push(this);
+        this.id = DesignPattern.#designPatterns.length;
     }
-}
-export class DesignPattern extends ADesignPattern {
     aggiungiSorgente(sorgente) {
         this.sorgenti.push(sorgente);
         return this;
     }
-    aggiungiEsempio(esempio) {
+    aggiungiEsercizio(esempio) {
         this.esempi.push(esempio);
         return this;
     }
     aggiungiTutorial(tutorial) {
         this.tutorials.push(tutorial);
+        return this;
+    }
+    aggiungiBlogPost(blog) {
+        this.posts.push(blog);
         return this;
     }
     mostraSorgenti() {
@@ -80,7 +84,7 @@ export class DesignPattern extends ADesignPattern {
         };
         let array = [];
         this.esempi.forEach(aggiungiNome);
-        console.log(array.join(', '));
+        console.log(array.join(", "));
         return this;
     }
     #aggiungiLink = function (sorgente) {
@@ -95,80 +99,95 @@ export class DesignPattern extends ADesignPattern {
     };
 }
 export const chainOfResp = new DesignPattern();
-chainOfResp.nome = 'Chain of responsability';
-chainOfResp.categoria = 'Behavioral';
+chainOfResp.nome = "Chain of responsability";
+chainOfResp.categoria = "Behavioral";
 export const command = new DesignPattern();
-command.nome = 'Command';
-command.categoria = 'Behavioral';
+command.nome = "Command";
+command.categoria = "Behavioral";
 export const interpreter = new DesignPattern();
-interpreter.nome = 'Interpreter';
-interpreter.categoria = 'Behavioral';
+interpreter.nome = "Interpreter";
+interpreter.categoria = "Behavioral";
 export const iterator = new DesignPattern();
-iterator.nome = 'Iterator';
-iterator.categoria = 'Behavioral';
+iterator.nome = "Iterator";
+iterator.categoria = "Behavioral";
 export const mediator = new DesignPattern();
-mediator.nome = 'Mediator';
-mediator.categoria = 'Behavioral';
+mediator.nome = "Mediator";
+mediator.categoria = "Behavioral";
 export const memento = new DesignPattern();
-memento.nome = 'Memento';
-memento.categoria = 'Behavioral';
+memento.nome = "Memento";
+memento.categoria = "Behavioral";
 export const observer = new DesignPattern();
-observer.nome = 'Observer';
-observer.categoria = 'Behavioral';
+observer.nome = "Observer";
+observer.categoria = "Behavioral";
 export const state = new DesignPattern();
-state.nome = 'State';
-state.categoria = 'Behavioral';
+state.nome = "State";
+state.categoria = "Behavioral";
 export const strategy = new DesignPattern();
-strategy.nome = 'Strategy';
-strategy.categoria = 'Behavioral';
+strategy.nome = "Strategy";
+strategy.categoria = "Behavioral";
+strategy.isInCheatSheet = true;
 export const templateMethod = new DesignPattern();
-templateMethod.nome = 'Template Method';
-templateMethod.categoria = 'Behavioral';
+templateMethod.nome = "Template Method";
+templateMethod.categoria = "Behavioral";
 export const visitor = new DesignPattern();
-visitor.nome = 'Visitor';
-visitor.categoria = 'Behavioral';
+visitor.nome = "Visitor";
+visitor.categoria = "Behavioral";
 export const abstractFactory = new DesignPattern();
-abstractFactory.nome = 'Abstract factory';
-abstractFactory.categoria = 'Creational';
+abstractFactory.nome = "Abstract factory";
+abstractFactory.categoria = "Creational";
+abstractFactory.isInCheatSheet = true;
 export const builder = new DesignPattern();
-builder.nome = 'Builder';
-builder.categoria = 'Creational';
+builder.nome = "Builder";
+builder.categoria = "Creational";
 export const factory = new DesignPattern();
-factory.nome = 'Factory';
-factory.categoria = 'Creational';
+factory.nome = "Factory";
+factory.categoria = "Creational";
+factory.isInCheatSheet = true;
 export const prototype = new DesignPattern();
-prototype.nome = 'Prototype';
-prototype.categoria = 'Creational';
+prototype.nome = "Prototype";
+prototype.categoria = "Creational";
 export const singleton = new DesignPattern();
-singleton.nome = 'Singleton';
-singleton.categoria = 'Creational';
+singleton.nome = "Singleton";
+singleton.categoria = "Creational";
+singleton.isInCheatSheet = true;
 export const adapter = new DesignPattern();
-adapter.nome = 'Adapter';
-adapter.categoria = 'Structural';
+adapter.nome = "Adapter";
+adapter.categoria = "Structural";
 export const bridge = new DesignPattern();
-bridge.nome = 'Bridge';
-bridge.categoria = 'Structural';
+bridge.nome = "Bridge";
+bridge.categoria = "Structural";
 export const composite = new DesignPattern();
-composite.nome = 'Composite';
-composite.categoria = 'Structural';
+composite.nome = "Composite";
+composite.categoria = "Structural";
 export const decorator = new DesignPattern();
-decorator.nome = 'Decorator';
-decorator.categoria = 'Structural';
+decorator.nome = "Decorator";
+decorator.categoria = "Structural";
+decorator.isInCheatSheet = true;
 export const facade = new DesignPattern();
-facade.nome = 'Facade';
-facade.categoria = 'Structural';
+facade.nome = "Facade";
+facade.categoria = "Structural";
 export const flyweight = new DesignPattern();
-flyweight.nome = 'Flywight';
-flyweight.categoria = 'Structural';
+flyweight.nome = "Flywight";
+flyweight.categoria = "Structural";
 export const proxy = new DesignPattern();
-proxy.nome = 'Proxy';
-proxy.categoria = 'Structural';
+proxy.nome = "Proxy";
+proxy.categoria = "Structural";
 export const nullObj = new DesignPattern();
-nullObj.nome = 'Null Object';
-nullObj.categoria = 'non definito';
+nullObj.nome = "Null Object";
+nullObj.categoria = "non definito";
 export const lazyLoad = new DesignPattern();
-lazyLoad.nome = 'Lazy Load';
-lazyLoad.categoria = 'non definito';
+lazyLoad.nome = "Lazy Load";
+lazyLoad.categoria = "non definito";
 export const interfacePattern = new DesignPattern();
-interfacePattern.nome = 'Interface pattern';
-interfacePattern.categoria = 'non definito';
+interfacePattern.nome = "Interface pattern";
+interfacePattern.categoria = "non definito";
+export const mixin = new DesignPattern();
+mixin.nome = "Mixins";
+mixin.categoria = "non definito";
+mixin.isInCheatSheet = true;
+export const decoratorFunction = new DesignPattern();
+mixin.nome = "Decorator Functions";
+mixin.categoria = "non definito";
+export const classExpressionPattern = new DesignPattern();
+mixin.nome = "Class Expression Pattern";
+mixin.categoria = "non definito";

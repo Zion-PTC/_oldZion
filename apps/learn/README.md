@@ -1,21 +1,36 @@
-studio_javascript
+# Learn Application
 
-Questo è il repo dove metto i codici dei tutorials, esercizi e prove.
+## Intro
 
-<h1>_playground</h1>
-contiene file prova
+In questo repo stiamo costruendo un applicazione che sarà la
+base del sistema di Zion. La conoscenza e la sua
+divulgazione sono le armi della libertà. Non ci sarà mai
+pace se l'istruzione continuerà ad essere un monopolio di
+pochi o semplicemente assoggettata a schemi di mercato.
+Come tutte le altre applicazioni di Zion anche questa avra
+un'architettura che farà uso della tecnologia DLT.
 
-<h1>COMPOSITION VS INHERITANCE</h1>
-contiene prove inerenti alla composizione e alla
-ereditarietà
+L'applicazione dovra avere le seguenti funzionalità:
 
-<h1>DATA STRUCTURE</h1>
-studi sulle strutture di dati
+- Percorso Formativo
+- Tutorials
+- Quiz
+- Sistema di incentivo
+  - per tutors
+  - per studenti
 
-<h1>DEVELOPER MODZILLA</h1>
+# Cartelle
 
-<h1>NODE MODULES</h1>
-
-<h1>PATTERNS</h1>
-
-<h1>PRO JAVASCRIPT PATTERS (book)</h1>
+- code
+  - **\_playground** :contiene file prova
+  - **COMPOSITION VS INHERITANCE**: contiene prove inerenti
+    alla composizione e alla ereditarietà
+  - **DATA STRUCTURE**: studi sulle strutture di dati
+  - **DEVELOPER MODZILLA**:
+  - **NODE MODULES**:
+  - **PATTERNS**:
+  - **PRO JAVASCRIPT PATTERS (book)**:
+- documents
+- src
+- test
+- workflows

@@ -4,7 +4,8 @@
     "../ZION/packages/"
   ],
   "scripts": {
-    "test": "nodemon /test/init.js"
+    "test": "nodemon ./test/init.js",
+    "tsx": "tsc"
   },
   "version": "0.0.89",
   "description": "",

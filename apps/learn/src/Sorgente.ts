@@ -26,8 +26,8 @@ import {
   strategy,
   templateMethod,
   visitor,
-} from './DesignPattern.js';
-import { ITutorial } from './Tutorial';
+} from "./DesignPattern.js";
+import { ITutorial } from "./Tutorial";
 // /// <reference path='../Namespaces/Knowledge.ts'/>
 // type ITutorial = Knowledge.ITutorial;
 // type ISorgente = Knowledge.ISorgente;
@@ -44,7 +44,7 @@ import { ITutorial } from './Tutorial';
 //   };
 // }
 
-type Tipo = 'libro' | 'blog' | 'coder';
+type Tipo = "libro" | "blog" | "coder";
 
 export interface IStaticSorgente {}
 
@@ -57,12 +57,14 @@ export interface ISorgente {
   github: URL;
   designPatterns: IDesignPattern[];
   get designPatternSenzaEsempi(): IDesignPattern[];
+  get designPatternConEsempi(): IDesignPattern[];
   show(): ISorgente;
   showPatterns(): ISorgente;
   addDesignPattern(pattern: IDesignPattern): ISorgente;
   aggiungiTutorial(tutorial: ITutorial): ISorgente;
   mostraPatternID(pattern: IDesignPattern): number;
   mostraDesignPatternSenzaEsempi(): ISorgente;
+  mostraDesignPatternConEsempi(): ISorgente;
   contaDesignPatternSenzaEsempi(): ISorgente;
 }
 
@@ -96,12 +98,14 @@ export abstract class ASorgente implements ISorgente {
     this.id = ASorgente.#sorgenti.length;
   }
   abstract get designPatternSenzaEsempi(): IDesignPattern[];
+  abstract get designPatternConEsempi(): IDesignPattern[];
   abstract show(): ISorgente;
   abstract showPatterns(): ISorgente;
   abstract addDesignPattern(pattern: IDesignPattern): ISorgente;
   abstract aggiungiTutorial(tutorial: ITutorial): ISorgente;
   abstract mostraPatternID(pattern: IDesignPattern): number;
   abstract mostraDesignPatternSenzaEsempi(): ISorgente;
+  abstract mostraDesignPatternConEsempi(): ISorgente;
   abstract contaDesignPatternSenzaEsempi(): ISorgente;
 }
 
@@ -110,6 +114,12 @@ export class Sorgente extends ASorgente {
     let aggiungiSenzaEsempio = this.#aggiungiSenzaEsempio;
     let array: IDesignPattern[] = [];
     this.designPatterns.forEach(aggiungiSenzaEsempio, array);
+    return array;
+  }
+  get designPatternConEsempi(): IDesignPattern[] {
+    let aggiungiConEsempio = this.#aggiungiConEsempio;
+    let array: IDesignPattern[] = [];
+    this.designPatterns.forEach(aggiungiConEsempio, array);
     return array;
   }
   show = function (): ISorgente {
@@ -130,7 +140,7 @@ export class Sorgente extends ASorgente {
     // TODO sistemare errore
     //@ts-expect-error
     this.designPatterns.forEach(aggiungiNome);
-    console.log(array.join(', '));
+    console.log(array.join(", "));
     // TODO sistemare errore
     //@ts-expect-error
     return this;
@@ -159,20 +169,39 @@ export class Sorgente extends ASorgente {
   mostraDesignPatternSenzaEsempi(
     categoria?: DesignPatternsCategories
   ): ISorgente {
-    let aggiungiNome = this.#aggiungiNome;
-    let appartieneACategoria = this.#appartieneACategoria;
-    let array: IDesignPattern[] = [];
-    this.designPatternSenzaEsempi;
+    let aggiungiNome = this.#aggiungiNome,
+      appartieneACategoria = this.#appartieneACategoria,
+      array: IDesignPattern[] = [];
+
     if (!categoria) {
-      console.log(this.designPatternSenzaEsempi.join(', '));
+      this.designPatternSenzaEsempi.forEach(aggiungiNome, array);
     } else {
       let patternPerCategoria = this.designPatternSenzaEsempi.filter(
         appartieneACategoria,
         categoria
       );
       patternPerCategoria.forEach(aggiungiNome, array);
-      console.log(array.join(', '));
     }
+    console.log(array.join(", "));
+    return this;
+  }
+  mostraDesignPatternConEsempi(
+    categoria?: DesignPatternsCategories
+  ): ISorgente {
+    let aggiungiNome = this.#aggiungiNome,
+      appartieneACategoria = this.#appartieneACategoria,
+      array: IDesignPattern[] = [];
+
+    if (!categoria) {
+      this.designPatternConEsempi.forEach(aggiungiNome, array);
+    } else {
+      let patternPerCategoria = this.designPatternConEsempi.filter(
+        appartieneACategoria,
+        categoria
+      );
+      patternPerCategoria.forEach(aggiungiNome, array);
+    }
+    console.log(array.join(", "));
     return this;
   }
   contaDesignPatternSenzaEsempi = function (
@@ -182,7 +211,7 @@ export class Sorgente extends ASorgente {
       // TODO sistemare errore
       //@ts-expect-error
       let res = this.designPatternSenzaEsempi;
-      console.log('Manacano', res.length, 'Pattern in totale');
+      console.log("Manacano", res.length, "Pattern in totale");
     } else {
       // TODO sistemare errore
       //@ts-expect-error
@@ -193,7 +222,7 @@ export class Sorgente extends ASorgente {
         appartieneACategoria,
         categoria
       );
-      console.log('Mancano', patternPerCategoria.length, categoria, 'pattern');
+      console.log("Mancano", patternPerCategoria.length, categoria, "pattern");
     }
     // TODO sistemare errore
     //@ts-expect-error
@@ -203,6 +232,11 @@ export class Sorgente extends ASorgente {
     // TODO sistemare errore
     //@ts-expect-error
     if (pattern.esempi.length === 0) this.push(pattern);
+  };
+  #aggiungiConEsempio = function (pattern: IDesignPattern) {
+    // TODO sistemare errore
+    //@ts-expect-error
+    if (pattern.esempi.length !== 0) this.push(pattern);
   };
   #aggiungiNome = function (pattern: IDesignPattern) {
     // TODO sistemare errore
@@ -225,9 +259,9 @@ export class Sorgente extends ASorgente {
 }
 
 export const PJDP = new Sorgente();
-PJDP.titolo = 'Pro Javascript Design Patterns';
-PJDP.autori = ['Ross Armes', 'Dustin Diaz'];
-PJDP.tipo = 'libro';
+PJDP.titolo = "Pro Javascript Design Patterns";
+PJDP.autori = ["Ross Armes", "Dustin Diaz"];
+PJDP.tipo = "libro";
 PJDP.addDesignPattern(interfacePattern);
 PJDP.addDesignPattern(singleton);
 PJDP.addDesignPattern(factory);
@@ -243,11 +277,11 @@ PJDP.addDesignPattern(command);
 PJDP.addDesignPattern(chainOfResp);
 
 export const DOFACTORY = new Sorgente();
-DOFACTORY.titolo = 'JavaScript Patterns';
-DOFACTORY.autori = ['dofactory'];
-DOFACTORY.tipo = 'blog';
+DOFACTORY.titolo = "JavaScript Patterns";
+DOFACTORY.autori = ["dofactory"];
+DOFACTORY.tipo = "blog";
 DOFACTORY.link = new URL(
-  'https://www.dofactory.com/javascript/design-patterns/strategy#example'
+  "https://www.dofactory.com/javascript/design-patterns/strategy#example"
 );
 DOFACTORY.addDesignPattern(abstractFactory);
 DOFACTORY.addDesignPattern(builder);
@@ -275,10 +309,10 @@ DOFACTORY.addDesignPattern(visitor);
 
 export const CARLOS = new Sorgente();
 CARLOS.titolo = `pattern-design Series' Articles`;
-CARLOS.autori = ['Carlos Caballero'];
-CARLOS.tipo = 'blog';
-CARLOS.link = new URL('https://dev.to/carlillo/series/540');
-CARLOS.github = new URL('https://github.com/Caballerog');
+CARLOS.autori = ["Carlos Caballero"];
+CARLOS.tipo = "blog";
+CARLOS.link = new URL("https://dev.to/carlillo/series/540");
+CARLOS.github = new URL("https://github.com/Caballerog");
 CARLOS.addDesignPattern(strategy);
 CARLOS.addDesignPattern(templateMethod);
 CARLOS.addDesignPattern(adapter);
@@ -294,34 +328,34 @@ CARLOS.addDesignPattern(abstractFactory);
 CARLOS.addDesignPattern(observer);
 
 export const INTEGRALIST = new Sorgente();
-INTEGRALIST.titolo = 'Strategy.js';
-INTEGRALIST.autori = ['Integralist'];
-INTEGRALIST.link = new URL('https://gist.github.com/Integralist/5736427');
+INTEGRALIST.titolo = "Strategy.js";
+INTEGRALIST.autori = ["Integralist"];
+INTEGRALIST.link = new URL("https://gist.github.com/Integralist/5736427");
 INTEGRALIST.addDesignPattern(strategy);
 
 export const NJSDP = new Sorgente();
-NJSDP.titolo = 'Node.js Design Patterns';
-NJSDP.autori = ['Mark McDonnell'];
-NJSDP.tipo = 'libro';
+NJSDP.titolo = "Node.js Design Patterns";
+NJSDP.autori = ["Mark McDonnell"];
+NJSDP.tipo = "libro";
 
 export const DEVMODZ = new Sorgente();
-DEVMODZ.titolo = 'Developer Modzilla';
-DEVMODZ.autori = ['Javascript Dev Team'];
-DEVMODZ.tipo = 'blog';
+DEVMODZ.titolo = "Developer Modzilla";
+DEVMODZ.autori = ["Javascript Dev Team"];
+DEVMODZ.tipo = "blog";
 
 export const NODEJS = new Sorgente();
-NODEJS.titolo = 'Node Reference';
-NODEJS.autori = ['Node Js Dev Team'];
-NODEJS.tipo = 'blog';
+NODEJS.titolo = "Node Reference";
+NODEJS.autori = ["Node Js Dev Team"];
+NODEJS.tipo = "blog";
 
 export const TSLANG = new Sorgente();
-TSLANG.titolo = 'Typescript Reference';
-TSLANG.autori = ['TypeScriptLang Dev Team'];
-TSLANG.tipo = 'blog';
-TSLANG.link = new URL('https://www.typescriptlang.org/');
+TSLANG.titolo = "Typescript Reference";
+TSLANG.autori = ["TypeScriptLang Dev Team"];
+TSLANG.tipo = "blog";
+TSLANG.link = new URL("https://www.typescriptlang.org/");
 
 export const DOCOMMUNITY = new Sorgente();
-TSLANG.titolo = 'Digital Ocean';
-TSLANG.autori = ['Vijay Prasanna'];
-TSLANG.tipo = 'blog';
-TSLANG.link = new URL('https://www.digitalocean.com/community/tutorials');
+TSLANG.titolo = "Digital Ocean";
+TSLANG.autori = ["Vijay Prasanna"];
+TSLANG.tipo = "blog";
+TSLANG.link = new URL("https://www.digitalocean.com/community/tutorials");

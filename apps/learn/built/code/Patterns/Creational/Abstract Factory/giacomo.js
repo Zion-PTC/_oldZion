@@ -39,8 +39,8 @@ function abstract1() {
             this.registraFactory(...factories);
         }
     }
-    let newA = new Factory('A', { a: 100 });
-    let newB = new Factory('B', { b: 100 });
+    let newA = new Factory("A", { a: 100 });
+    let newB = new Factory("B", { b: 100 });
     console.log(newA, newB);
 }
 function abstract2() {
@@ -80,7 +80,7 @@ function abstract2() {
         }
     }
     let method1 = {
-        name: 'method1',
+        name: "method1",
         method: console.log,
     };
     let pop = { b: undefined, [method1.name]: method1.method };
@@ -89,7 +89,7 @@ function abstract2() {
     newAbstract.aggiungiFactory(B);
     newAbstract.aggiungiFactory(C);
     //@ts-expect-error
-    let newA = newAbstract.factory('A', pop).istanzaCreata;
+    let newA = newAbstract.factory("A", pop).istanzaCreata;
     console.log(newAbstract);
 }
 abstract2();

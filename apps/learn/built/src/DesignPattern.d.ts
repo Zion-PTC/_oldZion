@@ -1,44 +1,43 @@
-import { IEsempio } from './Esempio';
-import { ISorgente } from './Sorgente';
-import { ITutorial } from './Tutorial';
-export declare type Priorità = 'Bassa' | 'Media' | 'Alta';
-export declare type DesignPatternsCategories = 'Creational' | 'Behavioral' | 'Structural' | 'Idempotency' | 'non definito';
+import { BlogPost } from "./BlogPosts";
+import { IEsercizio } from "./Esercizio";
+import { ISorgente } from "./Sorgente";
+import { ITutorial } from "./Tutorial";
+export declare type Priorità = "Bassa" | "Media" | "Alta";
+export declare type DesignPatternsCategories = "Creational" | "Behavioral" | "Structural" | "Idempotency" | "non definito";
 export interface IDesignPattern {
     id: number;
     nome: string;
     categoria: DesignPatternsCategories;
     sorgenti: ISorgente[];
-    esempi: IEsempio[];
+    esempi: IEsercizio[];
     tutorials: ITutorial[];
+    posts: BlogPost[];
     priorità: Priorità;
+    isInCheatSheet: boolean;
     aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
-    aggiungiEsempio(esempio: IEsempio): IDesignPattern;
+    aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    aggiungiBlogPost(blog: BlogPost): IDesignPattern;
     mostraSorgenti(): IDesignPattern;
     mostraEsempi(): IDesignPattern;
 }
-export declare abstract class ADesignPattern implements IDesignPattern {
+export declare class DesignPattern implements IDesignPattern {
     #private;
     id: number;
     nome: string;
     categoria: DesignPatternsCategories;
     sorgenti: ISorgente[];
-    esempi: IEsempio[];
+    esempi: IEsercizio[];
     tutorials: ITutorial[];
+    posts: BlogPost[];
     priorità: Priorità;
-    static mostraPatternSenzaEsempi(): typeof ADesignPattern;
-    constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsempio[], tutorials?: ITutorial[], priorità?: Priorità);
-    abstract aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
-    abstract aggiungiEsempio(esempio: IEsempio): IDesignPattern;
-    abstract aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
-    abstract mostraSorgenti(): IDesignPattern;
-    abstract mostraEsempi(): IDesignPattern;
-}
-export declare class DesignPattern extends ADesignPattern {
-    #private;
+    isInCheatSheet: boolean;
+    static mostraPatternSenzaEsempi(): typeof DesignPattern;
+    constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean);
     aggiungiSorgente(sorgente: ISorgente): this;
-    aggiungiEsempio(esempio: IEsempio): IDesignPattern;
+    aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    aggiungiBlogPost(blog: BlogPost): IDesignPattern;
     mostraSorgenti(): this;
     mostraEsempi(): IDesignPattern;
 }
@@ -68,3 +67,6 @@ export declare const proxy: DesignPattern;
 export declare const nullObj: DesignPattern;
 export declare const lazyLoad: DesignPattern;
 export declare const interfacePattern: DesignPattern;
+export declare const mixin: DesignPattern;
+export declare const decoratorFunction: DesignPattern;
+export declare const classExpressionPattern: DesignPattern;

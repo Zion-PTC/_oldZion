@@ -35,8 +35,8 @@ function abstract1() {
       this.registraFactory(...factories);
     }
   }
-  let newA = new Factory('A', { a: 100 });
-  let newB = new Factory('B', { b: 100 });
+  let newA = new Factory("A", { a: 100 });
+  let newB = new Factory("B", { b: 100 });
   console.log(newA, newB);
 }
 function abstract2() {
@@ -79,13 +79,13 @@ function abstract2() {
       this.factories[type] = constructor;
       return this;
     }
-    factory<T>(type: 'A' | 'B' | 'C', props: T) {
+    factory<T>(type: "A" | "B" | "C", props: T) {
       this.istanzaCreata = new this.factories[type](props);
       return this;
     }
   }
   let method1 = {
-    name: 'method1',
+    name: "method1",
     method: console.log,
   };
   let pop = { b: undefined, [method1.name]: method1.method };
@@ -94,7 +94,7 @@ function abstract2() {
   newAbstract.aggiungiFactory(B);
   newAbstract.aggiungiFactory(C);
   //@ts-expect-error
-  let newA = newAbstract.factory<B>('A', pop).istanzaCreata;
+  let newA = newAbstract.factory<B>("A", pop).istanzaCreata;
   console.log(newAbstract);
 }
 abstract2();
