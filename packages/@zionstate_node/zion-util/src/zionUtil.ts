@@ -7,7 +7,7 @@ interface IInspectArguments {
   depth?: number;
   color?: boolean;
 }
-
+export type DebugLogger = util.DebugLogger;
 export interface IUtils {
   ////// util
   inspect(obj: IInspectArguments): string;
