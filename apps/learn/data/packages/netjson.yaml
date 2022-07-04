@@ -1,0 +1,6 @@
+nome: Netjson Graph
+descrizione: Con questo pacchetto è possibile creare delle rappresentazioni grafiche di grafi
+url:
+  - https://github.com/netjson/netjsongraph.js
+categoria:
+  - graphVisualization

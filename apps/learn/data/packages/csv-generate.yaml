@@ -1,0 +1,9 @@
+nome: Csv Generate
+descrizione: The csv-generate package provides a flexible
+  generator of random CSV strings and Javascript objects
+  implementing the Node.js stream.Readable API. It is part of
+  the CSV project.
+url:
+  - https://www.npmjs.com/package/csv-generate
+categoria:
+  - graphVisualization

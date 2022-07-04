@@ -16,9 +16,9 @@ function test() {
     class Ciao {
         culo;
         constructor() {
-            this.culo = 'culo';
+            this.culo = "culo";
         }
-        id = 'p';
+        id = "p";
     }
     class Vlod {
         constructor() {
@@ -28,15 +28,13 @@ function test() {
     function constr() {
         return (constructor) => { };
     }
-    // TODO sistemare errore
-    //@ts-expect-error
     function too(clObj) {
         class V extends Ciao {
         }
-        Object.defineProperty(V, 'name', { value: clObj });
+        Object.defineProperty(V, "name", { value: clObj });
         return V;
     }
-    let Cao = too('Cao');
+    let Cao = too("Cao");
     console.log(Cao);
     function moo() {
         return (c) => {
@@ -47,8 +45,6 @@ function test() {
     console.log(Bao(new Ciao()));
     let B = () => {
         let g;
-        // TODO sistemare errore
-        //@ts-expect-error
         return g;
     };
     let bobo = B();
@@ -56,9 +52,9 @@ function test() {
 }
 function test2() {
     const b = {
-        ['ciao']: '',
-        [0]: 'ciap',
-        ['doooo']: '',
+        ["ciao"]: "",
+        [0]: "ciap",
+        ["doooo"]: "",
     };
     console.log(b);
 }
@@ -73,28 +69,22 @@ function interfaceMaker() {
 function multipleInterfaceImplmentation() {
     function createClass(name) {
         let NEW = class NEW {
-            // TODO sistemare errore
-            //@ts-expect-error
             static ids;
-            id = 'id';
-            bot = 'bot';
+            id = "id";
+            bot = "bot";
         };
         NEW = __decorate([
             staticImplements()
         ], NEW);
-        Object.defineProperty(NEW, 'name', { value: name });
+        Object.defineProperty(NEW, "name", { value: name });
         return NEW;
     }
-    const NewClass = createClass('NewClass');
+    const NewClass = createClass("NewClass");
     const instance = new NewClass();
     console.log(instance);
 }
 export class APrimitive {
-    // TODO sistemare errore
-    //@ts-expect-error
     static id;
-    // TODO sistemare errore
-    //@ts-expect-error
     id;
     constructor() { }
 }

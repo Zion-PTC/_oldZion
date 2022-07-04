@@ -1,0 +1,6 @@
+nome: Ical Generator
+url:
+  - https://www.npmjs.com/package/@mdx-js/node-loader
+descrizione: Node loader for MDX.
+categoria:
+  - mdxManipulation

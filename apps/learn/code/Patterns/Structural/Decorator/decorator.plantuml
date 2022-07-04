@@ -1,0 +1,25 @@
+@startuml Decorator
+
+rectangle Client {
+}
+
+interface IComponent {
+  + method():string
+}
+
+class Component {
+  + method():type
+}
+
+class Decorator {
+  - object:IComponent
+  + method():Type
+}
+
+IComponent <|.. Component
+IComponent <|.. Decorator
+Component <-* Decorator
+Component <-d-o Client
+Decorator <-d-o Client
+
+@enduml

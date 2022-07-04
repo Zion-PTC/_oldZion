@@ -4,7 +4,8 @@
  */
 const ThisClass = function (id) {
   this.id = id;
+  this.constructor.name = "ciao";
 };
 
-let obj = new ThisClass('ciao');
+let obj = new ThisClass("ciao");
 console.log(obj.id);

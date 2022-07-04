@@ -5,16 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { staticImplements } from '../../../src/Primitive';
-/* class decorator */
-// function staticImplements<T>() {
-//   return <U extends T>(constructor: U) => {
-//     constructor;
-//   };
-// }
 console.log(this);
 let MyTypeClass = class MyTypeClass {
-    /* implements MyType { */ /* so this become optional not required */
-    // public static staticProp: string
     static staticProp;
     static staticMethod() {
         return '';
@@ -22,5 +14,5 @@ let MyTypeClass = class MyTypeClass {
     instanceMethod() { }
 };
 MyTypeClass = __decorate([
-    staticImplements() /* this statement implements both normal interface & static interface */
+    staticImplements()
 ], MyTypeClass);

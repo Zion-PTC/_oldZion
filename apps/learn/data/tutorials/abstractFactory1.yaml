@@ -1,0 +1,8 @@
+titolo: "JavaScript Abstract Factory"
+links:
+  - "https://www.dofactory.com/javascript/design-patterns/abstract-factory"
+type: blogPost
+designPattern: Abstract factory
+slug: 'dofactory'
+file:
+  - path: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Creational/Abstract Factory.js

@@ -1,0 +1,7 @@
+nome: Abstract factory
+categoria: Creational
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Creational/Abstract Factory/abstract_factory.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/dPCnQyCm48Lt_OeRMue3zHXCY6KeT6htqa6HBevQHGhoPGXj_tiLOwjW1TTeC0ZT--wPXzws8-7fV3IC6TmJa0ElsmE1qXubQMSPknw4RGr2OpHQWY_smvWqekkWtdNaXQIdy3b_2IE01v0U1U7BxYEGTq6WRNk_VdxrJfqbNU6Ja9-YHHYngeeccqs_f5y_pkl-whfvhz6eDT3bXCFDh5STHC4E81hMDxm0j2NqUo4H8ZbCKjDXu_YBZRFI8-70FUPmTHR5iwXcdkh9IVmyDtwUnCyNniypuo-pui-YU1RLbF_67zXfhQh23ULBHgvGnIOMPNxCMInKOTuEMYcqxqKw7QY_5iKJLDyhiqeU_KZo2SaZoM-J9Pkk2hgmObAF9Ig-IDKaglAMOxb4nHUfcfAnBLfrFffV
+isInCheatSheet: true

@@ -1,0 +1,6 @@
+nome: Singleton
+categoria: Creational
+plantuml:
+  - hasPlantuml: true
+  - link: https://www.plantuml.com/plantuml/uml/SoWkIImgAStDuU8gIaqkISnBpqbLSCx9JCqhKQZcgkNYIiv9B2vM2Cu4IPJavm455HIq5JBpYe5garEj438WnL2D-RfsIE88lReeubmEgNafG9i1
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Creational/Singleton/singleton.plantuml

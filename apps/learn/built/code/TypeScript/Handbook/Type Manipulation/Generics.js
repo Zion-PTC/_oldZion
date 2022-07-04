@@ -26,7 +26,6 @@ class helloWorldOfGenerics {
 class workingWithGenericsTypeVariable {
     example1() {
         function identity(arg) {
-            //@ts-expect-error
             console.log(arg.length);
             return arg;
         }
@@ -81,7 +80,6 @@ class GenericType {
         }
         let myIdentity = identity;
         let res1 = myIdentity(40);
-        //@ts-expect-error
         let res2 = myIdentity('40');
         console.log(res1);
     }
@@ -90,9 +88,7 @@ class GenericClasse {
     static ex1() {
         console.log('Una classe generica ha una forma simile alle Interfacce generiche. Le classi generiche hanno una lista di parametri di tipo generico incluse in <> dopo il nome della classe');
         class GenericNumber {
-            //@ts-expect-error
             zeroValue;
-            //@ts-expect-error
             add;
         }
         let myGenericNumber = new GenericNumber();
@@ -100,13 +96,10 @@ class GenericClasse {
         myGenericNumber.add = function (x, y) {
             return x + y;
         };
-        // return GenericNumber;
     }
     static ex2() {
         class GenericNumber1 {
-            //@ts-expect-error
             zeroValue;
-            //@ts-expect-error
             add;
         }
         let GenericNumber = GenericClasse.ex1();
@@ -121,7 +114,6 @@ class GenericClasse {
 class GenericConstraints {
     ex1() {
         function loggindIdentity(arg) {
-            //@ts-expect-error
             console.log(arg.length);
             return arg;
         }
@@ -134,7 +126,6 @@ class GenericConstraints {
             console.log(arg.length);
             return arg;
         }
-        // return loggindIdentity;
     }
     ex3() {
         console.log('Because the generic function is now constrained, it will no longer work over any and all types:');
@@ -142,7 +133,6 @@ class GenericConstraints {
             console.log(arg.length);
             return arg;
         }
-        //@ts-expect-error
         loggindIdentity(3);
     }
     ex4() {
@@ -162,7 +152,6 @@ class UsingTypeParametersInGenericConstraints {
         }
         let x = { a: 1, b: 2, c: 3, d: 4 };
         getProperty(x, 'a');
-        //@ts-expect-error
         getProperty(x, 'm');
     }
 }

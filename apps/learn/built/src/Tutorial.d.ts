@@ -2,9 +2,10 @@ import { IDesignPattern } from "./DesignPattern.js";
 import { ISorgente } from "./Sorgente";
 import { IFile } from "./File";
 declare enum TutorialEnums {
-    youtube = "You Tube",
+    youTube = "You Tube",
     blogPost = "Blog Post",
-    book = "Book"
+    book = "Book",
+    videoCourse = "Video Course"
 }
 declare type TutorialTypes = keyof typeof TutorialEnums;
 export interface IStaticTutorial {
@@ -16,8 +17,8 @@ export interface ITutorial {
     set links(links: string[]);
     get github(): string;
     set github(repo: string);
-    get oggetto(): IDesignPattern[];
-    set oggetto(oggetto: IDesignPattern[]);
+    get designPattern(): IDesignPattern[];
+    set designPattern(designPattern: IDesignPattern[]);
     get sorgente(): ISorgente[];
     set sorgente(sorgente: ISorgente[]);
     id: number;
@@ -35,8 +36,8 @@ export declare abstract class ATutorial implements ITutorial {
     static mostraTutorials(): void;
     get github(): string;
     set github(gituhubPath: string);
-    get oggetto(): IDesignPattern[];
-    set oggetto(oggetto: IDesignPattern[]);
+    get designPattern(): IDesignPattern[];
+    set designPattern(designPattern: IDesignPattern[]);
     get sorgente(): ISorgente[];
     set sorgente(sorgente: ISorgente[]);
     get links(): string[];
@@ -52,18 +53,9 @@ export declare abstract class ATutorial implements ITutorial {
     abstract aggiungiAnnotazione(annotazione: string): ITutorial;
 }
 export declare class Tutorial extends ATutorial {
-    constructor();
     aggiungiSorgente(sorgente: ISorgente): ITutorial;
     aggiungiOggetto(oggetto: IDesignPattern): ITutorial;
     aggiungiAnnotazione(annotazione: string): ITutorial;
 }
-export declare let decTut1: Tutorial;
-export declare let decTut3: Tutorial;
-export declare let decTut2: Tutorial;
-export declare let TSGenerics: Tutorial;
-export declare let factoryTutorial: Tutorial;
-export declare let abstractFactory1: Tutorial;
-export declare let abstractFactory2: Tutorial;
-export declare let facade1: Tutorial;
-export declare let nextRemarkRehype: Tutorial;
+export declare let tutoPath: Tutorial[];
 export {};

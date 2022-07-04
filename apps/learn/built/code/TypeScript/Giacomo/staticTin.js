@@ -12,11 +12,9 @@ function sITestA() {
 }
 let ThatThing = class ThatThing {
     static get prove() {
-        //@ts-expect-error
         return;
     }
     static set prove(prova) { }
-    //@ts-expect-error
     id;
 };
 ThatThing = __decorate([
@@ -25,7 +23,6 @@ ThatThing = __decorate([
 let tin = new ThatThing();
 tin.id = 'ciao';
 console.log(tin.id);
-//// ________
 function sITestB() {
     return (constructor) => {
         constructor;
@@ -33,7 +30,6 @@ function sITestB() {
 }
 let MyTin = class MyTin {
     static id;
-    //@ts-expect-error
     id;
 };
 MyTin = __decorate([
@@ -48,11 +44,8 @@ function sITestC() {
     };
 }
 let Ouch = class Ouch {
-    //@ts-expect-error
     static id;
-    //@ts-expect-error
     static foo;
-    //@ts-expect-error
     id;
 };
 Ouch = __decorate([

@@ -2,7 +2,6 @@ import { Combinations } from './possiblita.js';
 const layerAC = ['AC1', 'AC2', 'AC3', 'AC4', 'AC5'];
 const layerBC = ['BC1', 'BC2', 'BC3', 'BC4', 'BC5'];
 const layerCC = ['CC1', 'CC2', 'CC3', 'CC4', 'CC5'];
-//
 const layerAR = ['AR6', 'AR7', 'AR8', 'AR9', 'AR10'];
 const layerBR = ['BR6', 'BR7', 'BR8', 'BR9', 'BR10'];
 const layerCR = ['CR6', 'CR7', 'CR8', 'CR9', 'CR10'];

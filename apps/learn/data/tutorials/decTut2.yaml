@@ -1,0 +1,9 @@
+titolo: Decorator Tutorial 2
+links:
+  - https://dev.to/carlillo/understanding-design-patterns-decorator-using-long-night-got-example-276c
+github: https://github.com/Caballerog/blog/tree/master/adapter-pattern
+type: blogPost
+slug: carlos
+designPattern: Decorator
+file:
+  path: /Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator/carlos1.js

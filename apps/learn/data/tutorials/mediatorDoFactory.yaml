@@ -1,0 +1,8 @@
+titolo: Mediator Design Pattern
+type: blogPost
+designPattern: Mediator
+slug: dofactory
+links:
+  - https://www.dofactory.com/javascript/design-patterns/mediator
+file:
+  - path: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Mediator.js

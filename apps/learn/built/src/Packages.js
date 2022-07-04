@@ -1,93 +1,114 @@
-"use strict";
-class Package {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { ZionYaml } from "@zionrepack/yaml/built/src/ZionYaml.js";
+import { aggiungi } from "../lib/aggiungi.js";
+import { getPackages } from "../lib/packages.js";
+import { staticImplements } from "./Primitive.js";
+var PackageEnums;
+(function (PackageEnums) {
+    PackageEnums["npm"] = "npm";
+    PackageEnums["yarn"] = "yarn";
+    PackageEnums["brew"] = "homebrew";
+    PackageEnums["apt"] = "apt";
+    PackageEnums["helm"] = "helm";
+})(PackageEnums || (PackageEnums = {}));
+var PackageCategoriaEnums;
+(function (PackageCategoriaEnums) {
+    PackageCategoriaEnums["default"] = "Nessuna categoria \u00E8 stata fornita";
+    PackageCategoriaEnums["graphVisualization"] = "Graph Visualization";
+    PackageCategoriaEnums["graphManipulation"] = "Graph Manipulation";
+    PackageCategoriaEnums["mdManipulation"] = "MarkdownFiles Manipulation, .md";
+    PackageCategoriaEnums["mdxManipulation"] = "MarkdownX Manipulatin, .mds";
+    PackageCategoriaEnums["htmlManiputalion"] = "HTML files Manipulation, .html";
+    PackageCategoriaEnums["yamlManipulation"] = "Yaml files Manipulation, .yaml";
+    PackageCategoriaEnums["iCal"] = "iCal Interactions";
+})(PackageCategoriaEnums || (PackageCategoriaEnums = {}));
+class APackage {
     url;
+    type;
     descrizione;
-    categoria;
-    type = "npm";
-    links = [];
-    constructor(url, descrizione = "Nessuna descrizione è stata fornita", categoria = "Nessuna categoria è stata fornita") {
+    nome;
+    static #packages = [];
+    static get packages() {
+        return APackage.#packages;
+    }
+    static mostraPackages() {
+        let obj = [];
+        function add(pack) {
+            let obj = {};
+            aggiungi(obj, "nome", pack, "nome");
+            aggiungi(obj, "type", pack, "type");
+            aggiungi(obj, "categoria", pack, "categoria");
+            this.push(obj);
+        }
+        APackage.packages.forEach(add, obj);
+        console.table(obj);
+    }
+    constructor(url, type = "npm", descrizione = "Nessuna descrizione è stata fornita", nome = "Nessun nome fornito") {
         this.url = url;
+        this.type = type;
         this.descrizione = descrizione;
-        this.categoria = categoria;
-        this.links.push(new URL(url));
+        this.nome = nome;
+        APackage.#packages.push(this);
     }
 }
-const graphVisualizationLibrariesDescr = `Con questo pacchetto è possibile creare delle` +
-    `rappresentazioni grafiche di grafi`;
-const graphVisualizationLibsCat = "graph-visualization";
-const graphVisLibsInfos = [
-    graphVisualizationLibrariesDescr,
-    graphVisualizationLibsCat,
-];
-const alchemyURL = "https://graphalchemist.github.io/Alchemy/#/";
-let alchemy = new Package(alchemyURL, ...graphVisLibsInfos);
-const arborURL = "http://arborjs.org/";
-let arbor = new Package(arborURL, ...graphVisLibsInfos);
-const d3JSURL = "https://d3js.org/";
-let d3js = new Package(d3JSURL, ...graphVisLibsInfos);
-const dagrejsURL = "https://github.com/dagrejs/dagre-d3";
-let dagrejs = new Package(dagrejsURL, ...graphVisLibsInfos);
-const draculaURL = "https://www.graphdracula.net/";
-let dracula = new Package(draculaURL, ...graphVisLibsInfos);
-const elGraphoURL = "https://www.elgrapho.com/";
-let elGrapho = new Package(elGraphoURL, ...graphVisLibsInfos);
-const g6URL = "https://github.com/antvis/g6/";
-let g6 = new Package(g6URL, ...graphVisLibsInfos);
-const ggraphURL = "https://github.com/pcbje/ggraph";
-let ggraph = new Package(ggraphURL, ...graphVisLibsInfos);
-const gojsURL = "https://gojs.net/latest/index.html";
-let gojs = new Package(gojsURL, ...graphVisLibsInfos);
-const graphglURL = "https://github.com/uskudnik/GraphGL";
-let graphgl = new Package(graphglURL, ...graphVisLibsInfos);
-const graphosauruslURL = "https://github.com/frewsxcv/graphosaurus";
-let graphosaurus = new Package(graphosauruslURL, ...graphVisLibsInfos);
-const h3viewerlURL = "https://graphics.stanford.edu/~munzner/h3/";
-let h3viewer = new Package(h3viewerlURL, ...graphVisLibsInfos);
-const javascriptDyagramURL = "https://www.syncfusion.com/javascript-ui-controls/diagram";
-let javascriptDyagram = new Package(javascriptDyagramURL, ...graphVisLibsInfos);
-const javascriptInfoVisToolkitURL = "http://philogb.github.io/jit/";
-let javascriptInfoVisToolkit = new Package(javascriptInfoVisToolkitURL, ...graphVisLibsInfos);
-const jointjsURL = "https://www.jointjs.com/opensource";
-let jointjs = new Package(jointjsURL, ...graphVisLibsInfos);
-const jsgraphitURL = "http://js-graph-it.sourceforge.net/";
-let jsgraphit = new Package(jsgraphitURL, ...graphVisLibsInfos);
-const jsPlumbURL = "https://github.com/jsplumb/jsplumb/";
-let jsPlumb = new Package(jsPlumbURL, ...graphVisLibsInfos);
-const keylinesURL = "http://keylines.com/";
-let keylines = new Package(keylinesURL, ...graphVisLibsInfos);
-const mxgraphURL = "http://www.jgraph.com/mxgraph.html";
-let mxgraph = new Package(mxgraphURL, ...graphVisLibsInfos);
-const neovisjsURL = "https://github.com/neo4j-contrib/neovis.js/";
-let neovisjs = new Package(neovisjsURL, ...graphVisLibsInfos);
-const netjsonURL = "https://github.com/netjson/netjsongraph.js";
-let netjson = new Package(netjsonURL, ...graphVisLibsInfos);
-const networkkubeURL = "https://github.com/networkcube/networkcube";
-let networkkube = new Package(networkkubeURL, ...graphVisLibsInfos);
-const ogmaURL = "http://ogma.linkurio.us/";
-let ogma = new Package(ogmaURL, ...graphVisLibsInfos);
-const popotoURL = "http://www.popotojs.com/";
-let popoto = new Package(popotoURL, ...graphVisLibsInfos);
-const processingjsURL = "http://processingjs.org/";
-let processingjs = new Package(processingjsURL, ...graphVisLibsInfos);
-const protovisURL = "http://mbostock.github.io/protovis/";
-let protovis = new Package(protovisURL, ...graphVisLibsInfos);
-const rapiddURL = "http://resources.jointjs.com/demos";
-let rapidd = new Package(rapiddURL, ...graphVisLibsInfos);
-const regraphURL = "https://cambridge-intelligence.com/regraph/";
-let regraph = new Package(regraphURL, ...graphVisLibsInfos);
-const sigmajsURL = "http://sigmajs.org/";
-let sigmajs = new Package(sigmajsURL, ...graphVisLibsInfos);
-const sobaURL = "https://github.com/mil-tokyo/soba";
-let soba = new Package(sobaURL, ...graphVisLibsInfos);
-const springyURL = "http://getspringy.com/";
-let springy = new Package(springyURL, ...graphVisLibsInfos);
-const ugraphURL = "https://github.com/lizhongit/ugraph";
-let ugraph = new Package(ugraphURL, ...graphVisLibsInfos);
-const visURL = "https://github.com/visjs/vis-network";
-let vis = new Package(visURL, ...graphVisLibsInfos);
-const visNetworkURL = "https://github.com/datastorm-open/visNetwork";
-let visNetwork = new Package(visNetworkURL, ...graphVisLibsInfos);
-const vivagraphjsURL = "https://github.com/anvaka/VivaGraphJS";
-let vivagraphjs = new Package(vivagraphjsURL, ...graphVisLibsInfos);
-const yfilesForHTMLURL = "https://www.yworks.com/products/yfiles-for-html";
-let yfilesForHTML = new Package(yfilesForHTMLURL, ...graphVisLibsInfos);
+let Package = class Package extends APackage {
+    url;
+    descrizione;
+    #links = [];
+    get links() {
+        let array = [];
+        function aggiungilink(link) {
+            array.push(link.href);
+        }
+        this.#links.forEach(aggiungilink);
+        return array;
+    }
+    set links(links) {
+        if (Array.isArray(links))
+            links.forEach(this.#aggiungiURL);
+        else
+            this.#links.push(new URL(links));
+    }
+    #categoria = [];
+    get categoria() {
+        return this.#categoria;
+    }
+    set categoria(categoria) {
+        this.#categoria = categoria;
+    }
+    constructor(url = "https://no.url.was/given", descrizione = "Nessuna descrizione è stata fornita", categoria = "default") {
+        super(url, "npm", descrizione);
+        this.url = url;
+        this.descrizione = descrizione;
+        if (Array.isArray(url))
+            url.forEach(this.#aggiungiURL);
+        else
+            this.#links.push(new URL(url));
+        this.#categoria = categoria;
+    }
+    #aggiungiURL = (url) => {
+        this.links = url;
+    };
+};
+Package = __decorate([
+    staticImplements()
+], Package);
+export { Package };
+let packagesMDs = getPackages();
+function creaPackage(path) {
+    let yaml = new ZionYaml(path);
+    let parsed = yaml.parsed;
+    let nwPackage = new Package();
+    if (parsed.nome)
+        nwPackage.nome = parsed.nome;
+    if (parsed.categoria) {
+        nwPackage.categoria = parsed.categoria;
+        console.log(parsed.categoria, nwPackage.categoria);
+    }
+}
+packagesMDs.forEach(creaPackage);

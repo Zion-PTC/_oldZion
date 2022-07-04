@@ -15,9 +15,7 @@ function esempio1() {
                     default:
                         break;
                 }
-                //@ts-expect-error
                 dynamic.tipo = tipo;
-                //@ts-expect-error
                 dynamic.method = function () {
                     return 'we are here';
                 };

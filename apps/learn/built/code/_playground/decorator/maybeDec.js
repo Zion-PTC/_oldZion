@@ -1,8 +1,6 @@
 export class APrimitive {
     static #primitives;
-    //@ts-expect-error
     id;
-    //@ts-expect-error
     ciao;
     static get primitives() {
         return APrimitive.#primitives;
@@ -22,13 +20,11 @@ const addFoo = function (obj) {
         console.log(this.ciao);
         return this;
     };
-    // obj['robux'] = 1000;
     return obj;
 };
 console.log(g);
 addFoo(g);
 g.show();
-//@ts-expect-error
 g.foo();
 const j = {
     foo: function () {
@@ -43,7 +39,6 @@ const j = {
 };
 j.show();
 class Ooob {
-    //@ts-expect-error
     id;
     showId() {
         console.log(this.id);
@@ -54,16 +49,13 @@ let oob = new Ooob();
 oob.id = 'ciao';
 oob.showId();
 function ooobFoo() {
-    //@ts-expect-error
     console.log(this.id);
-    //@ts-expect-error
     return this;
 }
 let oob2 = {
     id: 'ola',
     showId: ooobFoo,
 };
-//@ts-expect-error
 function makeObj(obj) {
     obj = {
         ...obj,

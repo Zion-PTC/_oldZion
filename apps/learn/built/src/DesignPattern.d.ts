@@ -21,7 +21,7 @@ export interface IDesignPattern {
     mostraSorgenti(): IDesignPattern;
     mostraEsempi(): IDesignPattern;
 }
-export declare class DesignPattern implements IDesignPattern {
+declare abstract class ADesignPattern implements IDesignPattern {
     #private;
     id: number;
     nome: string;
@@ -32,8 +32,28 @@ export declare class DesignPattern implements IDesignPattern {
     posts: BlogPost[];
     priorità: Priorità;
     isInCheatSheet: boolean;
-    static mostraPatternSenzaEsempi(): typeof DesignPattern;
+    static get designPatterns(): IDesignPattern[];
+    static mostraDesignPatterns(): void;
+    static mostraPatternSenzaEsempi(): typeof ADesignPattern;
     constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean);
+    abstract aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
+    abstract aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
+    abstract aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+    abstract aggiungiBlogPost(blog: BlogPost): IDesignPattern;
+    abstract mostraSorgenti(): IDesignPattern;
+    abstract mostraEsempi(): IDesignPattern;
+}
+export declare class DesignPattern extends ADesignPattern implements IDesignPattern {
+    #private;
+    nome: string;
+    categoria: DesignPatternsCategories;
+    sorgenti: ISorgente[];
+    esempi: IEsercizio[];
+    tutorials: ITutorial[];
+    posts: BlogPost[];
+    priorità: Priorità;
+    isInCheatSheet: boolean;
+    constructor(nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean);
     aggiungiSorgente(sorgente: ISorgente): this;
     aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
@@ -41,32 +61,4 @@ export declare class DesignPattern implements IDesignPattern {
     mostraSorgenti(): this;
     mostraEsempi(): IDesignPattern;
 }
-export declare const chainOfResp: DesignPattern;
-export declare const command: DesignPattern;
-export declare const interpreter: DesignPattern;
-export declare const iterator: DesignPattern;
-export declare const mediator: DesignPattern;
-export declare const memento: DesignPattern;
-export declare const observer: DesignPattern;
-export declare const state: DesignPattern;
-export declare const strategy: DesignPattern;
-export declare const templateMethod: DesignPattern;
-export declare const visitor: DesignPattern;
-export declare const abstractFactory: DesignPattern;
-export declare const builder: DesignPattern;
-export declare const factory: DesignPattern;
-export declare const prototype: DesignPattern;
-export declare const singleton: DesignPattern;
-export declare const adapter: DesignPattern;
-export declare const bridge: DesignPattern;
-export declare const composite: DesignPattern;
-export declare const decorator: DesignPattern;
-export declare const facade: DesignPattern;
-export declare const flyweight: DesignPattern;
-export declare const proxy: DesignPattern;
-export declare const nullObj: DesignPattern;
-export declare const lazyLoad: DesignPattern;
-export declare const interfacePattern: DesignPattern;
-export declare const mixin: DesignPattern;
-export declare const decoratorFunction: DesignPattern;
-export declare const classExpressionPattern: DesignPattern;
+export {};

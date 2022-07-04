@@ -1,0 +1,12 @@
+nome:
+descrizione: The csv-stringify package is a stringifier
+  converting records into a CSV text and implementing the
+  Node.js stream.Transform API. It also provides the easier
+  synchronous and callback-based APIs for conveniency. It is
+  both extremely easy to use and powerful. It was first
+  released in 2010 and is tested against big data sets by a
+  large community. 
+url:
+  - https://www.npmjs.com/package/csv-stringify
+categoria:
+  - csvManipulation

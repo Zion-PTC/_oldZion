@@ -1,5 +1,4 @@
 "use strict";
-// fourth
 class Invoice {
     client;
     details;
@@ -18,13 +17,9 @@ const inv2 = new Invoice('luigi', 'work on luigi website', 350);
 let invoices = [];
 invoices.push(inv1);
 invoices.push(inv2);
-//@ts-expect-error
-inv1.client = 'booob'; // lo segnala ma funziona =(
+inv1.client = 'booob';
 invoices.forEach((inv) => {
-    console.log(inv.client, 
-    //@ts-expect-error
-    inv.details, // segnala che non si puo chiamare
-    inv.amount, inv.format());
+    console.log(inv.client, inv.details, inv.amount, inv.format());
 });
 class Invoice2 {
     client;
@@ -40,8 +35,7 @@ class Invoice2 {
     }
 }
 const inv3 = new Invoice2('giacomo', 'costruito Swarm', 10000);
-//@ts-ignore
-console.log(inv3.details); // TS si lamenta
+console.log(inv3.details);
 class Invoice3 {
     client;
     details;

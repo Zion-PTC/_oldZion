@@ -1,0 +1,8 @@
+nome: unified
+url:
+  - https://www.npmjs.com/package/unified
+descrizione: unified is an interface for processing text using syntax trees. It’s what powers remark (Markdown), retext (natural language), and rehype (HTML), and allows for processing between formats.
+categoria:
+  - mdManipulation
+  - htmlManiputalion
+  - htmlManiputalion

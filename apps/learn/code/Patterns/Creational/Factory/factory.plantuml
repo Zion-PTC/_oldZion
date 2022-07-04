@@ -1,0 +1,44 @@
+@startuml Factory
+left to right direction
+
+rectangle Client {
+}
+
+class Factory {
+  + createObject(string):IProduct
+}
+
+  class Factory {
+    + field: type
+    + createObject(string):IProductA
+  }
+
+  package FA <<rectangle>> {
+    interface IProductA {
+      + field: type
+    }
+
+    class ConcreteProduct1 {
+      + field: type
+    }
+
+    class ConcreteProdA1 {
+      + field: type
+    }
+
+    class ConcreteProdB1 {
+      + field: type
+    }
+
+    class ConcreteProdC1 {
+      + field: type
+    }
+  }
+
+Factory <-o Client
+Factory o-d-> IProductA
+IProductA <|.l. ConcreteProduct1
+ConcreteProduct1 <|-d- ConcreteProdA1
+ConcreteProduct1 <|-d- ConcreteProdB1
+ConcreteProduct1 <|-d- ConcreteProdC1
+@enduml

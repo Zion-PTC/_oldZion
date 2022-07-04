@@ -1,0 +1,6 @@
+nome: visNetwork
+descrizione: Con questo pacchetto è possibile creare delle rappresentazioni grafiche di grafi
+url:
+  - https://github.com/datastorm-open/visNetwork
+categoria:
+  - graphVisualization

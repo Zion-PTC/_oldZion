@@ -1,0 +1,6 @@
+nome: remark-html
+url:
+  - https://www.npmjs.com/package/remark-html
+descrizione: remark plugin to add support for serializing HTML, It’s a shortcut for .use(remarkRehype).use(rehypeStringify).
+categoria:
+  - htmlManiputalion

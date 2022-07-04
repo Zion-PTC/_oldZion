@@ -1,0 +1,32 @@
+@startuml Iterator
+entity client {}
+
+interface IIterator {
+  hasNext()
+  next()
+}
+
+interface IAggregate {
+  method(type):type
+}
+
+class Aggregate {
+  field: type
+  method(type):type
+}
+
+class Iterator {
+  index
+  aggregates:IAggregate[]
+  constructor(IAggregate)
+  hasNext():boolean
+  next():IAggregate
+}
+
+IAggregate <|.. Aggregate
+IIterator <|.. Iterator
+client o-> Iterator
+Iterator o-> Aggregate 
+
+
+@enduml

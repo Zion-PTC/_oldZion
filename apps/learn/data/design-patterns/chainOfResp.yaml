@@ -1,0 +1,6 @@
+nome: Chain of Responsability
+categoria: Behavioral
+plantuml:
+  - hasPlantuml: true
+  - link: https://www.plantuml.com/plantuml/uml/ZOx1gi9034Nt-OeitqEcODSY1JUwzWl2JDeEf3EIIHUY_hjMf7HJw2x9FUIUfXYfZOE0S6je6JLslM68ojvYJW3JGAaJnfD4JeOFU074PAmjUSRBcL8GriyTSOVzT_kxqLqoXV-9zKAbu7Nqdal9kjzCrklapyMvuom0iyd11PSNXOlaMLKRWdhrLmqDfp0EyWO0
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Chain_of_Responsability/chain_of_resp.plantuml

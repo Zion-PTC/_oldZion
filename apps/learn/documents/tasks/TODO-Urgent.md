@@ -1,5 +1,16 @@
 # Code
 
+## Node
+
+- [ ] provare a prendere stdout durante esecuzione di
+      express
+- [ ] seguire esempio tutorial dal titolo: **Working with
+      stdout and stdin of a child process in Node.js**
+- [ ] provare a creare un child process che riceva input
+      dal terminale.
+- [ ] capire event emitter seguendo tutorial:
+  - **Using Event Emitters in Node.js**
+
 ## index.js
 
 ### API

@@ -1,0 +1,17 @@
+pattenrs:
+- Behavioral:
+  - strategy
+  - command
+  - interpreter
+  - iterator
+  - mediator
+- Creational:
+  - singleton
+  - factory
+  - abstract factory
+- Structural:
+  - decorator
+  - adapter
+  - facade
+- No Category:
+  - Mixin

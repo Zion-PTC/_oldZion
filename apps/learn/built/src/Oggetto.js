@@ -1,5 +1,4 @@
-import { devOPS, Tematica } from "./Tematica";
-// TODO capire come sostiruire oggetto a design pattern in tutorial.oggetto
+import { Tematica } from "./Tematica";
 export class Oggetto {
     name;
     description;
@@ -10,4 +9,4 @@ export class Oggetto {
         this.tematica = tematica;
     }
 }
-export let CDCI = new Oggetto("CI/CD Continuous Integration, Continous Deployment", "", devOPS);
+export let CDCI = new Oggetto("CI/CD Continuous Integration, Continous Deployment", "");

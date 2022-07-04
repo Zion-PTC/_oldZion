@@ -1,0 +1,33 @@
+titolo: "JavaScript Patterns"
+slug: dofactory
+autori:
+  - dofactory
+type: blog
+link: https://www.dofactory.com/javascript/design-patterns/strategy#example
+designPatterns:
+  - Abstract factory
+  - Builder
+  - Factory
+  - Prototype
+  - Singleton
+  - Adapter
+  - Bridge
+  - Composite
+  - Decorator
+  - Facade
+  - Flyweight
+  - Proxy
+  - Chain of Responsability
+  - Command
+  - Interpreter
+  - Iterator
+  - Mediator
+  - Memento
+  - Observer
+  - State
+  - Strategy
+  - Template Method
+  - Visitor
+
+# designPattern:
+#   - Abstract factory

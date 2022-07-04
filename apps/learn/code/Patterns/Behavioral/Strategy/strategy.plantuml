@@ -1,0 +1,27 @@
+@startuml Strategy
+class Context {
+  + request(handle)
+}
+
+interface IStrategy {
+  + method(type):type
+}
+
+class ConcreteStrategyA {
+  + method(type):type
+}
+
+class ConcreteStrategyB {
+  + method(type):type
+}
+
+class ConcreteStrategyC {
+  + method(type):type
+}
+
+IStrategy <|.. ConcreteStrategyA
+IStrategy <|.. ConcreteStrategyB
+IStrategy <|.. ConcreteStrategyC
+
+Context o-r-> IStrategy
+@enduml

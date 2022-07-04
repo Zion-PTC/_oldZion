@@ -1,0 +1,3 @@
+@startuml prova
+A => B : hello
+@enduml

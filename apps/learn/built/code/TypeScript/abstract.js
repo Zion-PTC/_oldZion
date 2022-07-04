@@ -1,5 +1,4 @@
 "use strict";
-// third
 class StreetFighter {
     constructor() { }
     move() { }

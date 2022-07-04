@@ -1,0 +1,6 @@
+titolo: "ssh"
+links:
+  - "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys"
+  - "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
+  - "https://www.man7.org/linux/man-pages/man1/ssh-keygen.1.html"
+  - "https://www.techrepublic.com/article/how-to-view-your-ssh-keys-in-linux-macos-and-windows/"

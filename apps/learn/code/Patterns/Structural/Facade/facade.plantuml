@@ -1,0 +1,29 @@
+@startuml Facade
+rectangle Client {
+}
+
+object Facade {
+  + subSystemClassA():string
+  + subSystemClassB(string):string
+  + subSystemClassC({C:number[]}):{C:number[]}
+}
+
+together {
+  class SubSystemA {
+    method():string
+  }
+  class SubSystemB {
+    method(string):string
+  }
+  class SubSystemC {
+    method({C:number[]}):{C:number[]}
+  }
+}
+
+Client -r-> Facade
+Facade *-d-> SubSystemA
+Facade *-d-> SubSystemB
+Facade *-d-> SubSystemC
+SubSystemA -r[hidden]-- SubSystemB
+SubSystemB -r[hidden]-- SubSystemC
+@enduml

@@ -1,3 +1,6 @@
+// TODO controllare se le funzioni messe qui sono presenti
+// anche nel combinator di zion
+
 type combinaType = typeof combina;
 type combinations<T> = T[][];
 const combina = <T>(elementiA: T[], elementiB: T[]): T[][] => {
@@ -42,7 +45,7 @@ const calcolaPercentuale = function <T>(
   poss: T[][] = this.combinaTuttiElementiResult,
   calcolaPercentualeResult: [[T, string]]
 ): [[T, string]] {
-  let res = poss.filter(e => e[layer - 1] === el);
+  let res = poss.filter((e) => e[layer - 1] === el);
   let percentuale = divisioneAdecimaliFissi(res.length, poss.length, 4);
   calcolaPercentualeResult.push([el, percentuale]);
   //@ts-expect-error
@@ -58,9 +61,10 @@ const calcolaPercentualePerRarita = function <T>(): Combinations<T> {
   let layers: T[][] = this.layers;
   //@ts-expect-error
   layers.forEach((r: [], i) =>
-    r.forEach(g =>
+    r.forEach((g) =>
       calcolaPercentuale(
         g,
+        //@ts-expect-error
         i + 1,
         //@ts-expect-error
         this.combinaElementiPerRaritaResultFlatten,
@@ -78,9 +82,10 @@ const calcolaPercentualePerTutti = function <T>(): Combinations<T> {
   let layers: T[][] = this.layers;
   //@ts-expect-error
   layers.forEach((r: [], i) =>
-    r.forEach(g =>
+    r.forEach((g) =>
       calcolaPercentuale(
         g,
+        //@ts-expect-error
         i + 1,
         //@ts-expect-error
         this.combinaTuttiElementiResult,

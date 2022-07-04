@@ -1,0 +1,21 @@
+titolo: pattern-design Series' Articles
+slug: carlos
+type: blog
+autori:
+  - Carlos Caballero
+link: https://dev.to/carlillo/series/540
+github: https://github.com/Caballerog
+designPatterns:
+  - Strategy
+  - Template Method
+  - Adapter
+  - Facade
+  - Singleton
+  - Command
+  - Iterator
+  - Decorator
+  - Null Object
+  - Builder
+  - Factory
+  - Abstract factory
+  - Observer

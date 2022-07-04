@@ -1,0 +1,6 @@
+nome: Neovisjs
+descrizione: Con questo pacchetto è possibile creare delle rappresentazioni grafiche di grafi
+url:
+  - https://github.com/neo4j-contrib/neovis.js/
+categoria:
+  - graphVisualization

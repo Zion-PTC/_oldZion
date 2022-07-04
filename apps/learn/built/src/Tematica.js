@@ -10,4 +10,3 @@ export class Tematica {
         this.id = Tematica.tematiche.length;
     }
 }
-// export let devOPS = new Tematica("Server", "DevOps");

@@ -1,0 +1,8 @@
+- [ ] translate DoFactory example to typescript
+- [ ] make plantuml
+  - [ ] plantuml on disk
+  - [ ] plant on gist
+  - [ ] update design pattern file
+- [ ] make an example
+- [ ] copy code from sbcode
+- [ ] create a synthetic version for cheatsheet

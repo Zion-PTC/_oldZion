@@ -1,0 +1,46 @@
+@startuml Command
+
+rectangle Client {
+}
+class Command1 {
+  - receiver: Receiver
+  + constructor(Receiver)
+  + execute():void
+}
+class Command2 {
+  - receiver: Receiver
+  + constructor(Receiver)
+  + execute():void
+}
+
+together {
+  class Invoker {
+    - commands:{[id:string]:ICommand}
+    + register(string, ICommnad):void
+    + exectute(string):void
+  }
+  interface ICommand {
+    + execute():void
+  }
+  class Receiver {
+    + runCommand1():void
+    + runCommand2():void
+  }
+}
+
+
+Command1 -[hidden]--- ICommand
+Command1 ..d|> ICommand
+Invoker <-o Client
+Invoker o-r> Command1
+Invoker o-r> Command2
+ICommand -[hidden]--- Command2
+Command2 ..u|> ICommand
+Command1 *-d> Receiver
+Command2 *-u> Receiver
+Command2 -[hidden]--- Client
+Receiver <--o Client
+
+
+
+@enduml

@@ -1,0 +1,11 @@
+nome:
+descrizione: The csv project provides CSV generation,
+  parsing, transformation and serialization for Node.js.
+  It has been tested and used by a large community over the
+  years and should be considered reliable. It provides every
+  option you would expect from an advanced CSV parser and
+  stringifier.
+url:
+  - https://www.npmjs.com/package/csv
+categoria:
+  - graphVisualization

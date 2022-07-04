@@ -1,3 +1,4 @@
+export {};
 class Iterator {
   constructor(items) {
     this.index = 0;
@@ -23,22 +24,20 @@ class Iterator {
   }
 }
 
-
 function run() {
-
   var items = ["one", 2, "circle", true, "Applepie"];
   var iter = new Iterator(items);
 
   // using for loop
 
   for (var item = iter.first(); iter.hasNext(); item = iter.next()) {
-      console.log(item);
+    console.log(item);
   }
   console.log("");
 
   // using Iterator's each method
 
   iter.each(function (item) {
-      console.log(item);
+    console.log(item);
   });
 }

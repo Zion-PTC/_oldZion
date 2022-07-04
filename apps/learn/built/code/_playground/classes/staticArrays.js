@@ -10,7 +10,6 @@ class Root {
     static mostraRoots() {
         console.log(this.roots);
     }
-    //@ts-expect-error
     nome;
     id;
     constructor() {
@@ -49,4 +48,3 @@ sub2.nome = 'sub2';
 let sub3 = new SubRoot();
 sub3.nome = 'sub3';
 Root.mostraRoots();
-// SubRoot.mostraSubRoots();

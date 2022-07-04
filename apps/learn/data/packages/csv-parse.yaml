@@ -1,0 +1,7 @@
+nome: Csv-parse
+descrizione: Con questo pacchetto è possibile manipolare
+  file con estensione .csv
+url:
+  - https://www.npmjs.com/package/csv-parse
+categoria:
+  - csvManipulation

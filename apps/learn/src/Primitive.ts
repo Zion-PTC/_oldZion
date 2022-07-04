@@ -1,3 +1,5 @@
+//@ts-nocheck
+// TODO mettere a posto Primit file
 export interface IStaticPrimitive<T> {
   new (): T;
   id: number;
@@ -27,9 +29,9 @@ function test() {
   class Ciao {
     culo;
     constructor() {
-      this.culo = 'culo';
+      this.culo = "culo";
     }
-    id = 'p';
+    id = "p";
   }
 
   class Vlod {
@@ -42,14 +44,12 @@ function test() {
     return <U extends T>(constructor: U) => {};
   }
 
-  // TODO sistemare errore
-  //@ts-expect-error
-  function too(clObj) {
+  function too(clObj: string) {
     class V extends Ciao {}
-    Object.defineProperty(V, 'name', { value: clObj });
+    Object.defineProperty(V, "name", { value: clObj });
     return V;
   }
-  let Cao = too('Cao');
+  let Cao = too("Cao");
   console.log(Cao);
 
   function moo<T>() {
@@ -62,16 +62,10 @@ function test() {
 
   let B = <U extends Ciao>() => {
     let g: U;
-    // TODO sistemare errore
-    //@ts-expect-error
     return g;
   };
   interface Booo {
-    // TODO sistemare errore
-    //@ts-expect-error
     culo;
-    // TODO sistemare errore
-    //@ts-expect-error
     id;
   }
   let bobo = B<Booo>();
@@ -84,9 +78,9 @@ function test2() {
     [b: number]: string;
   }
   const b: Boo = {
-    ['ciao']: '',
-    [0]: 'ciap',
-    ['doooo']: '',
+    ["ciao"]: "",
+    [0]: "ciap",
+    ["doooo"]: "",
   };
   console.log(b);
 }
@@ -104,19 +98,13 @@ function interfaceMaker() {
 interface ISTATIC<T, X> {
   new (): T;
   new (): X;
-  // TODO sistemare errore
-  //@ts-expect-error
   ids;
 }
 
 interface IF {
-  // TODO sistemare errore
-  //@ts-expect-error
   id;
 }
 interface BOT {
-  // TODO sistemare errore
-  //@ts-expect-error
   bot;
 }
 
@@ -124,26 +112,20 @@ function multipleInterfaceImplmentation() {
   function createClass(name: string) {
     @staticImplements<ISTATIC<IF, BOT>>()
     class NEW {
-      // TODO sistemare errore
-      //@ts-expect-error
       static ids;
-      id = 'id';
-      bot = 'bot';
+      id = "id";
+      bot = "bot";
     }
-    Object.defineProperty(NEW, 'name', { value: name });
+    Object.defineProperty(NEW, "name", { value: name });
     return NEW;
   }
-  const NewClass = createClass('NewClass');
+  const NewClass = createClass("NewClass");
   const instance = new NewClass();
   console.log(instance);
 }
 
 export abstract class APrimitive {
-  // TODO sistemare errore
-  //@ts-expect-error
   static id;
-  // TODO sistemare errore
-  //@ts-expect-error
   id;
   constructor() {}
 }

@@ -18,13 +18,15 @@ export declare abstract class AEsercizio implements IEsercizio {
     nome?: string | undefined;
     autore?: string | undefined;
     file?: IFile | undefined;
+    static get esercizi(): AEsercizio[];
+    static mostraEsercizi: () => void;
     constructor(oggetti?: IDesignPattern[], id?: number | undefined, nome?: string | undefined, autore?: string | undefined, file?: IFile | undefined);
     abstract aggiungiOggetto(oggetto: IDesignPattern): IEsercizio;
     abstract runFile(): Esercizio;
     abstract showCode(): Esercizio;
     abstract mostraOggetti(): IEsercizio;
 }
-export declare class Esercizio extends AEsercizio {
+export declare class Esercizio extends AEsercizio implements IEsercizio {
     oggetti: IDesignPattern[];
     id?: number | undefined;
     nome?: string | undefined;
@@ -36,14 +38,3 @@ export declare class Esercizio extends AEsercizio {
     runFile(): this;
     showCode(): this;
 }
-export declare const singleton1: Esercizio;
-export declare const singleton2: Esercizio;
-export declare const strategy1: Esercizio;
-export declare const strategy2: Esercizio;
-export declare const strategy3: Esercizio;
-export declare const strategy4: Esercizio;
-export declare const strategy5: Esercizio;
-export declare const strategy6: Esercizio;
-export declare const decorator1: Esercizio;
-export declare const factory1: Esercizio;
-export declare const absFact1: Esercizio;

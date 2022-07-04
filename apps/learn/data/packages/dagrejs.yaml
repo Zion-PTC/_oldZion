@@ -1,0 +1,6 @@
+nome: Dagres
+descrizione: Con questo pacchetto è possibile creare delle rappresentazioni grafiche di grafi
+url:
+  - https://github.com/dagrejs/dagre-d3
+categoria:
+  - graphVisualization

@@ -20,25 +20,3 @@ export declare class LinksAri implements ILinksAri {
     log(): void;
 }
 export {};
-/**
- *
- * Pagine statiche
- *  documento, animato
- *  legge dati
- *    internet
- *    database
- *
- * Pagine dinamice
- *  documenti, animati, interattivi
- *  legge dati (GET)http
- *  scrive dati (POST)http
- *    database
- *    blockchain
- *    user device
- *    server
- *
- *
- *
- *
- *
- */

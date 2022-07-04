@@ -1,35 +1,81 @@
-import { classExpressionPattern, decoratorFunction, mixin, } from "./DesignPattern";
-export class BlogPost {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { ZionYaml } from "@zionrepack/yaml";
+import { getBlogPosts } from "../lib/blogPosts.js";
+import { DesignPattern } from "./DesignPattern.js";
+import { staticImplements } from "./Primitive.js";
+class ABlogPost {
     url;
+    nome;
+    static #blogPosts = [];
+    static get blogPosts() {
+        return ABlogPost.#blogPosts;
+    }
+    static mostraBlogPosts() {
+        let arr = [];
+        function aggiungiAOggetto(blogPost) {
+            this.push({
+                nome: blogPost.nome,
+                url: blogPost.url.href,
+                oggetti: blogPost.oggetti.map((oggetto) => oggetto.nome),
+            });
+        }
+        ABlogPost.#blogPosts.forEach(aggiungiAOggetto, arr);
+        return console.table(arr);
+    }
+    constructor(url = new URL("https://no.address.was/given"), nome = "Nome del post") {
+        this.url = url;
+        this.nome = nome;
+        ABlogPost.#blogPosts.push(this);
+    }
+}
+let BlogPost = class BlogPost extends ABlogPost {
+    url;
+    nome;
     #oggetti = [];
-    nome = "Nome del post";
     get oggetti() {
         return this.#oggetti;
     }
     set oggetti(oggetti) {
-        oggetti.forEach(this.#aggiungiBlog);
+        this.aggiungiOggetto(oggetti);
         this.oggetti.push(...oggetti);
     }
-    constructor(url = new URL("http://znft.tech")) {
+    constructor(url = new URL("https://no.address.was/given"), nome = "Nome del post") {
+        super();
         this.url = url;
+        this.nome = nome;
     }
-    #aggiungiBlog(oggetto) {
-        oggetto.aggiungiBlogPost(this);
+    aggiungiOggetto(oggetto) {
+        oggetto.forEach((oggetto) => oggetto.aggiungiBlogPost(this));
+        this.#oggetti.push(...oggetto);
+        return this;
+    }
+};
+BlogPost = __decorate([
+    staticImplements()
+], BlogPost);
+export { BlogPost };
+let BlogPostsMDs = getBlogPosts();
+function creaBlogPost(path) {
+    let yaml = new ZionYaml(path);
+    let parsed = yaml.parsed;
+    let nwBlogPost = new BlogPost();
+    if (parsed.url)
+        nwBlogPost.url = new URL(parsed.url);
+    if (parsed.oggetti) {
+        let res = parsed.oggetti.map((oggetto) => {
+            let res = DesignPattern.designPatterns.find((dp) => dp.nome === oggetto);
+            if (res)
+                return res;
+        });
+        res.forEach((res) => {
+            if (res)
+                nwBlogPost.aggiungiOggetto([res]);
+        });
     }
 }
-const mixBadGodEvilPath = "https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/";
-const mixBadGodEvilUrl = new URL(mixBadGodEvilPath);
-export const mixBadGodEvil = new BlogPost(mixBadGodEvilUrl);
-mixBadGodEvil.oggetti = [mixin, classExpressionPattern];
-const enhancingMixinsPath = "http://justinfagnani.com/2016/01/07/enhancing-mixins-with-decorator-functions/";
-const enhancingMixinsURL = new URL(enhancingMixinsPath);
-export const enhancingMixins = new BlogPost(enhancingMixinsURL);
-enhancingMixins.oggetti = [mixin, decoratorFunction];
-const selfHostink8sOnRapsPath = "https://blog.alexellis.io/self-hosting-kubernetes-on-your-raspberry-pi/";
-const selfHostink8sOnRaps = new URL(selfHostink8sOnRapsPath);
-const graphVisualizationLibrariesPath = "https://elise-deux.medium.com/the-list-of-graph-visualization-libraries-7a7b89aab6a6";
-const graphVisualizationLibrariesURL = new URL(graphVisualizationLibrariesPath);
-export let graphVisualizationLibraries = new BlogPost(graphVisualizationLibrariesURL);
-const k8sIgressControllerCheckPath = "https://kubernetes.github.io/ingress-nginx/troubleshooting/";
-const k8sIgressControllerCheckURL = new URL(k8sIgressControllerCheckPath);
-export let k8sIgressControllerCheck = new BlogPost(k8sIgressControllerCheckURL);
+BlogPostsMDs.forEach(creaBlogPost);

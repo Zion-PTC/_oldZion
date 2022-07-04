@@ -1,0 +1,26 @@
+@startuml Chain of Responsability
+
+left to right direction
+
+rectangle Client {
+}
+
+interface IHandler {
+  + handle(payload)
+}
+
+class Successor1 {
+  + handle(payload)
+}
+
+class Successor2 {
+  + handle(payload)
+}
+
+Client --> IHandler
+IHandler <-d-o Successor1
+IHandler <|.. Successor1
+IHandler <|.. Successor2
+IHandler <-d-o Successor2
+
+@enduml

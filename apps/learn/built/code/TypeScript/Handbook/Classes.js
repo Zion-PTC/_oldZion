@@ -13,16 +13,13 @@ class ClassMemebers {
         console.log('_Fields');
         console.log('--------');
         class Point {
-            //@ts-expect-error
             x;
-            //@ts-expect-error
             y;
         }
         const pt = new Point();
         pt.x = 0;
         pt.y = 0;
     }
-    //@ts-ignore
     static ex2() {
         console.log(`Come per altre luoghi, l'annotazione di tipo annotazione è opzionale, ma sarà un any implicito se nulla viene specificato. I campi possono anche avere inizializatori; questi ultimi verranno avviati automaticamente quando la classe viene instanziata:`);
         class Point {
@@ -30,8 +27,7 @@ class ClassMemebers {
             y = 0;
         }
         const pt = new Point();
-        console.log(`${pt.x}, ${pt.y}`); // 0, 0
-        // return Point;
+        console.log(`${pt.x}, ${pt.y}`);
     }
     static par() {
         console.log('come con const, let and var, gli inizializzatori della proprietà di una classe sarà utilissate per dedurne il tipo');
@@ -39,16 +35,13 @@ class ClassMemebers {
             x = 0;
             y = 0;
         }
-        // let Point = ClassMemebers.ex2();
         const pt = new Point();
-        //@ts-expect-error
         pt.x = '0';
     }
     static strictPropertyInitialization() {
         console.log('--strictPropertyInitialization');
         console.log('The strictPropertyInitialization setting controls whether class fields need to be initialized in the constructor.');
         class BadGreeter {
-            //@ts-expect-error
             name;
         }
         class GoodGreeter {
@@ -60,7 +53,6 @@ class ClassMemebers {
         console.log('Note that the field needs to be initialized in the constructor itself. TypeScript does not analyze methods you invoke from the constructor to detect initializations, because a derived class might override those methods and fail to initialize the members.');
         console.log('If you intend to definitely initialize a field through means other than the constructor (for example, maybe an external library is filling in part of your class for you), you can use the definite assignment assertion operator, !:');
         class OKGreeter {
-            // Not initialized, but no error
             name;
         }
     }
@@ -69,16 +61,13 @@ class ClassMemebers {
         class Greeter {
             name = 'world';
             constructor(otherName) {
-                //@ts-expect-error
                 this.name = otherName;
             }
             err() {
-                //@ts-expect-error
                 this.name = 'not ok;';
             }
         }
         const g = new Greeter();
-        //@ts-expect-error
         g.name = 'also not ok';
     }
     static constructors1() {
@@ -86,7 +75,6 @@ class ClassMemebers {
         class Point {
             x;
             y;
-            // Firma normale con valori default
             constructor(x = 0, y = 0) {
                 this.x = x;
                 this.y = y;
@@ -111,7 +99,6 @@ class ClassMemebers {
         }
         class Derived extends Base {
             constructor() {
-                //@ts-expect-error
                 console.log(this);
                 super();
             }
@@ -143,9 +130,6 @@ class ClassMemebers {
             class C {
                 x = 'hello';
                 m() {
-                    // Questo cambia il valore di 'x' iniziale, nella
-                    // riga 1, non il membro 'x' della classe
-                    //@ts-expect-error
                     x = 'world';
                 }
             }
@@ -180,7 +164,6 @@ class ClassMemebers {
                 }
                 set size(value) {
                     let num = Number(value);
-                    // non permettere NaN, Infinity, etc
                     if (!Number.isFinite(num)) {
                         this._size = 0;
                         return;
@@ -203,7 +186,6 @@ class ClassMemebers {
                 }
             }
             const newClass = new MyClass();
-            //@ts-expect-error
             newClass['coo'] = 'coo';
             console.log(newClass.check('coo'));
         }
@@ -227,7 +209,6 @@ class ClassHeritage {
                     console.log('ping!');
                 }
             }
-            //@ts-expect-error
             class Ball {
                 pong() {
                     console.log('pong!');
@@ -251,12 +232,7 @@ class ClassHeritage {
         console.log(p1);
         function ex2() {
             class NameChecker {
-                // 'check' include implicitamente un tipo restituito
-                // 'any', ma è possibile dedurre un tipo migliore
-                // dall'utilizzo.ts(7050)
-                //@ts-expect-error
                 check(s) {
-                    // notare come qui non da errore
                     return s.toLowercse() === 'ok';
                 }
             }
@@ -271,8 +247,6 @@ class ClassHeritage {
                 x = 0;
             }
             const c = new C();
-            // La proprietà 'y' non esiste nel tipo 'C'.ts(2339)
-            //@ts-expect-error
             c.y = 10;
         }
         console.log(ex3.toString());
@@ -293,9 +267,7 @@ class ClassHeritage {
                 }
             }
             const d = new Dog();
-            // Base class method
             d.move();
-            // Derived class method
             d.woof(3);
         }
         console.log(p5);
@@ -350,10 +322,7 @@ class ClassHeritage {
                 }
             }
             const d = new Derived();
-            // Alias l'istanza derivata attraverso un riferimento
-            // verso una classe base
             const b = d;
-            // No problem
             b.greet();
         }
         console.log(ex6.toString());
@@ -367,13 +336,7 @@ class ClassHeritage {
                 }
             }
             class Derived extends Base {
-                // Make this parameter required
-                //@ts-expect-error
                 greet(name) {
-                    // La proprietà 'greet' nel tipo 'Derived' non è
-                    // assegnabile alla stessa proprietà nel tipo di
-                    // base 'Base'. Il tipo '(name: string) => void'
-                    // non è assegnabile al tipo '() => void'.ts(2416)
                     console.log(`Hello, ${name.toUpperCase()}`);
                 }
             }
@@ -388,26 +351,17 @@ class ClassHeritage {
                 }
             }
             class Derived extends Base {
-                // Make this parameter required
-                //@ts-expect-error
                 greet(name) {
-                    // La proprietà 'greet' nel tipo 'Derived' non è
-                    // assegnabile alla stessa proprietà nel tipo di
-                    // base 'Base'. Il tipo '(name: string) => void'
-                    // non è assegnabile al tipo '() => void'.ts(2416)
                     console.log(`Hello, ${name.toUpperCase()}`);
                 }
             }
-            //@ts-expect-error
             const b = new Derived();
-            // Crasha perchè 'name' sarà indefinita.
             b.greet();
         }
         try {
             ex8();
         }
         catch (error) {
-            //@ts-expect-error
             console.log(error.message);
         }
         const h2_3 = `Dichiarazione di campo Type-only`;

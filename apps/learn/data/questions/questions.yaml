@@ -1,0 +1,115 @@
+domande:
+  - quesito: come si fa a creare degli overload
+    ambito: typescript
+    risposte:
+      - risposta: bisogna inanzitutto creare le signature
+          con le chiamate, poi bisogna creare
+          un'implementazione che prenda conto delle varie
+          signatures.
+        sorgente:
+          path: https://howtodoinjava.com/typescript/function-overloading/
+          code: "
+            function add(first: number, second: number): number;    //Overload signature with two parameters
+            function add(first: number, second: number, third:number): number;  //Overload signature with three parameters
+            function add(first: number, second: number, third?: number, fourth?: number): number {  //Implementation signature
+              if (first !== undefined && second !== undefined && third !== undefined) {
+                return first + second + third;
+              } else {
+                return first + second;
+              }
+            }
+
+            const r1 = add(1, 2, 3);
+            const r2 = add(1, 2);
+            const r3 = add(1, 2, 3, 4);
+            "
+        valutazione: 8
+      - esercizi:
+        - relativePath: code/_playground/ts/overload.ts
+  - quesito: come fare per recuperare gli indirizzi salvati
+      nei segnalibri del browser
+  - quesito: How do I pass command line arguments to a
+      Node.js program? 
+    argomento: node terminal
+    risposte:
+      - risposta:
+        sorgente:
+          path: https://stackoverflow.com/questions/4351521/how-do-i-pass-command-line-arguments-to-a-node-js-program
+  - quesito: come si fa a passare lo stout di un processo
+      allo stin di un child process?
+    argomenti:
+      - node
+      - bash
+      - pipe
+      - spawn
+      - child
+      - process
+    risposte:
+      - risposta:
+        sorgente:
+          path: https://2ality.com/2018/05/child-process-streams.html
+          titolo: Working with stdout and stdin of a child process in Node.js
+          type: blogPost
+  - quesito: come si iniziazilizza un child process con node?
+    argomenti:
+      - node
+      - bash
+      - exec
+      - spawn
+      - child
+      - process
+    risposte:
+      - risposta:
+        sorgente:
+          path: https://2ality.com/2018/05/child-process-streams.html
+          titolo: How To Launch Child Processes in Node.js
+          type: blogPost
+  - quesito: come si fa a scrivere un programma per Apple?
+    argomenti:
+      - sviluppo app
+      - linguaggio programmazione
+    risposte:
+      - risposta:
+        sorgente:
+          path: https://developer.apple.com/swift/
+          titolo: The powerful programming language that is also easy to learn.
+  - quesito: come si usano gli event emitters in node?
+    argomenti:
+    risposte:
+      - risposta:
+        sorgente:
+          path: https://www.digitalocean.com/community/tutorials/using-event-emitters-in-node-js
+          titolo: Using Event Emitters in Node.js
+  - quesito: come fare per fare in modo di essere certi che
+      determinato nodo abbia la replica di uno specifico
+      servizio.
+  - quesito: come fare per fare si che quando si chiama una
+      classe il valore di ritorno sia uno specifico membro
+      dell'oggetto.
+  - quesito: come fare per ricaricare express quando il
+      codice cambia
+  - quesito: come mai nodemon riproduce gli input di stdin
+      semplicemente aggiungendo una interfaccia readline
+    relatedIssues:
+      - https://github.com/remy/nodemon/issues/1064
+    risposte:
+      - risposta: package_json
+        descrizione: l'autore dell'issue ha trovato una
+            soluzione aggiungendo questa linea di codice al file
+            package.json code
+
+        code: 'code
+          "nodemonConfig": {
+            "stdin": false
+            }
+          '
+        sorgente: https://github.com/remy/nodemon/issues/1064
+    soluzione: 
+      risposta: package_json
+      valutazione: 10
+  - quesito: si può usare nginx con node?
+  - quesito: come fare per personalizzare il promt di bash
+    risposte:
+      - path: https://github.com/powerline/powerline
+      - path: https://github.com/b-ryan/powerline-shell
+

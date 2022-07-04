@@ -5,7 +5,9 @@
   ],
   "scripts": {
     "test": "nodemon ./test/init.js",
-    "tsx": "tsc"
+    "testTutorial": "NODE_DEBUG=log nodemon ./test/Tutorial.test.js",
+    "testLibTutorials": "NODE_DEBUG=log nodemon ./test/tutorials.test.js",
+    "tsc": "tsc"
   },
   "version": "0.0.89",
   "description": "",

@@ -1,0 +1,11 @@
+nome: Csv Node Project
+descrizione: Con questo pacchetto è possibile creare delle rappresentazioni grafiche di grafi
+url:
+  - https://csv.js.org/
+categoria:
+  - prokect
+packages:
+  - generate
+  - parse
+  - transform
+  - stringify

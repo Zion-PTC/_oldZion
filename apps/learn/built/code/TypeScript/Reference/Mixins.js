@@ -1,4 +1,3 @@
-// How does it work
 export class Sprite {
     name = "";
     x = 0;
@@ -7,12 +6,8 @@ export class Sprite {
         this.name = name;
     }
 }
-// This mixin adds a scale property, with getters and setters
-// for changing it with an encapsulated private property:
 function Scale(Base) {
     return class Scaling extends Base {
-        // Mixins may not declare private/protected properties
-        // however, you can use ES2020 private fields
         _scale = 1;
         setScale(scale) {
             this._scale = scale;
@@ -22,8 +17,6 @@ function Scale(Base) {
         }
     };
 }
-// Compose a new class from the Sprite class,
-// with the Mixin Scale applier:
 const EightBitSprite = Scale(Sprite);
 const flappySprite = new EightBitSprite("Bird");
 flappySprite.setScale(0.8);

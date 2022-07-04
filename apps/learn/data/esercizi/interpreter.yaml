@@ -1,0 +1,6 @@
+nome: giacomo.ts
+autore: Giacomo Gagliano
+file:
+  path: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Interepreter/g1.ts
+oggetti:
+  - Interpreter

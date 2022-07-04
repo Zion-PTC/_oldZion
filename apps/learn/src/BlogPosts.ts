@@ -1,57 +1,88 @@
-import {
-  classExpressionPattern,
-  decoratorFunction,
-  DesignPattern,
-  mixin,
-} from "./DesignPattern";
+import { ZionYaml } from "@zionrepack/yaml";
+import { getBlogPosts } from "../lib/blogPosts.js";
+import { DesignPattern, IDesignPattern } from "./DesignPattern.js";
+import { staticImplements } from "./Primitive.js";
+
+interface IStaticBlogPost {
+  blogPosts: IBlogPost[];
+  mostraBlogPosts(): void;
+}
 
 interface IBlogPost {
   nome: string;
   url: URL;
-  get oggetti(): DesignPattern[];
-  set oggetti(oggetti: DesignPattern[]);
+  get oggetti(): IDesignPattern[];
+  set oggetti(oggetti: IDesignPattern[]);
+  aggiungiOggetto(oggetto: IDesignPattern[]): IBlogPost;
 }
 
-export class BlogPost implements IBlogPost {
-  #oggetti: DesignPattern[] = [];
-  public nome: string = "Nome del post";
-  get oggetti(): DesignPattern[] {
+type MostraBlogPost = { nome: string; url: string; oggetti: string[] }[];
+abstract class ABlogPost implements IBlogPost {
+  static #blogPosts: IBlogPost[] = [];
+  static get blogPosts() {
+    return ABlogPost.#blogPosts;
+  }
+  static mostraBlogPosts() {
+    let arr: MostraBlogPost = [];
+    function aggiungiAOggetto(this: MostraBlogPost, blogPost: IBlogPost) {
+      this.push({
+        nome: blogPost.nome,
+        url: blogPost.url.href,
+        oggetti: blogPost.oggetti.map((oggetto) => oggetto.nome),
+      });
+    }
+    ABlogPost.#blogPosts.forEach(aggiungiAOggetto, arr);
+    return console.table(arr);
+  }
+  abstract get oggetti(): IDesignPattern[];
+  abstract set oggetti(oggetti: IDesignPattern[]);
+  constructor(
+    public url: URL = new URL("https://no.address.was/given"),
+    public nome: string = "Nome del post"
+  ) {
+    ABlogPost.#blogPosts.push(this);
+  }
+  abstract aggiungiOggetto(oggetto: IDesignPattern[]): IBlogPost;
+}
+
+@staticImplements<IStaticBlogPost>()
+export class BlogPost extends ABlogPost implements IBlogPost {
+  #oggetti: IDesignPattern[] = [];
+  get oggetti(): IDesignPattern[] {
     return this.#oggetti;
   }
-  set oggetti(oggetti: DesignPattern[]) {
-    oggetti.forEach(this.#aggiungiBlog);
+  set oggetti(oggetti: IDesignPattern[]) {
+    this.aggiungiOggetto(oggetti);
     this.oggetti.push(...oggetti);
   }
-  constructor(public url: URL = new URL("http://znft.tech")) {}
-  #aggiungiBlog(oggetto: DesignPattern) {
-    oggetto.aggiungiBlogPost(this);
+  constructor(
+    public url: URL = new URL("https://no.address.was/given"),
+    public nome: string = "Nome del post"
+  ) {
+    super();
+  }
+  aggiungiOggetto(oggetto: IDesignPattern[]) {
+    oggetto.forEach((oggetto) => oggetto.aggiungiBlogPost(this));
+    this.#oggetti.push(...oggetto);
+    return this;
   }
 }
 
-const mixBadGodEvilPath =
-  "https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/";
-const mixBadGodEvilUrl = new URL(mixBadGodEvilPath);
-export const mixBadGodEvil = new BlogPost(mixBadGodEvilUrl);
-mixBadGodEvil.oggetti = [mixin, classExpressionPattern];
-
-const enhancingMixinsPath =
-  "http://justinfagnani.com/2016/01/07/enhancing-mixins-with-decorator-functions/";
-const enhancingMixinsURL = new URL(enhancingMixinsPath);
-export const enhancingMixins = new BlogPost(enhancingMixinsURL);
-enhancingMixins.oggetti = [mixin, decoratorFunction];
-
-const selfHostink8sOnRapsPath =
-  "https://blog.alexellis.io/self-hosting-kubernetes-on-your-raspberry-pi/";
-const selfHostink8sOnRaps = new URL(selfHostink8sOnRapsPath);
-
-const graphVisualizationLibrariesPath =
-  "https://elise-deux.medium.com/the-list-of-graph-visualization-libraries-7a7b89aab6a6";
-const graphVisualizationLibrariesURL = new URL(graphVisualizationLibrariesPath);
-export let graphVisualizationLibraries = new BlogPost(
-  graphVisualizationLibrariesURL
-);
-
-const k8sIgressControllerCheckPath =
-  "https://kubernetes.github.io/ingress-nginx/troubleshooting/";
-const k8sIgressControllerCheckURL = new URL(k8sIgressControllerCheckPath);
-export let k8sIgressControllerCheck = new BlogPost(k8sIgressControllerCheckURL);
+type BlogPostsMD = { url?: string; oggetti?: string[] };
+let BlogPostsMDs = getBlogPosts();
+function creaBlogPost(path: string) {
+  let yaml = new ZionYaml<BlogPostsMD>(path);
+  let parsed = yaml.parsed;
+  let nwBlogPost = new BlogPost();
+  if (parsed.url) nwBlogPost.url = new URL(parsed.url);
+  if (parsed.oggetti) {
+    let res = parsed.oggetti.map((oggetto) => {
+      let res = DesignPattern.designPatterns.find((dp) => dp.nome === oggetto);
+      if (res) return res;
+    });
+    res.forEach((res) => {
+      if (res) nwBlogPost.aggiungiOggetto([res]);
+    });
+  }
+}
+BlogPostsMDs.forEach(creaBlogPost);

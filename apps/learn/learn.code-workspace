@@ -1,20 +1,44 @@
 {
   "folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../../packages/@zionrepack/chai"
-		},
-		{
-			"path": "../../packages/@zionrepack/dotenv"
-		},
-		{
-			"path": "../../packages/@zionrepack/types-chai"
-		},
-		{
-			"path": "../../packages/@zionrepack/types-node"
-		}
-	],
+    {
+      "name": "learn",
+      "path": "."
+    },
+    {
+      "name": "learn",
+      "path": "../../packages/@zionstate/learn"
+    },
+    {
+      "name": "chai",
+      "path": "../../packages/@zionrepack/chai"
+    },
+    {
+      "name": "dotenv",
+      "path": "../../packages/@zionrepack/dotenv"
+    },
+    {
+      "name": "types-chai",
+      "path": "../../packages/@zionrepack/types-chai"
+    },
+    {
+      "name": "types-node",
+      "path": "../../packages/@zionrepack/types-node"
+    },
+    {
+      "name": "system",
+      "path": "../../packages/@zionstate/system"
+    },
+    {
+      "name": "yaml",
+      "path": "../../packages/@zionrepack/yaml"
+    },
+    {
+      "name": "base",
+      "path": "../../packages/@zionstate/base"
+    },
+    {
+      "path": "../../packages/@zionstate_node/crypto"
+    }
+  ],
   "settings": {}
 }

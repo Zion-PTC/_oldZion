@@ -1,0 +1,29 @@
+titolo: "JavaScript Façade"
+links: "https://www.dofactory.com/javascript/design-patterns/facade"
+designPattern: 'Facade'
+slug: 'dofactory'
+annotazioni: 
+  - "
+    Annotazioni:
+    cerco di analizzare la differenza fra Factory e Facade
+    riscontrati nei tutorial
+    COSE IN COMUNE
+    • If statement
+    COSE DIVERSE
+    • lo switch statement è applicabile solo a Factory
+    • le chiamate su Facade ritornano dei boolean
+    • le chiamate su Factory ritornano un particolare valore
+    di un campo della classe.
+    // PROPRIETÀ
+    • facade ha delle proprietà
+    • nell'esempio Factory non ha proprieta, ma
+    semplicemente il costruttore crea una funzione che
+    accetta un paremtro tipo
+    // METODI
+    • le istanze di factory possiedono un metodo che
+    permette la creazione di un un oggetto a partire da
+    Classi diverse. Una factory di oggetti partendo da
+    classi predeterminate.
+    • le istanze di mortgage hanno un metodo apply che al
+    suo interno include chiamate verso multipli sub-systems.
+    "

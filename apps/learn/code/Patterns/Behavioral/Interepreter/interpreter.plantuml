@@ -1,0 +1,33 @@
+@startuml Interpreter
+rectangle Context {
+}
+
+rectangle Client_App {
+}
+  
+package AbstractSyntax <<Rectangle>> {
+  interface AbstractExpressions {
+    ==
+    + interpret()
+  }
+
+  class TerminalExpression {
+    + value
+    + interpret()
+  }
+
+  class NonTerminalExpressions {
+    + left
+    + right
+    + interpret()
+  }
+}
+
+Client_App --> Context
+Client_App o-> AbstractSyntax
+AbstractSyntax --> Context
+
+AbstractExpressions <|-- NonTerminalExpressions
+AbstractExpressions <|--r- TerminalExpression
+AbstractExpressions::interpret <--o NonTerminalExpressions::interpret
+@enduml

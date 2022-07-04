@@ -1,0 +1,8 @@
+titolo: Decorator Tutorial 1
+type: blogPost
+slug: dofactory
+designPattern: Decorator
+links:
+  - https://www.dofactory.com/javascript/design-patterns/decorator
+file:
+  path: /Users/WAW/Documents/Projects/studio_javascript/code/Patterns/Structural/Decorator.js

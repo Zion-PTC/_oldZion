@@ -1,18 +1,19 @@
-type World = 'World';
+export {};
+type World = "World";
 type Greeting = `hello ${World}`;
 
-type EmailLocaleIDs = 'welcome_email' | 'email_heading';
-type FooterLocaleIDs = 'footer_title' | 'footer_sendoff';
+type EmailLocaleIDs = "welcome_email" | "email_heading";
+type FooterLocaleIDs = "footer_title" | "footer_sendoff";
 
 type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
-type Lang = 'en' | 'ja' | 'pt';
+type Lang = "en" | "ja" | "pt";
 type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;
 
 // String Unions in Types
 
 const passedObject = {
-  firstName: 'Saoirse',
-  lastName: 'Ronan',
+  firstName: "Saoirse",
+  lastName: "Ronan",
   age: 25,
 };
 
@@ -34,6 +35,6 @@ function makeWatchedObject<Type>(obj: Type): Type & PropEventSource<Type> {
   return obj;
 }
 
-person.on('ageChanged', newValue =>
+person.on("ageChanged", (newValue) =>
   console.log(`firstName was changed to ${newValue}`)
 );

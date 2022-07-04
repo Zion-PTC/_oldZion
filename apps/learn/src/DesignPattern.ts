@@ -1,5 +1,8 @@
+import { ZionYaml } from "@zionrepack/yaml";
+import { getDesignPatterns } from "../lib/designPatterns.js";
 import { BlogPost } from "./BlogPosts";
 import { IEsercizio } from "./Esercizio";
+import { staticImplements } from "./Primitive.js";
 import { ISorgente } from "./Sorgente";
 import { ITutorial } from "./Tutorial";
 
@@ -70,6 +73,11 @@ namespace Javascript {
   type Functions = "Arrow functions" | "Default parameters" | "Rest parameters";
 }
 
+interface IStaticDesignPattern {
+  designPatterns: IDesignPattern[];
+  mostraDesignPatterns(): void;
+}
+
 export interface IDesignPattern {
   id: number;
   nome: string;
@@ -90,19 +98,23 @@ export interface IDesignPattern {
   mostraEsempi(): IDesignPattern;
 }
 
-export class DesignPattern implements IDesignPattern {
-  static #designPatterns: DesignPattern[] = [];
+abstract class ADesignPattern implements IDesignPattern {
+  static #designPatterns: IDesignPattern[] = [];
+  static get designPatterns() {
+    return ADesignPattern.#designPatterns;
+  }
+  static mostraDesignPatterns() {
+    console.table(ADesignPattern.designPatterns);
+  }
   static mostraPatternSenzaEsempi() {
     let array: string[] = [];
-    let aggiungiNome = DesignPattern.#aggiungiNome;
-    DesignPattern.#designPatterns.forEach(aggiungiNome, array);
-    if (array.length !== 0) DesignPattern.#logArray(array);
-    if (array.length === 0) DesignPattern.#logComplete();
+    let aggiungiNome = ADesignPattern.#aggiungiNome;
+    DesignPattern.designPatterns.forEach(aggiungiNome, array);
+    if (array.length !== 0) ADesignPattern.#logArray(array);
+    if (array.length === 0) ADesignPattern.#logComplete();
     return this;
   }
-  static #aggiungiNome = function (pattern: IDesignPattern) {
-    // TODO capire come far riferire al thisArg passato dal forEach
-    //@ts-expect-error
+  static #aggiungiNome = function (this: string[], pattern: IDesignPattern) {
     if (pattern.esempi.length === 0) this.push(pattern.nome);
   };
   static #logArray(array: string[]) {
@@ -122,8 +134,34 @@ export class DesignPattern implements IDesignPattern {
     public priorità: Priorità = "Bassa",
     public isInCheatSheet: boolean = false
   ) {
-    DesignPattern.#designPatterns.push(this);
-    this.id = DesignPattern.#designPatterns.length;
+    ADesignPattern.#designPatterns.push(this);
+    this.id = ADesignPattern.#designPatterns.length;
+  }
+  abstract aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
+  abstract aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
+  abstract aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
+  abstract aggiungiBlogPost(blog: BlogPost): IDesignPattern;
+  abstract mostraSorgenti(): IDesignPattern;
+  abstract mostraEsempi(): IDesignPattern;
+}
+
+@staticImplements<IStaticDesignPattern>()
+export class DesignPattern extends ADesignPattern implements IDesignPattern {
+  // static #designPatterns: DesignPattern[] = [];
+  // static get designPattern() {
+  //   return this.#designPatterns;
+  // }
+  constructor(
+    public nome: string = "Aggiungere un nome per il design pattern",
+    public categoria: DesignPatternsCategories = "non definito",
+    public sorgenti: ISorgente[] = [],
+    public esempi: IEsercizio[] = [],
+    public tutorials: ITutorial[] = [],
+    public posts: BlogPost[] = [],
+    public priorità: Priorità = "Bassa",
+    public isInCheatSheet: boolean = false
+  ) {
+    super();
   }
   aggiungiSorgente(sorgente: ISorgente) {
     this.sorgenti.push(sorgente);
@@ -157,109 +195,45 @@ export class DesignPattern implements IDesignPattern {
     console.log(array.join(", "));
     return this;
   }
-  #aggiungiLink = function (sorgente: ISorgente) {
-    // TODO sistemare errore
-    //@ts-expect-error
+  #aggiungiLink = function (this: string[], sorgente: ISorgente) {
+    // source: https://github.com/microsoft/TypeScript/issues/32512#issuecomment-513849031
+    /**
+     *  // declare global { // uncomment if in a module scope
+     *  interface Set<T> {
+     *    forEach<This>(
+     *      callbackfn: (this: This, value: T, value2: T, set: this) => void,
+     *      thisArg?: This
+     *    ): void;
+     *  }
+     *  // } // // uncomment if in a module scope
+     */
+    // RISOLTO
+    // source: https://stackoverflow.com/a/41358367/16244128
+    /**
+      grunt.registerMultiTask('clean', function(this: SomeType) {
+        //...
+      });
+     */
+    ////@ts-expect-error
     if (sorgente.link) this.push(sorgente.link.href);
-    // TODO sistemare errore
-    //@ts-expect-error
+    ////@ts-expect-error
     if (!sorgente.link) this.push(sorgente.titolo);
   };
 }
 
-export const chainOfResp = new DesignPattern();
-chainOfResp.nome = "Chain of responsability";
-chainOfResp.categoria = "Behavioral";
-export const command = new DesignPattern();
-command.nome = "Command";
-command.categoria = "Behavioral";
-export const interpreter = new DesignPattern();
-interpreter.nome = "Interpreter";
-interpreter.categoria = "Behavioral";
-export const iterator = new DesignPattern();
-iterator.nome = "Iterator";
-iterator.categoria = "Behavioral";
-export const mediator = new DesignPattern();
-mediator.nome = "Mediator";
-mediator.categoria = "Behavioral";
-export const memento = new DesignPattern();
-memento.nome = "Memento";
-memento.categoria = "Behavioral";
-export const observer = new DesignPattern();
-observer.nome = "Observer";
-observer.categoria = "Behavioral";
-export const state = new DesignPattern();
-state.nome = "State";
-state.categoria = "Behavioral";
-export const strategy = new DesignPattern();
-strategy.nome = "Strategy";
-strategy.categoria = "Behavioral";
-strategy.isInCheatSheet = true;
-export const templateMethod = new DesignPattern();
-templateMethod.nome = "Template Method";
-templateMethod.categoria = "Behavioral";
-export const visitor = new DesignPattern();
-visitor.nome = "Visitor";
-visitor.categoria = "Behavioral";
-
-export const abstractFactory = new DesignPattern();
-abstractFactory.nome = "Abstract factory";
-abstractFactory.categoria = "Creational";
-abstractFactory.isInCheatSheet = true;
-export const builder = new DesignPattern();
-builder.nome = "Builder";
-builder.categoria = "Creational";
-export const factory = new DesignPattern();
-factory.nome = "Factory";
-factory.categoria = "Creational";
-factory.isInCheatSheet = true;
-export const prototype = new DesignPattern();
-prototype.nome = "Prototype";
-prototype.categoria = "Creational";
-export const singleton = new DesignPattern();
-singleton.nome = "Singleton";
-singleton.categoria = "Creational";
-singleton.isInCheatSheet = true;
-
-export const adapter = new DesignPattern();
-adapter.nome = "Adapter";
-adapter.categoria = "Structural";
-export const bridge = new DesignPattern();
-bridge.nome = "Bridge";
-bridge.categoria = "Structural";
-export const composite = new DesignPattern();
-composite.nome = "Composite";
-composite.categoria = "Structural";
-export const decorator = new DesignPattern();
-decorator.nome = "Decorator";
-decorator.categoria = "Structural";
-decorator.isInCheatSheet = true;
-export const facade = new DesignPattern();
-facade.nome = "Facade";
-facade.categoria = "Structural";
-export const flyweight = new DesignPattern();
-flyweight.nome = "Flywight";
-flyweight.categoria = "Structural";
-export const proxy = new DesignPattern();
-proxy.nome = "Proxy";
-proxy.categoria = "Structural";
-
-export const nullObj = new DesignPattern();
-nullObj.nome = "Null Object";
-nullObj.categoria = "non definito";
-export const lazyLoad = new DesignPattern();
-lazyLoad.nome = "Lazy Load";
-lazyLoad.categoria = "non definito";
-export const interfacePattern = new DesignPattern();
-interfacePattern.nome = "Interface pattern";
-interfacePattern.categoria = "non definito";
-export const mixin = new DesignPattern();
-mixin.nome = "Mixins";
-mixin.categoria = "non definito";
-mixin.isInCheatSheet = true;
-export const decoratorFunction = new DesignPattern();
-mixin.nome = "Decorator Functions";
-mixin.categoria = "non definito";
-export const classExpressionPattern = new DesignPattern();
-mixin.nome = "Class Expression Pattern";
-mixin.categoria = "non definito";
+type DesignPatternMD = {
+  nome?: string;
+  categoria?: DesignPatternsCategories;
+  isInCheatSheet?: boolean;
+};
+const designPattersMds = getDesignPatterns();
+function creaDesignPatternFromMd(path: string) {
+  let yaml = new ZionYaml<DesignPatternMD>(path);
+  let parsed = yaml.parsed;
+  let nwDesignPattern = new DesignPattern();
+  if (parsed.nome) nwDesignPattern.nome = parsed.nome;
+  if (parsed.categoria) nwDesignPattern.categoria = parsed.categoria;
+  if (parsed.isInCheatSheet)
+    nwDesignPattern.isInCheatSheet = parsed.isInCheatSheet;
+}
+designPattersMds.forEach(creaDesignPatternFromMd);

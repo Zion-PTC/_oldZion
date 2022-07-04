@@ -1,33 +1,63 @@
-import { abstractFactory, adapter, bridge, builder, chainOfResp, command, composite, decorator, facade, factory, flyweight, interfacePattern, interpreter, iterator, mediator, memento, nullObj, observer, prototype, proxy, singleton, state, strategy, templateMethod, visitor, } from "./DesignPattern.js";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Sorgente_1;
+import { ZionYaml } from "@zionrepack/yaml";
+import { findItem } from "../lib/find.js";
+import { getSorgenti } from "../lib/sorgenti.js";
+import { DesignPattern, } from "./DesignPattern.js";
+import { staticImplements } from "./Primitive.js";
+var SorgenteEnums;
+(function (SorgenteEnums) {
+    SorgenteEnums["libro"] = "libro";
+    SorgenteEnums["blog"] = "blog";
+    SorgenteEnums["coder"] = "coder";
+})(SorgenteEnums || (SorgenteEnums = {}));
 export class ASorgente {
     designPatterns;
     static #sorgenti = [];
+    static get sorgenti() {
+        return ASorgente.#sorgenti;
+    }
     id;
-    // TODO sistemare errore
-    //@ts-expect-error
-    titolo;
-    // TODO sistemare errore
-    //@ts-expect-error
-    autori;
-    // TODO sistemare errore
-    //@ts-expect-error
-    tutorial;
-    // TODO sistemare errore
-    //@ts-expect-error
-    tipo;
-    // TODO sistemare errore
-    //@ts-expect-error
-    link;
-    // TODO sistemare errore
-    //@ts-expect-error
-    github;
+    slug = "slug della sorgente";
+    titolo = "Titolo del documento";
+    autori = [];
+    tutorial = [];
+    type = "blog";
+    link = new URL("https://no-address.was/given");
+    github = new URL("https://no-address.was/given");
     constructor(designPatterns = []) {
         this.designPatterns = designPatterns;
         ASorgente.#sorgenti.push(this);
         this.id = ASorgente.#sorgenti.length;
     }
 }
-export class Sorgente extends ASorgente {
+let Sorgente = Sorgente_1 = class Sorgente extends ASorgente {
+    static mostraSorgenti() {
+        let obj = {};
+        function creaSorgenti(sorgente) {
+            obj[sorgente.titolo] = {
+                slug: sorgente.slug,
+                autori: sorgente.autori.join(", "),
+                tutorials: sorgente.tutorial,
+                designPatterns: sorgente.designPatterns.map((desPatt) => desPatt.nome)
+                    .length,
+                link: sorgente.link.href === "https://no-address.was/given"
+                    ? "❌"
+                    : sorgente.link.href,
+                github: sorgente.github.href === "https://no-address.was/given"
+                    ? "❌"
+                    : sorgente.github.href,
+                type: SorgenteEnums[sorgente.type],
+            };
+        }
+        Sorgente_1.sorgenti.forEach(creaSorgenti);
+        console.table(obj);
+    }
     get designPatternSenzaEsempi() {
         let aggiungiSenzaEsempio = this.#aggiungiSenzaEsempio;
         let array = [];
@@ -40,45 +70,33 @@ export class Sorgente extends ASorgente {
         this.designPatterns.forEach(aggiungiConEsempio, array);
         return array;
     }
-    show = function () {
-        console.log(
-        // TODO sistemare errore
-        //@ts-expect-error
-        `Titolo del ${this.tipo}: ${this.titolo}, autori del ${this.tipo}: ${this.autori}`);
-        // TODO sistemare errore
-        //@ts-expect-error
+    constructor() {
+        super();
+        Sorgente_1.sorgenti.push(this);
+        this.id = Sorgente_1.sorgenti.length;
+    }
+    show() {
+        console.log(`Titolo del ${this.type}: ${this.titolo}, autori del ${this.type}: ${this.autori}`);
         return this;
-    };
-    showPatterns = function () {
+    }
+    showPatterns() {
         let array = [];
         let aggiungiNome = function (e) {
             array.push(e.nome);
         };
-        // TODO sistemare errore
-        //@ts-expect-error
         this.designPatterns.forEach(aggiungiNome);
         console.log(array.join(", "));
-        // TODO sistemare errore
-        //@ts-expect-error
         return this;
-    };
-    addDesignPattern = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
+    }
+    addDesignPattern(pattern) {
         this.designPatterns.push(pattern);
-        // TODO sistemare errore
-        //@ts-expect-error
         pattern.aggiungiSorgente(this);
-        // TODO sistemare errore
-        //@ts-expect-error
         return this;
-    };
+    }
     aggiungiTutorial(tutorial) {
         return this;
     }
     mostraPatternID(pattern) {
-        // torva indice del pattern nella lista di pattern della
-        // sorgente
         let trovaViaID = this.#trovaViaId;
         console.log(this.designPatterns.findIndex(trovaViaID, pattern));
         return this.designPatterns.findIndex(trovaViaID, pattern);
@@ -107,52 +125,34 @@ export class Sorgente extends ASorgente {
         console.log(array.join(", "));
         return this;
     }
-    contaDesignPatternSenzaEsempi = function (categoria) {
+    contaDesignPatternSenzaEsempi(categoria) {
         if (!categoria) {
-            // TODO sistemare errore
-            //@ts-expect-error
             let res = this.designPatternSenzaEsempi;
             console.log("Manacano", res.length, "Pattern in totale");
         }
         else {
-            // TODO sistemare errore
-            //@ts-expect-error
             let appartieneACategoria = this.#appartieneACategoria;
-            // TODO sistemare errore
-            //@ts-expect-error
             let patternPerCategoria = this.designPatternSenzaEsempi.filter(appartieneACategoria, categoria);
             console.log("Mancano", patternPerCategoria.length, categoria, "pattern");
         }
-        // TODO sistemare errore
-        //@ts-expect-error
         return this;
-    };
-    #aggiungiSenzaEsempio = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
+    }
+    #aggiungiSenzaEsempio(pattern) {
         if (pattern.esempi.length === 0)
             this.push(pattern);
-    };
+    }
     #aggiungiConEsempio = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
         if (pattern.esempi.length !== 0)
             this.push(pattern);
     };
     #aggiungiNome = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
         this.push(pattern.nome);
     };
     #aggiungiNomeSenzaEsempio = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
         if (pattern.esempi.length === 0)
             this.push(pattern.nome);
     };
     #appartieneACategoria = function (pattern) {
-        // TODO sistemare errore
-        //@ts-expect-error
         if (pattern.categoria === this)
             return pattern;
     };
@@ -160,95 +160,30 @@ export class Sorgente extends ASorgente {
         if (pattern.id === this.id)
             return pattern;
     }
+};
+Sorgente = Sorgente_1 = __decorate([
+    staticImplements()
+], Sorgente);
+export { Sorgente };
+const sorgentiPath = getSorgenti();
+function creaSorgenteFromMd(path) {
+    let yaml = new ZionYaml(path);
+    let parsed = yaml.parsed;
+    let nwSorgente = new Sorgente();
+    if (parsed.slug)
+        nwSorgente.slug = parsed.slug;
+    if (parsed.titolo)
+        nwSorgente.titolo = parsed.titolo;
+    if (parsed.autori)
+        nwSorgente.autori = parsed.autori;
+    if (parsed.type)
+        nwSorgente.type = parsed.type;
+    if (parsed.link)
+        nwSorgente.link = new URL(parsed.link);
+    if (parsed.github)
+        nwSorgente.github = new URL(parsed.github);
+    if (parsed.designPatterns)
+        findItem("nome", DesignPattern, "designPatterns", parsed, nwSorgente, "addDesignPattern");
+    return nwSorgente;
 }
-export const PJDP = new Sorgente();
-PJDP.titolo = "Pro Javascript Design Patterns";
-PJDP.autori = ["Ross Armes", "Dustin Diaz"];
-PJDP.tipo = "libro";
-PJDP.addDesignPattern(interfacePattern);
-PJDP.addDesignPattern(singleton);
-PJDP.addDesignPattern(factory);
-PJDP.addDesignPattern(bridge);
-PJDP.addDesignPattern(composite);
-PJDP.addDesignPattern(facade);
-PJDP.addDesignPattern(adapter);
-PJDP.addDesignPattern(decorator);
-PJDP.addDesignPattern(flyweight);
-PJDP.addDesignPattern(proxy);
-PJDP.addDesignPattern(observer);
-PJDP.addDesignPattern(command);
-PJDP.addDesignPattern(chainOfResp);
-export const DOFACTORY = new Sorgente();
-DOFACTORY.titolo = "JavaScript Patterns";
-DOFACTORY.autori = ["dofactory"];
-DOFACTORY.tipo = "blog";
-DOFACTORY.link = new URL("https://www.dofactory.com/javascript/design-patterns/strategy#example");
-DOFACTORY.addDesignPattern(abstractFactory);
-DOFACTORY.addDesignPattern(builder);
-DOFACTORY.addDesignPattern(factory);
-DOFACTORY.addDesignPattern(prototype);
-DOFACTORY.addDesignPattern(singleton);
-DOFACTORY.addDesignPattern(adapter);
-DOFACTORY.addDesignPattern(bridge);
-DOFACTORY.addDesignPattern(composite);
-DOFACTORY.addDesignPattern(decorator);
-DOFACTORY.addDesignPattern(facade);
-DOFACTORY.addDesignPattern(flyweight);
-DOFACTORY.addDesignPattern(proxy);
-DOFACTORY.addDesignPattern(chainOfResp);
-DOFACTORY.addDesignPattern(command);
-DOFACTORY.addDesignPattern(interpreter);
-DOFACTORY.addDesignPattern(iterator);
-DOFACTORY.addDesignPattern(mediator);
-DOFACTORY.addDesignPattern(memento);
-DOFACTORY.addDesignPattern(observer);
-DOFACTORY.addDesignPattern(state);
-DOFACTORY.addDesignPattern(strategy);
-DOFACTORY.addDesignPattern(templateMethod);
-DOFACTORY.addDesignPattern(visitor);
-export const CARLOS = new Sorgente();
-CARLOS.titolo = `pattern-design Series' Articles`;
-CARLOS.autori = ["Carlos Caballero"];
-CARLOS.tipo = "blog";
-CARLOS.link = new URL("https://dev.to/carlillo/series/540");
-CARLOS.github = new URL("https://github.com/Caballerog");
-CARLOS.addDesignPattern(strategy);
-CARLOS.addDesignPattern(templateMethod);
-CARLOS.addDesignPattern(adapter);
-CARLOS.addDesignPattern(facade);
-CARLOS.addDesignPattern(singleton);
-CARLOS.addDesignPattern(command);
-CARLOS.addDesignPattern(iterator);
-CARLOS.addDesignPattern(decorator);
-CARLOS.addDesignPattern(nullObj);
-CARLOS.addDesignPattern(builder);
-CARLOS.addDesignPattern(factory);
-CARLOS.addDesignPattern(abstractFactory);
-CARLOS.addDesignPattern(observer);
-export const INTEGRALIST = new Sorgente();
-INTEGRALIST.titolo = "Strategy.js";
-INTEGRALIST.autori = ["Integralist"];
-INTEGRALIST.link = new URL("https://gist.github.com/Integralist/5736427");
-INTEGRALIST.addDesignPattern(strategy);
-export const NJSDP = new Sorgente();
-NJSDP.titolo = "Node.js Design Patterns";
-NJSDP.autori = ["Mark McDonnell"];
-NJSDP.tipo = "libro";
-export const DEVMODZ = new Sorgente();
-DEVMODZ.titolo = "Developer Modzilla";
-DEVMODZ.autori = ["Javascript Dev Team"];
-DEVMODZ.tipo = "blog";
-export const NODEJS = new Sorgente();
-NODEJS.titolo = "Node Reference";
-NODEJS.autori = ["Node Js Dev Team"];
-NODEJS.tipo = "blog";
-export const TSLANG = new Sorgente();
-TSLANG.titolo = "Typescript Reference";
-TSLANG.autori = ["TypeScriptLang Dev Team"];
-TSLANG.tipo = "blog";
-TSLANG.link = new URL("https://www.typescriptlang.org/");
-export const DOCOMMUNITY = new Sorgente();
-TSLANG.titolo = "Digital Ocean";
-TSLANG.autori = ["Vijay Prasanna"];
-TSLANG.tipo = "blog";
-TSLANG.link = new URL("https://www.digitalocean.com/community/tutorials");
+sorgentiPath.forEach(creaSorgenteFromMd);

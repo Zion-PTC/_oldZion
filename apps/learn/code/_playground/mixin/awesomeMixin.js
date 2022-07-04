@@ -59,3 +59,20 @@ const myObj4 = new MyClass4();
 myObj4.soo(); //    funziona
 myObj4.troo(); //   funziona
 myObj4.doo(); //    funziona ma non intellisense
+
+
+
+class MyClass extends mix(MyBaseClass).with(Mixin1, Mixin2) {
+  /* ... */
+}
+let mix = (superclass) => new MixinBuilder(superclass);
+
+class MixinBuilder {
+  constructor(superclass) {
+    this.superclass = superclass;
+  }
+
+  with(...mixins) {
+    return mixins.reduce((c, mixin) => mixin(c), this.superclass);
+  }
+}

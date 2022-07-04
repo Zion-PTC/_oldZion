@@ -1,0 +1,83 @@
+@startuml Abtract Factory
+
+left to right direction
+
+rectangle Client {
+}
+
+class AbstractFactory {
+  + createObject(string):IProduct
+}
+
+package Factory <<rectangle>> {
+  class FactoryA {
+    + field: type
+    + createObject(string):IProductA
+  }
+
+  package FA <<rectangle>> {
+    interface IProductA {
+      + field: type
+    }
+
+    class ConcreteProduct1 {
+      + field: type
+    }
+
+    class ConcreteProdA1 {
+      + field: type
+    }
+
+    class ConcreteProdB1 {
+      + field: type
+    }
+
+    class ConcreteProdC1 {
+      + field: type
+    }
+  }
+
+  class FactoryB {
+    + field: type
+    + createObject(string):IProductB
+  }
+
+  package FB <<rectangle>> {
+    interface IProductB {
+      + field: type
+    }
+
+    class ConcreteProduct2 {
+      + field: type
+    }
+
+    class ConcreteProdA2 {
+      + field: type
+    }
+
+    class ConcreteProdB2 {
+      + field: type
+    }
+
+    class ConcreteProdC2 {
+      + field: type
+    }
+  }
+}
+
+AbstractFactory <-o Client
+AbstractFactory o-d-> FactoryA
+AbstractFactory o-d-> FactoryB
+FactoryA -l[hidden]- FactoryB
+FactoryA o-d-> IProductA
+IProductA <|.l. ConcreteProduct1
+FactoryB o-d-> IProductB
+IProductB <|.l. ConcreteProduct2
+ConcreteProduct1 <|-d- ConcreteProdA1
+ConcreteProduct1 <|-d- ConcreteProdB1
+ConcreteProduct1 <|-d- ConcreteProdC1
+ConcreteProduct2 <|-d- ConcreteProdA2
+ConcreteProduct2 <|-d- ConcreteProdB2
+ConcreteProduct2 <|-d- ConcreteProdC2
+
+@enduml

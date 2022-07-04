@@ -15,7 +15,6 @@ function showColor(color) {
     console.log(color);
 }
 showColor(Colors2.Blue);
-// showColor('blue'); // funziona ma Typescript si lamenta
 var Colors3;
 (function (Colors3) {
     Colors3["Blue"] = "blue";
@@ -29,7 +28,6 @@ function showColor2(color) {
     console.log(color);
 }
 showColor2('blue');
-// showColor2(ColorsObj.Blue); ///  like this TS complains
 var Colors4;
 (function (Colors4) {
     Colors4["Blue"] = "blue";
@@ -57,7 +55,6 @@ const ColorsObj4 = {
     Blue: 'blue',
     Green: 'green',
 };
-// type DesiredArgs3 = 'blue' | 'green';
 function showColor4(color) {
     console.log(color);
 }

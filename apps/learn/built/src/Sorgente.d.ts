@@ -1,13 +1,22 @@
 import { DesignPatternsCategories, IDesignPattern } from "./DesignPattern.js";
 import { ITutorial } from "./Tutorial";
-declare type Tipo = "libro" | "blog" | "coder";
+declare enum SorgenteEnums {
+    libro = "libro",
+    blog = "blog",
+    coder = "coder"
+}
+declare type SorgenteTypes = keyof typeof SorgenteEnums;
 export interface IStaticSorgente {
+    sorgenti: ISorgente[];
+    mostraSorgenti(): void;
 }
 export interface ISorgente {
     id: number;
+    slug: string;
     titolo: string;
     autori: string[];
-    tipo: Tipo;
+    tutorial: ITutorial[];
+    type: SorgenteTypes;
     link: URL;
     github: URL;
     designPatterns: IDesignPattern[];
@@ -28,11 +37,13 @@ export interface ILibro extends ISorgente {
 export declare abstract class ASorgente implements ISorgente {
     #private;
     designPatterns: IDesignPattern[];
+    static get sorgenti(): ISorgente[];
     id: number;
+    slug: string;
     titolo: string;
     autori: string[];
     tutorial: ITutorial[];
-    tipo: Tipo;
+    type: SorgenteTypes;
     link: URL;
     github: URL;
     constructor(designPatterns?: IDesignPattern[]);
@@ -47,26 +58,19 @@ export declare abstract class ASorgente implements ISorgente {
     abstract mostraDesignPatternConEsempi(): ISorgente;
     abstract contaDesignPatternSenzaEsempi(): ISorgente;
 }
-export declare class Sorgente extends ASorgente {
+export declare class Sorgente extends ASorgente implements ISorgente {
     #private;
+    static mostraSorgenti(): void;
     get designPatternSenzaEsempi(): IDesignPattern[];
     get designPatternConEsempi(): IDesignPattern[];
-    show: () => ISorgente;
-    showPatterns: () => ISorgente;
-    addDesignPattern: (pattern: IDesignPattern) => ISorgente;
+    constructor();
+    show(): ISorgente;
+    showPatterns(): ISorgente;
+    addDesignPattern(pattern: IDesignPattern): ISorgente;
     aggiungiTutorial(tutorial: ITutorial): ISorgente;
     mostraPatternID(pattern: IDesignPattern): number;
     mostraDesignPatternSenzaEsempi(categoria?: DesignPatternsCategories): ISorgente;
     mostraDesignPatternConEsempi(categoria?: DesignPatternsCategories): ISorgente;
-    contaDesignPatternSenzaEsempi: (categoria?: DesignPatternsCategories | undefined) => ISorgente;
+    contaDesignPatternSenzaEsempi(categoria?: DesignPatternsCategories): ISorgente;
 }
-export declare const PJDP: Sorgente;
-export declare const DOFACTORY: Sorgente;
-export declare const CARLOS: Sorgente;
-export declare const INTEGRALIST: Sorgente;
-export declare const NJSDP: Sorgente;
-export declare const DEVMODZ: Sorgente;
-export declare const NODEJS: Sorgente;
-export declare const TSLANG: Sorgente;
-export declare const DOCOMMUNITY: Sorgente;
 export {};

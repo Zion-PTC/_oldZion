@@ -1,4 +1,4 @@
-import { devOPS, ITematica, Tematica } from "./Tematica";
+import { ITematica, Tematica } from "./Tematica";
 import { ITutorial, Tutorial } from "./Tutorial";
 
 // TODO capire come sostiruire oggetto a design pattern in tutorial.oggetto
@@ -12,6 +12,5 @@ export class Oggetto {
 
 export let CDCI = new Oggetto(
   "CI/CD Continuous Integration, Continous Deployment",
-  "",
-  devOPS
+  ""
 );

@@ -1,0 +1,13 @@
+@startuml Singleton
+
+rectangle Client {
+}
+
+class Singleton {
+  + instance: Singleton
+}
+
+Client o-> Singleton
+Singleton --> Singleton
+
+@enduml

@@ -395,7 +395,7 @@ particolare metodo o proprietà, quindi è meglio avere una
 guardia per la chiamata `super`;
 
 ```jsx
-et Mixin1 = (superclass) => class extends superclass {
+let Mixin1 = (superclass) => class extends superclass {
   foo() {
     console.log('foo from Mixin1');
     if (super.foo) super.foo();
@@ -427,7 +427,7 @@ new C().foo();
 
 imprime sulla console:
 
-```jsx
+```bash
 foo from C
 foo from Mixin1
 foo from Mixin2

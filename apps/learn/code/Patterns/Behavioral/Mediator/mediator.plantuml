@@ -1,0 +1,28 @@
+@startuml Mediator
+
+class Mediator {
+  + collegue1: Collegue1
+  + collegue2: Collegue2
+  + collegue3: Collegue3
+  + collegue1Method(type):type
+  + collegue2Method(type):type
+  + collegue3Method(type):type
+}
+
+object Collegue1 {
+  method1():string
+}
+
+object Collegue2 {
+  method2():string
+}
+
+object Collegue3 {
+  method2():string
+}
+
+Mediator <-d-> Collegue1
+Mediator <-d-> Collegue2
+Mediator <-d-> Collegue3
+
+@enduml

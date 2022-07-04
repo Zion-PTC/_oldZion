@@ -15,9 +15,7 @@ class DecoratedUser {
     name;
     say;
     constructor(user, street, city, name = user.name, say = function () {
-        console.log(
-        //@ts-expect-error
-        'Decorated User: ' + this.name + ', ' + this.street + ', ' + this.city);
+        console.log('Decorated User: ' + this.name + ', ' + this.street + ', ' + this.city);
     }) {
         this.user = user;
         this.street = street;

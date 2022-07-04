@@ -1,0 +1,33 @@
+@startuml Adapter
+interface IA {
+  + methodA():void
+}
+
+interface IB {
+  + methodB():void
+}
+
+class ClassA {
+  + methodA():void
+}
+
+class ClassB {
+  + methodB():void
+}
+
+class ClassBAdapter {
+  - classB: ClassB
+  + methodA():void
+}
+
+rectangle Client {
+}
+
+IA <|.. ClassA
+IA <|.. ClassBAdapter
+IB <|.. ClassB
+ClassBAdapter *-> ClassB
+ClassA -r[hidden]- ClassBAdapter
+ClassA --o Client
+ClassBAdapter --o Client
+@enduml

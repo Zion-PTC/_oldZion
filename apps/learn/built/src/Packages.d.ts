@@ -1,83 +1,51 @@
-declare class Package {
-    url: string;
-    descrizione: string;
-    categoria: string;
-    type: "npm" | "yarn" | "homebrew" | "apt" | "helm";
-    links: URL[];
-    constructor(url: string, descrizione?: string, categoria?: string);
+declare enum PackageEnums {
+    npm = "npm",
+    yarn = "yarn",
+    brew = "homebrew",
+    apt = "apt",
+    helm = "helm"
 }
-declare const graphVisualizationLibrariesDescr: string;
-declare const graphVisualizationLibsCat = "graph-visualization";
-declare const graphVisLibsInfos: string[];
-declare const alchemyURL = "https://graphalchemist.github.io/Alchemy/#/";
-declare let alchemy: Package;
-declare const arborURL = "http://arborjs.org/";
-declare let arbor: Package;
-declare const d3JSURL = "https://d3js.org/";
-declare let d3js: Package;
-declare const dagrejsURL = "https://github.com/dagrejs/dagre-d3";
-declare let dagrejs: Package;
-declare const draculaURL = "https://www.graphdracula.net/";
-declare let dracula: Package;
-declare const elGraphoURL = "https://www.elgrapho.com/";
-declare let elGrapho: Package;
-declare const g6URL = "https://github.com/antvis/g6/";
-declare let g6: Package;
-declare const ggraphURL = "https://github.com/pcbje/ggraph";
-declare let ggraph: Package;
-declare const gojsURL = "https://gojs.net/latest/index.html";
-declare let gojs: Package;
-declare const graphglURL = "https://github.com/uskudnik/GraphGL";
-declare let graphgl: Package;
-declare const graphosauruslURL = "https://github.com/frewsxcv/graphosaurus";
-declare let graphosaurus: Package;
-declare const h3viewerlURL = "https://graphics.stanford.edu/~munzner/h3/";
-declare let h3viewer: Package;
-declare const javascriptDyagramURL = "https://www.syncfusion.com/javascript-ui-controls/diagram";
-declare let javascriptDyagram: Package;
-declare const javascriptInfoVisToolkitURL = "http://philogb.github.io/jit/";
-declare let javascriptInfoVisToolkit: Package;
-declare const jointjsURL = "https://www.jointjs.com/opensource";
-declare let jointjs: Package;
-declare const jsgraphitURL = "http://js-graph-it.sourceforge.net/";
-declare let jsgraphit: Package;
-declare const jsPlumbURL = "https://github.com/jsplumb/jsplumb/";
-declare let jsPlumb: Package;
-declare const keylinesURL = "http://keylines.com/";
-declare let keylines: Package;
-declare const mxgraphURL = "http://www.jgraph.com/mxgraph.html";
-declare let mxgraph: Package;
-declare const neovisjsURL = "https://github.com/neo4j-contrib/neovis.js/";
-declare let neovisjs: Package;
-declare const netjsonURL = "https://github.com/netjson/netjsongraph.js";
-declare let netjson: Package;
-declare const networkkubeURL = "https://github.com/networkcube/networkcube";
-declare let networkkube: Package;
-declare const ogmaURL = "http://ogma.linkurio.us/";
-declare let ogma: Package;
-declare const popotoURL = "http://www.popotojs.com/";
-declare let popoto: Package;
-declare const processingjsURL = "http://processingjs.org/";
-declare let processingjs: Package;
-declare const protovisURL = "http://mbostock.github.io/protovis/";
-declare let protovis: Package;
-declare const rapiddURL = "http://resources.jointjs.com/demos";
-declare let rapidd: Package;
-declare const regraphURL = "https://cambridge-intelligence.com/regraph/";
-declare let regraph: Package;
-declare const sigmajsURL = "http://sigmajs.org/";
-declare let sigmajs: Package;
-declare const sobaURL = "https://github.com/mil-tokyo/soba";
-declare let soba: Package;
-declare const springyURL = "http://getspringy.com/";
-declare let springy: Package;
-declare const ugraphURL = "https://github.com/lizhongit/ugraph";
-declare let ugraph: Package;
-declare const visURL = "https://github.com/visjs/vis-network";
-declare let vis: Package;
-declare const visNetworkURL = "https://github.com/datastorm-open/visNetwork";
-declare let visNetwork: Package;
-declare const vivagraphjsURL = "https://github.com/anvaka/VivaGraphJS";
-declare let vivagraphjs: Package;
-declare const yfilesForHTMLURL = "https://www.yworks.com/products/yfiles-for-html";
-declare let yfilesForHTML: Package;
+declare type PackageTypes = keyof typeof PackageEnums;
+declare enum PackageCategoriaEnums {
+    default = "Nessuna categoria \u00E8 stata fornita",
+    graphVisualization = "Graph Visualization",
+    graphManipulation = "Graph Manipulation",
+    mdManipulation = "MarkdownFiles Manipulation, .md",
+    mdxManipulation = "MarkdownX Manipulatin, .mds",
+    htmlManiputalion = "HTML files Manipulation, .html",
+    yamlManipulation = "Yaml files Manipulation, .yaml",
+    iCal = "iCal Interactions"
+}
+declare type PackageCategoriaTypes = keyof typeof PackageCategoriaEnums;
+interface IPackage {
+    type: PackageTypes;
+    url: string | string[];
+    descrizione: string;
+    links: string | string[];
+    categoria: PackageCategoriaTypes | PackageCategoriaTypes[];
+}
+declare abstract class APackage implements IPackage {
+    #private;
+    url: string | string[];
+    type: PackageTypes;
+    descrizione: string;
+    nome: string;
+    static get packages(): IPackage[];
+    static mostraPackages(): void;
+    abstract get links(): string | string[];
+    abstract set links(links: string | string[]);
+    abstract get categoria(): PackageCategoriaTypes | PackageCategoriaTypes[];
+    abstract set categoria(categoria: PackageCategoriaTypes | PackageCategoriaTypes[]);
+    constructor(url: string | string[], type?: PackageTypes, descrizione?: string, nome?: string);
+}
+export declare class Package extends APackage implements IPackage {
+    #private;
+    url: string | string[];
+    descrizione: string;
+    get links(): string | string[];
+    set links(links: string | string[]);
+    get categoria(): PackageCategoriaTypes | PackageCategoriaTypes[];
+    set categoria(categoria: PackageCategoriaTypes | PackageCategoriaTypes[]);
+    constructor(url?: string | string[], descrizione?: string, categoria?: PackageCategoriaTypes | PackageCategoriaTypes[]);
+}
+export {};
