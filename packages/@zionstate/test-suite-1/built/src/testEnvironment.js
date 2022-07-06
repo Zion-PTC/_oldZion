@@ -1,12 +1,14 @@
-import { expect } from "chai";
+import chai, { expect } from "chai";
+import promise from "chai-as-promised";
 import Mocha from "mocha";
 import { zionUtil } from "@zionstate_node/zion-util";
+chai.use(promise);
 /**
  *
  * @returns
  */
-export const testEnvironment = () => {
-    const testRunner = new Mocha({ slow: 1000 });
+export const testEnvironment = (amount = 1000) => {
+    const testRunner = new Mocha({ slow: amount });
     testRunner.suite.emit("pre-require", global, "nofile", testRunner);
     var suiteRun = testRunner.run();
     process.on("exit", (code) => {

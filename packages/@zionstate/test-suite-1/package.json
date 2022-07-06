@@ -1,6 +1,6 @@
 {
-  "name": "@zionrepack/test-suite-1",
-  "version": "0.0.1",
+  "name": "@zionstate/test-suite-1",
+  "version": "0.0.2",
   "description": "",
   "main": "built/index.js",
   "keywords": [],
@@ -11,8 +11,10 @@
     "tsc": "tsc",
     "test": "nodemon ./test/test.js"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@types/chai-as-promised": "^7.1.5",
     "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^10.0.0",
     "sinon": "^14.0.0"
   }

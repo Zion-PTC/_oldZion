@@ -1,7 +1,10 @@
-import { expect } from "chai";
+import chai, { expect } from "chai";
+import promise from "chai-as-promised";
 import Mocha from "mocha";
 import { zionUtil } from "@zionstate_node/zion-util";
 import { DebugLogger } from "@zionstate_node/zion-util/built/src/zionUtil";
+
+chai.use(promise);
 
 export type testEnvironmentReturn = {
   expect: Chai.ExpectStatic;
@@ -12,8 +15,10 @@ export type testEnvironmentReturn = {
  *
  * @returns
  */
-export const testEnvironment = (): testEnvironmentReturn => {
-  const testRunner = new Mocha({ slow: 1000 });
+export const testEnvironment = (
+  amount: number = 1000
+): testEnvironmentReturn => {
+  const testRunner = new Mocha({ slow: amount });
   testRunner.suite.emit("pre-require", global, "nofile", testRunner);
   var suiteRun = testRunner.run();
   process.on("exit", (code) => {

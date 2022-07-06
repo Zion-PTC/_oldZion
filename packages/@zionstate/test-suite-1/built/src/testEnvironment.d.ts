@@ -8,4 +8,4 @@ export declare type testEnvironmentReturn = {
  *
  * @returns
  */
-export declare const testEnvironment: () => testEnvironmentReturn;
+export declare const testEnvironment: (amount?: number) => testEnvironmentReturn;
