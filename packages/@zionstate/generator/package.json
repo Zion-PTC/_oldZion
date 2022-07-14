@@ -10,5 +10,8 @@
   "scripts": {
     "testGenerator": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/generator/test/Generator.test.js",
     "testPicker": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/generator/test/Picker.test.js"
+  },
+  "dependencies": {
+    "@zionstate/system": "*"
   }
 }
