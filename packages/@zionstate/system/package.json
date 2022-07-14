@@ -8,6 +8,15 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "testReadJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readJSON.test.js",
+    "testReadPackageJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readPackageJSON.test.js"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "yaml": "2.1.1",
+    "csv-parse": "^5.2.0",
+    "@zionstate/system": "*",
+    "@zionstate/test-suite-1": "*"
   }
 }

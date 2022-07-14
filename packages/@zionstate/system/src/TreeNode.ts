@@ -44,13 +44,14 @@ export interface ITreeNode {
   connettiAGenitore(node: TreeNode): ITreeNode;
   connettiAFiglio(node: TreeNode): ITreeNode;
   isRoot(): boolean;
+  isFolder(): boolean;
   trovaSiblings(): ITreeNode[];
   trovaFigli(): ITreeNode[] | string;
   trovaGenitore(): ITreeNode | undefined;
 }
 
 export class TreeNode implements ITreeNode {
-  static #types: ('Folder' | 'File')[] = ['Folder', 'File'];
+  static #types: ("Folder" | "File")[] = ["Folder", "File"];
   static #treeNodes: TreeNode[] = [];
   static get treeNodes() {
     return TreeNode.#treeNodes;
@@ -89,13 +90,13 @@ export class TreeNode implements ITreeNode {
       treeStrings: string[] = [],
       folders: string[][] = [],
       folderId = -1,
-      stringedTree: string = '';
+      stringedTree: string = "";
 
     while (stack.length) {
       let currentNode = stack.pop(),
         nomeDeiFileInNodeChildren: string[] = [];
 
-      if (!currentNode) return 'no current node';
+      if (!currentNode) return "no current node";
 
       if (currentNode.children) {
         let children = currentNode.children;
@@ -107,7 +108,7 @@ export class TreeNode implements ITreeNode {
         }
       }
 
-      string = '';
+      string = "";
       let { _string, _folders, _folderId } = this.stringedName(
         currentNode.name,
         currentNode.type,
@@ -127,7 +128,7 @@ export class TreeNode implements ITreeNode {
       treeStrings.push(string);
     }
 
-    stringedTree = treeStrings.join('');
+    stringedTree = treeStrings.join("");
 
     return stringedTree;
   };
@@ -143,20 +144,20 @@ export class TreeNode implements ITreeNode {
     isRoot: boolean
   ): { _string: string; _folders: string[][]; _folderId: number } => {
     let tab = `\n`,
-      pattern: string = '',
+      pattern: string = "",
       counter: number = 0,
       _string: string,
       _folders: string[][],
       _folderId: number;
 
-    if (depth === 1) pattern = '  ';
-    if (depth > 1) pattern = '│ ';
+    if (depth === 1) pattern = "  ";
+    if (depth > 1) pattern = "│ ";
 
     while (depth) {
       depth--;
       counter++;
-      if (counter === 1) pattern = '  ';
-      if (counter !== 1) pattern = '│ ';
+      if (counter === 1) pattern = "  ";
+      if (counter !== 1) pattern = "│ ";
       tab = tab + pattern;
     }
 
@@ -192,12 +193,15 @@ export class TreeNode implements ITreeNode {
     if (this.root) return true;
     else return false;
   }
+  isFolder(): boolean {
+    return false;
+  }
   trovaSiblings() {
-    if (this.isRoot()) throw new Error('Il nodo root non ha Siblings');
+    if (this.isRoot()) throw new Error("Il nodo root non ha Siblings");
     let servedArray: TreeNode[] = [];
 
     // this.genitore[0].figlio;
-    TreeNode.#treeNodes.forEach(treeNode => {
+    TreeNode.#treeNodes.forEach((treeNode) => {
       if (!treeNode.genitore) return;
       if (!this.genitore) return;
       if (!treeNode.genitore[0]) return;
@@ -210,10 +214,10 @@ export class TreeNode implements ITreeNode {
   }
   trovaFigli() {
     if (this.type === TreeNode.#types[1])
-      throw new Error('I file non hanno figli');
+      throw new Error("I file non hanno figli");
     let servedArray: ITreeNode[] = [];
-    if (!this.figlio) return 'no figlio';
-    this.figlio.forEach(child => {
+    if (!this.figlio) return "no figlio";
+    this.figlio.forEach((child) => {
       if (!child) return;
       servedArray.push(child);
     });
@@ -221,7 +225,7 @@ export class TreeNode implements ITreeNode {
     return servedArray;
   }
   trovaGenitore() {
-    if (this.isRoot()) throw new Error('Il nodo root non ha genitori');
+    if (this.isRoot()) throw new Error("Il nodo root non ha genitori");
     if (this.genitore) return this.genitore[0];
   }
 }

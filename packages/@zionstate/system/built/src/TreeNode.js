@@ -12,7 +12,7 @@ export class TreeNode {
     id;
     stringedDir;
     _isLastChild;
-    static #types = ['Folder', 'File'];
+    static #types = ["Folder", "File"];
     static #treeNodes = [];
     static get treeNodes() {
         return TreeNode.#treeNodes;
@@ -45,11 +45,11 @@ export class TreeNode {
         this.treeId = treeId;
     }
     toStringedTree = () => {
-        let string, stack = [this], treeStrings = [], folders = [], folderId = -1, stringedTree = '';
+        let string, stack = [this], treeStrings = [], folders = [], folderId = -1, stringedTree = "";
         while (stack.length) {
             let currentNode = stack.pop(), nomeDeiFileInNodeChildren = [];
             if (!currentNode)
-                return 'no current node';
+                return "no current node";
             if (currentNode.children) {
                 let children = currentNode.children;
                 // children.reverse();
@@ -58,7 +58,7 @@ export class TreeNode {
                     stack.push(child);
                 }
             }
-            string = '';
+            string = "";
             let { _string, _folders, _folderId } = this.stringedName(currentNode.name, currentNode.type, currentNode.depth, folders, string, folderId, nomeDeiFileInNodeChildren, currentNode._isLastChild, currentNode.isRoot());
             string = _string;
             folderId = _folderId;
@@ -66,22 +66,22 @@ export class TreeNode {
             currentNode.stringedDir = string;
             treeStrings.push(string);
         }
-        stringedTree = treeStrings.join('');
+        stringedTree = treeStrings.join("");
         return stringedTree;
     };
     stringedName = (name, type, depth, folders, string, folderId, nomeDeiFileInNodeChildren, _isLastChild, isRoot) => {
-        let tab = `\n`, pattern = '', counter = 0, _string, _folders, _folderId;
+        let tab = `\n`, pattern = "", counter = 0, _string, _folders, _folderId;
         if (depth === 1)
-            pattern = '  ';
+            pattern = "  ";
         if (depth > 1)
-            pattern = '│ ';
+            pattern = "│ ";
         while (depth) {
             depth--;
             counter++;
             if (counter === 1)
-                pattern = '  ';
+                pattern = "  ";
             if (counter !== 1)
-                pattern = '│ ';
+                pattern = "│ ";
             tab = tab + pattern;
         }
         if (type === TreeNode.#types[0]) {
@@ -120,12 +120,15 @@ export class TreeNode {
         else
             return false;
     }
+    isFolder() {
+        return false;
+    }
     trovaSiblings() {
         if (this.isRoot())
-            throw new Error('Il nodo root non ha Siblings');
+            throw new Error("Il nodo root non ha Siblings");
         let servedArray = [];
         // this.genitore[0].figlio;
-        TreeNode.#treeNodes.forEach(treeNode => {
+        TreeNode.#treeNodes.forEach((treeNode) => {
             if (!treeNode.genitore)
                 return;
             if (!this.genitore)
@@ -141,11 +144,11 @@ export class TreeNode {
     }
     trovaFigli() {
         if (this.type === TreeNode.#types[1])
-            throw new Error('I file non hanno figli');
+            throw new Error("I file non hanno figli");
         let servedArray = [];
         if (!this.figlio)
-            return 'no figlio';
-        this.figlio.forEach(child => {
+            return "no figlio";
+        this.figlio.forEach((child) => {
             if (!child)
                 return;
             servedArray.push(child);
@@ -155,7 +158,7 @@ export class TreeNode {
     }
     trovaGenitore() {
         if (this.isRoot())
-            throw new Error('Il nodo root non ha genitori');
+            throw new Error("Il nodo root non ha genitori");
         if (this.genitore)
             return this.genitore[0];
     }

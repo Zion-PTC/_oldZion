@@ -1,8 +1,8 @@
-import { zionUtil } from '@zionstate_node/zion-util';
-import { File } from './File.js';
-import { Folder } from './Folder.js';
-import { Root } from './Root.js';
-import { ITreeNode, TreeNode } from './TreeNode.js';
+import { zionUtil } from "@zionstate_node/zion-util";
+import { File } from "./File.js";
+import { Folder } from "./Folder.js";
+import { Root } from "./Root.js";
+import { ITreeNode, TreeNode } from "./TreeNode.js";
 
 export interface ITree {
   id: number;
@@ -19,7 +19,7 @@ export class Tree implements ITree {
   #nodes: (File | Root | Folder | TreeNode)[] = [];
   get nodes() {
     let servedArray: (File | Root | Folder | TreeNode)[] = [];
-    this.#nodes.forEach(node => servedArray.push(node));
+    this.#nodes.forEach((node) => servedArray.push(node));
     Object.freeze(servedArray);
     return servedArray;
   }
@@ -28,27 +28,27 @@ export class Tree implements ITree {
     return this.#nodes.length;
   }
   constructor(nodes: TreeNode[] = []) {
-    nodes.forEach(node => this.#nodes.push(node));
+    nodes.forEach((node) => this.#nodes.push(node));
     Tree.#trees.push(this);
     this.id = Tree.#trees.length;
   }
   add(node: File | Root | Folder | TreeNode) {
-    if (!node) throw new Error('non è stato fornito alcun nodo da aggiungere');
-    if (Array.isArray(node)) throw new Error('È stato fornito un array.');
+    if (!node) throw new Error("non è stato fornito alcun nodo da aggiungere");
+    if (Array.isArray(node)) throw new Error("È stato fornito un array.");
     let condition =
       node.constructor !== File &&
       node.constructor !== Root &&
       node.constructor !== Folder &&
       node.constructor !== TreeNode;
-    const error1: string = 'Non è stato fornito un oggetto di tipo TreeNode';
+    const error1: string = "Non è stato fornito un oggetto di tipo TreeNode";
     if (condition) throw new Error(error1);
     this.#nodes.push(node);
     return this;
   }
   remove(nodeToRemove: File | Root | Folder | TreeNode) {
-    const errMess1 = 'Non è stato fornito alcun nodo da rimuovere';
-    const errMess2 = 'È stato fornito un array.';
-    const errMess3 = 'Non è stato fornito un oggetto di tipo TreeNode';
+    const errMess1 = "Non è stato fornito alcun nodo da rimuovere";
+    const errMess2 = "È stato fornito un array.";
+    const errMess3 = "Non è stato fornito un oggetto di tipo TreeNode";
     if (!nodeToRemove) throw new Error(errMess1);
     if (Array.isArray(nodeToRemove)) throw new Error(errMess2);
     if (nodeToRemove.constructor !== TreeNode) throw new Error(errMess3);
@@ -64,9 +64,9 @@ export class Tree implements ITree {
     return indiceDelNodoDaRimuovere;
   }
   isPresent(nodoDaControllare: File | Root | Folder | TreeNode) {
-    const errMess1 = 'Non è stato fornito alcun nodo da controllare';
-    const errMess2 = 'È stato fornito un array.';
-    const errMess3 = 'Non è stato fornito un oggetto di tipo TreeNode';
+    const errMess1 = "Non è stato fornito alcun nodo da controllare";
+    const errMess2 = "È stato fornito un array.";
+    const errMess3 = "Non è stato fornito un oggetto di tipo TreeNode";
     if (!nodoDaControllare) throw new Error(errMess1);
     if (Array.isArray(nodoDaControllare)) throw new Error(errMess2);
     if (nodoDaControllare.constructor !== TreeNode) throw new Error(errMess3);
@@ -75,13 +75,13 @@ export class Tree implements ITree {
     return result === -1 ? false : true;
   }
   find(nodoDaCercare: File | Root | Folder | TreeNode) {
-    const errMess1 = 'Non è stato fornito alcun nodo da cercare';
-    const errMess2 = 'È stato fornito un array.';
-    const errMess3 = 'Non è stato fornito un oggetto di tipo TreeNode';
+    const errMess1 = "Non è stato fornito alcun nodo da cercare";
+    const errMess2 = "È stato fornito un array.";
+    const errMess3 = "Non è stato fornito un oggetto di tipo TreeNode";
     if (!nodoDaCercare) throw new Error(errMess1);
     if (Array.isArray(nodoDaCercare)) throw new Error(errMess2);
     if (nodoDaCercare.constructor !== TreeNode) throw new Error(errMess3);
-    return this.#nodes.find(node => node.name === nodoDaCercare.name);
+    return this.#nodes.find((node) => node.name === nodoDaCercare.name);
   }
   findByLevel(depth: number): (File | Root | Folder | TreeNode)[] {
     let servedArray: (File | Root | Folder | TreeNode)[] = [];

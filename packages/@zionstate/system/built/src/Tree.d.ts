@@ -1,7 +1,7 @@
-import { File } from './File.js';
-import { Folder } from './Folder.js';
-import { Root } from './Root.js';
-import { TreeNode } from './TreeNode.js';
+import { File } from "./File.js";
+import { Folder } from "./Folder.js";
+import { Root } from "./Root.js";
+import { TreeNode } from "./TreeNode.js";
 export interface ITree {
     id: number;
     get nodes(): (File | Root | Folder | TreeNode)[];
@@ -12,13 +12,13 @@ export interface ITree {
 }
 export declare class Tree implements ITree {
     #private;
-    get nodes(): (TreeNode | File | Folder | Root)[];
+    get nodes(): (File | TreeNode | Folder | Root)[];
     id: number;
     get size(): number;
     constructor(nodes?: TreeNode[]);
     add(node: File | Root | Folder | TreeNode): this;
     remove(nodeToRemove: File | Root | Folder | TreeNode): number;
     isPresent(nodoDaControllare: File | Root | Folder | TreeNode): boolean;
-    find(nodoDaCercare: File | Root | Folder | TreeNode): TreeNode | File | Folder | Root | undefined;
+    find(nodoDaCercare: File | Root | Folder | TreeNode): File | TreeNode | Folder | Root | undefined;
     findByLevel(depth: number): (File | Root | Folder | TreeNode)[];
 }

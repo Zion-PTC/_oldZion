@@ -1,5 +1,7 @@
 export declare class ZionPath {
     #private;
-    constructor(filepath: string);
+    get path(): string;
+    constructor(paths?: string[]);
     directory(): string;
+    baseName(): string;
 }

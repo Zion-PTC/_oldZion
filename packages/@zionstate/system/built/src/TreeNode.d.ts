@@ -37,6 +37,7 @@ export interface ITreeNode {
     connettiAGenitore(node: TreeNode): ITreeNode;
     connettiAFiglio(node: TreeNode): ITreeNode;
     isRoot(): boolean;
+    isFolder(): boolean;
     trovaSiblings(): ITreeNode[];
     trovaFigli(): ITreeNode[] | string;
     trovaGenitore(): ITreeNode | undefined;
@@ -68,6 +69,7 @@ export declare class TreeNode implements ITreeNode {
     connettiAGenitore(node: TreeNode): this;
     connettiAFiglio(node: TreeNode): this;
     isRoot(): boolean;
+    isFolder(): boolean;
     trovaSiblings(): TreeNode[];
     trovaFigli(): ITreeNode[] | "no figlio";
     trovaGenitore(): ITreeNode | undefined;

@@ -1,4 +1,4 @@
-import { TreeNode } from './TreeNode.js';
+import { TreeNode } from "./TreeNode.js";
 export class Folder extends TreeNode {
     name;
     path;
@@ -13,5 +13,8 @@ export class Folder extends TreeNode {
         this.treeId = treeId;
         this.depth = depth;
         this.depth;
+    }
+    isFolder() {
+        return this.constructor === Folder;
     }
 }

@@ -1,17 +1,18 @@
-import fs from 'fs';
-import { dirname, extname } from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path, { dirname, extname } from "path";
+import { fileURLToPath } from "url";
+import { Abortable } from "events";
 
-import { zionUtil } from '@zionstate_node/zion-util';
-import { Tree, ITree } from './Tree.js';
-import { File, IFile } from './File.js';
-import { Folder, IFolder } from './Folder.js';
-import { Root, IRoot } from './Root.js';
-import { TreeNode, ITreeNode } from './TreeNode.js';
-
+import { zionUtil } from "@zionstate_node/zion-util";
+import { Tree, ITree } from "./Tree.js";
+import { File, IFile } from "./File.js";
+import { Folder, IFolder } from "./Folder.js";
+import { Root, IRoot } from "./Root.js";
+import { TreeNode, ITreeNode } from "./TreeNode.js";
+// import { EventEmitter } from "dropdown";
 export type Dirent = fs.Dirent;
 export class System {
-  #blackListFileNames = ['.DS_Store'];
+  #blackListFileNames = [".DS_Store"];
   get blackListFileNames() {
     return this.#blackListFileNames;
   }
@@ -23,21 +24,21 @@ export class System {
   }
   setNameForTreeNode = (
     path: string,
-    type: 'root' | 'File' | 'Folder'
+    type: "root" | "File" | "Folder"
   ): string => {
-    if (type === 'root') {
+    if (type === "root") {
       let match = path.match(/\w+$/g);
-      if (!match) return 'no match';
+      if (!match) return "no match";
       return match[0];
     }
     if (type === TreeNode.types[0]) {
       let match = path.match(/\w+$/g);
-      if (!match) return 'no match';
+      if (!match) return "no match";
       return match[0];
     } else {
-      let jointSpacesPath = path.replace(/ /g, '_');
+      let jointSpacesPath = path.replace(/ /g, "_");
       let res = jointSpacesPath.match(/(?<=[/])\w*[.]\w*/g);
-      if (!res) return 'no match';
+      if (!res) return "no match";
       return res[0];
     }
   };
@@ -56,7 +57,7 @@ export class System {
         // vengono esclusi i risultati che contengono un '.'
         // in quanto si tratta di nomi di files e non
         // di cartelle
-        directoryEntity => directoryEntity.isDirectory()
+        (directoryEntity) => directoryEntity.isDirectory()
       );
   };
   /**
@@ -69,8 +70,8 @@ export class System {
   ): { name: string; path: string }[] => {
     return fs
       .readdirSync(path)
-      .filter(item => !/(^|\/)\.['\/\.]/g.test(item))
-      .map(fileName => {
+      .filter((item) => !/(^|\/)\.['\/\.]/g.test(item))
+      .map((fileName) => {
         return {
           name: fileName,
           path: `${path}/${fileName}`,
@@ -126,7 +127,7 @@ export class System {
    */
   buildTree = (rootPath: string): Tree | undefined => {
     let newTree = new Tree();
-    let _types = ['Folder', 'File'];
+    let _types = ["Folder", "File"];
     let nodes: TreeNode[] = [];
     let typeNumber = system.getTreeNodeType(rootPath);
     let name = this.setNameForTreeNode(rootPath, TreeNode.types[typeNumber]);
@@ -166,7 +167,6 @@ export class System {
             );
             childNode.depth = currentNode.depth + 1;
             nodes.push(childNode);
-            // console.log(childNode.depth);
           }
           currentNode.connettiAFiglio(childNode);
           if (system.getTreeNodeType(childNode.path) === 0) {
@@ -247,16 +247,40 @@ export class System {
     let extension = extname(path);
     return extension;
   }
-  stringifyFile(path:string){
-
+  stringifyFile(
+    path: string,
+    options?:
+      | ({
+          encoding?: null | undefined;
+          flag?: string | undefined;
+        } & Abortable)
+      | null
+      | undefined
+  ): string {
+    return fs.readFileSync(path, options).toString();
+  }
+  doo(path: fs.PathLike, options?: { withFileTypes?: boolean }) {
+    // TODO ts errore
+    //@ts-expect-error
+    if (options) return fs.readdirSync(path, options);
+    else return fs.readdirSync(path);
+  }
+  getDirent(path: fs.PathLike) {
+    return fs.readdirSync(path, { withFileTypes: true });
+  }
+  joinPaths(paths: string[]) {
+    return path.join(...paths);
+  }
+  exists(path: string) {
+    return fs.existsSync(path);
   }
 }
-
+// /Users/WAW/Documents/Projects/ZION/node_modules/@types/node/events.d.ts
 export let TreeNodeExport = TreeNode;
 export type ITreeNodeExport = ITreeNode;
 export type ITreeExport = ITree;
 export type IFileExport = IFile;
 export type IFolderExport = IFolder;
 export type IRootExport = IRoot;
-export let system = new System();
+export let system: System = new System();
 Object.assign(system, fs);

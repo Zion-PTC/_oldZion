@@ -1,4 +1,4 @@
-import { TreeNode } from './TreeNode.js';
+import { TreeNode } from "./TreeNode.js";
 export class File extends TreeNode {
     name;
     path;

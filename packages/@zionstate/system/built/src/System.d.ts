@@ -1,17 +1,20 @@
 /// <reference types="node" />
-import fs from 'fs';
-import { Tree, ITree } from './Tree.js';
-import { IFile } from './File.js';
-import { IFolder } from './Folder.js';
-import { IRoot } from './Root.js';
-import { TreeNode, ITreeNode } from './TreeNode.js';
+/// <reference types="node" />
+/// <reference types="node" />
+import fs from "fs";
+import { Abortable } from "events";
+import { Tree, ITree } from "./Tree.js";
+import { IFile } from "./File.js";
+import { IFolder } from "./Folder.js";
+import { IRoot } from "./Root.js";
+import { TreeNode, ITreeNode } from "./TreeNode.js";
 export declare type Dirent = fs.Dirent;
 export declare class System {
     #private;
     get blackListFileNames(): string[];
     get folders(): string[];
     get files(): string[];
-    setNameForTreeNode: (path: string, type: 'root' | 'File' | 'Folder') => string;
+    setNameForTreeNode: (path: string, type: "root" | "File" | "Folder") => string;
     /**
      * @param {String} path percorso target
      * @returns {String[]} ritorna un array contenente la
@@ -99,7 +102,16 @@ export declare class System {
     getTreeNodeType(path: fs.PathLike): number;
     getFileSize(path: fs.PathLike): number;
     getFileExtension(path: string): string;
-    stringifyFile(path: string): void;
+    stringifyFile(path: string, options?: ({
+        encoding?: null | undefined;
+        flag?: string | undefined;
+    } & Abortable) | null | undefined): string;
+    doo(path: fs.PathLike, options?: {
+        withFileTypes?: boolean;
+    }): string[];
+    getDirent(path: fs.PathLike): fs.Dirent[];
+    joinPaths(paths: string[]): string;
+    exists(path: string): boolean;
 }
 export declare let TreeNodeExport: typeof TreeNode;
 export declare type ITreeNodeExport = ITreeNode;

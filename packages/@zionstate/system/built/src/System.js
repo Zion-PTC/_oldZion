@@ -1,14 +1,14 @@
-import fs from 'fs';
-import { dirname, extname } from 'path';
-import { fileURLToPath } from 'url';
-import { zionUtil } from '@zionstate_node/zion-util';
-import { Tree } from './Tree.js';
-import { File } from './File.js';
-import { Folder } from './Folder.js';
-import { Root } from './Root.js';
-import { TreeNode } from './TreeNode.js';
+import fs from "fs";
+import path, { dirname, extname } from "path";
+import { fileURLToPath } from "url";
+import { zionUtil } from "@zionstate_node/zion-util";
+import { Tree } from "./Tree.js";
+import { File } from "./File.js";
+import { Folder } from "./Folder.js";
+import { Root } from "./Root.js";
+import { TreeNode } from "./TreeNode.js";
 export class System {
-    #blackListFileNames = ['.DS_Store'];
+    #blackListFileNames = [".DS_Store"];
     get blackListFileNames() {
         return this.#blackListFileNames;
     }
@@ -19,23 +19,23 @@ export class System {
         return this.files;
     }
     setNameForTreeNode = (path, type) => {
-        if (type === 'root') {
+        if (type === "root") {
             let match = path.match(/\w+$/g);
             if (!match)
-                return 'no match';
+                return "no match";
             return match[0];
         }
         if (type === TreeNode.types[0]) {
             let match = path.match(/\w+$/g);
             if (!match)
-                return 'no match';
+                return "no match";
             return match[0];
         }
         else {
-            let jointSpacesPath = path.replace(/ /g, '_');
+            let jointSpacesPath = path.replace(/ /g, "_");
             let res = jointSpacesPath.match(/(?<=[/])\w*[.]\w*/g);
             if (!res)
-                return 'no match';
+                return "no match";
             return res[0];
         }
     };
@@ -54,7 +54,7 @@ export class System {
         // vengono esclusi i risultati che contengono un '.'
         // in quanto si tratta di nomi di files e non
         // di cartelle
-        directoryEntity => directoryEntity.isDirectory());
+        (directoryEntity) => directoryEntity.isDirectory());
     };
     /**
      * @param {String} path target path
@@ -64,8 +64,8 @@ export class System {
     arrayOfNamesOfFilesInFolder = (path) => {
         return fs
             .readdirSync(path)
-            .filter(item => !/(^|\/)\.['\/\.]/g.test(item))
-            .map(fileName => {
+            .filter((item) => !/(^|\/)\.['\/\.]/g.test(item))
+            .map((fileName) => {
             return {
                 name: fileName,
                 path: `${path}/${fileName}`,
@@ -118,7 +118,7 @@ export class System {
      */
     buildTree = (rootPath) => {
         let newTree = new Tree();
-        let _types = ['Folder', 'File'];
+        let _types = ["Folder", "File"];
         let nodes = [];
         let typeNumber = system.getTreeNodeType(rootPath);
         let name = this.setNameForTreeNode(rootPath, TreeNode.types[typeNumber]);
@@ -147,7 +147,6 @@ export class System {
                         );
                         childNode.depth = currentNode.depth + 1;
                         nodes.push(childNode);
-                        // console.log(childNode.depth);
                     }
                     currentNode.connettiAFiglio(childNode);
                     if (system.getTreeNodeType(childNode.path) === 0) {
@@ -230,9 +229,28 @@ export class System {
         let extension = extname(path);
         return extension;
     }
-    stringifyFile(path) {
+    stringifyFile(path, options) {
+        return fs.readFileSync(path, options).toString();
+    }
+    doo(path, options) {
+        // TODO ts errore
+        //@ts-expect-error
+        if (options)
+            return fs.readdirSync(path, options);
+        else
+            return fs.readdirSync(path);
+    }
+    getDirent(path) {
+        return fs.readdirSync(path, { withFileTypes: true });
+    }
+    joinPaths(paths) {
+        return path.join(...paths);
+    }
+    exists(path) {
+        return fs.existsSync(path);
     }
 }
+// /Users/WAW/Documents/Projects/ZION/node_modules/@types/node/events.d.ts
 export let TreeNodeExport = TreeNode;
 export let system = new System();
 Object.assign(system, fs);
