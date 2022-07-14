@@ -1,19 +1,19 @@
-import { expect } from 'chai';
-import Mocha from 'mocha';
-import { zionUtil } from '../../../telegram-bots/Classes/_Node Standard Modules/zionUtil.js';
-import * as IPFSHTTP from 'ipfs-http-client';
-import all from 'it-all';
+import { expect } from "chai";
+import Mocha from "mocha";
+import { zionUtil } from "@zionstate_node/zion-util";
+import * as IPFSHTTP from "ipfs-http-client";
+import all from "it-all";
 
 const testRunner = new Mocha({ slow: 1000 });
-testRunner.suite.emit('pre-require', global, 'nofile', testRunner);
+testRunner.suite.emit("pre-require", global, "nofile", testRunner);
 var suiteRun = testRunner.run();
-process.on('exit', code => {
+process.on("exit", (code) => {
   process.exit(suiteRun.stats.failures > 0);
 });
-let log = zionUtil.debuglog('log');
+let log = zionUtil.debuglog("log");
 
-const DOCKER = 'http://127.0.0.1:5002';
-const PORT = '5001';
+const DOCKER = "http://127.0.0.1:5002";
+const PORT = "5001";
 
 describe(`IPFSHTTP`, () => {
   it(`IPFSHTTP`, () => {
@@ -25,7 +25,7 @@ describe(`IPFSHTTP`, () => {
     });
   });
   describe(`IPFSHTTP.create()`, () => {
-    const HOST = 'http://127.0.0.1:5001';
+    const HOST = "http://127.0.0.1:5002";
     let wawipfs = IPFSHTTP.create(HOST);
     it(`crea un oggetto che rappresenta il nodo al quale ci si connette`, async () => {
       log(wawipfs);
@@ -71,7 +71,7 @@ describe(`IPFSHTTP`, () => {
     describe(`Method add()`, () => {
       it(`crea un CID Ipfs a partire dal dato fornito`, async () => {
         const STRING =
-          'questa strina arriva di test effettuati da ZION su IPFS';
+          "questa strina arriva di test effettuati da ZION su IPFS";
         let res = await add(STRING);
         addedStringCID = res;
         log(res);
@@ -354,7 +354,7 @@ describe(`IPFSHTTP`, () => {
         protocols: { lengthPrefixedVarSize, V, table, names, codes, object },
         resolvers,
       } = multiaddr;
-      let newMulti = new multiaddr('/ip4/127.0.0.1/tcp/4001');
+      let newMulti = new multiaddr("/ip4/127.0.0.1/tcp/4001");
       log(multiaddr);
       log(newMulti);
       const {

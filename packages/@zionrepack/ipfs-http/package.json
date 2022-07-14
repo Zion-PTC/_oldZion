@@ -6,8 +6,5 @@
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "ipfs-http-client": "^56.0.3"
-  }
+  "type": "module"
 }
