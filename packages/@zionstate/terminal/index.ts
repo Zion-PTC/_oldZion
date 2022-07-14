@@ -1,3 +1,4 @@
-import * as ZTerminal from './src/Terminal';
-
-export let Terminal = ZTerminal.Terminal;
+// TODO capire come mai il pacchetto commander viene
+// installato nella cartella package e non nel root del
+// monorepo.
+export * from "./src/Terminal.js";

@@ -1,66 +1,58 @@
-import * as readline from 'node:readline';
+import { zionUtil } from "@zionstate_node/zion-util";
+import readline from "node:readline";
+import {
+  ITerminalConfig,
+  TerminalConfig,
+} from "./class/Terminal/TerminalConfig.js";
+import { stop } from "./lib/Terminal/stop.js";
 
-type rlKey = readline.Key;
-let obj: rlKey;
+/**
+ * Design Patterns
+ * ```yaml
+ * config: Singleton
+ * Terminal:
+ *  - Facade
+ */
 
-interface ITerminal {
-  name: string;
-  answer: string;
-  interface: readline.Interface;
-  line: string;
-  makeQuestion(question: string): Promise<this>;
-  makeQuestions(questions: string[]): Promise<this>;
-  sendMessage(data: string | Buffer, key?: readline.Key): this;
-  listenForAnswer(): Promise<this>;
-  close(): this;
+type Interface = readline.Interface;
+type ReadlineOptions = readline.ReadLineOptions;
+
+export interface Terminal {
+  interface: Interface;
+  config: ITerminalConfig;
+  on(event: string, listener: (...args: any[]) => void): Promise<this>;
+  on(event: "close", listener: () => void): Promise<this>;
+  on(event: "line", listener: (input: string) => void): Promise<this>;
+  on(event: "pause", listener: () => void): Promise<this>;
+  on(event: "resume", listener: () => void): Promise<this>;
+  on(event: "SIGCONT", listener: () => void): Promise<this>;
+  on(event: "SIGINT", listener: () => void): Promise<this>;
+  on(event: "SIGTSTP", listener: () => void): Promise<this>;
+  on(event: string, listener: (...args: any[]) => void): void;
+  prompt(): void;
+  start(): Promise<this>;
 }
 
-//@ts-expect-error
-export class Terminal implements ITerminal {
-  name: string;
-  answer: string;
-  interface: readline.Interface;
-  line: string;
-  constructor(name: string, line: string) {
-    this.name = name;
-    this.answer = 'No question was passed';
-    this.interface = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-    this.line = line;
+const options: ReadlineOptions = {
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false,
+};
+
+export class Terminal {
+  constructor() {
+    this.interface = readline.createInterface(options);
+    this.config = new TerminalConfig().getInstance();
+    // console.log(this.config.welcomeMessage);
+    // this.interface.on("line", stop.bind(this));
   }
-  async makeQuestion(question: string): Promise<this> {
-    this.answer = '';
-    let terminalInterface = async (question: string): Promise<string> => {
-      return new Promise(async (res, rej) => {
-        this.interface.question(question, answer => {
-          res(answer);
-        });
-      });
-    };
-    this.answer = await terminalInterface(question);
-    console.log(`Hi ${this.answer}!`);
+  async on(event: string, listener: (...args: any[]) => void): Promise<this> {
+    this.interface.on(event, listener);
     return this;
   }
-  async listenForAnswer(): Promise<this> {
-    this.line;
-    let terminalInterface = async (): Promise<string> => {
-      return new Promise(async (res, rej) => {
-        this.interface.on('line', (line: string): void => {
-          res(line);
-        });
-      });
-    };
-    this.line = await terminalInterface();
-    return this;
-  }
-  sendMessage(data: string | Buffer, key?: readline.Key): this {
-    this.interface.write(data, key);
-    return this;
-  }
-  close(): this {
-    this.interface.close();
+  async start() {
+    console.log(this.config.welcomeMessage);
+    await this.on("line", stop.bind(this));
     return this;
   }
 }

@@ -1,51 +1,25 @@
-import * as readline from 'node:readline';
-let obj;
-//@ts-expect-error
+import readline from "node:readline";
+import { TerminalConfig, } from "./class/Terminal/TerminalConfig.js";
+import { stop } from "./lib/Terminal/stop.js";
+const options = {
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false,
+};
 export class Terminal {
-    name;
-    answer;
-    interface;
-    line;
-    constructor(name, line) {
-        this.name = name;
-        this.answer = 'No question was passed';
-        this.interface = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
-        this.line = line;
+    constructor() {
+        this.interface = readline.createInterface(options);
+        this.config = new TerminalConfig().getInstance();
+        // console.log(this.config.welcomeMessage);
+        // this.interface.on("line", stop.bind(this));
     }
-    async makeQuestion(question) {
-        this.answer = '';
-        let terminalInterface = async (question) => {
-            return new Promise(async (res, rej) => {
-                this.interface.question(question, answer => {
-                    res(answer);
-                });
-            });
-        };
-        this.answer = await terminalInterface(question);
-        console.log(`Hi ${this.answer}!`);
+    async on(event, listener) {
+        this.interface.on(event, listener);
         return this;
     }
-    async listenForAnswer() {
-        this.line;
-        let terminalInterface = async () => {
-            return new Promise(async (res, rej) => {
-                this.interface.on('line', (line) => {
-                    res(line);
-                });
-            });
-        };
-        this.line = await terminalInterface();
-        return this;
-    }
-    sendMessage(data, key) {
-        this.interface.write(data, key);
-        return this;
-    }
-    close() {
-        this.interface.close();
+    async start() {
+        console.log(this.config.welcomeMessage);
+        await this.on("line", stop.bind(this));
         return this;
     }
 }
