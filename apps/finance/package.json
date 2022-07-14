@@ -1,5 +1,5 @@
 {
-  "name": "packagename",
+  "name": "@zionapps/finance",
   "version": "0.0.1",
   "description": "",
   "main": "built/index.js",
