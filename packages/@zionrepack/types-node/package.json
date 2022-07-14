@@ -6,7 +6,7 @@
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "dependencies": {
-    "@types/node": "^17.0.31"
+  "devDependencies": {
+    "@types/node": "^18.0.3"
   }
 }
