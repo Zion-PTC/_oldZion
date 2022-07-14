@@ -1,18 +1,14 @@
-export interface IStaticPrimitive<T> {
-    new (): T;
-    id: any;
+export interface IBase {
+    id: number;
+    type: string;
 }
-export interface IPrimitive {
-    id: any;
+export declare abstract class ABase implements IBase {
+    #private;
+    type: string;
+    static get basi(): IBase[];
+    static mostraBasi(): void;
+    id: number;
+    constructor(type?: string);
 }
-/**
- * classe astratta utilizzata per migliorare la versione
- */
-declare abstract class APrimitive {
-    static id: any;
-    id: any;
-    constructor();
+export declare class Base extends ABase implements IBase {
 }
-export declare class Primitive extends APrimitive {
-}
-export {};

@@ -1,18 +1,20 @@
+// TODO sistemare Base TS
+//@ts-nocheck
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { createHash } from 'crypto';
-import { v5 as uuid, validate, } from 'uuid';
+import { createHash } from "crypto";
+import { v5 as uuid, validate, } from "uuid";
 class UUID {
     static #validate = validate;
     value;
     from;
     constructor(string, from) {
         if (!UUID.#validate(string)) {
-            throw new Error('La string passata non è un codice uuid valido');
+            throw new Error("La string passata non è un codice uuid valido");
         }
         this.value = string;
         this.from = from;
@@ -65,38 +67,38 @@ function mostraValore() {
     return this;
 }
 function hashString(string) {
-    this.hash = createHash('sha1').update(string).digest('hex');
+    this.hash = createHash("sha1").update(string).digest("hex");
     return this;
 }
 function creaUuidFromString() {
     if (!this.hash) {
-        this.hash = createHash('sha1')
-            .update('diamogli qualche cosa da hashare')
-            .digest('hex');
+        this.hash = createHash("sha1")
+            .update("diamogli qualche cosa da hashare")
+            .digest("hex");
     }
-    const M = ['1', '2', '3', '4', '5'];
-    const N = ['8', '9', 'a', 'b'];
+    const M = ["1", "2", "3", "4", "5"];
+    const N = ["8", "9", "a", "b"];
     function randomIndex(array) {
         return Math.floor(Math.random() * array.length);
     }
-    let split = this.hash.split('');
+    let split = this.hash.split("");
     const { hex1, hex2, hex3, hex4, hex5 } = this.splittaHash(split);
     let unite = [
         hex1,
         hex2,
-        [M[randomIndex(M)], hex3].join(''),
-        [N[randomIndex(N)], hex4].join(''),
+        [M[randomIndex(M)], hex3].join(""),
+        [N[randomIndex(N)], hex4].join(""),
         hex5,
     ];
-    this.hash = unite.join('-');
+    this.hash = unite.join("-");
     return this;
 }
 function splittaHash(split) {
-    let hex1 = split.splice(0, 8).join('');
-    let hex2 = split.splice(0, 4).join('');
-    let hex3 = split.splice(0, 3).join('');
-    let hex4 = split.splice(0, 3).join('');
-    let hex5 = split.splice(0, 12).join('');
+    let hex1 = split.splice(0, 8).join("");
+    let hex2 = split.splice(0, 4).join("");
+    let hex3 = split.splice(0, 3).join("");
+    let hex4 = split.splice(0, 3).join("");
+    let hex5 = split.splice(0, 12).join("");
     return { hex1, hex2, hex3, hex4, hex5 };
 }
 function creaNamespaceUUID(string) {
@@ -124,9 +126,9 @@ function test() {
     class Ciao {
         culo;
         constructor() {
-            this.culo = 'culo';
+            this.culo = "culo";
         }
-        id = 'p';
+        id = "p";
     }
     class Vlod {
         constructor() {
@@ -139,10 +141,10 @@ function test() {
     function too(clObj) {
         class V extends Ciao {
         }
-        Object.defineProperty(V, 'name', { value: clObj });
+        Object.defineProperty(V, "name", { value: clObj });
         return V;
     }
-    let Cao = too('Cao');
+    let Cao = too("Cao");
     console.log(Cao);
     function moo() {
         return (c) => {
@@ -160,9 +162,9 @@ function test() {
 }
 function test2() {
     const b = {
-        ['ciao']: '',
-        [0]: 'ciap',
-        ['doooo']: '',
+        ["ciao"]: "",
+        [0]: "ciap",
+        ["doooo"]: "",
     };
     console.log(b);
 }
@@ -173,16 +175,16 @@ function multipleInterfaceImplmentation() {
     function createClass(name) {
         let NEW = class NEW {
             static ids;
-            id = 'id';
-            bot = 'bot';
+            id = "id";
+            bot = "bot";
         };
         NEW = __decorate([
             staticImplements()
         ], NEW);
-        Object.defineProperty(NEW, 'name', { value: name });
+        Object.defineProperty(NEW, "name", { value: name });
         return NEW;
     }
-    const NewClass = createClass('NewClass');
+    const NewClass = createClass("NewClass");
     const instance = new NewClass();
     console.log(instance);
 }
