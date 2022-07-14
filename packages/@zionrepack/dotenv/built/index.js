@@ -1,3 +1,2 @@
-import * as dotenv from 'dotenv';
-export let config = dotenv.config;
-export let parse = dotenv.parse;
+import * as dotenv_1 from "dotenv";
+export { dotenv_1 as dotenv };
