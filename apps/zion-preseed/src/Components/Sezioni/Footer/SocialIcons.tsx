@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@zionrepack/fortawesome-react-fontawesome';
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
   faInstagram,
   faMediumM,
   faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import { DARK } from '../../../js/colori';
+} from "@fortawesome/free-brands-svg-icons";
+import { DARK } from "../../../js/colori";
 
 const Icons = styled.div`
   display: flex;
@@ -22,33 +22,33 @@ export default function SocialIcons() {
       <FontAwesomeIcon
         icon={faTwitter}
         style={{
-          height: '15px',
-          width: '15px',
-          marginRight: '10px',
+          height: "15px",
+          width: "15px",
+          marginRight: "10px",
         }}
       />
       <FontAwesomeIcon
         icon={faFacebookF}
         style={{
-          height: '15px',
-          width: '15px',
-          marginRight: '10px',
+          height: "15px",
+          width: "15px",
+          marginRight: "10px",
         }}
       />
       <FontAwesomeIcon
         icon={faMediumM}
         style={{
-          height: '15px',
-          width: '15px',
-          marginRight: '10px',
+          height: "15px",
+          width: "15px",
+          marginRight: "10px",
         }}
       />
       <FontAwesomeIcon
         icon={faInstagram}
         style={{
-          height: '15px',
-          width: '15px',
-          marginRight: '10px',
+          height: "15px",
+          width: "15px",
+          marginRight: "10px",
         }}
       />
     </Icons>

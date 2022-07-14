@@ -1,14 +1,14 @@
-import * as ffssi from '@zionrepack/fortawesome-free-solid-svg-icons';
-import { FontAwesomeIcon } from '@zionrepack/fortawesome-react-fontawesome';
-import { useState } from 'react';
-import { css } from 'styled-components';
-import { MIDBRIGHT } from '../../js/colori';
-import { Button } from '../Elementi/Button';
+import * as ffssi from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { css } from "styled-components";
+import { MIDBRIGHT } from "../../js/colori";
+import { Button } from "../Elementi/Button";
 
-let { faAngleDoubleUp } = ffssi.default;
+let { faAngleDoubleUp } = ffssi;
 
 const button = {
-  id: 'scroll-button',
+  id: "scroll-button",
   dynamic: css`
     position: fixed;
     top: 70vh;
@@ -37,11 +37,11 @@ export default function ScrollButton() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
-  window.addEventListener('scroll', toggleVisible);
+  window.addEventListener("scroll", toggleVisible);
 
   return (
     <Button small {...button}>
@@ -49,10 +49,10 @@ export default function ScrollButton() {
         icon={faAngleDoubleUp}
         onClick={scrollToTop}
         style={{
-          display: visible ? 'inline' : 'none',
-          height: '25px',
-          width: '25px',
-          marginRight: '25px',
+          display: visible ? "inline" : "none",
+          height: "25px",
+          width: "25px",
+          marginRight: "25px",
         }}
       />
     </Button>
