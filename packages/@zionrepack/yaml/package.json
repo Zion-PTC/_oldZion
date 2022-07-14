@@ -9,7 +9,9 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./test/test.js",
+    "test": "NODE_DEBUG='log' nodemon ./test/test.js",
+    "testZionYaml": "NODE_DEBUG='log' nodemon ./test/ZionYaml.test.js",
+    "testZionYamlToFile": "NODE_DEBUG='log' nodemon ./test/ZionYamlToFile.test.js",
     "showYaml": "node ./built/src/Inspect/showYaml.js"
   },
   "dependencies": {
