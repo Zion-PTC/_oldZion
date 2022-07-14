@@ -2,15 +2,25 @@
   "compilerOptions": {
     "target": "esnext",
     "watch": true,
-    "lib": ["DOM","ES2021"],
+    "lib": ["DOM", "ES2021"],
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
-    "declaration": false,
+    "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution":"Node",
+    "moduleResolution": "Node",
     "outDir": "./built",
-    "skipLibCheck": true // to avoid errors in node_modules
+    "skipLibCheck": true, // to avoid errors in node_modules
+    "module": "es2022",
+    "types": []
   },
-  "exclude": ["_archive","_mystuff","apps","blockchain","node_modules","packages"],
+  "exclude": [
+    "_archive",
+    "_mystuff",
+    "apps",
+    "blockchain",
+    "node_modules",
+    "packages",
+    "test"
+  ],
   "include": ["./src/**/*"]
 }

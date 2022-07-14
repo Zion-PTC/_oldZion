@@ -1,8 +1,20 @@
 {
   "folders": [
-	{
-		"path": "."
-	}
-],
+    {
+      "path": "."
+    },
+    {
+      "path": "packages/@zionstate/git"
+    },
+    {
+      "path": "packages/@zionstate/system"
+    },
+    {
+      "path": "packages/@zionstate/terminal"
+    },
+    {
+      "path": "packages/@zionstate/base"
+    }
+  ],
   "settings": {}
 }

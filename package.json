@@ -1,11 +1,15 @@
 {
   "name": "zion",
   "workspaces": [
+    "./apps/*",
     "./packages/@zionstate/*",
     "./packages/@zionrepack/*",
     "./packages/@zionstate_js/*",
     "./packages/@zionstate_node/*"
   ],
+  "bin": {
+    "tes": "tes.js"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,7 +26,8 @@
   "homepage": "https://github.com/giacomogagliano/ZION#readme",
   "scripts": {
     "tsc": "tsc",
-    "repo": "nodemon ./built/Utils/Repo.js"
+    "repo": "nodemon ./built/Utils/Repo.js",
+    "testMonorepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/test/Monorepo.test.js"
   },
   "type": "module"
 }
