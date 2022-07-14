@@ -1,21 +1,29 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+
+/**
+ **/
+
+export interface ZionError {
+  name: string;
+  message: string;
+  stack?: string;
+}
+
+interface ZionErrorConstructor {
+  new (message?: string): Error;
+  (message?: string): Error;
+  readonly prototype: Error;
+}
 
 /**
  * @param message It's the name which appear in the console log
  * @param name It's the name which appear in the console log
- * @param cause It's the error coming from the callee function
  * @param args Object containing the called parameters
- * @method justLove this is a really cool method
- **/
-
+ */
 export class ZionError extends Error {
-  cause;
-  args;
-  constructor(message, name?, cause?, args?) {
+  constructor(message?: string, name?: string, public args?: string[]) {
     super(message);
-    this.name = name;
-    this.cause = cause ? cause : undefined;
-    this.args = args;
+    if (name) this.name = name;
   }
   log() {
     console.log(this);
@@ -30,4 +38,4 @@ let zionErrorSchema = new mongoose.Schema({
 });
 
 zionErrorSchema.loadClass(ZionError);
-export let ZionErrorDoc = mongoose.model('Error', zionErrorSchema);
+export let ZionErrorDoc = mongoose.model("Error", zionErrorSchema);

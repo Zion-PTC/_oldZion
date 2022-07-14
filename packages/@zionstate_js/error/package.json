@@ -6,5 +6,12 @@
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "testGetFuncArgs": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_js/error/test/Error.getFunctionArgs.js"
+  },
+  "dependencies": {
+    "@zionstate/system": "*",
+    "dotenv": "^16.0.1"
+  }
 }
