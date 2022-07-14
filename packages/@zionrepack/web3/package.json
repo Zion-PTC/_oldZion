@@ -8,6 +8,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "web3": "^1.7.3"
+    "web3": "^1.7.4"
   }
 }
