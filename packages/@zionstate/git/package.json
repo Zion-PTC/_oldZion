@@ -1,0 +1,29 @@
+{
+  "name": "@zionstate/git",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "mocha",
+    "testInitRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/initRepo.test.js",
+    "testTestRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/testRepo.test.js",
+    "testRepoStatus": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/repoStatus.test.js",
+    "testGitHub": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/testGitHub.test.js",
+    "testGit.hasRemote": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Git.hasRemote.test.js",
+    "testRepoHasRemote": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/repoHasRemote.test.js",
+    "testGit": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Git.test.js",
+    "testRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Repo.test.js"
+  },
+  "dependencies": {
+    "@octokit/rest": "^18.12.0",
+    "dotenv": "^16.0.1",
+    "simple-git": "^3.10.0",
+    "@zionstate/system": "*",
+    "@zionstate_js/error": "*"
+  }
+}
