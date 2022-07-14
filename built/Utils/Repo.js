@@ -1,5 +1,6 @@
 import { system } from "@zionstate/system";
 import { zionUtil } from "@zionstate_node/zion-util";
+const monorepopath = process.cwd();
 var PackagesSubFolders;
 (function (PackagesSubFolders) {
     PackagesSubFolders["@zionstate"] = "@zionstate";
@@ -7,7 +8,10 @@ var PackagesSubFolders;
     PackagesSubFolders["@zionstate_js"] = "@zionstate_js";
     PackagesSubFolders["@zionstate_node"] = "@zionstate_node";
 })(PackagesSubFolders || (PackagesSubFolders = {}));
-class Repo {
+class Path {
+}
+class Monorepo {
+    monorepo;
     get packagesDirectoryEntities() {
         return system.arrayOfFoldersInDirectory(this.packagesDir);
     }
@@ -16,6 +20,9 @@ class Repo {
     }
     packagesDir = "./packages";
     packagesTypes = PackagesSubFolders;
+    constructor(monorepo = process.cwd()) {
+        this.monorepo = monorepo;
+    }
     names = (e) => {
         return e.name;
     };
@@ -33,7 +40,7 @@ class Repo {
  * repo da tenere perchè vanno estesi e in seguito l'ho
  * sottratta alla lista di file presenti nella cartella.
  */
-const repacks = new Repo().getPackageTypeDirectoryNames("@zionrepack");
+const repacks = new Monorepo().getPackageTypeDirectoryNames("@zionrepack");
 const toKeep = [
     "telegraf",
     "styled-components",
@@ -50,4 +57,10 @@ const toKeep = [
     "react-dom",
 ];
 const todelete = zionUtil.subtractArrays(repacks, toKeep);
-console.log(todelete);
+const repo = new Monorepo();
+const repack = repo.getPackageTypeDirectoryNames("@zionrepack");
+const state = repo.getPackageTypeDirectoryNames("@zionstate");
+const js = repo.getPackageTypeDirectoryNames("@zionstate_js");
+const node = repo.getPackageTypeDirectoryNames("@zionstate_node");
+const arr = { repack, state, js, node };
+console.log(arr);
