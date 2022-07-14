@@ -1,0 +1,30 @@
+home:
+  children:
+    - name: signup
+      children:
+        - login
+    - name: login
+      children:
+        - name: browse
+        - name: applicazioni
+          children:
+            - name: label
+              children:
+                - name: digital-report
+                  children:
+                    - name: signup
+                      children:
+                        - login
+                    - name: login
+                      children:
+                        - carica-report
+                        - nome: creaZionCsv
+                          nomealternativo:
+                - name: audius-playlists
+                - name: nft
+                  children:
+                    - name: single-track
+                    - name: mixes
+            - name: booking
+            - name: 
+        - name: dashboard
