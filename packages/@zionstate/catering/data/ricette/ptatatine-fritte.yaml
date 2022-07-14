@@ -1,0 +1,10 @@
+nome: Patatine Fritte
+tipo: contorno
+porzione: 1 persona
+ingredienti:
+  - patatine-surgelate
+  - olio-di-semi:
+    quantita:
+      valore:
+        - friggitrice: seguire il valore indicato
+        - padella:

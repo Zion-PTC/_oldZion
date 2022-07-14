@@ -1,0 +1,13 @@
+nome: Fettina
+tipo: secondo
+porzione: 1 persona
+ingredienti:
+  - fettina di vitello:
+    quantita:
+      valore: 100
+      unita: g
+  - olio:
+    tipo: extra-vergine
+    quantita:
+      valore: 0.5
+      unità: g

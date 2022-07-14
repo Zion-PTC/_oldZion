@@ -1,0 +1,22 @@
+nome: Aglio e Olio
+tipo: primo
+porzione: 1 persona
+ingredienti:
+  - olio:
+    tipo:
+    quantita:
+  - aglio:
+    quantita:
+  - peperoncino:
+    quantita:
+      valore:
+      unita:
+  - Spaghetti
+  - sale: 
+    tipo: grosso
+  - parmiggiano-reggiano
+  - prezzemolo
+preparazione:
+  - pre-cottura:
+  - cottura:
+  - post-cottura:

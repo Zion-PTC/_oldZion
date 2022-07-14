@@ -9,5 +9,8 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc"
+  },
+  "dependencies": {
+    "@zionstate/system": "*"
   }
 }
