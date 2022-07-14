@@ -1,0 +1,3 @@
+enum KeyValueDBs {
+  redis = "redis",
+}
