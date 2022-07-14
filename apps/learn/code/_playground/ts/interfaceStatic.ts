@@ -1,4 +1,6 @@
-import { staticImplements } from '../../../src/Primitive';
+import { decorators } from "@zionstate/base";
+
+const staticImplements = decorators.staticImplements;
 
 interface MyType {
   instanceMethod(): unknown;
@@ -25,7 +27,7 @@ class MyTypeClass {
   // public static staticProp: string
   static staticProp: string;
   public static staticMethod(): string {
-    return '';
+    return "";
   }
   instanceMethod() {}
 }

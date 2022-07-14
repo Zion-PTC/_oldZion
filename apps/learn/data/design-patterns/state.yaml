@@ -1,2 +1,6 @@
 nome: State
 categoria: Behavioral
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/State/state.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/fT0n3e9040NGVauneO8OJ6mf34fbxGasy0qakxF83ed6S1VFuiaKNHixOZND_s-INmOrWuxE4jNMXC2L5yL5-KRCAnvm7X4qpMWY4g_Wv5LGh5iZZKMQ9Mm2ouQe4yLmCZNuS9mJZ_j7SD3MDwbUUsG5puUcdr_l_8uxrriuY8P8y39X_xTGBHHYjoZYJ9pdynRV2Ns-ZGfH2Mb6Pvy0

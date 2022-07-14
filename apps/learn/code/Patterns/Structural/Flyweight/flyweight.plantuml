@@ -1,0 +1,30 @@
+@startuml Flyweight
+
+rectangle Client {
+}
+
+class Context {
+  + field: type
+  + method(type): type
+}
+
+class FlyWightFactory {
+  + field: type
+  + getFlyWeightType(type): type
+}
+
+interface IFlyWeight {
+  + field: type
+  + method(type): type
+}
+
+class FlyWeight implements IFlyWeight {
+  + field: type
+  + method(type): type
+}
+
+FlyWightFactory o-> FlyWeight
+Context o-> FlyWightFactory
+Client o-d-> Context
+
+@enduml

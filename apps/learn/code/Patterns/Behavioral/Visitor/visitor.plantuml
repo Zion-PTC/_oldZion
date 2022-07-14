@@ -1,0 +1,30 @@
+@startuml Visitor
+
+rectangle Client {
+}
+
+interface IVisitable {
+  + accept(IVisitor)
+}
+
+class Element implements IVisitable {
+  + field: type
+  + elements: Set<Element>
+  + method(type): type
+  + accept(IVisitor)
+}
+
+interface IVisitor {
+  + visit(element)
+}
+
+class Visitor implements IVisitor {
+  + field: type
+  + visit(element)
+}
+
+Client o-> Visitor
+Client o-l-> Element
+Element o-u-> IVisitable
+
+@enduml

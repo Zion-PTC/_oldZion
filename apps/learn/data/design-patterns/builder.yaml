@@ -1,2 +1,6 @@
 nome: Builder
 categoria: Creational
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Creational/Builder/builder.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/lL0xJiKm4Ept55i6K2wG8We93LrwH67i9LZo9_Ak2uIu-xEbE5AArxvkFH_DU2OMbIHx1v18YmgR8roSfI3u1_y0sYbcVBELZQbWY2-eOs19MKltDE2QeYbd5TiWbBwL9doVitM6ck6hljQIzDh9xqx59J-MhzHydrekrDcgPLY_E_8KX1-IstvyPEn5o0Eo91ksZyygEmQClUd7SpjeHy77rXrQt-U2jILXec2oTpS0

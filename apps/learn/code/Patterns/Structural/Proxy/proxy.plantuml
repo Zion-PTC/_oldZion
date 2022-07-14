@@ -1,0 +1,24 @@
+@startuml Proxy
+
+rectangle Client {
+}
+
+interface ISubject {
+  + request(type): type
+}
+
+class RealSubject implements ISubject {
+  + request(type): type
+}
+
+class ProxySubject implements ISubject {
+  + request(type): type
+}
+
+note "realSubject.request()" as n1
+
+Client o-d-> ProxySubject
+ProxySubject -r-> RealSubject
+RealSubject::request .. n1
+
+@enduml

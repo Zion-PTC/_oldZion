@@ -1,8 +1,6 @@
 class GeoCoder {
   constructor() {
-
     this.getLatLng = function (address) {
-
       if (address === "Amsterdam") {
         return "52.3700° N, 4.8900° E";
       } else if (address === "London") {
@@ -23,26 +21,27 @@ function GeoProxy() {
   var geocache = {};
 
   return {
-      getLatLng: function (address) {
-          if (!geocache[address]) {
-              geocache[address] = geocoder.getLatLng(address);
-          }
-          console.log(address + ": " + geocache[address]);
-          return geocache[address];
-      },
-      getCount: function () {
-          var count = 0;
-          for (var code in geocache) { count++; }
-          return count;
-      },
-      getGeocacheAddress: function(){
-        return console.log(geocache["Paris"]);
+    getLatLng: function (address) {
+      if (!geocache[address]) {
+        geocache[address] = geocoder.getLatLng(address);
       }
+      console.log(address + ": " + geocache[address]);
+      return geocache[address];
+    },
+    getCount: function () {
+      var count = 0;
+      for (var code in geocache) {
+        count++;
+      }
+      return count;
+    },
+    getGeocacheAddress: function () {
+      return console.log(geocache["Paris"]);
+    },
   };
-};
+}
 
 function run() {
-
   var geo = new GeoProxy();
 
   // geolocation requests
@@ -60,6 +59,6 @@ function run() {
   geo.getLatLng("London");
 
   console.log("\nCache size: " + geo.getCount());
-  geo.getGeocacheAddress()
+  geo.getGeocacheAddress();
 }
-run()
+run();

@@ -1,2 +1,6 @@
 nome: Flyweight
 categoria: Structural
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Structural/Flyweight/flyweight.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/dP312i8m38RlUOeS5TaBU931OE1Ty5pQR2kaxMWpS8ZlxYgTmi3BZldxvQFvwoGgokGO898MvNicRDYI5tp22q2pIWcRu8KUEK8yOMU9pHbb7kapEv8Xc4EUZoN-RhOytsq_IAkqX3Z_CVGa6QHCtfPmwx9UA7PA4rvNRkTdogvr8vCZBsclSNjOg2u_Fwo5vNH3GgatL6PvB210JTvCZjy0

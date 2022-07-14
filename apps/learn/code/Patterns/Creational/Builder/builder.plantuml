@@ -1,0 +1,30 @@
+@startuml Builder
+
+rectangle Client {
+}
+
+class Director {
+  + construct(): Product
+}
+
+interface IBuilder {
+  + buildPartA(type): this
+  + buildPartB(type): this
+  + buildPartC(type): this
+}
+
+class Builder implements IBuilder {
+  + buildPartA(type): this
+  + buildPartB(type): this
+  + buildPartC(type): this
+}
+
+class Product {
+  + parts: string[]
+}
+
+Client o-d-> Director
+Director o-> Builder
+Builder *-> Product
+
+@enduml

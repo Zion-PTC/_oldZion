@@ -30,25 +30,21 @@ Node.prototype = {
 // recursively traverse a (sub)tree
 
 function traverse(indent, node) {
-  console.log(Array(indent++).join('--') + node.name);
+  console.log(Array(indent++).join("--") + node.name);
 
-  for (
-    var i = 0, len = node.children.length;
-    i < len;
-    i++
-  ) {
+  for (var i = 0, len = node.children.length; i < len; i++) {
     traverse(indent, node.getChild(i));
   }
 }
 
 function run() {
-  var tree = new Node('root');
-  var left = new Node('left');
-  var right = new Node('right');
-  var leftleft = new Node('leftleft');
-  var leftright = new Node('leftright');
-  var rightleft = new Node('rightleft');
-  var rightright = new Node('rightright');
+  var tree = new Node("root");
+  var left = new Node("left");
+  var right = new Node("right");
+  var leftleft = new Node("leftleft");
+  var leftright = new Node("leftright");
+  var rightleft = new Node("rightleft");
+  var rightright = new Node("rightright");
 
   tree.add(left);
   tree.add(right);
@@ -63,3 +59,5 @@ function run() {
 
   traverse(1, tree);
 }
+
+run();

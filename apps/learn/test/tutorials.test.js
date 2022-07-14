@@ -1,4 +1,4 @@
-import { testEnvironment } from "@zionrepack/test-suite-1";
+import { testEnvironment } from "@zionstate/test-suite-1";
 import { getTutorials } from "../built/lib/tutorials.js";
 
 const { expect, log } = testEnvironment();

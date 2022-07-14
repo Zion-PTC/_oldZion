@@ -1,2 +1,6 @@
 nome: Composite
 categoria: Structural
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Structural/Composite/composite.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/jL4nIi104Ept5LigSdb040sa4YmixCHYkKnCu78NxZQ5g7ytvY8vqrY8rSBCiZEpqoILgClaY2AiYdznuDQDyCflz44qUaNinOBlsZ3DmMU6-OeZUaHuYyVm8775RslUTjAes3Ocw12w2tsTSLdpEZBSGSKE9VobP9sanFUG_X_l7mTs4ViTAjL5mgVdlpaGpGv-DvPX1yNPR_7lw_UgAeHFpFOpsaip9fgR8WaTWODPVbBKm7Thzvy0

@@ -4,27 +4,25 @@ class Flyweight {
     this.model = model;
     this.processor = processor;
   }
-};
+}
 
 var FlyWeightFactory = (function () {
   var flyweights = {};
 
   return {
-
-      get: function (make, model, processor) {
-          if (!flyweights[make + model]) {
-              flyweights[make + model] =
-                  new Flyweight(make, model, processor);
-          }
-          return flyweights[make + model];
-      },
-
-      getCount: function () {
-          var count = 0;
-          for (var f in flyweights) count++;
-          return count;
+    get: function (make, model, processor) {
+      if (!flyweights[make + model]) {
+        flyweights[make + model] = new Flyweight(make, model, processor);
       }
-  }
+      return flyweights[make + model];
+    },
+
+    getCount: function () {
+      var count = 0;
+      for (var f in flyweights) count++;
+      return count;
+    },
+  };
 })();
 
 function ComputerCollection() {
@@ -32,19 +30,18 @@ function ComputerCollection() {
   var count = 0;
 
   return {
-      add: function (make, model, processor, memory, tag) {
-          computers[tag] =
-              new Computer(make, model, processor, memory, tag);
-          count++;
-      },
+    add: function (make, model, processor, memory, tag) {
+      computers[tag] = new Computer(make, model, processor, memory, tag);
+      count++;
+    },
 
-      get: function (tag) {
-          return computers[tag];
-      },
+    get: function (tag) {
+      return computers[tag];
+    },
 
-      getCount: function () {
-          return count;
-      }
+    getCount: function () {
+      return count;
+    },
   };
 }
 
@@ -74,3 +71,5 @@ function run() {
   console.log("Computers: " + computers.getCount());
   console.log("Flyweights: " + FlyWeightFactory.getCount());
 }
+
+run();

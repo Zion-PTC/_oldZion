@@ -1,8 +1,18 @@
+- [ ] create folder for pattern
 - [ ] translate DoFactory example to typescript
 - [ ] make plantuml
   - [ ] plantuml on disk
+    - [ ] create file
+    - [ ] copy code from plantuml server
+    - [ ] add name of the design pattern close to @startuml
   - [ ] plant on gist
+    - [ ] create a file with this format
+          `<category_initial_letter>-<design_pattern_name>.plantuml`
+    - [ ] copy the code from plantuml server
   - [ ] update design pattern file
+    - [ ] file path
+    - [ ] link
+      - [ ] test link
 - [ ] make an example
 - [ ] copy code from sbcode
 - [ ] create a synthetic version for cheatsheet

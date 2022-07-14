@@ -1,6 +1,7 @@
-import { Tutorial } from "./src/Tutorial";
+// import { Tutorial } from "./src/Tutorial.js";
 
-export default { Tutorial };
+// export default { Tutorial };
+export {};
 
 declare global {
   // uncomment if in a module scope

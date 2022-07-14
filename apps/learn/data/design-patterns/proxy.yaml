@@ -1,2 +1,6 @@
 nome: Proxy
 categoria: Structural
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Structural/Proxy/proxy.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/dO_12e9048RlynI3foGKkde8eLEtg2VOrYcCsTLcPo69tZqD9JtMQPUPZ--VlmngHADZ026hnb-PSCSrUSKdl01ghoGNOmdtftY-aHtcY6iKkaSAkjAkfRJ0uHbuooO4F9BX2QzTo-HwOVX9SP3cqVtjy8qI9l8z8v_0D44Jq6y0nffDLcNRHHmiiZFfrxD2CFiNnQZ5FFyuI_9LTFm6

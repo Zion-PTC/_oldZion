@@ -1,3 +1,4 @@
+export {};
 // first
 interface IBall {
   name: string;
@@ -24,12 +25,12 @@ interface Person {
 }
 
 const person1: Person = {
-  first: 'Jeff',
-  last: 'Delanay',
+  first: "Jeff",
+  last: "Delanay",
 };
 
 const person2: Person = {
-  first: 'Usain',
-  last: 'Bolt',
+  first: "Usain",
+  last: "Bolt",
   fast: true,
 };

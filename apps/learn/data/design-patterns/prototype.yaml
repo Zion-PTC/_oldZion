@@ -1,2 +1,6 @@
 nome: Prototype
 categoria: Creational
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Creational/Prototype/prototype.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/ROwn2W8n38RtF4L6HNm11pcuoK7m5KhlFocawT74uH3VtPxKIQT0ak_Z6yn3zKSMeeheGUy27YL1dP_q8ahgg7E8uCkj5Y--BcWNvWD7AOhT_iJRRlkD4ipukewVcV8Yo4ral-YS85C7_wfwGZcUlpwY0JgrqZS0

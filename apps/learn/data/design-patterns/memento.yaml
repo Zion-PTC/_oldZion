@@ -1,2 +1,6 @@
 nome: Memento
 categoria: Behavioral
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Memento/memento.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/JP71gi8m44Nt-OfPleVa1uf8eMjnuqvSX7QemJIHoIY8zDzDp91crvnBxfbC-yY6-BauEEA2deDIX2CRFpk4mTc4uADMfJZCo3UaT08OdOaHJcHdwms70W4qf3R63lZzm1_P5VANmNzN3X8inITHrGEigXe6GtWsTzm4eJgxnY-XLCRQThcAR2JCOoJFAzX9865CTrkwvfSMjJGaSNr53cKbGPC-j0EqV1jRDIlQwqc79gfVSgdklqS_fH_o1G00

@@ -1,0 +1,28 @@
+@startuml State
+
+class Context {
+  + request()
+}
+
+note "state.handle()" as n1
+
+interface IState {
+  + method(type): type
+}
+
+class ContextStateA implements IState {
+  + method(type): type
+}
+
+class ContextStateB implements IState {
+  + method(type): type
+}
+
+class ContextStateC implements IState {
+  + method(type): type
+}
+
+Context::request -- n1
+Context o-> IState
+
+@enduml

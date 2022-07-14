@@ -1,0 +1,32 @@
+@startuml Composite
+
+rectangle Client {
+}
+
+interface IComponent {
+  + referenceToParent?: Composite
+  + method(type): type
+  + detach(type): type
+}
+
+class Leaf {
+  + referenceToParent?: Composite
+  + method(type): type
+  + detach(type): type
+}
+
+class Composite {
+  + components: IComponent[]
+  + referenceToParent?: Composite
+  + method(type): type
+  + attach(type): type
+  + detach(type): type
+  + delete(type): type
+}
+
+IComponent <|.. Composite
+IComponent <|.. Leaf
+Client --r-> IComponent
+Composite o-u-> IComponent
+
+@enduml

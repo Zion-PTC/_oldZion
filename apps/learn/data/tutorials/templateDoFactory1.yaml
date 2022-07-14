@@ -1,0 +1,11 @@
+titolo: JavaScript Template Method
+type: blogPost
+designPattern: Template Method
+slug: dofactory
+links:
+  - https://www.dofactory.com/javascript/design-patterns/template-method
+file:
+  - path: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Template_Method.js
+annotazioni:
+  - Autore:
+    - An easy way to think of Template Method is that of an algorithm with holes (see diagram below). It is up to the developer to fill these holes with appropriate functionality for each step.

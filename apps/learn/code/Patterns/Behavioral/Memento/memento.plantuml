@@ -1,0 +1,30 @@
+@startuml Memento
+
+rectangle Client {
+}
+
+together {
+  class Originator {
+    - state: type
+    + state(type): state
+    + memento(type): Memento
+  }
+
+  class CareTaker {
+    - originator: Originator
+    - mementos: Memento[]
+    + create(): void
+    + restore(): void
+  }
+}
+
+class Memento {
+  + state
+}
+
+Client o-r-> Originator
+Client o-r-> CareTaker
+Originator <-d-o CareTaker
+CareTaker o-r-> Memento
+
+@enduml

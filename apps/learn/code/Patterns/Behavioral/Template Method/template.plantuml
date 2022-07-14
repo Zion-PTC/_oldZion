@@ -1,0 +1,22 @@
+@startuml Template Method
+
+abstract class AbstractClass {
+  + templateMethod(type): type
+  - stepOne(type): type
+  - stepTwo(type): type
+  - stepThree(type): type
+}
+
+class ConcreteClassA extends AbstractClass {
+  + templateMethod(type): type
+  - stepTwo(type): type
+}
+
+class ConcreteClassB extends AbstractClass {
+  + templateMethod(type): type
+  - stepOne(type): type
+  - stepTwo(type): type
+  - stepThree(type): type
+}
+
+@enduml

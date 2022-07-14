@@ -1,0 +1,34 @@
+@startuml Observer
+
+left to right direction
+
+rectangle Client {
+}
+
+class Subject {
+  - observers: Set<IObserver>
+  + subscribe(IObserver): type
+  + unsubscribe(IObserver): type
+  + notify(type): type
+}
+
+class Observer {
+  + notify(type): type
+}
+
+interface IObservable {
+  + subscribe(IObserver): type
+  + unsubscribe(IObserver): type
+  + notify(type): type
+}
+
+interface IObserver {
+  + notify(type): type
+}
+
+Subject ..|> IObservable
+Observer ..|> IObserver
+Subject <-* Observer
+Client o--> Observer
+
+@enduml

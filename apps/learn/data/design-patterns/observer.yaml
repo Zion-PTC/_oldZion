@@ -1,2 +1,6 @@
 nome: Observer
 categoria: Behavioral
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Behavioral/Observer/observer.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/hP4nJWCn44NxESKl0yWvG1Ij8b5HKUG4jZCRZ8oDncEaQE4kd8MJmQ9TinNRfFFy_yT-yZyKjQBr9H95xXMQ8U7yf3W5OQyX9wBnODCvCkvZuAGOw8F8HriAZjKzinybm22xmlB6KdOuikuV7gUv8-0EfRhY9JZUDEDc1xsyygzTqqeWPGtzPJFEizmuvZo6Vw8XAKjlFMEwtxh8Nv_3bUZMdrn7dFzpkttlbfJKjfSEIrlOcriqSUef6zFzYNJWTFff-Xi0

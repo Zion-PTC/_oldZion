@@ -1,0 +1,46 @@
+@startuml Bridge
+
+together {
+  rectangle Client {
+  }
+
+  interface IAbstraction {
+    + method(type): type
+  }
+}
+
+abstract class RefAbstrA {
+  - implementer: IImplementer
+  + method(type): type
+}
+
+abstract class RefAbstrB {
+  - implementer: IImplementer
+  + method(type): type
+}
+
+interface IImplementer {
+  + method(type): type
+}
+
+class ConcreteImplementerA {
+  + method(type): type
+}
+
+class ConcreteImplementerB{
+  + method(type): type
+}
+
+IImplementer <|.. ConcreteImplementerB
+ConcreteImplementerA ..|> IImplementer
+
+IAbstraction <|.. RefAbstrB
+RefAbstrA ..|> IAbstraction
+
+Client -r[hidden]- IAbstraction
+Client o-> RefAbstrA
+Client o-> RefAbstrB
+RefAbstrA *-r-.> ConcreteImplementerA
+RefAbstrB *-r-.> ConcreteImplementerB
+
+@enduml

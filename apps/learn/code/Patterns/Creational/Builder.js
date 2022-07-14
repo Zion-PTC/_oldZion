@@ -82,3 +82,4 @@ function run() {
   car.say();
   truck.say();
 }
+run();

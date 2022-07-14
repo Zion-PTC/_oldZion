@@ -1,2 +1,6 @@
 nome: Bridge
 categoria: Structural
+plantuml:
+  - hasPlantuml: true
+  - file: /Users/WAW/Documents/Projects/ZION/apps/learn/code/Patterns/Structural/Bridge/bridge.plantuml
+  - link: https://www.plantuml.com/plantuml/uml/fP8xRiCm38Ptde9Z7v0E41H6x4nUknOTL9c91UWHoCnG9BrxQzM8BK3Gq4wsoF_xIP7QJwmYNvm5u70Y7YdY5H0ZQLR-P0aFrf3d5Fm2G3IUAHwL9kpRZucZqco2Jtd4PtJ4OnWU-FDCZpkSFmdyGTMYHctLDE4h7HFV9bIWSMTBZcRt7VRzUeAoRSMo-uVbUhqjWDSAybly4BoEnBIXshzXNOtAkdgvILbqW68tKjwQV0wGxN2sMuS8ozyTt4W1bcSXujjeXe7ykyW5Ipw8Pjrq8PYLUH9HoAOuIRZhAweEO4z-k3Zx3G00

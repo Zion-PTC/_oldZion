@@ -1,0 +1,17 @@
+@startuml Prototype
+
+rectangle Client {
+}
+
+interface IPrototype {
+  + clone(): type
+}
+
+class MyClass implements IPrototype {
+  + field: type
+  + clone(): type
+}
+
+Client o-> MyClass
+
+@enduml

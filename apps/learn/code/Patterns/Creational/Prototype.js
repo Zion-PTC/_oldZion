@@ -22,23 +22,18 @@ class Customer {
 
     this.say = function () {
       console.log(
-        'name: ' +
-          this.first +
-          ' ' +
-          this.last +
-          ', status: ' +
-          this.status
+        "name: " + this.first + " " + this.last + ", status: " + this.status
       );
     };
   }
 }
 
 function run() {
-  var proto = new Customer('n/a', 'n/a', 'pending');
+  var proto = new Customer("n/a", "n/a", "pending");
   var prototype = new CustomerPrototype(proto);
 
   var customer = prototype.clone();
-  customer.first = 'ciao';
+  customer.first = "ciao";
   proto.say();
   customer.say();
 }

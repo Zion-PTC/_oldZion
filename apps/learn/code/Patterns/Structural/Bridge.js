@@ -38,31 +38,31 @@ var Mouse = function (output) {
 
 var Screen = function () {
   this.click = function () {
-    console.log('Screen select');
+    console.log("Screen select");
   };
   this.move = function () {
-    console.log('Screen move');
+    console.log("Screen move");
   };
   this.drag = function () {
-    console.log('Screen drag');
+    console.log("Screen drag");
   };
   this.zoom = function () {
-    console.log('Screen zoom in');
+    console.log("Screen zoom in");
   };
 };
 
 var Audio = function () {
   this.click = function () {
-    console.log('Sound oink');
+    console.log("Sound oink");
   };
   this.move = function () {
-    console.log('Sound waves');
+    console.log("Sound waves");
   };
   this.drag = function () {
-    console.log('Sound screetch');
+    console.log("Sound screetch");
   };
   this.zoom = function () {
-    console.log('Sound volume up');
+    console.log("Sound volume up");
   };
 };
 
@@ -81,3 +81,5 @@ function run() {
   mouse.move();
   mouse.wheel();
 }
+
+run();
