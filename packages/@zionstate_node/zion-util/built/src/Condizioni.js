@@ -1,9 +1,13 @@
+export function emptyString(el) {
+    return el !== "";
+}
 export class Condizioni {
     constructor() { }
+    // TODO creare strategie di riconoscimento classe
     oggettoUgualeCostruttore(object, constructor) {
         return object.constructor === constructor;
     }
-    proprietàNome(elemento, name) {
+    proprietàName(elemento, name) {
         return elemento.name === name;
     }
 }
@@ -39,19 +43,21 @@ export class Condizionatore {
         this.#servedArray = servedArray;
     }
     id;
-    constructor(property, value) {
+    constructor(value, property) {
         this.#property = property;
         this.#value = value;
-        // TODO capire uso di this in ext functions
-        //@ts-expect-error
         Condizionatore.#condizionatori.push(this);
         this.id = Condizionatore.#condizionatori.length;
     }
     condizione = (oggetto) => {
+        if (!this.property)
+            throw Error();
         return oggetto[this.property] === this.value;
     };
     condizioneForEach = (oggetto) => {
         let servedArray = this.servedArray;
+        if (!this.property)
+            throw Error();
         if (oggetto[this.property] === this.value) {
             servedArray.push(oggetto);
         }

@@ -5,12 +5,14 @@
   "main": "built/index.js",
   "scripts": {
     "test": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.test.js",
+    "testSplitAt": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.splitAt.test.js",
     "tsc": "tsc"
   },
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "util": "^0.12.4"
+    "util": "^0.12.4",
+    "@zionstate/system": ""
   }
 }

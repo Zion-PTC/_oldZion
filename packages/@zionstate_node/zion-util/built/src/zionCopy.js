@@ -8,7 +8,6 @@ class Utils {
     ////// utils
     inspect = util.inspect;
     debuglog = util.debuglog;
-    promisify = util.promisify;
     ////// zion
     checkArraysContent = checkArraysContent;
     checkArrayElementsConstructor = checkArrayElementsConstructor;
@@ -357,6 +356,6 @@ function convertDecimalToFracionString(decimale) {
 export function splitAt(string, symbol) {
     return string.split(symbol).filter(emptyString);
 }
-export class BOOOOBOOO {
+export class CLOCLO {
 }
-export let CHOOOOOOO = "oooo";
+export let BROOOOOOO = "oooo";

@@ -1,17 +1,25 @@
 type StandardValues = string | number | boolean;
 
+export function emptyString(el: string) {
+  return el !== "";
+}
+
 export class Condizioni {
   constructor() {}
+  // TODO creare strategie di riconoscimento classe
   oggettoUgualeCostruttore(object: object, constructor: Function) {
     return object.constructor === constructor;
   }
-  proprietàNome(elemento: { name: string }, name: string) {
+  proprietàName<T>(
+    elemento: T extends { name: string } ? T : never,
+    name: string
+  ) {
     return elemento.name === name;
   }
 }
 
 export class Condizionatore {
-  static #condizionatori = [];
+  static #condizionatori: Condizionatore[] = [];
   #property;
   get property() {
     return this.#property;
@@ -42,19 +50,19 @@ export class Condizionatore {
     this.#servedArray = servedArray;
   }
   id;
-  constructor(property: string, value: string | number | boolean) {
+  constructor(value: string | number | boolean, property?: string) {
     this.#property = property;
     this.#value = value;
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
     Condizionatore.#condizionatori.push(this);
     this.id = Condizionatore.#condizionatori.length;
   }
   condizione = (oggetto: { [key: string]: string }) => {
+    if (!this.property) throw Error();
     return oggetto[this.property] === this.value;
   };
   condizioneForEach = (oggetto: { [key: string]: string }) => {
     let servedArray: object[] = this.servedArray;
+    if (!this.property) throw Error();
     if (oggetto[this.property] === this.value) {
       servedArray.push(oggetto);
     }

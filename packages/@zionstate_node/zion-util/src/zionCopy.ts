@@ -16,9 +16,6 @@ export interface IUtils {
     section: string,
     callback?: ((fn: util.DebugLoggerFunction) => void) | undefined
   ): util.DebugLogger;
-  promisify: <TCustom extends Function>(
-    fn: util.CustomPromisify<TCustom>
-  ) => TCustom;
   ////// zion
   // ARRAY
   checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
@@ -56,7 +53,6 @@ class Utils implements IUtils {
   ////// utils
   inspect = util.inspect;
   debuglog = util.debuglog;
-  promisify = util.promisify;
   ////// zion
   checkArraysContent = checkArraysContent;
   checkArrayElementsConstructor = checkArrayElementsConstructor;
@@ -423,5 +419,5 @@ export function splitAt(string: string, symbol: string) {
   return string.split(symbol).filter(emptyString);
 }
 
-export class BOOOOBOOO {}
-export let CHOOOOOOO = "oooo";
+export class CLOCLO {}
+export let BROOOOOOO = "oooo";

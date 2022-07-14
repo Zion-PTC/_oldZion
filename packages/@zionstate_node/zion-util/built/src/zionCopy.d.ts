@@ -10,7 +10,6 @@ export declare type DebugLogger = util.DebugLogger;
 export interface IUtils {
     inspect(obj: IInspectArguments): string;
     debuglog(section: string, callback?: ((fn: util.DebugLoggerFunction) => void) | undefined): util.DebugLogger;
-    promisify: <TCustom extends Function>(fn: util.CustomPromisify<TCustom>) => TCustom;
     checkArraysContent: <T>(array: T[], nextArray: T[]) => boolean;
     checkArrayElementsConstructor<T>(array: T[], constructor: Function): boolean;
     checkObjectConstructor(object: object, constructor: Function): boolean;
@@ -32,7 +31,7 @@ export interface IUtils {
 }
 export declare let zionUtil: IUtils;
 export declare function splitAt(string: string, symbol: string): string[];
-export declare class BOOOOBOOO {
+export declare class CLOCLO {
 }
-export declare let CHOOOOOOO: string;
+export declare let BROOOOOOO: string;
 export {};

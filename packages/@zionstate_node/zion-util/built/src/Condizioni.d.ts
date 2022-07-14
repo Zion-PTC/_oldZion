@@ -1,21 +1,22 @@
 declare type StandardValues = string | number | boolean;
+export declare function emptyString(el: string): boolean;
 export declare class Condizioni {
     constructor();
     oggettoUgualeCostruttore(object: object, constructor: Function): boolean;
-    proprietàNome(elemento: {
+    proprietàName<T>(elemento: T extends {
         name: string;
-    }, name: string): boolean;
+    } ? T : never, name: string): boolean;
 }
 export declare class Condizionatore {
     #private;
-    get property(): string;
-    set property(property: string);
+    get property(): string | undefined;
+    set property(property: string | undefined);
     get value(): StandardValues;
     set value(value: StandardValues);
     get servedArray(): never[];
     set servedArray(servedArray: never[]);
     id: number;
-    constructor(property: string, value: string | number | boolean);
+    constructor(value: string | number | boolean, property?: string);
     condizione: (oggetto: {
         [key: string]: string;
     }) => boolean;
