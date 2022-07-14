@@ -1,0 +1,17 @@
+{
+  "name": "@zionstate/learn",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "nodemon ./test/test.js"
+  },
+  "dependencies": {
+    "@zionstate/system": "*"
+  }
+}

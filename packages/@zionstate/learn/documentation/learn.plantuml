@@ -1,0 +1,149 @@
+@startuml Learn
+
+package src <<rectangle>> {
+  class BlogPost {
+    + {static} get blogPosts
+    + nome: string
+    + url: URL
+    + get oggetti: IDesignPattern
+    + set oggetti(oggetti: IDesignPattern[])
+    + aggiungiOggetto(oggetto: IDesginPattern): IBlogPost
+  }
+
+  class Cheatsheet {}
+
+  class DesignPattern {
+    + {static} get designPatterns: DesignPattern[]
+    + {static} mostraDesignPatterns():void 
+    + {static} mostraPatternSenzaEsempi():void 
+    + id: number
+    + nome: string
+    + categoria: DesignPatternsCategories
+    ..graph..
+    + sorgenti: ISorgente[]
+    + esempi: IEsercizio[]
+    + tutorials: ITutorial[]
+    + posts: BlogPost[]
+    + priorità: Priorità
+    + isInCheatSheet: boolean
+    ..metodi..
+    + aggiungiSorgente(sorgente: ISorgente): IDesignPattern
+    + aggiungiEsercizio(esempio: IEsercizio): IDesignPattern
+    + aggiungiTutorial(tutorial: ITutorial): IDesignPattern
+    + aggiungiBlogPost(blog: BlogPost): IDesignPattern
+    + mostraSorgenti(): IDesignPattern
+    + mostraEsempi(): IDesignPattern
+  }
+
+  class Esercizio {
+    + {static} get esercizi: Esercizio[]
+    + {static} mostraEsercizi() void
+    + id: number
+    + nome: string
+    + autore: string
+    + file: IFile
+    + oggetti: IDesignPattern[]
+    ..metodi..
+    ..graph..
+    + aggiungiOggetto(oggetto: IDesignPattern): IEsercizio
+    ..funzionlità..
+    + runFile(): void
+    + showCode(): void
+    + mostraOggetti(): IEsercizio
+  }
+  
+  class File {
+    + path: string
+  }
+
+  class Link {
+    + id: string
+  }
+
+  class Oggetto {
+    + name: string
+    + descriptin: string
+    + tematica: Tematica
+  }
+
+  class Package {
+    + {static} get packages: Package[]
+    + {static} mostraPackages() void
+    + type: PackageTypes
+    + url: string | string[]
+    + descrizione: string
+    + links: string | string[]
+    + categoria: PackageCategoriaTypes | PackageCategoriaTypes[]
+  }
+
+  class Primitive {}
+
+  class Sorgente {
+    + {static} get sorgenti: Package[]
+    + {static} mostraSorgenti() void
+    + id: number
+    + slug: string
+    + titolo: string
+    + autori: string[]
+    + tutorial: ITutorial[]
+    + type: SorgenteTypes
+    + link: URL
+    + github: URL
+    + designPatterns: IDesignPattern[]
+    + get designPatternSenzaEsempi(): IDesignPattern[]
+    + get designPatternConEsempi(): IDesignPattern[]
+    + show(): ISorgente
+    + showPatterns(): ISorgente
+    + addDesignPattern(pattern: IDesignPattern): ISorgente
+    + aggiungiTutorial(tutorial: ITutorial): ISorgente
+    + mostraPatternID(pattern: IDesignPattern): number
+    + mostraDesignPatternSenzaEsempi(): ISorgente
+    + mostraDesignPatternConEsempi(): ISorgente
+    + contaDesignPatternSenzaEsempi(): ISorgente
+  }
+
+  class Tematica {
+    + types: TematicaTypes
+    + id: number
+    + nome: string
+  }
+
+  class Tutorial {
+    + {static} get tutorials: Package[]
+    + {static} mostraTutorials() void
+    + get links(): string[]
+    + set links(links: string[])
+    + get github(): string
+    + set github(repo: string)
+    + get designPattern(): IDesignPattern[]
+    + set designPattern(designPattern: IDesignPattern[])
+    + get sorgente(): ISorgente[]
+    + set sorgente(sorgente: ISorgente[])
+    + id: number
+    + titolo: string
+    + annotazioni?: string[]
+    + file?: IFile
+    + type: TutorialTypes
+    + aggiungiSorgente(sorgente: ISorgente): ITutorial
+    + aggiungiOggetto(oggetto: IDesignPattern): ITutorial
+    + aggiungiAnnotazione(annotazione: string): ITutorial
+  }
+}
+
+package lib <<rectangle>> {
+  object index {
+    + aggiungiPost()
+    + getBlogPosts(): getContent(blogPosts)
+    + getDesignPatterns(): getContent(designPatterns)
+    + getEsercizi(): getContent(esercizi)
+    + getPackages(): getContent(packages)
+    + getSorgenti(): getContent(sorgenti)
+    + getTutorials(): getContent(tutorials)
+    + findItem(key, constructor, parameter, parsed, instance, callback, paramToParse):void
+    + getContent(type): string[]
+  }
+}
+
+BlogPost o-r-> DesignPattern
+
+@enduml
