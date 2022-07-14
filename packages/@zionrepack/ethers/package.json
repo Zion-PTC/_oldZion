@@ -8,6 +8,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "ethers": "^5.6.5"
+    "@zionstate/web3": "*"
   }
 }
