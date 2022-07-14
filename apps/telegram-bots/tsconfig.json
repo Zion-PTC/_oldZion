@@ -2,12 +2,13 @@
   "compilerOptions": {
     "target": "esnext",
     "watch": true,
-    "lib": ["DOM","ES2021"],
+    "lib": ["DOM", "ES2021"],
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "types": ["node", "node-fetch"]
     // "outFile": "src/Namespaces/Spaces.js",
     // "module": "AMD"
     // "paths": {}
@@ -16,6 +17,6 @@
     // "allowJs": false,
     // "outDir": "./built",
   },
-  "exclude": ["@zion","node_modules","personal","da portare"],
+  "exclude": ["@zion", "node_modules", "personal", "da portare"]
   // "include": ["./src/**/*"]
 }
