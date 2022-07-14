@@ -1,8 +1,8 @@
-import { defineSearchParams } from './utils/defineSearchParameter.js';
-import { ZionRegExp } from '@zionstate_js/regexp';
+import { defineSearchParams } from "./utils/defineSearchParameter.js";
+import { ZionRegExp } from "../../regexp/built";
 
 export type Input = string | URL;
-type SearchParams = 'query' | 'app_name';
+type SearchParams = "query" | "app_name";
 
 export interface IZionURL extends URL {
   searchParamsKeys?: string[];
@@ -78,7 +78,7 @@ export class ZionURL implements IZionURL {
     return this;
   }
   setPaths(string: string): IZionURL {
-    let regexp = ZionRegExp.everythingBetweenDyn('{', '}');
+    let regexp = ZionRegExp.everythingBetweenDyn("{", "}");
     this.#URL.pathname = this.pathnamePattern.replace(regexp, string);
     this.refreshThis();
     return this;

@@ -9,5 +9,8 @@
   },
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@zionstate/system": "*"
+  }
 }

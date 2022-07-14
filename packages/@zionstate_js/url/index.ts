@@ -2,7 +2,7 @@ import {
   ZionURL as zURL,
   IZionURL as zIZionURL,
   Input as In,
-} from './src/ZionUrl.js';
+} from "./src/ZionUrl.js";
 
 export const ZionURL = zURL;
 
