@@ -1,0 +1,7 @@
+accounts: 
+  - name: tek-no-logique
+    paths:
+      - believe: [Users,WAW,Documents,Believe]
+  - name: plum
+    paths:
+      - awal: [Users,WAW,Documents,AWAL]

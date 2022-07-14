@@ -1,0 +1,90 @@
+@startuml
+!theme reddress-darkgreen
+
+class Base {
+  {static}basi: IBase[]
+  {static}mostraBasi():void
+}
+
+class App{
+  nome: string
+  configPath: string
+  recordsCache: BelieveRecord[]
+  resultsCache: number
+  caricaReport(this: IApp, account: string, aggregatore: string): IApp
+  creaZionCsv(id: number): IApp
+  show(): IApp
+  showReports(): IApp
+  showGraph(): IApp
+  showRecords(id: number): IApp
+  filterRecords(this: IApp, key: string, value: string): IApp
+}
+
+class User {
+  accounts: Account[]
+}
+
+class Account {
+  nome?:string
+  paths?:string[]
+}
+
+class Aggregatore {
+  nome: string
+  accounts: Iaccount[]
+  reports: Report[]
+  aggiungiReport()
+}
+
+class Artist {
+  artist_name: string
+}
+
+class Label {
+  artists: IArtist[]
+}
+
+class Reader {
+  ZionYaml: ZionYaml
+  ZionYamlToFile: ZionYamlToFile
+  ZionCsv: ZionCvs
+  stringify()
+  readFoldersInDir()
+  readFilesInFolder()
+  joinPaths()
+}
+
+class Report {
+  account: IAccount
+  path: string
+  aggregatore: IAggregatore
+  records: BelieveRecord[]
+  aggiungiRecord(record: BeliebeRecord[]):IReport
+}
+
+App "1" *-o  "many" User
+User "1" *-o "many" Account : "has"
+Account "1" o-* "1" Aggregatore
+Account "1" o-o "many" Label
+Account "1" *-o "many" Report
+Aggregatore "1" *-* "many" Report : "contains"
+Aggregatore "many" o-o "1" Label
+Label "1" *-o "many" Report
+Label "many" o-o "many" Artist
+Report "many" *-- "1" Reader
+
+Reader --> ZionYaml
+Reader --> ZionYamlToFile
+Reader --> system
+Reader --> ZionCsv
+ZionCsv --> csvparse
+ZionCsv --> system
+
+App *-- Base
+Base <|== Report
+Base <|== Artist
+Base <|== Label
+Base <|== Account
+Base <|== Aggregatore
+Base <|== User
+@enduml

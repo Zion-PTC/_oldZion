@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"name": "label",
+			"path": "../../../apps/label"
+		},
+		{
+			"name": "label",
+			"path": "."
+		},
+		{
+			"name": "csv",
+			"path": "../../@zionrepack/csv"
+		},
+		{
+			"name": "system",
+			"path": "../system"
+		},
+		{
+			"name": "base",
+			"path": "../base"
+		},
+		{
+			"name": "yaml",
+			"path": "../../@zionrepack/yaml"
+		},
+		{
+			"name": "terminal",
+			"path": "../terminal"
+		}
+	],
+	"settings": {}
+}
