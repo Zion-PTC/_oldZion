@@ -49,6 +49,9 @@
     },
     {
       "path": "../../packages/@zionstate/colors"
+    },
+    {
+      "path": "../../packages/@zionstate/base"
     }
   ],
   "settings": {}
