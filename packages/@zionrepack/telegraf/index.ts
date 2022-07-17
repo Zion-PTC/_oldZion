@@ -12,8 +12,8 @@ import t, {
   Telegram as tTelegram,
   TelegramError as tTelegramError,
   Types as tTypes,
-} from 'telegraf';
-import { Update } from 'telegraf/typings/core/types/typegram';
+} from "telegraf";
+import { Update } from "telegraf/typings/core/types/typegram";
 
 export class Composer<C extends Context> extends tComposer<C> {}
 export class Context extends tContext {}

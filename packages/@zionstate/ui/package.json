@@ -22,6 +22,7 @@
     "@zionstate_node/fs": "*",
     "@zionstate_node/fs-utilities": "*",
     "@zionstate_node/process": "*",
-    "@zionstate_node/zion-util": "*"
+    "@zionstate_node/zion-util": "*",
+    "telegraf": "^4.8.1"
   }
 }
