@@ -9,7 +9,11 @@ import { File, IFile } from "./File.js";
 import { Folder, IFolder } from "./Folder.js";
 import { Root, IRoot } from "./Root.js";
 import { TreeNode, ITreeNode } from "./TreeNode.js";
+import { ZionError } from "@zionstate_js/error";
 // import { EventEmitter } from "dropdown";
+
+const JOINPATHSERROR = "arguments must be of type string[]";
+
 export type Dirent = fs.Dirent;
 export class System {
   #blackListFileNames = [".DS_Store"];
@@ -269,6 +273,10 @@ export class System {
     return fs.readdirSync(path, { withFileTypes: true });
   }
   joinPaths(paths: string[]) {
+    // const functionName = this.joinPaths.name;
+    if (!Array.isArray(paths))
+      throw new ZionError(JOINPATHSERROR, "joinPaths()", arguments);
+    // return "array";
     return path.join(...paths);
   }
   exists(path: string) {
