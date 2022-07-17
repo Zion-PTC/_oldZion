@@ -5,9 +5,9 @@ import { Constructor as C, GConstructor as GC, Mixin } from "./src/TSMixin.js";
 import { Mix as MW3M, Base as MW3B, IBase as IB } from "./src/MixWithv3.js";
 import { Name, IName as IN } from "./src/Mixins/en/Name.js";
 import { Surname, ISurname as IS } from "./src/Mixins/en/Surname.js";
-export { decorators } from "./lib/index.js";
+export { decorators } from "./src/lib/index.js";
 
-export * as types from "./lib/types/index.js";
+export * as types from "./src/lib/types/index.js";
 export * as MixWithV2 from "./src/MixWithv2.js";
 
 export type Constructor = C;

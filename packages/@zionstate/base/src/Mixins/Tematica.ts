@@ -1,4 +1,4 @@
-import * as Mixins from "../../lib/types/Mixin/Mixins.js";
+import * as Mixins from "../lib/types/Mixin/Mixins.js";
 
 type ComplexMixin<T> = Mixins.ComplexMixin<T>;
 

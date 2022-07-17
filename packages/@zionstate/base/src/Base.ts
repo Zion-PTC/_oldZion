@@ -1,4 +1,4 @@
-import { staticImplements as si } from "../lib/decorators/staticImplements.js";
+import { staticImplements as si } from "./lib/decorators/staticImplements.js";
 
 const staticImplements = si;
 

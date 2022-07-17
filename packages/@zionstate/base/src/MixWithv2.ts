@@ -1,4 +1,4 @@
-import { classes, mixins } from "../lib/types";
+import { classes, mixins } from "./lib/types";
 
 export class Mix {
   constructor(public superclass: classes.constructors.Constructor) {}

@@ -1,9 +1,9 @@
-export { readJSON } from "../lib/readJSON.js";
-export { readPackageJSON } from "../lib/readPackageJSON.js";
-export { readTSconfigJSON } from "../lib/readTSconfigJSON.js";
-import { readTSconfigJSON } from "../lib/readTSconfigJSON.js";
-import { readJSON } from "../lib/readJSON.js";
-import { readPackageJSON } from "../lib/readPackageJSON.js";
+export { readJSON } from "./lib/readJSON.js";
+export { readPackageJSON } from "./lib/readPackageJSON.js";
+export { readTSconfigJSON } from "./lib/readTSconfigJSON.js";
+import { readTSconfigJSON } from "./lib/readTSconfigJSON.js";
+import { readJSON } from "./lib/readJSON.js";
+import { readPackageJSON } from "./lib/readPackageJSON.js";
 import { system } from "./System.js";
 import { ZionCsv } from "./ZionCsv.js";
 import { ZionYaml, ZionYamlToFile } from "./ZionYaml.js";
@@ -12,7 +12,7 @@ import {
   packageJSON,
   prettierrcJSON,
   tsconfigJSON,
-} from "../lib/types";
+} from "./lib/types";
 
 enum SupportedFileExtensions {
   json = ".json",

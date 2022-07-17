@@ -1,20 +1,19 @@
-import { staticImplements } from "../lib/decorators/staticImplements";
-
+import { staticImplements } from "./lib/decorators/staticImplements";
 
 export interface IStaticPrimitive<T> {
   new (): T;
-  id:any;
+  id: any;
 }
 
 export interface IPrimitive {
-  id:any;
+  id: any;
 }
 /**
  * classe astratta utilizzata per migliorare la versione
  */
 abstract class APrimitive {
-  static id:any;
-  id:any;
+  static id: any;
+  id: any;
   constructor() {}
 }
 @staticImplements<IStaticPrimitive<IPrimitive>>()

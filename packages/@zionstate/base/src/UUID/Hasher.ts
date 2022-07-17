@@ -1,6 +1,6 @@
-import { hashString } from "../../lib/uuid/hashString.js";
-import { splittaHash } from "../../lib/uuid/spliitaHash.js";
-import { creaUuidFromString } from "../../lib/uuid/creaUUIDFromString.js";
+import { hashString } from "../lib/uuid/hashString.js";
+import { splittaHash } from "../lib/uuid/spliitaHash.js";
+import { creaUuidFromString } from "../lib/uuid/creaUUIDFromString.js";
 import { NamespacedUUID } from "./NamespacedUUID.js";
 import { validate } from "./UUID.js";
 

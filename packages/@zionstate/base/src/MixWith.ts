@@ -1,6 +1,6 @@
 /////// working Mix().with()
 
-import { mixins } from "../lib/types";
+import { mixins } from "./lib/types";
 
 /**
  * this version kinda works but there is still a TS error.
@@ -17,12 +17,12 @@ type MixinType = mixins.MixinTypeNoArgs;
  * ```js
  * // creates an interface mergin the 3 classes
  * interface IMixer extends IName, ISurname, Base {}
- * 
+ *
  * const Mixer = new Mix<typeof Base, typeof Name | typeof Surname>(Base).with(
  *   Name,
  *   Surname
  * ) as unknown as GConstructor<IMixer>;
- * 
+ *
  * const obj = new Mixer();
  * ```
  */

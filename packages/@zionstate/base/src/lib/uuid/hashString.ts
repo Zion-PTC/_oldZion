@@ -1,4 +1,4 @@
-import { Hasher } from "../../src/UUID/Hasher";
+import { Hasher } from "../../UUID/Hasher";
 import { createHash } from "crypto";
 
 export function hashString(this: Hasher, string: string): Hasher {

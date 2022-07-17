@@ -1,5 +1,5 @@
-import { Name as n } from "../lib/mixins/Name.js";
-import { Surname as s } from "../lib/mixins/Surname.js";
+import { Name as n } from "./lib/mixins/Name.js";
+import { Surname as s } from "./lib/mixins/Surname.js";
 
 export const Surname = s;
 export const Name = n;

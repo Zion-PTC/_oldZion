@@ -1,5 +1,5 @@
-import { INamespacedUUID } from "../../src/UUID/NamespacedUUID";
-import { UUID, v5 } from "../../src/UUID/UUID";
+import { INamespacedUUID } from "../../UUID/NamespacedUUID";
+import { UUID, v5 } from "../../UUID/UUID";
 
 // TODO test
 export function creaNamespacedUUID(this: INamespacedUUID, string: string) {

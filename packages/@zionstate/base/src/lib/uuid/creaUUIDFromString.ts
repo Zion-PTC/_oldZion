@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { Hasher } from "../../src/UUID/Hasher";
+import { Hasher } from "../../UUID/Hasher";
 
 export function creaUuidFromString(this: Hasher): Hasher {
   if (!this.hash) {

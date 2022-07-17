@@ -1,5 +1,5 @@
-import * as Mixins from "../lib/types/Mixin/Mixins.js";
-import * as Constructors from "../lib/types/Class/Constructors.js";
+import * as Mixins from "./lib/types/Mixin/Mixins.js";
+import * as Constructors from "./lib/types/Class/Constructors.js";
 
 type ComplexMixin<T> = Mixins.ComplexMixin<T>;
 type GCtor<T> = Constructors.GCtor<T>;

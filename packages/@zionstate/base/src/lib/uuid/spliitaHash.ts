@@ -1,4 +1,4 @@
-import { SplittedHash } from "../../src/UUID/UUID";
+import { SplittedHash } from "../../UUID/UUID";
 
 export function splittaHash(split: string[]): SplittedHash {
   let hex1 = split.splice(0, 8).join("");

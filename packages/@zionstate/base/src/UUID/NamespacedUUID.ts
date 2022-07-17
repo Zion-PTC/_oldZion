@@ -1,5 +1,5 @@
-import { creaNamespaceUUID } from "../../lib/uuid/creaNamespaceUUID";
-import { creaNamespacedUUID } from "../../lib/uuid/creaNameSpacedUUID";
+import { creaNamespaceUUID } from "../lib/uuid/creaNamespaceUUID";
+import { creaNamespacedUUID } from "../lib/uuid/creaNameSpacedUUID";
 import { UUID, validate, v5 as uuid } from "./UUID";
 
 export interface INamespacedUUID {
