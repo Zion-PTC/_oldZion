@@ -60,6 +60,8 @@ interface RepoManager {
   createDockerFile(): void;
   createImage(): void;
   setTestResult(test: string, result: boolean): void;
+  // repo mgmt
+  addFolder(type: "commit" | "not-commit"): RepoManager;
   // npm
   checkDeps(npmpkg: string): string[];
 }
