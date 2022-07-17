@@ -21,7 +21,11 @@ interface ZionErrorConstructor {
  * @param args Object containing the called parameters
  */
 export class ZionError extends Error {
-  constructor(message?: string, name?: string, public args?: string[]) {
+  constructor(
+    message?: string,
+    name?: string,
+    public args?: string[] | IArguments
+  ) {
     super(message);
     if (name) this.name = name;
   }
