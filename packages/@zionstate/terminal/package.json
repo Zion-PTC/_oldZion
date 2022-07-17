@@ -47,6 +47,7 @@
     "@zionstate/colors": "*",
     "@zionstate/system": "*",
     "@zionstate/test-suite-1": "*",
+    "@zionstate/base": "*",
     "caporal": "^1.4.0",
     "chalk-pipe": "^5.1.1",
     "cmdify": "^0.0.4",

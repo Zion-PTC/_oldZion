@@ -45,6 +45,17 @@ const culo = {
     when: (answers) => answers.culo,
 };
 const confirm2 = {};
-inquirer.prompt([promptObj, confirm1, culo]).then((answers) => {
+const logAnswers = function (answers) {
     console.log(answers);
-});
+};
+inquirer.prompt([promptObj, confirm1, culo]).then(logAnswers);
+const res = await inquirer.prompt([promptObj, confirm1, culo]);
+logAnswers(res);
+async function tryCatch(functionToTry, callback) {
+    try {
+        await functionToTry();
+    }
+    catch (error) {
+        callback(error);
+    }
+}

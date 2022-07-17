@@ -2,6 +2,9 @@ import inquirer from "inquirer";
 import chalkPipe from "chalk-pipe";
 import { ColorPalette } from "@zionstate/colors";
 import { hslToHex } from "@zionstate/colors";
+import { types } from "@zionstate/base";
+
+type Flatten<T> = types.flatteners.FlattenInterface<T>;
 
 const boldWhite = chalkPipe("white.bold");
 
@@ -35,6 +38,9 @@ console.log(bg("Welcome"));
 type InputQuestion = inquirer.InputQuestion;
 type ConfirmQuestion = inquirer.ConfirmQuestion;
 type ConfirmQuestionOptions = inquirer.ConfirmQuestionOptions;
+type Answers = inquirer.Answers;
+type InputQuestionFlat = Flatten<InputQuestion>;
+type AnswersFlat = Flatten<Answers>;
 
 const promptObj: InputQuestion = {
   type: "input",
@@ -55,6 +61,21 @@ const culo: InputQuestion = {
 };
 const confirm2: ConfirmQuestionOptions = {};
 
-inquirer.prompt([promptObj, confirm1, culo]).then((answers) => {
+interface AnswersCallback {
+  (answers: Answers): void;
+}
+const logAnswers: AnswersCallback = function (answers) {
   console.log(answers);
-});
+};
+
+inquirer.prompt([promptObj, confirm1, culo]).then(logAnswers);
+const res = await inquirer.prompt([promptObj, confirm1, culo]);
+logAnswers(res);
+
+async function tryCatch(functionToTry: () => Promise<any>, callback: Function) {
+  try {
+    await functionToTry();
+  } catch (error) {
+    callback(error);
+  }
+}

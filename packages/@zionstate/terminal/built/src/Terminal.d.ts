@@ -7,6 +7,7 @@ import { ITerminalConfig } from "./class/Terminal/TerminalConfig.js";
  * config: Singleton
  * Terminal:
  *  - Facade
+ * ```
  */
 declare type Interface = readline.Interface;
 export interface Terminal {

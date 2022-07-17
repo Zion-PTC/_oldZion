@@ -12,6 +12,7 @@ import { stop } from "./lib/Terminal/stop.js";
  * config: Singleton
  * Terminal:
  *  - Facade
+ * ```
  */
 
 type Interface = readline.Interface;
