@@ -6,6 +6,7 @@
 /_archive
 /tasks
 kubernetes
+apps/prova-express
 
 # dependencies
 /node_modules
@@ -160,4 +161,3 @@ dist
 
 # TernJS port file
 .tern-port
-
