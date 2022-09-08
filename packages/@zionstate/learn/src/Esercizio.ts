@@ -1,15 +1,6 @@
-// import { Esempio as Ex } from '../Abstracts/Esempio.js';
-import { ZionYaml } from "@zionrepack/yaml/built/src/ZionYaml.js";
 import { aggiungi } from "../lib/aggiungi.js";
-import { getEsercizi } from "../lib/esercizi.js";
-import { DesignPattern, IDesignPattern } from "./DesignPattern.js";
-// /// <reference path='../Namespaces/Knowledge.ts'/>
-// type IDesignPattern = Knowledge.IDesignPattern;
-
-// /// <reference path='../Namespaces/Knowledge.ts'/>
-// type IDesignPattern = Knowledge.IDesignPattern;
+import { IDesignPattern } from "./DesignPattern.js";
 import { IFile } from "./File";
-import { staticImplements } from "./Primitive.js";
 
 interface IStaticEsercizio {
   esercizi: IEsercizio[];
@@ -75,8 +66,16 @@ export abstract class AEsercizio implements IEsercizio {
   abstract mostraOggetti(): IEsercizio;
 }
 
-@staticImplements<IStaticEsercizio>()
+let o = 0;
+
+// @staticImplements<IStaticEsercizio>()
+// TODO capire come mai non funziona il membro statico
+// privato quando viene chiamato esercizi sulla classe
 export class Esercizio extends AEsercizio implements IEsercizio {
+  static #esercizi: AEsercizio[] = [];
+  static get esercizi() {
+    return Esercizio.#esercizi;
+  }
   constructor(
     public oggetti: IDesignPattern[] = [],
     public id?: number,
@@ -85,6 +84,8 @@ export class Esercizio extends AEsercizio implements IEsercizio {
     public file?: IFile
   ) {
     super(oggetti, id, nome, autore, file);
+    Esercizio.#esercizi.push(this);
+    this.id = Esercizio.#esercizi.length;
   }
   /**
    * aggiunge anche l'esercizio all'oggetto
@@ -112,29 +113,3 @@ export class Esercizio extends AEsercizio implements IEsercizio {
     return this;
   }
 }
-
-type EserciziMD = {
-  nome?: string;
-  autore?: string;
-  oggetti?: string[];
-  file?: { path: string };
-};
-let EserciziMDs = getEsercizi();
-function creaBlogPost(path: string) {
-  let yaml = new ZionYaml<EserciziMD>(path);
-  let parsed = yaml.parsed;
-  let nwEsercizio = new Esercizio();
-  if (parsed.nome) nwEsercizio.nome = parsed.nome;
-  if (parsed.autore) nwEsercizio.autore = parsed.autore;
-  if (parsed.oggetti) {
-    let res = parsed.oggetti.map((oggetto) => {
-      let res = DesignPattern.designPatterns.find((dp) => dp.nome === oggetto);
-      if (res) return res;
-    });
-    res.forEach((res) => {
-      if (res) nwEsercizio.aggiungiOggetto(res);
-    });
-  }
-  if (parsed.file) nwEsercizio.file = parsed.file;
-}
-EserciziMDs.forEach(creaBlogPost);

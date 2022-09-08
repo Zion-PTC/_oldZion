@@ -66,6 +66,9 @@ interface RepoManager {
   checkDeps(npmpkg: string): string[];
 }
 
+/**
+ * Class utlizzata per gestire un monorepo.
+ */
 export class Monorepo {
   toKeep = toKeep;
   directories: Directories = { packages: {}, apps: {} };

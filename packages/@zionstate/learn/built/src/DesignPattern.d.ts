@@ -14,6 +14,8 @@ export interface IDesignPattern {
     posts: BlogPost[];
     priorità: Priorità;
     isInCheatSheet: boolean;
+    isInTSCheatSheet: boolean;
+    isInBase: boolean;
     aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
     aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
@@ -32,10 +34,12 @@ declare abstract class ADesignPattern implements IDesignPattern {
     posts: BlogPost[];
     priorità: Priorità;
     isInCheatSheet: boolean;
+    isInTSCheatSheet: boolean;
+    isInBase: boolean;
     static get designPatterns(): IDesignPattern[];
     static mostraDesignPatterns(): void;
     static mostraPatternSenzaEsempi(): typeof ADesignPattern;
-    constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean);
+    constructor(id?: number, nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean, isInTSCheatSheet?: boolean, isInBase?: boolean);
     abstract aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
     abstract aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     abstract aggiungiTutorial(tutorial: ITutorial): IDesignPattern;
@@ -53,7 +57,9 @@ export declare class DesignPattern extends ADesignPattern implements IDesignPatt
     posts: BlogPost[];
     priorità: Priorità;
     isInCheatSheet: boolean;
-    constructor(nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean);
+    isInTSCheatSheet: boolean;
+    isInBase: boolean;
+    constructor(nome?: string, categoria?: DesignPatternsCategories, sorgenti?: ISorgente[], esempi?: IEsercizio[], tutorials?: ITutorial[], posts?: BlogPost[], priorità?: Priorità, isInCheatSheet?: boolean, isInTSCheatSheet?: boolean, isInBase?: boolean);
     aggiungiSorgente(sorgente: ISorgente): this;
     aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
     aggiungiTutorial(tutorial: ITutorial): IDesignPattern;

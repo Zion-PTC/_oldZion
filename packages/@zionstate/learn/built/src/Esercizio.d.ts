@@ -27,11 +27,13 @@ export declare abstract class AEsercizio implements IEsercizio {
     abstract mostraOggetti(): IEsercizio;
 }
 export declare class Esercizio extends AEsercizio implements IEsercizio {
+    #private;
     oggetti: IDesignPattern[];
     id?: number | undefined;
     nome?: string | undefined;
     autore?: string | undefined;
     file?: IFile | undefined;
+    static get esercizi(): AEsercizio[];
     constructor(oggetti?: IDesignPattern[], id?: number | undefined, nome?: string | undefined, autore?: string | undefined, file?: IFile | undefined);
     /**
      * aggiunge anche l'esercizio all'oggetto

@@ -1,0 +1,54 @@
+// https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
+@startuml
+
+object Composition
+
+object zComposition
+zComposition *-l- Composition : owns
+
+object Sample
+object zSample
+zSample *-l- Sample : owns
+
+object Recording
+Recording --> Composition : contains
+
+object zRecording
+zRecording *-l- Recording : owns
+zRecording --* zComposition : hasShares
+
+object Stem
+Stem --> Recording : contains
+Stem --> Sample : contains
+
+object zStem
+zStem *-l-Stem : owns
+zStem --* zRecording : hasShares
+
+object Master
+Master : type:721
+
+object zAlbum
+zAlbum : type:zNFT
+zAlbum : contains:721
+
+object zSingle
+zSingle : type:zNFT
+zSingle : contains:721
+
+object zVinyl
+zVinyl : type:zNFT
+zVinyl : contains:721
+
+object zMaster
+zMaster : type : zNFT
+
+object Artist
+Artist : type : zNFT
+Artist : produces : 721
+
+object ProjectDao
+ProjectDao : type : zNFT
+
+@enduml

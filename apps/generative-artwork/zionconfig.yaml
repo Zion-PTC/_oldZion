@@ -1,0 +1,73 @@
+appName: 'Generative Artwork'
+welcomeMessage: 'Welcome to '
+stopCommand: 'close'
+pages:
+  - Home:
+    type: list
+    Collections:
+      Commands:
+        - list
+        - edit
+        - remove
+        - create
+      Canvas:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Dnas:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Editions:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Rarities:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Classes:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+        Layers:
+          Commands:
+            - list
+            - edit
+            - remove
+            - create
+          Elements:
+            Commands:
+              - list
+              - edit
+              - remove
+              - create
+    Web3:
+      Collections:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Contracts:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create
+      Editions:
+        Commands:
+          - list
+          - edit
+          - remove
+          - create

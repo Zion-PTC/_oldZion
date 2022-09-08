@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cli": "NODE_DEBUG=log node built/src/ui/cli/index.js",
     "test": "mocha",
     "testGenArtMachine": "NODE_DEBUG=log nodemon test/GenerativeArtMachine.test.js",
     "testSystemEntity": "NODE_DEBUG=log nodemon test/SystemEntity.test.js",

@@ -1,6 +1,0 @@
-- filosofia
-- italiano
-- inglese
-- spagnolo
-- matematica
-- fisica

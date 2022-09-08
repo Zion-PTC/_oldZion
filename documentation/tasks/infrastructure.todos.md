@@ -1,0 +1,5 @@
+- [ ] installare mongodb
+- [ ] installare neo4j
+- [ ] installare ipfs
+- [ ] installare EVM
+- [ ] installare redis

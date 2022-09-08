@@ -1,3 +1,5 @@
+export {};
+
 enum WideColumnsDBs {
   cassandra = "cassandra",
   hBase = "hBase",

@@ -1,4 +1,4 @@
-import { multiaddr } from '../IPFSHTTP.describe.js';
+import { multiaddr } from "../IPFSHTTP.describe.js";
 
 console.log(Object.getOwnPropertyDescriptors(multiaddr));
 console.log(Object.getOwnPropertyNames(multiaddr));
@@ -9,5 +9,6 @@ export let prototype = multiaddr.prototype;
 export let fromNodeAddress = multiaddr.fromNodeAddress;
 export let isName = multiaddr.isName;
 export let isMultiadd = multiaddr.isMultiaddr;
-export let protocols = multiaddr.protocols;
+// FIXME
+// export let protocols = multiaddr.protocols;
 export let resolvers = multiaddr.resolvers;

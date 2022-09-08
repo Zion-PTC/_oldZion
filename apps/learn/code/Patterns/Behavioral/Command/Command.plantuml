@@ -17,7 +17,7 @@ together {
   class Invoker {
     - commands:{[id:string]:ICommand}
     + register(string, ICommnad):void
-    + exectute(string):void
+    + execute(string):void
   }
   interface ICommand {
     + execute():void

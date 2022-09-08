@@ -1,5 +1,3 @@
-import { ZionYaml } from "@zionrepack/yaml";
-import { getDesignPatterns } from "../lib/designPatterns.js";
 import { BlogPost } from "./BlogPosts";
 import { IEsercizio } from "./Esercizio";
 import { staticImplements } from "./Primitive.js";
@@ -89,6 +87,9 @@ export interface IDesignPattern {
   posts: BlogPost[];
   priorità: Priorità;
   isInCheatSheet: boolean;
+  isInTSCheatSheet: boolean;
+  isInBase: boolean;
+
   // metodi
   aggiungiSorgente(sorgente: ISorgente): IDesignPattern;
   aggiungiEsercizio(esempio: IEsercizio): IDesignPattern;
@@ -132,7 +133,9 @@ abstract class ADesignPattern implements IDesignPattern {
     public tutorials: ITutorial[] = [],
     public posts: BlogPost[] = [],
     public priorità: Priorità = "Bassa",
-    public isInCheatSheet: boolean = false
+    public isInCheatSheet: boolean = false,
+    public isInTSCheatSheet: boolean = false,
+    public isInBase: boolean = false
   ) {
     ADesignPattern.#designPatterns.push(this);
     this.id = ADesignPattern.#designPatterns.length;
@@ -159,7 +162,9 @@ export class DesignPattern extends ADesignPattern implements IDesignPattern {
     public tutorials: ITutorial[] = [],
     public posts: BlogPost[] = [],
     public priorità: Priorità = "Bassa",
-    public isInCheatSheet: boolean = false
+    public isInCheatSheet: boolean = false,
+    public isInTSCheatSheet: boolean = false,
+    public isInBase: boolean = false
   ) {
     super();
   }
@@ -220,20 +225,3 @@ export class DesignPattern extends ADesignPattern implements IDesignPattern {
     if (!sorgente.link) this.push(sorgente.titolo);
   };
 }
-
-type DesignPatternMD = {
-  nome?: string;
-  categoria?: DesignPatternsCategories;
-  isInCheatSheet?: boolean;
-};
-const designPattersMds = getDesignPatterns();
-function creaDesignPatternFromMd(path: string) {
-  let yaml = new ZionYaml<DesignPatternMD>(path);
-  let parsed = yaml.parsed;
-  let nwDesignPattern = new DesignPattern();
-  if (parsed.nome) nwDesignPattern.nome = parsed.nome;
-  if (parsed.categoria) nwDesignPattern.categoria = parsed.categoria;
-  if (parsed.isInCheatSheet)
-    nwDesignPattern.isInCheatSheet = parsed.isInCheatSheet;
-}
-designPattersMds.forEach(creaDesignPatternFromMd);

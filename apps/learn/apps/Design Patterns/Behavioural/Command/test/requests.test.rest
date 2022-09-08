@@ -1,0 +1,38 @@
+GET http://localhost:3000/currentValue
+
+###
+
+POST http://localhost:3000/add
+Content-Type: application/json
+
+{
+  "value": 10
+}
+###
+
+POST http://localhost:3000/sub
+Content-Type: application/json
+
+{
+  "value": 1
+}
+###
+
+POST http://localhost:3000/mul
+Content-Type: application/json
+
+{
+  "value": 10
+}
+###
+
+POST http://localhost:3000/div
+Content-Type: application/json
+
+{
+  "value": 10
+}
+
+###
+
+GET http://localhost:3000/undo

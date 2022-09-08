@@ -4,6 +4,8 @@ import { ColorPalette } from "@zionstate/colors";
 import { hslToHex } from "@zionstate/colors";
 import { types } from "@zionstate/base";
 
+console.log(chalkPipe("bold.white.bgYellow")("Called Inquirer"));
+
 type Flatten<T> = types.flatteners.FlattenInterface<T>;
 
 const boldWhite = chalkPipe("white.bold");

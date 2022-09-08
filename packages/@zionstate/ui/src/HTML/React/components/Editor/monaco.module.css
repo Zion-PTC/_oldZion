@@ -1,0 +1,25 @@
+.editorContainer {
+  width: 100%;
+  border: 1px solid;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'x x''a b';
+}
+
+.editor {
+  grid-area: a;
+}
+
+.console {
+  width: auto;
+  grid-area: b;
+}
+
+.frame {
+  color: red;
+}
+
+.selection {
+  grid-area: x;
+}

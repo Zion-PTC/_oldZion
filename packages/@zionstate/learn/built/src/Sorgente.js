@@ -5,10 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var Sorgente_1;
-import { ZionYaml } from "@zionrepack/yaml";
-import { findItem } from "../lib/find.js";
-import { getSorgenti } from "../lib/sorgenti.js";
-import { DesignPattern, } from "./DesignPattern.js";
 import { staticImplements } from "./Primitive.js";
 var SorgenteEnums;
 (function (SorgenteEnums) {
@@ -168,25 +164,3 @@ Sorgente = Sorgente_1 = __decorate([
     staticImplements()
 ], Sorgente);
 export { Sorgente };
-const sorgentiPath = getSorgenti();
-function creaSorgenteFromMd(path) {
-    let yaml = new ZionYaml(path);
-    let parsed = yaml.parsed;
-    let nwSorgente = new Sorgente();
-    if (parsed.slug)
-        nwSorgente.slug = parsed.slug;
-    if (parsed.titolo)
-        nwSorgente.titolo = parsed.titolo;
-    if (parsed.autori)
-        nwSorgente.autori = parsed.autori;
-    if (parsed.type)
-        nwSorgente.type = parsed.type;
-    if (parsed.link)
-        nwSorgente.link = new URL(parsed.link);
-    if (parsed.github)
-        nwSorgente.github = new URL(parsed.github);
-    if (parsed.designPatterns)
-        findItem("nome", DesignPattern, "designPatterns", parsed, nwSorgente, "addDesignPattern");
-    return nwSorgente;
-}
-sorgentiPath.forEach(creaSorgenteFromMd);

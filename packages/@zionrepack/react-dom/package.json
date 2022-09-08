@@ -8,6 +8,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.2.0"
   }
 }

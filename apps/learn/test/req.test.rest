@@ -1,0 +1,25 @@
+GET http://localhost:5000/
+
+###
+
+GET http://localhost:5000/like
+
+###
+
+GET http://localhost:5000/tutorials
+
+###
+
+GET http://localhost:5000/esercizi
+
+###
+
+GET http://localhost:5000/design-patterns
+
+###
+
+GET http://localhost:5000/testchangefile
+
+###
+
+GET http://localhost:5000/scanner

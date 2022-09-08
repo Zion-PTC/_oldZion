@@ -1,3 +1,0 @@
-interface Singleton {
-    name: string;
-}

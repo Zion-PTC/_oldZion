@@ -4,8 +4,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ZionYaml } from "@zionrepack/yaml";
-import { getDesignPatterns } from "../lib/designPatterns.js";
 import { staticImplements } from "./Primitive.js";
 var Folders;
 (function (Folders) {
@@ -27,6 +25,8 @@ class ADesignPattern {
     posts;
     priorità;
     isInCheatSheet;
+    isInTSCheatSheet;
+    isInBase;
     static #designPatterns = [];
     static get designPatterns() {
         return ADesignPattern.#designPatterns;
@@ -54,7 +54,7 @@ class ADesignPattern {
     static #logComplete() {
         console.log("Missione Completa!");
     }
-    constructor(id = 0, nome = "Aggiungere un nome per il design pattern", categoria = "non definito", sorgenti = [], esempi = [], tutorials = [], posts = [], priorità = "Bassa", isInCheatSheet = false) {
+    constructor(id = 0, nome = "Aggiungere un nome per il design pattern", categoria = "non definito", sorgenti = [], esempi = [], tutorials = [], posts = [], priorità = "Bassa", isInCheatSheet = false, isInTSCheatSheet = false, isInBase = false) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -64,6 +64,8 @@ class ADesignPattern {
         this.posts = posts;
         this.priorità = priorità;
         this.isInCheatSheet = isInCheatSheet;
+        this.isInTSCheatSheet = isInTSCheatSheet;
+        this.isInBase = isInBase;
         ADesignPattern.#designPatterns.push(this);
         this.id = ADesignPattern.#designPatterns.length;
     }
@@ -77,11 +79,13 @@ let DesignPattern = class DesignPattern extends ADesignPattern {
     posts;
     priorità;
     isInCheatSheet;
+    isInTSCheatSheet;
+    isInBase;
     // static #designPatterns: DesignPattern[] = [];
     // static get designPattern() {
     //   return this.#designPatterns;
     // }
-    constructor(nome = "Aggiungere un nome per il design pattern", categoria = "non definito", sorgenti = [], esempi = [], tutorials = [], posts = [], priorità = "Bassa", isInCheatSheet = false) {
+    constructor(nome = "Aggiungere un nome per il design pattern", categoria = "non definito", sorgenti = [], esempi = [], tutorials = [], posts = [], priorità = "Bassa", isInCheatSheet = false, isInTSCheatSheet = false, isInBase = false) {
         super();
         this.nome = nome;
         this.categoria = categoria;
@@ -91,6 +95,8 @@ let DesignPattern = class DesignPattern extends ADesignPattern {
         this.posts = posts;
         this.priorità = priorità;
         this.isInCheatSheet = isInCheatSheet;
+        this.isInTSCheatSheet = isInTSCheatSheet;
+        this.isInBase = isInBase;
     }
     aggiungiSorgente(sorgente) {
         this.sorgenti.push(sorgente);
@@ -156,16 +162,3 @@ DesignPattern = __decorate([
     staticImplements()
 ], DesignPattern);
 export { DesignPattern };
-const designPattersMds = getDesignPatterns();
-function creaDesignPatternFromMd(path) {
-    let yaml = new ZionYaml(path);
-    let parsed = yaml.parsed;
-    let nwDesignPattern = new DesignPattern();
-    if (parsed.nome)
-        nwDesignPattern.nome = parsed.nome;
-    if (parsed.categoria)
-        nwDesignPattern.categoria = parsed.categoria;
-    if (parsed.isInCheatSheet)
-        nwDesignPattern.isInCheatSheet = parsed.isInCheatSheet;
-}
-designPattersMds.forEach(creaDesignPatternFromMd);

@@ -7,6 +7,7 @@
 /tasks
 kubernetes
 apps/prova-express
+apps/prova-next
 
 # dependencies
 /node_modules
@@ -161,3 +162,4 @@ dist
 
 # TernJS port file
 .tern-port
+.parcel-cache

@@ -15,6 +15,8 @@
     "@audius/hedgehog": "^1.0.12",
     "@audius/sdk": "^0.0.10",
     "@zionstate/web3": "*",
+    "bcrypt": "^5.0.1",
+    "express": "^4.18.1",
     "openid-client": "^5.1.8",
     "passport": "^0.6.0",
     "passport-apple": "^2.0.1",

@@ -37,6 +37,7 @@ export interface IUtils {
   subtractArrays(arr1: string[], arr2: string[]): string[];
   // STRINGS
   splitAt(string: string, symbol: string): string[];
+  upperCaseFirst(string: string): string;
   // SORTING
   sortDescending<T>(a: T[], b: T[], index: number): number | undefined;
   // CALLBACK
@@ -71,6 +72,7 @@ class Utils implements IUtils {
   subtractArrays = subtractArrays;
   // strings
   splitAt = splitAt;
+  upperCaseFirst = upperCaseFirst;
   // sorting
   sortDescending = sortDescending;
   // callback
@@ -422,6 +424,9 @@ function convertDecimalToFracionString(decimale: number): string {
 export function splitAt(string: string, symbol: string) {
   return string.split(symbol).filter(emptyString);
 }
+
+export const upperCaseFirst = (string: string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
 
 export class BOOOOBOOO {}
 export let CHOOOOOOO = "oooo";

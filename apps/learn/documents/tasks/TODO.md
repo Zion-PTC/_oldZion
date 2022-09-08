@@ -2,7 +2,7 @@
 
 ## General
 
-- [ ] #2 capire come avere sempre un database pronto
+- [x] #2 capire come avere sempre un database pronto
 - [ ] fare prove mongo su kubernetes
 - [ ] aggiungere metodo a blogpost che aggiunga il path base
       dell'URL alla lista di sorgenti
@@ -14,8 +14,7 @@
 
 - [ ] capire come funziona ganntlab
   - capire se si puo interagire con .git
-- [ ] trovare modo di fare uml
-- [ ] #1 trovare un modo per fare UML
+- [x] trovare modo di fare uml (plant-uml)
 
 ## Creare algoritmo DFS/BFS che possa accettare callbacks
 
@@ -31,7 +30,7 @@
 ## Telegram
 
 - webhook
-- mini-apps
+- [x] mini-apps
 
 ## Parcel
 
@@ -72,7 +71,8 @@
 
 ## Javascript
 
-- [ ] capire come fare per vedere i getter nel log
+- [x] capire come fare per vedere i getter nel log
+      non si puo
 
 ## Typescript
 
@@ -84,12 +84,12 @@
   - [ ] riprodurre esempi
     - [x] [Good, Bad, Evil]("https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/")
   - [ ] riportare i risultati nel blogpost
-  - [ ] creare gists con codici utili
+  - [x] creare gists con codici utili
   - [ ] fare esempi esempi
     - [ ] Do factory
     - [ ] carlillo
   - [ ] creare una documentazione .md da postare sul blog
-- [ ] capire come funzionano interfacce TS
+- [x] capire come funzionano interfacce TS
 - [ ] capire come usare overload
 - [ ] #10 TS decorator per static interfaces
 
@@ -99,8 +99,8 @@
 
 ## Next.js
 
-- [ ] ricostruire il tutorial
-- [ ] continuare con il tutorial
+- [x] ricostruire il tutorial
+- [x] continuare con il tutorial
 
 ## Solidity
 

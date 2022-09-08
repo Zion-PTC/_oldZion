@@ -5,8 +5,7 @@ class TrafficLight {
 
     this.change = function (state) {
       // limits number of changes
-      if (count++ >= 10)
-        return;
+      if (count++ >= 10) return;
       currentState = state;
       currentState.go();
     };
@@ -51,7 +50,8 @@ class Green {
 }
 
 function run() {
-
   var light = new TrafficLight();
   light.start();
 }
+
+run();

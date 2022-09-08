@@ -1,0 +1,232 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Giacomo_GG_Gagliano
+
+//@version=5
+indicator("Brain Script", overlay=true)
+
+var counter = -1
+counter += 1
+
+var highthrsld = 60
+var lowthrsld = 44
+
+var float ATH = 0
+var ATHindex = 0
+if (high > ATH)
+    ATH := high
+    ATHindex := counter
+    
+var float ATL = low
+var ATLindex = 0
+if (low < ATL)
+    ATL := low
+    ATLindex := counter
+    
+var float MAXVOL = volume
+var MVindex = 0
+if (volume > MAXVOL)
+    MAXVOL := volume
+    MVindex := counter
+    
+var float MINVOL = volume
+if (volume < MINVOL)
+    MINVOL := volume
+
+var somvol = 0
+hasRaised = false
+offset = 1
+if(volume > volume[1])
+    hasRaised := true
+if(hasRaised)
+    somvol += offset
+if(hasRaised == false)
+    somvol -= offset
+volcurve = (somvol+10) * 4000
+    
+subtract(a, b) => a - b
+
+float DELTA = MAXVOL - MINVOL
+
+
+scale(x, coeff, offset) => coeff*x + offset
+    
+scalegreen(x)=> (-x +100)*1.6
+scaledgreen = scalegreen(ta.rsi(close,14))
+scalered(x)=> x*1.6
+
+
+float redtransp = 75
+redtransp := scalered(ta.rsi(close,14))
+float greentransp = 75
+greentransp := scaledgreen
+bg = color.rgb(128,0,0,100)
+red = color.rgb(128,0,0,redtransp)
+green = color.rgb(0,128,0,greentransp)
+
+toggle(arg) =>
+    if (arg)
+        false
+    else
+        true
+
+isBullMarket(rsi) => rsi >50
+
+status = ta.rsi(close,14)
+prevstatus = ta.rsi(close[1],14)
+
+curr = isBullMarket(status)
+
+bgcond = curr
+
+if (bgcond)
+    bg := green
+if (bgcond == false)
+    bg := red
+
+bgcolor(bg)
+
+ema28 = ta.ema(close,28)
+ema133 = ta.ema(close,133)
+ema377 = ta.ema(close,377)
+linewidth=2
+overbought = false
+obshape = shape.triangledown
+oversold= false
+osshape = shape.triangleup
+shape = shape.xcross
+
+if(status > highthrsld)
+    overbought :=true
+    shape := shape.triangledown
+if(status < lowthrsld)
+    oversold := true
+    shape := shape.triangleup
+
+float ematransp = 0
+cond = (overbought or oversold)
+
+candletransp = ((volume / MAXVOL)*100 * -1) +100
+
+candlecolor = color.blue
+candlewicknborder = color.blue
+if (close > open)
+    candlecolor := color.rgb(0,180,96, candletransp)
+    candlewicknborder := color.rgb(0,180,96)
+if (close < open)
+    candlecolor := color.rgb(223,76,76, candletransp)
+    candlewicknborder := color.rgb(223,76,76)
+
+
+/////////
+/////////
+/////////
+detectedValue = close
+
+rsi(_value) =>
+    ta.rsi(_value,14)
+
+log(bar,mess) =>
+    label.new(bar,high[bar_index-bar],mess)
+
+isBull = rsi(close) > 50
+isPrevBull = rsi(close[1]) > 50
+isBear = rsi(close) < 50
+isPrevBear = rsi(close[1]) < 50
+isUpPivot = (isPrevBear and isBull)
+isDownPivot = (isPrevBull and isBear)
+isPivot = (isUpPivot or isDownPivot)
+isRSI = (isBull or isBear)
+
+// if short enought, this one sets the index for the first
+// bar and the value to be read
+var xstart = 0
+var ystart = open
+
+// Reports
+var int[] pivotsId = array.new_int()
+var int[] bullATHid = array.new_int()
+var int[] bearATLid = array.new_int()
+
+// Defaults of local values
+var defaultLocalATH = 0
+var defaultLocalATL = 10000000
+var defaultLocalId = bar_index
+
+// Local values, reset at each new pivot point
+var float localATH = defaultLocalATH
+var int localATHid = defaultLocalId
+var float localATL = defaultLocalATL
+var int localATLid = defaultLocalId
+
+// initialize isBullFirst, checks if the first period with an
+// RSI value is a bull or a bear
+var isBullFirst = false
+if(bar_index == 14)
+    isBullFirst := isBull ? true : false
+
+pushValue(_localATLid) =>
+    target = isBull ? bearATLid : bullATHid
+    array.push(target, _localATLid)
+    x2 = _localATLid
+    y2 = detectedValue
+    size = array.size(bearATLid)
+    size == 0 ? na : size - 1
+
+drawTrend(_id) =>
+    coeff = 0
+    array1 = isBull ? bullATHid : bearATLid
+    array2 = isBull ? bearATLid : bullATHid
+    bullCoeff = not isBullFirst ? 1 : 0
+    bearCoeff = isBullFirst ? 1 : 0
+    coeff := isBull ? bullCoeff : bearCoeff
+    idx = isBull ? _id - coeff : _id
+    idy = isBull ? _id : _id + coeff
+    int x1 = 0
+    float y1 = 0
+    int x2 = 0
+    float y2 = 0
+    if(array.size(array1) != 0)
+        x1 := array.get(array1, idx)
+    y1 := close[bar_index-x1]
+    x2 := array.get(array2, idy)
+    y2 := close[bar_index-x2]
+        // draw
+    line.new(x1,y1,x2,y2,width=2,color=color.purple)
+
+
+if(isPivot)
+    array.push(pivotsId,bar_index)
+    if(isBull)
+        // load new localATL
+        id = pushValue(localATLid)
+        drawTrend(id)
+        // reset
+        localATL := defaultLocalATL
+        localATLid := defaultLocalId
+    if(isBear)
+        // load new localATL
+        id = pushValue(localATHid)
+        drawTrend(id)
+        // reset
+        localATH := defaultLocalATH
+        localATHid := defaultLocalId
+
+if(isRSI)
+    if(isBull)
+        if(close > localATH)
+            localATH := close
+            localATHid := bar_index
+    if(isBear)
+        if(close < localATL)
+            localATL := close
+            localATLid := bar_index
+////////
+////////
+////////
+
+plot(ema28,'ema28', color.rgb(255,255,0, ematransp), linewidth=linewidth)
+plot(ema133,'ema133', color.rgb(0,255,0, ematransp), linewidth=linewidth)
+plot(ema377,'ema377', color.rgb(0,128,255, ematransp), linewidth=linewidth)
+plotcandle(open,high,low,close,'Price', color=candlecolor, bordercolor=candlewicknborder, wickcolor=candlewicknborder)
+plotshape(overbought, 'Sell Signal', style=obshape, color=color.rgb(255,0,0,50),location=location.abovebar)
+plotshape(oversold, 'Buy Signal', style=osshape, color=color.rgb(0,255,0,50),location=location.belowbar)

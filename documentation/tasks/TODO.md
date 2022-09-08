@@ -1,5 +1,7 @@
 # General
 
+- [ ] mettere tutti i to do insieme
+
 ## Packages
 
 - [x] controllare quali packages vanno effettivamente estesi e

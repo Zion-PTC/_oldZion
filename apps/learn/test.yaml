@@ -1,0 +1,32 @@
+prova: ciao
+numero: 000
+booleano: true
+array:
+  - prova
+  - ancora
+arrayDiArray:
+  - 
+    - ciao
+    - ancora
+  -
+    - e ancora
+    - ciao
+object:
+  data: ciao
+objectInObject:
+  object:
+    data: ciao
+  array:
+    - uno
+    - due
+arrayWObj:
+  - element
+  - data: 1
+arrayWobjwobj:
+  - element
+  - obj1:
+      data: 1
+      string: sdf
+    obj2:
+      - array
+      - array

@@ -22,9 +22,9 @@ export class Mix<MixedInterfaces> {
   with(...mixins: ComplexMixin<any>[]): GCtor<MixedInterfaces> {
     let counter = -1;
     mixins.forEach((mixin, index) => {
-      this.superclass = class extends (
-        mixin<typeof this.superclass>(this.superclass, index)
-      ) {};
+      this.superclass = class
+        extends //@ts-ignore
+        mixin<typeof this.superclass>(this.superclass, index) {};
     });
     for (let mixin of mixins) {
       counter++;

@@ -1,21 +1,25 @@
 const STOPCOMMAND = "close";
-const WELCOMEMESSAGE = "welcome";
-const defaultConfig = {
+const APPNAME = "App";
+const WELCOMEMESSAGE = `Welcome to `;
+export const defaultConfig = {
+    appName: "The Coolest App",
     welcomeMessage: WELCOMEMESSAGE,
     stopcommand: STOPCOMMAND,
 };
 export class TerminalConfig {
     static #config;
-    constructor(config = defaultConfig) {
+    constructor(config) {
         let instance = TerminalConfig.#config;
         this.getInstance = function () {
-            if (!instance && config)
-                instance = this.createInstance(config);
+            if (!instance && config) {
+                instance = this.#createInstance(config);
+            }
             return instance;
         };
     }
-    createInstance(config) {
-        TerminalConfig.#config = new Object(config);
+    #createInstance(config) {
+        let newconfig = defaultConfig;
+        TerminalConfig.#config = newconfig;
         return TerminalConfig.#config;
     }
 }

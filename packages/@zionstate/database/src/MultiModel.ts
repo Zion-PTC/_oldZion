@@ -1,3 +1,4 @@
+export {};
 enum MultiModelDBs {
   faunaDB = "faunaDB",
 }

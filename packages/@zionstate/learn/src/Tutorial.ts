@@ -1,11 +1,7 @@
-import { IDesignPattern, DesignPattern } from "./DesignPattern.js";
-import { Sorgente } from "./Sorgente.js";
+import { IDesignPattern } from "./DesignPattern.js";
 import { ISorgente } from "./Sorgente";
 import { IFile } from "./File";
-import { getTutorials } from "../lib/tutorials.js";
-import { ZionYaml } from "@zionrepack/yaml";
 import { staticImplements } from "./Primitive.js";
-import { findItem } from "../lib/find.js";
 
 enum TutorialEnums {
   youTube = "You Tube",
@@ -151,48 +147,3 @@ export class Tutorial extends ATutorial {
     return this;
   }
 }
-
-type TutorialMD = {
-  titolo?: string;
-  links?: string[];
-  type?: TutorialTypes;
-  designPattern?: string;
-  slug?: string;
-  annotazioni?: string[];
-  github?: string;
-  file?: { path: string };
-};
-const tutorialsPath = getTutorials();
-function creaTutorial(path: string) {
-  let yaml = new ZionYaml<TutorialMD>(path);
-  let parsed = yaml.parsed;
-  let nwTutorial = new Tutorial();
-  if (parsed.titolo) nwTutorial.titolo = parsed.titolo;
-  if (parsed.links) nwTutorial.links = parsed.links;
-  if (parsed.type) nwTutorial.type = parsed.type;
-  if (parsed.designPattern) {
-    findItem<typeof DesignPattern, IDesignPattern, TutorialMD, Tutorial>(
-      "nome",
-      DesignPattern,
-      "designPatterns",
-      parsed,
-      nwTutorial,
-      "aggiungiOggetto",
-      "designPattern"
-    );
-  }
-  if (parsed.slug) {
-    let res: ISorgente | undefined = Sorgente.sorgenti.find(
-      (sorgente) => sorgente.slug === parsed.slug
-    );
-    if (res) nwTutorial.aggiungiSorgente(res);
-  }
-  if (parsed.annotazioni) nwTutorial.annotazioni.push(...parsed.annotazioni);
-  if (parsed.github) nwTutorial.github = parsed.github;
-  if (parsed.file) nwTutorial.file = parsed.file;
-
-  // nwTutorial.links = parsed.additionalPaths;
-
-  return nwTutorial;
-}
-export let tutoPath = tutorialsPath.map(creaTutorial);

@@ -1,13 +1,10 @@
-"use strict";
-// import { Terminal } from "@zionstate/terminal";
-// const rl = Terminal.readline;
-// const itfc = rl.createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-//   terminal: false,
-// });
-// itfc.on("line", stop);
-// function stop(input: string) {
-//   const cond1 = input === "close";
-//   if (cond1) itfc.close();
-// }
+import { Terminal } from "@zionstate/terminal";
+const terminal = new Terminal({ appName: "Generative Artwork" });
+terminal.start();
+let res;
+try {
+    res = await terminal.prompt({ message: "test", name: "test" });
+}
+catch (error) {
+    console.log(error);
+}

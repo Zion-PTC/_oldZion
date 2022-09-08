@@ -1,4 +1,4 @@
-import { ZionYaml } from "@zionrepack/yaml";
+import { ZionYaml } from "@zionstate/system";
 import { getBlogPosts } from "../lib/blogPosts.js";
 import { DesignPattern, IDesignPattern } from "./DesignPattern.js";
 import { staticImplements } from "./Primitive.js";

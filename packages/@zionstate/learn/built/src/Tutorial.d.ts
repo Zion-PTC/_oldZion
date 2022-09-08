@@ -57,5 +57,4 @@ export declare class Tutorial extends ATutorial {
     aggiungiOggetto(oggetto: IDesignPattern): ITutorial;
     aggiungiAnnotazione(annotazione: string): ITutorial;
 }
-export declare let tutoPath: Tutorial[];
 export {};

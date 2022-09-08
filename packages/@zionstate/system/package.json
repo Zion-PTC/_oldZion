@@ -16,8 +16,16 @@
     "chokidar": "^3.5.3",
     "yaml": "2.1.1",
     "csv-parse": "^5.2.0",
+    "@zionstate_js/error": "*",
+    "@zionstate_js/regexp": "*",
+    "@zionstate_js/url": "*",
+    "@zionstate_node/crypto": "*",
+    "@zionstate_node/emitter": "*",
+    "@zionstate_node/fs": "*",
+    "@zionstate_node/fs-utilities": "*",
+    "@zionstate_node/process": "*",
+    "@zionstate_node/zion-util": "*",
     "@zionstate/system": "*",
-    "@zionstate/test-suite-1": "*",
-    "@zionstate_js/error": "*"
+    "@zionstate/test-suite-1": "*"
   }
 }

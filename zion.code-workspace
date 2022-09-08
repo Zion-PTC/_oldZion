@@ -23,6 +23,18 @@
     },
     {
       "path": "packages/@zionstate/database"
+    },
+    {
+      "path": "packages/@zionstate/auth"
+    },
+    {
+      "path": "packages/@zionstate/bot"
+    },
+    {
+      "path": "packages/@zionstate_node/node-fetch"
+    },
+    {
+      "path": "packages/@zionstate_js/fetch-api"
     }
   ],
   "settings": {}

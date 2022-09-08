@@ -1,0 +1,128 @@
+@startuml
+
+package Non-User {
+  object Non_User_Producer
+}
+
+package User {
+  object Label
+  object Producer
+  object Arranger
+  object Composer
+  object Author
+  Composer -r[hidden]- Author
+}
+
+package Marketplace {
+  object TokenShop
+}
+
+package Supplier {
+  object PressPlant
+  object VinylCutStudio
+  object ElectroPlatingPlant
+  object Courier
+  object Node
+}
+
+package Product {
+  together Vinyl {
+    object Lacquer #wheat
+    object Mold #wheat
+    object Presser #wheat
+    object Copies #wheat
+    Lacquer *-- Mold : fabricates
+    Mold *-- Presser : fabricates
+    Presser *-- Copies : fabricates
+
+    object Vinyl #lightblue
+    object zVinyl #tan
+    zVinyl *-l- Vinyl : owns
+    zVinyl : type : erc1155
+    zVinyl : governance : true
+    zVinyl : id0 : AccessToken
+    zVinyl : id1 : Lacquer
+    zVinyl : id2 : Presser
+    zVinyl : >id3 : CopiesIds
+    zVinyl *-- Lacquer : owns
+  }
+
+  together {
+    object Single #lightblue
+    object zSingle
+    zSingle *-r- Single : owns
+    zSingle : type : zNFT
+    zSingle : ul : Single
+  }
+
+  together {
+    object Album #lightblue
+    object zAlbum
+    zAlbum *-r- Album : owns
+    zAlbum : licence : 
+  }
+}
+
+package Audio {
+  object Master #lightblue
+  object zMaster
+  zMaster : type : zNFT
+  zMaster : ul : Master
+  zMaster -r- Master
+
+  object Stem #lightblue
+
+  object zStem
+  zStem -r- Stem
+  zStem *-u- zMaster : hasShares
+
+  together zRec {
+    object Recording #lightblue
+    object zRecording
+    zRecording *-r- Recording : owns
+    zRecording *-u- zStem : hasShares
+  }
+
+  together zSamp {
+    object Sample #lightblue
+    object zSample
+    zSample *-r- Sample : owns
+    zSample *-u- zStem : hasShares
+  }
+
+  together zComp {
+    object Composition #lightblue
+    object zComposition
+    zComposition *-r- Composition : owns
+    zComposition *-u- zRecording : hasShares
+  }
+
+  together zLyr {
+    object Lyrics #lightblue
+    object zLyrics
+    zLyrics *-r- Lyrics : owns
+    zLyrics *-u- zRecording : hasShares
+  }
+}
+
+Producer -- Master : creates
+Producer -- Stem : creates
+Producer -- Recording : creates
+Author -- Lyrics : creates
+Arranger -- Composition
+Composer -- Composition
+Label -- Album : creates
+Label -- Single : creates
+Label -- Vinyl : creates
+Non_User_Producer -- Sample : creates
+VinylCutStudio -- Lacquer : fabricates
+ElectroPlatingPlant -- Mold : fabricates
+ElectroPlatingPlant -- Presser : fabricates
+PressPlant -- Copies : fabricates
+Courier -- Lacquer : transports
+Courier -- Mold : transports
+Courier -- Presser : transports
+Courier -- Copies : transports
+Node -- Copies : hosts/owns
+
+@enduml

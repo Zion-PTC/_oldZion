@@ -4,12 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { DesignPattern } from "./DesignPattern.js";
-import { Sorgente } from "./Sorgente.js";
-import { getTutorials } from "../lib/tutorials.js";
-import { ZionYaml } from "@zionrepack/yaml";
 import { staticImplements } from "./Primitive.js";
-import { findItem } from "../lib/find.js";
 var TutorialEnums;
 (function (TutorialEnums) {
     TutorialEnums["youTube"] = "You Tube";
@@ -131,32 +126,3 @@ Tutorial = __decorate([
     staticImplements()
 ], Tutorial);
 export { Tutorial };
-const tutorialsPath = getTutorials();
-function creaTutorial(path) {
-    let yaml = new ZionYaml(path);
-    let parsed = yaml.parsed;
-    let nwTutorial = new Tutorial();
-    if (parsed.titolo)
-        nwTutorial.titolo = parsed.titolo;
-    if (parsed.links)
-        nwTutorial.links = parsed.links;
-    if (parsed.type)
-        nwTutorial.type = parsed.type;
-    if (parsed.designPattern) {
-        findItem("nome", DesignPattern, "designPatterns", parsed, nwTutorial, "aggiungiOggetto", "designPattern");
-    }
-    if (parsed.slug) {
-        let res = Sorgente.sorgenti.find((sorgente) => sorgente.slug === parsed.slug);
-        if (res)
-            nwTutorial.aggiungiSorgente(res);
-    }
-    if (parsed.annotazioni)
-        nwTutorial.annotazioni.push(...parsed.annotazioni);
-    if (parsed.github)
-        nwTutorial.github = parsed.github;
-    if (parsed.file)
-        nwTutorial.file = parsed.file;
-    // nwTutorial.links = parsed.additionalPaths;
-    return nwTutorial;
-}
-export let tutoPath = tutorialsPath.map(creaTutorial);

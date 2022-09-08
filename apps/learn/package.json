@@ -1,18 +1,38 @@
 {
-  "name": "node",
-  "workspaces": [
-    "../ZION/packages/"
-  ],
+  "name": "@zionapps/learn",
   "scripts": {
-    "test": "nodemon ./test/init.js",
-    "testTutorial": "NODE_DEBUG=log nodemon ./test/Tutorial.test.js",
-    "testLibTutorials": "NODE_DEBUG=log nodemon ./test/tutorials.test.js",
-    "tsc": "tsc"
+    "dev": "nodemon app.js | next dev"
   },
   "version": "0.0.89",
   "description": "",
   "main": "index.js",
   "author": "Gagliano Giacomo",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zionstate_js/error": "*",
+    "@zionstate_js/regexp": "*",
+    "@zionstate_js/url": "*",
+    "@zionstate_node/crypto": "*",
+    "@zionstate_node/emitter": "*",
+    "@zionstate_node/fs": "*",
+    "@zionstate_node/fs-utilities": "*",
+    "@zionstate_node/process": "*",
+    "@zionstate_node/zion-util": "*",
+    "@zionstate/database": "*",
+    "@zionstate/learn": "*",
+    "@zionstate/system": "*",
+    "@zionstate/test-suite-1": "*",
+    "@zionstate/ui": "*",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.2",
+    "next": "^12.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7"
+  }
 }

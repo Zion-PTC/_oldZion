@@ -1,0 +1,55 @@
+behavioral CCIIMMOSSTV
+  chain
+  command
+  interpreter
+  iterator
+  mediator
+  memento
+  observer
+  state
+  strategy
+  template
+  visitor
+
+creational ABFPS
+  abstract factory
+  builder
+  factory
+  prototype
+  singleton
+
+structural ABCDFFP
+  adapter
+  bridge
+  composite
+  decorator
+  facade
+  flyweight
+  proxy
+
+            esercizi      cheatsheet.js     cheatsheet.ts   base
+chain
+command     [x]           [x]               [x]             [x]
+interpreter [x]           [x]               [x]             [x]
+iterator    [x]           [x]
+memento     [x]           [x]
+observer    [x]           [x]
+state       [x]           [x]
+strategy    [x]           [x]
+template    [x]           [x]
+visitor     [x]           [x]
+
+abstract    [x]           [x]
+builder     [x]           [x]
+prototype   [x]           [x]
+factory     [x]           [x]
+prototype   [x]           [x]
+singleton   [x]           [x]
+
+adapter     [x]           [x]
+bridge      [x]           [x]
+composite   [x]           [x]
+decorator   [x]           [x]
+facade      [x]           [x]
+flyweight   [x]           [x]
+proxy       [x]           [x]

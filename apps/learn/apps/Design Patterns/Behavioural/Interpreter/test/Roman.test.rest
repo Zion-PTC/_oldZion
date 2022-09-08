@@ -1,0 +1,13 @@
+POST http://localhost:3000/romantonumber
+Content-Type: application/json
+
+{
+  "value" : "MCMLXXXI"
+}
+###
+POST http://localhost:3000/numbertoroman
+Content-Type: application/json
+
+{
+  "value" : 9999
+}

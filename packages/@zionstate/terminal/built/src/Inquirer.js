@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import chalkPipe from "chalk-pipe";
 import { ColorPalette } from "@zionstate/colors";
 import { hslToHex } from "@zionstate/colors";
+console.log(chalkPipe("bold.white.bgYellow")("Called Inquirer"));
 const boldWhite = chalkPipe("white.bold");
 const color1 = "#D4DDD5";
 const color2 = "#8071B7";

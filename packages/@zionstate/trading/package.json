@@ -1,0 +1,28 @@
+{
+  "name": "@zionstate/trading",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "nodemon ./test/test.js"
+  },
+  "dependencies": {
+    "@zionstate_js/error": "*",
+    "@zionstate_js/regexp": "*",
+    "@zionstate_js/url": "*",
+    "@zionstate_node/crypto": "*",
+    "@zionstate_node/emitter": "*",
+    "@zionstate_node/fs": "*",
+    "@zionstate_node/fs-utilities": "*",
+    "@zionstate_node/process": "*",
+    "@zionstate_node/zion-util": "*",
+    "@zionstate/system": "*",
+    "@zionstate/test-suite-1": "*",
+    "lightweight-charts": "^3.8.0"
+  }
+}

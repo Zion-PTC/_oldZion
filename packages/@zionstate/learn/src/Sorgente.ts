@@ -1,28 +1,6 @@
-import { ZionYaml } from "@zionrepack/yaml";
-import { findItem } from "../lib/find.js";
-import { getSorgenti } from "../lib/sorgenti.js";
-import {
-  DesignPattern,
-  DesignPatternsCategories,
-  IDesignPattern,
-} from "./DesignPattern.js";
+import { DesignPatternsCategories, IDesignPattern } from "./DesignPattern.js";
 import { staticImplements } from "./Primitive.js";
 import { ITutorial } from "./Tutorial";
-// /// <reference path='../Namespaces/Knowledge.ts'/>
-// type ITutorial = Knowledge.ITutorial;
-// type ISorgente = Knowledge.ISorgente;
-// type IDesignPattern = Knowledge.IDesignPattern;
-// type DesignPatternsCategories = Knowledge.DesignPatternsCategories;
-// type IStaticSorgente = Knowledge.IStaticSorgente;
-// /// <reference path='../Namespaces/Knowledge.ts'/>
-// type ISorgente = Knowledge.ISorgente;
-// type IStaticSorgente = Knowledge.IStaticSorgente;
-
-// function staticImplements<T>() {
-//   return <U extends T>(constructor: U) => {
-//     constructor;
-//   };
-// }
 
 type Tipo = "libro" | "blog" | "coder";
 enum SorgenteEnums {
@@ -244,36 +222,3 @@ export class Sorgente extends ASorgente implements ISorgente {
     if (pattern.id === this.id) return pattern;
   }
 }
-
-type SorgentiMD = {
-  slug?: string;
-  titolo?: string;
-  autori?: string[];
-  type?: SorgenteTypes;
-  link?: string;
-  designPatterns?: string[];
-  github?: string;
-};
-const sorgentiPath = getSorgenti();
-function creaSorgenteFromMd(path: string) {
-  let yaml = new ZionYaml<SorgentiMD>(path);
-  let parsed = yaml.parsed;
-  let nwSorgente = new Sorgente();
-  if (parsed.slug) nwSorgente.slug = parsed.slug;
-  if (parsed.titolo) nwSorgente.titolo = parsed.titolo;
-  if (parsed.autori) nwSorgente.autori = parsed.autori;
-  if (parsed.type) nwSorgente.type = parsed.type;
-  if (parsed.link) nwSorgente.link = new URL(parsed.link);
-  if (parsed.github) nwSorgente.github = new URL(parsed.github);
-  if (parsed.designPatterns)
-    findItem<typeof DesignPattern, IDesignPattern, SorgentiMD, Sorgente>(
-      "nome",
-      DesignPattern,
-      "designPatterns",
-      parsed,
-      nwSorgente,
-      "addDesignPattern"
-    );
-  return nwSorgente;
-}
-sorgentiPath.forEach(creaSorgenteFromMd);

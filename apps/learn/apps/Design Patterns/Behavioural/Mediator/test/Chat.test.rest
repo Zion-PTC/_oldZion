@@ -1,0 +1,26 @@
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "nome": "Ari"
+}
+
+###
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "nome": "John"
+}
+
+###
+
+POST http://localhost:3000/send
+Content-Type: application/json
+
+{
+  "from" : "John",
+  "message" : "ciao",
+  "to" : "Ari"
+}

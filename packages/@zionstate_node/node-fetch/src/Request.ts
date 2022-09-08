@@ -1,17 +1,17 @@
-import { Agent } from 'http';
-import {
-  Blob,
-  BodyInit,
-  Headers,
-  HeadersInit,
-  Request,
-  RequestContext,
-  RequestInfo,
-  RequestInit,
-  RequestRedirect,
-} from 'node-fetch';
-import { AbortSignal } from 'node-fetch/externals';
-import { URL } from 'url';
+import { Agent } from "http";
+// import {
+//   Blob,
+//   BodyInit,
+//   Headers,
+//   HeadersInit,
+//   Request,
+//   RequestContext,
+//   RequestInfo,
+//   RequestInit,
+//   RequestRedirect,
+// } from "node-fetch";
+import { AbortSignal } from "node-fetch/externals";
+import { URL } from "url";
 
 export interface IZionRequest extends Request {}
 export interface IZionRequestInit extends RequestInit {}

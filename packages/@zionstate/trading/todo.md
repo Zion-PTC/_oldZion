@@ -1,0 +1,2 @@
+- [ ] framework per caricare lightwieght chart
+- [ ] trovare package con funzioni TA di base (RSI, EMA)
