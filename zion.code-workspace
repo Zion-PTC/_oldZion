@@ -35,6 +35,9 @@
     },
     {
       "path": "packages/@zionstate_js/fetch-api"
+    },
+    {
+      "path": "apps/social"
     }
   ],
   "settings": {}
