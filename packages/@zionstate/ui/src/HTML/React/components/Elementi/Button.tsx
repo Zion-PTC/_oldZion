@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { FlattenSimpleInterpolation } from "styled-components";
 
 interface IButton {
@@ -42,3 +43,13 @@ interface IButton {
 //   }
 //   ${(props) => props.dynamic};
 // `;
+
+const qualcosa = "";
+
+const UnComponente = styled.div<{ blue?: string }>`
+  border: ${(props) => props.blue}rem;
+`;
+
+function Loo() {
+  return <UnComponente>adsasd</UnComponente>;
+}
