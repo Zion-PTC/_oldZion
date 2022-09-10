@@ -1,41 +1,20 @@
 import Link from "next/link";
 import React from "react";
 import Layout from "../../components/layout";
-import { NftData, NftsData } from "../api/types";
+import { getStatic } from "../../lib/static/getStatic";
+import { DataByPath, NftData } from "../api/types";
 
-const URL = "http://localhost:3000/api/nfts";
+const { getStaticProps: gspr, getStaticPaths: gspt } = getStatic({
+  type: "nft",
+  hasPaths: true,
+});
 
-export async function getStaticPaths() {
-  const response = await fetch(URL);
-  const body: NftsData = await response.json();
-  let paths: StaticProps[] = [];
-  for (let key in body) paths.push({ params: { id: key } });
-  return {
-    paths,
-    fallback: false,
-  };
-}
+export const getStaticPaths = gspt;
 
-interface StaticProps {
-  params: { id: string };
-}
+export const getStaticProps = gspr;
 
-export async function getStaticProps(
-  props: StaticProps
-): Promise<{ props: { nftsData: NftsData } }> {
-  const response = await fetch(URL);
-  const body: NftsData[] = await response.json();
-  const nftsData = body[Number(props.params.id)];
-
-  return {
-    props: { nftsData },
-  };
-}
-
-const Nft: (props: { nftsData: NftData }) => JSX.Element = function ({
-  nftsData,
-}) {
-  const { name } = nftsData;
+const Nft: (props: DataByPath<NftData>) => JSX.Element = function ({ data }) {
+  const { name } = data;
 
   return (
     <Layout nft>

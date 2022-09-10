@@ -7,6 +7,8 @@ export default function Mint() {
     <Layout>
       <h1>Mint</h1>
       <Link href="/success">Confirm</Link>
+      <br />
+      <Link href="/failure">Fail</Link>
     </Layout>
   );
 }

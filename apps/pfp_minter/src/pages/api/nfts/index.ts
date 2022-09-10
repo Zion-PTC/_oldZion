@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiHandler } from "../../../lib/api/apiHanlder";
 import { NftsData } from "../types";
 
 const database: NftsData = {
@@ -11,5 +12,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<NftsData>
 ) {
-  res.status(200).json(database);
+  const handler = new NextApiHandler("ram");
+  handler.strategy(req, res, database);
 }

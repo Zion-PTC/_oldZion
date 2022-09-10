@@ -163,3 +163,4 @@ dist
 # TernJS port file
 .tern-port
 .parcel-cache
+apps/pfp_minter/.next
