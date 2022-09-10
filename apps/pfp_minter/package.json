@@ -1,0 +1,34 @@
+{
+  "name": "pfp_minter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "module": "node",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zionstate_js/error": "*",
+    "@zionstate_js/regexp": "*",
+    "@zionstate_js/url": "*",
+    "@zionstate_node/emitter": "*",
+    "@zionstate_node/fs": "*",
+    "@zionstate_node/fs-utilities": "*",
+    "@zionstate_node/process": "*",
+    "@zionstate_node/zion-util": "*",
+    "@zionstate/database": "*",
+    "@zionstate/test-suite-1": "*",
+    "@zionstate/ui": "*",
+    "dotenv": "^16.0.2",
+    "next": "^12.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7"
+  }
+}
