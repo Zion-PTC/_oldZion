@@ -1,6 +1,6 @@
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 import { useRouter } from "next/router";
 
 const HomeTitle = <title>Home</title>;
@@ -27,7 +27,7 @@ const Layout: Layout = function ({ children, home, feed, product, service }) {
       {feed ? LogOut : ""}
       {product || service ? PreviousPage() : ""}
       <main>{children}</main>
-    </>
+      </>
   );
 };
 
