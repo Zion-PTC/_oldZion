@@ -1,6 +1,7 @@
+import { StaticImageData } from "next/image";
 import styled from "styled-components";
 import { Head } from "./Sections/Head";
-import { Image } from "./Sections/Image";
+import { ImageSection } from "./Sections/Image";
 import { Infos } from "./Sections/Infos";
 import { Social } from "./Sections/Social";
 import { Portrait } from "./Shape/Portrait";
@@ -11,18 +12,19 @@ export const Area = styled(Portrait)`
 `;
 
 export const CardArea = styled.div`
-  background-color: #eeeeee;
+  background-color: #fafafa;
   height: 90%;
   width: 90%;
   display: grid;
   place-self: center;
-  grid-template-rows: 1.4fr 9fr 1fr 1.8fr;
+  grid-template-rows: 1.4fr 9fr 1.5fr 1.3fr;
 `;
 
 export type NftPfProps = {
   small?: boolean;
   normal?: boolean;
   backgroundColor?: string;
+  image: StaticImageData;
 };
 export function NftPfp(props: NftPfProps) {
   let { backgroundColor } = props;
@@ -30,7 +32,7 @@ export function NftPfp(props: NftPfProps) {
     <Area backgroundColor={backgroundColor}>
       <CardArea>
         <Head />
-        <Image />
+        <ImageSection image={props.image} />
         <Infos />
         <Social />
       </CardArea>

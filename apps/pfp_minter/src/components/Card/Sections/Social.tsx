@@ -14,7 +14,7 @@ export const Menu = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  border: 0.08rem solid;
+  border: 0.05rem solid;
   background-color: #e5e5e5;
   justify-self: end;
 `;
@@ -23,7 +23,7 @@ export const Circle = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  border: 0.08rem solid;
+  border: 0.05rem solid;
   background-color: #e5e5e5;
   justify-self: center;
 `;

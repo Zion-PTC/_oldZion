@@ -1,43 +1,64 @@
 {
   "folders": [
     {
+      "name": "ZION",
       "path": "."
     },
     {
+      "name": "git",
       "path": "packages/@zionstate/git"
     },
     {
+      "name": "system",
       "path": "packages/@zionstate/system"
     },
     {
+      "name": "terminal",
       "path": "packages/@zionstate/terminal"
     },
     {
+      "name": "base",
       "path": "packages/@zionstate/base"
     },
     {
+      "name": "error",
       "path": "packages/@zionstate_js/error"
     },
     {
-      "path": "packages/@zionstate/ui"
-    },
-    {
+      "name": "database",
       "path": "packages/@zionstate/database"
     },
     {
+      "name": "auth",
       "path": "packages/@zionstate/auth"
     },
     {
+      "name": "bot",
       "path": "packages/@zionstate/bot"
     },
     {
+      "name": "node-fetch",
       "path": "packages/@zionstate_node/node-fetch"
     },
     {
+      "name": "fetch-api",
       "path": "packages/@zionstate_js/fetch-api"
     },
     {
+      "name": "social",
       "path": "apps/social"
+    },
+    {
+      "name": "pfp_minter",
+      "path": "apps/pfp_minter"
+    },
+    {
+      "name": "ui",
+      "path": "packages/@zionstate/ui"
+    },
+    {
+      "name": "React",
+      "path": "packages/@zionstate/ui/src/HTML/React"
     }
   ],
   "settings": {}

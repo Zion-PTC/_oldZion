@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import { CardPfp, CardPfpProps } from "./CardPfp";
 
 export interface CardPfpsProps {
@@ -5,6 +6,7 @@ export interface CardPfpsProps {
   small?: boolean;
   mid?: boolean;
   big?: boolean;
+  images: StaticImageData[];
 }
 
 export interface CardPfps {

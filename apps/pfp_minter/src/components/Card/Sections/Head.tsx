@@ -16,7 +16,7 @@ export const Circle = styled.div`
   height: 60%;
   width: 60%;
   border-radius: 100%;
-  border: 0.08rem solid;
+  border: 0.05rem solid;
   background-color: #e5e5e5;
 `;
 

@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
@@ -19,6 +20,7 @@ export interface CardPfpProps {
   small?: boolean;
   mid?: boolean;
   big?: boolean;
+  images: StaticImageData[];
 }
 
 export interface CardPfp {
@@ -26,7 +28,7 @@ export interface CardPfp {
 }
 
 export const CardPfp: CardPfp = (props) => {
-  const { name, slug, small, mid, big, id } = props;
+  const { name, slug, small, mid, big, id, images } = props;
   const href = `/nft/${id}`;
   return (
     <CardStyle small={small} mid={mid} big={big}>

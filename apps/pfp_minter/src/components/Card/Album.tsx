@@ -1,6 +1,7 @@
+import { StaticImageData } from "next/image";
 import styled from "styled-components";
 import { Head } from "./Sections/Head";
-import { Image } from "./Sections/Image";
+import { ImageSection } from "./Sections/Image";
 import { Infos } from "./Sections/Infos";
 import { Social } from "./Sections/Social";
 import { Portrait } from "./Shape/Portrait";
@@ -23,6 +24,7 @@ export type AlbumProps = {
   small?: boolean;
   normal?: boolean;
   backgroundColor?: string;
+  image: StaticImageData;
 };
 export function Album(props: AlbumProps) {
   let { backgroundColor } = props;
@@ -30,7 +32,7 @@ export function Album(props: AlbumProps) {
     <Area backgroundColor={backgroundColor}>
       <CardArea>
         <Head />
-        <Image />
+        <ImageSection image={props.image} />
         <Infos collection="CBBBB" id="#10" creator="THE RIPPER" />
         <Social />
       </CardArea>

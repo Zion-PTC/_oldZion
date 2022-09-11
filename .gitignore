@@ -8,6 +8,7 @@
 kubernetes
 apps/prova-express
 apps/prova-next
+apps/contracts
 
 # dependencies
 /node_modules

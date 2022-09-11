@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Card from "../components/Card/Shape/Card";
+import Card from "../components/Card/Card";
+import underlord1 from "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/batch1/pfp3_65_740512378.jpg";
 
 const Grid = styled.div`
   display: grid;
@@ -76,7 +77,11 @@ export default function testPage() {
         <SearchArea />
         <ContentArea ref={iphone}>
           <Area width={(height / 14) * 8} height={height}>
-            <Card type="nft-pfp" backgroundColor="lightblue" />
+            <Card
+              type="nft-pfp"
+              backgroundColor="lightblue"
+              images={[underlord1]}
+            />
           </Area>
         </ContentArea>
         <Footer />
