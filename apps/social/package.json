@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "module": "node",
   "scripts": {
     "dev": "next dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "module": "node",
   "dependencies": {
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",

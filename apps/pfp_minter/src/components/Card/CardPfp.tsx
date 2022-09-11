@@ -12,8 +12,6 @@ export const CardStyle = styled.div<{
   ${(props) => checkSize(props)};
 `;
 
-const extended = styled(CardStyle)``;
-
 export interface CardPfpProps {
   id?: number;
   name?: string;
