@@ -1,0 +1,8 @@
+# NFT Minter
+
+This applications enables users to mint tokens on the blockchain. Content and Metadatas are loaded on IPFS.
+The application provides the following page structure:
+
+- Landing page: a page where users can create a presentation for their project. This part can leverage a built in system or accept third party provided html content. Leveraging the built in system will provide users with more flexibility thanks to the dynamic nature of database systems.
+
+- Connet-wallet page: this page provides capabilities for the application to enable user's wallet connection to the dapp.
