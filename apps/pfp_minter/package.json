@@ -20,13 +20,14 @@
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
+    "@zionstate/auth": "*",
     "@zionstate/test-suite-1": "*",
     "@zionstate/ui": "*",
-    "dotenv": "^16.0.2",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "dotenv": "^16.0.2"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.0.7"
