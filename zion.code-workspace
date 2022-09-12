@@ -59,6 +59,14 @@
     {
       "name": "React",
       "path": "packages/@zionstate/ui/src/HTML/React"
+    },
+    {
+      "name": "zion-util",
+      "path": "packages/@zionstate_node/zion-util"
+    },
+    {
+      "name": "blockchain",
+      "path": "packages/@zionstate/blockchain"
     }
   ],
   "settings": {}
