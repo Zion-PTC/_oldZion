@@ -16,6 +16,8 @@
     "@audius/sdk": "^0.0.10",
     "@zionstate/web3": "*",
     "bcrypt": "^5.0.1",
+    "dotenv": "16.0.2",
+    "ethers": "^5.6.9",
     "express": "^4.18.1",
     "openid-client": "^5.1.8",
     "passport": "^0.6.0",
@@ -28,6 +30,14 @@
     "passport-local": "^1.0.0",
     "passport-telegram": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "web3": "^1.7.4"
+    "web3": "^1.7.4",
+    "zksync": "^0.12.3"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "chai": "^4.3.4",
+    "hardhat": "^2.7.0"
   }
 }
