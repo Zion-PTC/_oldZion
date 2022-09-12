@@ -1,4 +1,5 @@
-export {};
+import React from "react";
+import styled from "styled-components";
 // export const Button = styled.button<IButton>`
 //   padding: 0;
 //   font-size: 1em;
@@ -17,3 +18,10 @@ export {};
 //   }
 //   ${(props) => props.dynamic};
 // `;
+const qualcosa = "";
+const UnComponente = styled.div `
+  border: ${(props) => props.blue}rem;
+`;
+function Loo() {
+    return React.createElement(UnComponente, null, "adsasd");
+}
