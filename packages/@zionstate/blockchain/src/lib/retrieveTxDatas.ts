@@ -3,9 +3,9 @@ import { BigNumber } from "ethers";
 
 export type retrieveDataReturn = {
   chainId: number;
-  gasPrice: number;
-  blockHash: string;
-  blockNumber: number;
+  gasPrice: number | undefined;
+  blockHash: string | undefined;
+  blockNumber: number | undefined;
   from: string;
   hash: string;
   gasLimit: number;
