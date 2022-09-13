@@ -1,74 +1,22 @@
 import { StaticImageData } from "next/image";
 import React from "react";
-import styled from "styled-components";
 import { Album } from "../Card/Album";
 import { NftPfp } from "../Card/NftPfp";
-import { CardPfpProps } from "./CardPfp";
+import { Card as CardTypes } from "./types";
 
-const NftPfpCard = (props: {
-  images: StaticImageData[];
-  backgroundColor?: string;
-}) => (
-  <NftPfp
-    image={props.images[0]}
-    backgroundColor={props.backgroundColor}
-  ></NftPfp>
-);
-
-export enum CardFormats {
-  landscape = "landscape",
-  portrait = "portrait",
-  square = "square",
-  slim = "slim",
-  resource = "resource",
-}
-
-export type CardFormatsTypes = keyof typeof CardFormats;
-
-export const Area = styled.div<{
-  colSpan: number;
-  rowSpan: number;
-  backgroundColor?: string;
-  width: number;
-}>`
-  background-color: ${(props) => props.backgroundColor};
-  grid-column: span ${(props) => props.colSpan};
-  grid-row: span ${(props) => props.rowSpan};
-  width: ${(props) => props.width};
-`;
-
-export enum CardShapesEnum {
-  landscape,
-  portrait,
-  square,
-  slim,
-}
-export type CardShapesTypes = keyof typeof CardShapesEnum;
-export type CardProps = {
-  datas?: CardPfpProps[];
-  type: "nft-pfp" | "album";
-  backgroundColor?: string;
-  images: StaticImageData[];
-};
-export default function Card(props: CardProps) {
+export default function Card(props: CardTypes.CardProps) {
   let { type, backgroundColor } = props;
   let Element: () => JSX.Element;
   switch (type) {
     case "nft-pfp":
       Element = () => (
-        <NftPfp
-          image={props.images[0]}
-          backgroundColor={backgroundColor}
-        ></NftPfp>
+        <NftPfp src={props.src} backgroundColor={backgroundColor}></NftPfp>
       );
       break;
     case "album":
       Element = () => (
         // TODO togliere indice dopo aver inserito CardPfps
-        <Album
-          image={props.images[0]}
-          backgroundColor={backgroundColor}
-        ></Album>
+        <Album src={props.src} backgroundColor={backgroundColor}></Album>
       );
     default:
       break;

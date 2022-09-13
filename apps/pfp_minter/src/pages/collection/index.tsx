@@ -8,6 +8,7 @@ import { Area } from "../../components/Sections/Content/Area";
 import { getStatic } from "../../lib/static/getStatic";
 import { Data, NftData, NftsData } from "../api/types";
 import underlord1 from "../../../database/batch1/pfp3_65_740512378.jpg";
+import { CollectionProps } from "./types";
 
 const { getStaticProps: gst } = getStatic<NftData, NftsData>({
   type: "nft",
@@ -21,18 +22,7 @@ const CollectionArea = styled.div`
   grid-template-rows: 1fr 8fr 0.5fr;
   height: 100%;
 `;
-
-export default function Collection(
-  props: Data<NftData> & {
-    parentWidth: number;
-    parentHeight: number;
-    width: number;
-    height: number;
-    blockSize: number;
-    contentArea: React.MutableRefObject<HTMLDivElement>;
-    columns: number;
-  }
-) {
+export default function Collection(props: CollectionProps) {
   return (
     <Layout>
       <CollectionArea>
@@ -44,21 +34,9 @@ export default function Collection(
             blockSize={props.blockSize}
             columns={props.columns}
           >
-            <Card
-              datas={props.data}
-              type={"nft-pfp"}
-              images={[underlord1]}
-            ></Card>
-            <Card
-              datas={props.data}
-              type={"nft-pfp"}
-              images={[underlord1]}
-            ></Card>
-            <Card
-              datas={props.data}
-              type={"nft-pfp"}
-              images={[underlord1]}
-            ></Card>
+            {props.data.map((data) => (
+              <Card type={"nft-pfp"} src={data.src}></Card>
+            ))}
           </Area>
         </ContentArea>
         <Link href="/">Home</Link>

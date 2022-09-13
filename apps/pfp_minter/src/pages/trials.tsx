@@ -42,6 +42,8 @@ const rows = 14;
 const columns = 8;
 
 export default function testPage() {
+  // TODO #27 sostituire props
+  // TODO #28 fare test con infinite scroll
   const iphone = useRef<HTMLDivElement>();
   const [parentWidth, setParentWidth] = useState(0);
   const [parentHeight, setParentHeight] = useState(0);

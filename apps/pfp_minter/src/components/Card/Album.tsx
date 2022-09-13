@@ -5,6 +5,7 @@ import { ImageSection } from "./Sections/Image";
 import { Infos } from "./Sections/Infos";
 import { Social } from "./Sections/Social";
 import { Portrait } from "./Shape/Portrait";
+import { Album as AlbumTypes } from "./types";
 
 export const Area = styled(Portrait)`
   height: 100%;
@@ -19,20 +20,13 @@ export const CardArea = styled.div`
   place-self: center;
   grid-template-rows: 1.4fr 6fr 1fr 1.8fr;
 `;
-
-export type AlbumProps = {
-  small?: boolean;
-  normal?: boolean;
-  backgroundColor?: string;
-  image: StaticImageData;
-};
-export function Album(props: AlbumProps) {
+export function Album(props: AlbumTypes.AlbumProps) {
   let { backgroundColor } = props;
   return (
     <Area backgroundColor={backgroundColor}>
       <CardArea>
         <Head />
-        <ImageSection image={props.image} />
+        <ImageSection src={props.src} />
         <Infos collection="CBBBB" id="#10" creator="THE RIPPER" />
         <Social />
       </CardArea>

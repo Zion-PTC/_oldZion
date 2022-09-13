@@ -5,6 +5,7 @@ import { ImageSection } from "./Sections/Image";
 import { Infos } from "./Sections/Infos";
 import { Social } from "./Sections/Social";
 import { Portrait } from "./Shape/Portrait";
+import { NftPfp as NftPfpTypes } from "./types";
 
 export const Area = styled(Portrait)`
   height: 100%;
@@ -20,19 +21,13 @@ export const CardArea = styled.div`
   grid-template-rows: 1.4fr 9fr 1.5fr 1.3fr;
 `;
 
-export type NftPfProps = {
-  small?: boolean;
-  normal?: boolean;
-  backgroundColor?: string;
-  image: StaticImageData;
-};
-export function NftPfp(props: NftPfProps) {
+export function NftPfp(props: NftPfpTypes.NftPfpProps) {
   let { backgroundColor } = props;
   return (
     <Area backgroundColor={backgroundColor}>
       <CardArea>
         <Head />
-        <ImageSection image={props.image} />
+        <ImageSection src={props.src} />
         <Infos />
         <Social />
       </CardArea>
