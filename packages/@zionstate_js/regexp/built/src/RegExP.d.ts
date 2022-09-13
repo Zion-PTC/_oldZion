@@ -13,6 +13,8 @@ export declare class ZionRegExp extends RegExp implements IZionRegExp {
     static everythingBetween: RegExp;
     static tsComment: RegExp;
     static allTsComments: RegExp;
+    static fileExtensionWithPoint: RegExp;
+    static filenameFromPath: RegExp;
     static uuid: RegExp;
     static firstAndLastDyn: (string: string, span: number) => RegExpMatchArray;
     static everythingBetweenDyn: (symbolA: string, symbolB: string) => RegExp;

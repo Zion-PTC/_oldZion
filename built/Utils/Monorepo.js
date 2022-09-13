@@ -32,6 +32,9 @@ const toKeep = [
     "react",
     "react-dom",
 ];
+/**
+ * Class utlizzata per gestire un monorepo.
+ */
 export class Monorepo {
     name;
     packageName;

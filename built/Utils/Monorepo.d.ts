@@ -16,6 +16,9 @@ declare type Directories = {
         [k: string]: string;
     };
 };
+/**
+ * Class utlizzata per gestire un monorepo.
+ */
 export declare class Monorepo {
     #private;
     name: string;

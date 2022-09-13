@@ -7,7 +7,7 @@ async function main() {
     "ERC1155IndividualURI",
     CONTRACTADDRESS
   );
-  console.log(await contract.uri(2));
+  console.log(await contract.uri(1));
 }
 
 main()
