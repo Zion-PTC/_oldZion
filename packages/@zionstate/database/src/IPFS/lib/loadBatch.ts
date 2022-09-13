@@ -9,10 +9,11 @@ const LOGTARGETFOLDER = "";
 const SUCCESMESS =
   "Loadbatch process executed correctly. You can find the log here: ";
 // ENV
+const host = "12D3KooWBiFqsa9J81tFs6iG6wHdHUSRYEHTpZd3vN1Pk5k7gtqs";
 
 const main = async () => {
   const ipfs: IPFSHTTPClient = create({
-    host: "12D3KooWBiFqsa9J81tFs6iG6wHdHUSRYEHTpZd3vN1Pk5k7gtqs",
+    host,
   });
   // const add = await ipfs.add("hallo world");
   const file = ipfs.cat("QmTbgShF98BkaJGRkfgVkiPRkB2A5Td2fdo2fi4qyDx7HP");

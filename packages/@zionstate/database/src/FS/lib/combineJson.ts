@@ -1,17 +1,9 @@
-import { ZionRegExp } from "@zionstate_js/regexp";
 import fs from "fs";
-import { runProcess } from "../../IPFS/lib/runProcess.js";
+import { OpenSeaMetadata } from "../lib/types.js";
 
-const check = ZionRegExp.fileExtensionWithPoint;
-
-const source1 =
-  "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/content/_ipfs-logs";
-const source2 =
-  "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/_opensea";
-const target =
-  "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/content/metadata";
-
-async function main() {
+type combineJsonProps = { source1: string; source2: string; target: string };
+async function main(props: combineJsonProps) {
+  const { source1, source2, target } = props;
   const files1 = fs.readdirSync(source1);
   const files2 = fs.readdirSync(source2);
 
@@ -22,30 +14,25 @@ async function main() {
     const file0 = fs.readFileSync(source1 + "/" + coppia[0]);
     const file1 = fs.readFileSync(source2 + "/" + coppia[1]);
     const json0 = JSON.parse(file0.toString());
-    const json1: {
-      description: string;
-      external_url: string;
-      image: string;
-      name: string;
-      attributes: [
-        {
-          trait_type: string;
-          value: string;
-        }
-      ];
-    } = JSON.parse(file1.toString());
-    json1.image =
-      "https://ipfs.io/ipfs/" + json0.path + "?filename=" + json0.path;
-    json1.external_url = "https://znft.tech";
-    json1.name =
-      json1.attributes.filter((att) => att.trait_type === "sex")[0].value +
-      " " +
-      json1.attributes.filter((att) => att.trait_type === "clothing")[0].value +
-      " #" +
-      i;
-
+    let json1: OpenSeaMetadata = JSON.parse(file1.toString());
+    json1 = edit({ json1, json0, i });
     fs.writeFileSync(target + "/" + coppia[1], JSON.stringify(json1));
   });
 }
 
-runProcess(main, "Success");
+type decorateProps<T, R> = { json1: T; json0: R; i: number };
+type edit<T, R> = (props: decorateProps<T, R>) => T;
+
+const edit: edit<OpenSeaMetadata, { path: string }> = function (props) {
+  const { i, json0, json1 } = props;
+  json1.image =
+    "https://ipfs.io/ipfs/" + json0.path + "?filename=" + json0.path;
+  json1.external_url = "https://znft.tech";
+  json1.name =
+    json1.attributes.filter((att) => att.trait_type === "sex")[0].value +
+    " " +
+    json1.attributes.filter((att) => att.trait_type === "clothing")[0].value +
+    " #" +
+    i;
+  return json1;
+};

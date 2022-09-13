@@ -44,30 +44,34 @@ const ContentArea = styled.div`
   place-self: center;
 `;
 
+const rows = 14;
+const columns = 8;
 const Area = styled.div<{ width: number; height: number }>`
   border: 1px solid;
   width: ${(props) => props.width}px;
   height: 100%;
   display: grid;
   place-self: center;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(${rows}, 1fr);
+  grid-template-columns: repeat(${columns}, 1fr);
 `;
 
 export default function testPage() {
   const iphone = useRef<HTMLDivElement>();
   const [parentWidth, setParentWidth] = useState(0);
-  const [viewportHeight, setViewportHeight] = useState(0);
+  const [parentHeight, setParentHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   useEffect(() => {
-    console.log(window.innerHeight);
     setParentWidth(iphone.current.clientWidth);
-    setViewportHeight(iphone.current.clientHeight);
+    setParentHeight(iphone.current.clientHeight);
   }, []);
   useEffect(() => {
-    setHeight(viewportHeight * 0.99);
+    setHeight(parentHeight * 0.99);
   }, [parentWidth]);
+  useEffect(() => {
+    setWidth((height / rows) * columns);
+  }, [height]);
 
   return (
     <Grid>
@@ -76,7 +80,7 @@ export default function testPage() {
         <ZionHeader />
         <SearchArea />
         <ContentArea ref={iphone}>
-          <Area width={(height / 14) * 8} height={height}>
+          <Area width={width} height={height}>
             <Card
               type="nft-pfp"
               backgroundColor="lightblue"

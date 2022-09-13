@@ -8,6 +8,7 @@ export * from "./classes/Path.js";
 export * from "./classes/ZionCsv.js";
 export * from "./classes/ZionYaml.js";
 // lib
+export * from "./lib/index.js";
 // export * from "./lib/CRUD.js";
 // export * from "./lib/read.js";
 // export * from "./lib/readJSON.js";

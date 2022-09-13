@@ -29,6 +29,7 @@
     "@zionstate_node/zion-util": "*",
     "@zionstate/system": "*",
     "@zionstate/test-suite-1": "*",
+    "@zionstate/blockchain": "*",
     "arweave": "^1.11.4",
     "dotenv": "16.0.2",
     "ethers": "^5.5.2",
