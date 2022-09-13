@@ -18,41 +18,31 @@ export const getStaticProps = gst;
 
 const CollectionArea = styled.div`
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr 0.5fr;
+  height: 100%;
 `;
 
-const rows = 14;
-const columns = 8;
-
-export default function Collection(props: Data<NftData>) {
-  const contentArea = useRef<HTMLDivElement>();
-  const [parentWidth, setParentWidth] = useState(0);
-  const [parentHeight, setParentHeight] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [blockSize, setBlockSize] = useState(0);
-  useEffect(() => {
-    setParentWidth(contentArea.current.clientWidth);
-    setParentHeight(contentArea.current.clientHeight);
-  }, []);
-  useEffect(() => {
-    setHeight(parentHeight * 0.99);
-  }, [parentWidth]);
-  useEffect(() => {
-    const blockSize = height / rows;
-    setBlockSize(blockSize);
-    setWidth((height / rows) * columns);
-  }, [height]);
+export default function Collection(
+  props: Data<NftData> & {
+    parentWidth: number;
+    parentHeight: number;
+    width: number;
+    height: number;
+    blockSize: number;
+    contentArea: React.MutableRefObject<HTMLDivElement>;
+    columns: number;
+  }
+) {
   return (
     <Layout>
       <CollectionArea>
         <h1>Collection</h1>
-        <ContentArea ref={contentArea}>
+        <ContentArea ref={props.contentArea}>
           <Area
-            width={width}
-            height={height}
-            blockSize={blockSize}
-            columns={columns}
+            width={props.width}
+            height={props.height}
+            blockSize={props.blockSize}
+            columns={props.columns}
           >
             <Card
               datas={props.data}

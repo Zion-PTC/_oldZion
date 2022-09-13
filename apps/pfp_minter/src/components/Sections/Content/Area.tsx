@@ -11,9 +11,10 @@ export const Area = styled.div<{
   height: 100%;
   display: grid;
   place-self: center;
-  grid-template-rows: ${(props) => props.blockSize}+ "px";
+  grid-template-rows: ${(props) => props.blockSize + "px"};
   grid-template-columns: repeat(
     ${(props) => props.columns},
-    ${(props) => props.blockSize}+ "px"
+    ${(props) => props.blockSize + "px"}
   );
+  overflow: auto;
 `;

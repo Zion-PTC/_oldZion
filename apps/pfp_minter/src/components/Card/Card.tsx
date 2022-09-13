@@ -5,6 +5,16 @@ import { Album } from "../Card/Album";
 import { NftPfp } from "../Card/NftPfp";
 import { CardPfpProps } from "./CardPfp";
 
+const NftPfpCard = (props: {
+  images: StaticImageData[];
+  backgroundColor?: string;
+}) => (
+  <NftPfp
+    image={props.images[0]}
+    backgroundColor={props.backgroundColor}
+  ></NftPfp>
+);
+
 export enum CardFormats {
   landscape = "landscape",
   portrait = "portrait",

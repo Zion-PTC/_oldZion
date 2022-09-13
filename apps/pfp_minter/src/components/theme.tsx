@@ -18,8 +18,13 @@ export const GlobalStyles = createGlobalStyle<{
     background: ${(props) => props.theme.body};
     color: ${(props) => props.theme.textColor};
     transition: .3s ease;
+    margin:0;
+    box-sizing: border-box;
   }
   h2{
     color: ${(props) => props.theme.headingColor};
+  }
+  main{
+    height:100%;
   }
 `;
