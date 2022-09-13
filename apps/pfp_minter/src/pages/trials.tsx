@@ -42,18 +42,22 @@ const ContentArea = styled.div`
   height: 100%;
   display: grid;
   place-self: center;
+  overflow: auto;
 `;
 
 const rows = 14;
 const columns = 8;
-const Area = styled.div<{ width: number; height: number }>`
+const Area = styled.div<{ width: number; height: number; blockSize: number }>`
   border: 1px solid;
   width: ${(props) => props.width}px;
   height: 100%;
   display: grid;
   place-self: center;
-  grid-template-rows: repeat(${rows}, 1fr);
-  grid-template-columns: repeat(${columns}, 1fr);
+  grid-template-rows: ${(props) => props.blockSize}+ "px";
+  grid-template-columns: repeat(
+    ${columns},
+    ${(props) => props.blockSize}+ "px"
+  );
 `;
 
 export default function testPage() {
@@ -62,6 +66,7 @@ export default function testPage() {
   const [parentHeight, setParentHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [blockSize, setBlockSize] = useState(0);
   useEffect(() => {
     setParentWidth(iphone.current.clientWidth);
     setParentHeight(iphone.current.clientHeight);
@@ -70,8 +75,11 @@ export default function testPage() {
     setHeight(parentHeight * 0.99);
   }, [parentWidth]);
   useEffect(() => {
+    const blockSize = height / rows;
+    setBlockSize(blockSize);
     setWidth((height / rows) * columns);
   }, [height]);
+  console.log(blockSize);
 
   return (
     <Grid>
@@ -80,7 +88,12 @@ export default function testPage() {
         <ZionHeader />
         <SearchArea />
         <ContentArea ref={iphone}>
-          <Area width={width} height={height}>
+          <Area width={width} height={height} blockSize={blockSize}>
+            <Card
+              type="nft-pfp"
+              backgroundColor="lightblue"
+              images={[underlord1]}
+            />
             <Card
               type="nft-pfp"
               backgroundColor="lightblue"
