@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Card from "../components/Card/Card";
+import { Area } from "../components/Sections/Content/Area";
+import { ContentArea } from "../components/Sections/Content/ContentArea";
 import underlord1 from "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/batch1/pfp3_65_740512378.jpg";
 
 const Grid = styled.div`
@@ -36,29 +38,8 @@ const Footer = styled.div`
   width: 100%;
 `;
 
-const ContentArea = styled.div`
-  border: 1px solid;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-self: center;
-  overflow: auto;
-`;
-
 const rows = 14;
 const columns = 8;
-const Area = styled.div<{ width: number; height: number; blockSize: number }>`
-  border: 1px solid;
-  width: ${(props) => props.width}px;
-  height: 100%;
-  display: grid;
-  place-self: center;
-  grid-template-rows: ${(props) => props.blockSize}+ "px";
-  grid-template-columns: repeat(
-    ${columns},
-    ${(props) => props.blockSize}+ "px"
-  );
-`;
 
 export default function testPage() {
   const iphone = useRef<HTMLDivElement>();
@@ -88,7 +69,12 @@ export default function testPage() {
         <ZionHeader />
         <SearchArea />
         <ContentArea ref={iphone}>
-          <Area width={width} height={height} blockSize={blockSize}>
+          <Area
+            width={width}
+            height={height}
+            blockSize={blockSize}
+            columns={columns}
+          >
             <Card
               type="nft-pfp"
               backgroundColor="lightblue"
