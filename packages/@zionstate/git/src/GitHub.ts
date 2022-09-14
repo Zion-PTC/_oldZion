@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/rest";
-import { OctokitOptions } from "./Types";
+import { OctokitOptions } from "./Types/index.js";
 
 enum Owners {
   giacomogagliano = "giacomogagliano",

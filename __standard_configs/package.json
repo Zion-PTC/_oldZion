@@ -12,7 +12,7 @@
     "test": "nodemon ./test/test.js"
   },
   "dependencies": {
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",

@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ESNext",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+    "declaration": true,
+    "outDir": "../build",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "watch": true
+  },
+  "exclude": ["./build/**/*", "./test/**/*"]
+}

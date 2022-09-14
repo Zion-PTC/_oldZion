@@ -1,7 +1,8 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 import { simpleGit } from "simple-git";
 import { initRepo } from "@zionstate/git";
-import { system } from "@zionstate/system";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 
 const { expect, log } = testEnvironment();
 const { deleteRecursiveDir, createNestedDir, joinPaths } = system;

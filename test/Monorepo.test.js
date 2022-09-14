@@ -1,7 +1,8 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 import { Monorepo } from "../built/Utils/Monorepo.js";
 import { zionUtil } from "@zionstate_node/zion-util";
-import { system } from "@zionstate/system";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 import { config } from "dotenv";
 config();
 const { joinPaths, arrayOfNamesOfFilesInFolder, existsSync } = system;

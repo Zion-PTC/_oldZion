@@ -1,6 +1,6 @@
 import { zionUtil } from "@zionstate_node/zion-util";
 import { Terminal } from "@zionstate/terminal";
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 
 const { expect, log } = testEnvironment();
 

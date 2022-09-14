@@ -1,15 +1,16 @@
-import { system } from "@zionstate/system";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 import { parse } from "csv-parse/sync";
 export class ZionCsv {
-    records;
-    constructor(path) {
-        const input = system.stringifyFile(path);
-        this.records = parse(input, {
-            columns: true,
-            skip_empty_lines: true,
-            delimiter: ";",
-        });
-    }
+  records;
+  constructor(path) {
+    const input = system.stringifyFile(path);
+    this.records = parse(input, {
+      columns: true,
+      skip_empty_lines: true,
+      delimiter: ";",
+    });
+  }
 }
 /**
  *

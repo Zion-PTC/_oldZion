@@ -1,4 +1,4 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 import { ZionGit } from "@zionstate/git";
 
 const { expect, log } = testEnvironment();

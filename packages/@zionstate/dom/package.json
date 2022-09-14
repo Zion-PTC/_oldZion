@@ -12,7 +12,7 @@
     "test": "nodemon ./test/test.js"
   },
   "dependencies": {
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "html-react-parser": "^3.0.1"
   }
 }

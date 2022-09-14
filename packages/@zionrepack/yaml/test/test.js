@@ -2,7 +2,7 @@ import * as yaml from "yaml";
 import fs from "fs";
 import path from "path";
 import { system, ZionPath } from "@zionstate/system";
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 
 const { expect, log } = testEnvironment();
 

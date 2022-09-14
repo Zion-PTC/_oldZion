@@ -46,7 +46,7 @@
     "@zionstate_node/zion-util": "*",
     "@zionstate/base": "*",
     "@zionstate/colors": "*",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "caporal": "^1.4.0",
     "chalk-pipe": "^5.1.1",

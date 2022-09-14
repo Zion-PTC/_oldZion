@@ -1,5 +1,5 @@
 import { readJSON } from "@zionstate/system";
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 
 const { expect, log } = testEnvironment();
 

@@ -1,5 +1,6 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
-import { system } from "@zionstate/system";
+import { testEnvironment } from "@zionstate/test";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 import { testRepo } from "@zionstate/git";
 
 const { expect, log } = testEnvironment();

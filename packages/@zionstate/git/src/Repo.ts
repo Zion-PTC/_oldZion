@@ -1,36 +1,20 @@
-import {
-  reader,
-  packageJSON,
-  tsconfigJSON,
-  prettierrcJSON,
-  jsconfigJSON,
-  system,
-} from "@zionstate/system";
+import { FS } from "@zionstate/database";
 import { ZionGit } from "./Git.js";
 import { ZionGitHub } from "./GitHub.js";
 import { ZionError } from "@zionstate_js/error";
+import { IRepo, RepoTypes } from "./types.js";
+
+const {
+  classes: {
+    reader: { reader },
+  },
+  system,
+} = FS;
 
 const { joinPaths, existsSync } = system;
 const PACKAGESTRINGERROR = "Weirdly package.json was parsed as a string";
 const NOPACKAGEJSONERROR = "No package.json is present in the repo folder";
 const NOPATHERROR = "No path was set for the repo";
-
-type package_json = packageJSON.DataType2;
-type tsconfig_json = tsconfigJSON.DataType;
-type prettierrc_json = prettierrcJSON.DataType;
-type jsconfig_json = jsconfigJSON.DataType;
-type dependency = packageJSON.Dependency;
-export type RepoTypes = "app" | "package";
-
-type REPO = {
-  name: string | boolean | string[];
-  packageName: string | boolean | string[];
-  isRoot: string | boolean;
-  hasTypesInConfig: string | boolean | string[];
-  isWorking: string | boolean | string[];
-  isCommitted: string | boolean | string[];
-  dependencies(): dependency;
-};
 
 export class Status {
   constructor(
@@ -49,23 +33,9 @@ export class Status {
   ) {}
 }
 
-export interface IRepo {
-  git: ZionGit;
-  github: ZionGitHub;
-  packageJSON?: package_json | string;
-  tsconfigJSON?: tsconfig_json | string;
-  prettierrcJSON?: prettierrc_json;
-  jsconfigJSON?: jsconfig_json;
-  isRoot(): Promise<boolean>;
-  hasRemote(): Promise<boolean>;
-  isCommitted(): Promise<boolean>;
-  dependencies(): dependency | string;
-  latestUpdate(): Promise<Date | undefined>;
-  version(): string | undefined;
-  /////
-  hasTypesInConfigTS(): boolean | null;
-  // packageJSON(): Promise<object>;
-}
+type tsconfig_json = FS.lib.types.tsconfigJSON.DataType;
+type package_json = FS.lib.types.packageJSON.DataType2;
+type dependency = FS.lib.types.packageJSON.Dependency;
 
 export class Repo implements IRepo {
   path?: string;

@@ -166,3 +166,4 @@ dist
 .parcel-cache
 apps/pfp_minter/.next
 packages/@zionstate/blockchain/.env
+apps/_old_zion

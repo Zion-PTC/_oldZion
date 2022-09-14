@@ -22,7 +22,7 @@
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
     "@zionstate/learn": "*",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "@zionstate/ui": "*",
     "dotenv": "^16.0.2",

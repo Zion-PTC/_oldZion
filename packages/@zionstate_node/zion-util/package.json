@@ -1,8 +1,8 @@
 {
   "name": "@zionstate_node/zion-util",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "description": "Estensione di node_module util",
-  "main": "built/index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.test.js",
     "testSplitAt": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.splitAt.test.js",
@@ -13,6 +13,6 @@
   "type": "module",
   "dependencies": {
     "util": "^0.12.4",
-    "@zionstate/system": ""
+    "@zionstate/database": ""
   }
 }

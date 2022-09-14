@@ -160,8 +160,6 @@ function checkObjectConstructor(
  * @returns
  */
 function hasArrayObjectElements(array: object[]): boolean | string {
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
   if (this.isArrayEmpty(array)) {
     return "Array is Empty";
   }
@@ -402,13 +400,9 @@ function convertDecimalToFracionString(decimale: number): string {
   let frazioneInString: string;
   if (decimale === 1) return "1";
   if (decimale >= 1) return "il valore passato deve essere un numero decimale!";
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
   const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
   let denominatore: number = Math.pow(10, numeriDopoLaVirgola);
   let numeratore: number = decimale * denominatore;
-  // TODO capire uso di this in ext functions
-  //@ts-expect-error
   const divisore: number = this.massimoComuneDivisore(numeratore, denominatore);
   numeratore /= divisore;
   denominatore /= divisore;
@@ -425,8 +419,9 @@ export function splitAt(string: string, symbol: string) {
   return string.split(symbol).filter(emptyString);
 }
 
-export const upperCaseFirst = (string: string) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
+export function upperCaseFirst(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export class BOOOOBOOO {}
 export let CHOOOOOOO = "oooo";

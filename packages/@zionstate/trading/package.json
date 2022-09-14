@@ -21,7 +21,7 @@
     "@zionstate_node/fs-utilities": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "lightweight-charts": "^3.8.0"
   }

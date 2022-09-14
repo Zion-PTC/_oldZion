@@ -2,7 +2,7 @@
   "name": "@zionstate/git",
   "version": "0.0.1",
   "description": "",
-  "main": "built/index.js",
+  "main": "build/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
@@ -23,7 +23,7 @@
     "@octokit/rest": "^18.12.0",
     "dotenv": "^16.0.2",
     "simple-git": "^3.10.0",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate_js/error": "*"
   }
 }

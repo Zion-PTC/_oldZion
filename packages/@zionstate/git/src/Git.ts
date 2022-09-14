@@ -10,7 +10,8 @@ import {
   InitResult,
   StatusResult,
 } from "simple-git";
-import { system } from "@zionstate/system";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 
 export type isRepo = (
   action?: CheckRepoActions,

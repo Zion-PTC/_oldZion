@@ -1,5 +1,5 @@
 import { readJSON } from "./readJSON.js";
-import { packageJSON } from "./types";
+import { packageJSON } from "./types/index.js";
 
 type DataType = packageJSON.DataType2;
 

@@ -1,6 +1,7 @@
 import { ZionError as Z } from "@zionstate_js/error";
-import { system } from "@zionstate/system";
-import { Repo } from "../Repo";
+import { FS } from "@zionstate/database";
+const { system } = FS;
+import { Repo } from "../Repo.js";
 
 const { joinPaths, existsSync } = system;
 

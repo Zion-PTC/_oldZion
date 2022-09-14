@@ -1,5 +1,6 @@
 import { parse } from "csv-parse/sync";
-import { system } from "@zionstate/system";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 console.log("Test Here");
 
 const filpath =

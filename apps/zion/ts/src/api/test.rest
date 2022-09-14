@@ -1,0 +1,16 @@
+GET http://localhost:5000
+
+###
+
+GET http://localhost:5000/monorepos
+
+###
+
+POST http://localhost:5000/monorepos/create
+content-Type: application/json
+
+{
+  "name":"Zion",
+  "path":"/Users/WAW/Documents/Projects/ZION",
+  "organization":{"url":"https://github.com/Zion-PTC"}
+}

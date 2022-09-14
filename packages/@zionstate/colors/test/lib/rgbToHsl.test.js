@@ -1,4 +1,4 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 import { ZionError } from "@zionstate_js/error";
 import { rgbToHsl } from "../../built/src/lib/Color/rgbToHsl.js";
 

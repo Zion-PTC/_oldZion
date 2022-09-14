@@ -1,4 +1,4 @@
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 import { Octokit } from "@octokit/rest";
 import { ZionGitHub } from "@zionstate/git";
 import { config } from "dotenv";

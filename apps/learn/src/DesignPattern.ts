@@ -1,4 +1,3 @@
-// import { ZionYaml } from "@zionstate/system";
 import { FS } from "@zionstate/database";
 import { DesignPattern } from "@zionstate/learn";
 import { getDesignPatterns } from "./lib/designPatterns.js";

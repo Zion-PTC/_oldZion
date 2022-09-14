@@ -1,5 +1,5 @@
 import ZionYaml from "@zionrepack/yaml";
-import { testEnvironment } from "@zionstate/test-suite-1";
+import { testEnvironment } from "@zionstate/test";
 const { expect, log } = testEnvironment();
 
 const joinPaths = ZionYaml.ZionYamlToFile.joinPaths;

@@ -1,6 +1,7 @@
 import git from "@zionstate/git";
-import { testEnvironment } from "@zionstate/test-suite-1";
-import { system } from "@zionstate/system";
+import { testEnvironment } from "@zionstate/test";
+import { FS } from "@zionstate/database";
+const { system } = FS;
 
 const { expect, log } = testEnvironment();
 const { createNestedDirm, deleteRecursiveDir } = system;

@@ -1,5 +1,5 @@
 import { readJSON } from "./readJSON.js";
-import { tsconfigJSON } from "./types";
+import { tsconfigJSON } from "./types/index.js";
 
 type DataType = tsconfigJSON.DataType;
 

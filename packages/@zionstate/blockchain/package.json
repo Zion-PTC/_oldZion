@@ -8,7 +8,7 @@
     "zksync": "^0.12.3"
   },
   "devDependencies": {
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",

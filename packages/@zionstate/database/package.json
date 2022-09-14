@@ -27,7 +27,7 @@
     "@zionstate_node/fs-utilities": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "@zionstate/blockchain": "*",
     "arweave": "^1.11.4",

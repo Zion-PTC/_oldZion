@@ -10,7 +10,7 @@ import { testEnvironment } from "@zionstate/test";
 const { expect, log } = testEnvironment();
 ```
 
-The log function logs a debug log which has this paramters:
+The log function logs a debug log which has this parameters:
 
 ```js
 util.debuglog("log");

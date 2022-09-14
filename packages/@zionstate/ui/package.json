@@ -23,7 +23,7 @@
     "@zionstate_node/fs-utilities": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/system": "*",
+    "@zionstate/database": "*",
     "@zionstate/test-suite-1": "*",
     "monaco-editor": "^0.34.0",
     "monaco-themes": "^0.4.2",
