@@ -1,12 +1,16 @@
 {
   "name": "@zionstate/test",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "build/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zion-PTC/test"
+  },
   "scripts": {
     "tsc": "tsc",
     "test": "nodemon ./test/test.js"
