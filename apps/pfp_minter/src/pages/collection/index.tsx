@@ -9,6 +9,8 @@ import { getStatic } from "../../lib/static/getStatic";
 import { Data, NftData, NftsData } from "../api/types";
 import underlord1 from "../../../database/batch1/pfp3_65_740512378.jpg";
 import { CollectionProps } from "./types";
+import { useInfiniteScroll } from "../../lib/hooks/useInfiniteScroll";
+import { Loader } from "../../components/Loader";
 
 const { getStaticProps: gst } = getStatic<NftData, NftsData>({
   type: "nft",
@@ -23,6 +25,14 @@ const CollectionArea = styled.div`
   height: 100%;
 `;
 export default function Collection(props: CollectionProps) {
+  const {
+    isLoading,
+    loadMoreCallback,
+    hasDynamicPosts,
+    dynamicPosts,
+    isLastPage,
+  } = useInfiniteScroll(props.data);
+  let data = hasDynamicPosts ? dynamicPosts : props.data;
   return (
     <Layout>
       <CollectionArea>
@@ -34,10 +44,15 @@ export default function Collection(props: CollectionProps) {
             blockSize={props.blockSize}
             columns={props.columns}
           >
-            {props.data.map((data) => (
-              <Card type={"nft-pfp"} src={data.src}></Card>
+            {data.map((data, i) => (
+              <Card key={i} type={"nft-pfp"} src={data.src}></Card>
             ))}
           </Area>
+          <Loader
+            isLoading={isLoading}
+            isLastPage={isLastPage}
+            loadMoreCallback={loadMoreCallback}
+          />
         </ContentArea>
         <Link href="/">Home</Link>
       </CollectionArea>
