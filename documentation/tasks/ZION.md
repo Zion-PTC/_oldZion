@@ -1,0 +1,3 @@
+- creare pagina per confrontare files
+  - package.json
+  - tsconfig.json
