@@ -159,7 +159,10 @@ function checkObjectConstructor(
  * @param array
  * @returns
  */
-function hasArrayObjectElements(array: object[]): boolean | string {
+function hasArrayObjectElements(
+  this: IUtils,
+  array: object[]
+): boolean | string {
   if (this.isArrayEmpty(array)) {
     return "Array is Empty";
   }
@@ -396,7 +399,7 @@ function modulo(a: number, b: number): number {
  * essere creata la string.
  * @returns una string con formato frazione (0,2 => '1/5')
  */
-function convertDecimalToFracionString(decimale: number): string {
+function convertDecimalToFracionString(this: IUtils, decimale: number): string {
   let frazioneInString: string;
   if (decimale === 1) return "1";
   if (decimale >= 1) return "il valore passato deve essere un numero decimale!";

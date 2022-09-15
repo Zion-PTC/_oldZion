@@ -38,4 +38,4 @@ async function main() {
   });
 }
 
-runProcess(main, "Success");
+runProcess(main, { successMess: "Success" });

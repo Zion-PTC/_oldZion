@@ -1,13 +1,17 @@
+export type Options = {
+  successMess?: string;
+  showTrace?: boolean;
+  args?: any[];
+};
+
 export type runProcess = <T>(
   process: () => Promise<T>,
-  successMess: string,
-  showTrace?: boolean
+  options?: Options
 ) => void;
 
 export const runProcess: runProcess = function <T>(
   process: () => Promise<T>,
-  successMess: string,
-  showTrace: boolean = false
+  options: Options = { successMess: "Success" }
 ) {
   const main = async (
     successMess: string = "Process terminated successully"
@@ -16,9 +20,9 @@ export const runProcess: runProcess = function <T>(
     return { end: 0, successMess };
   };
 
-  main(successMess)
+  main(options?.successMess)
     .then((process) => {
       if (process.end === 0) console.log("\n\n" + process.successMess + "\n\n");
     })
-    .catch((e) => console.log(showTrace ? e : e.message));
+    .catch((e) => console.log(options?.showTrace ? e : e.message));
 };

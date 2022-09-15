@@ -22,4 +22,4 @@ const main = async () => {
   console.log(await ipfs.version());
 };
 
-runProcess(main, SUCCESMESS);
+runProcess(main, { successMess: SUCCESMESS });

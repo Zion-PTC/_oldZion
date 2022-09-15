@@ -1,13 +1,13 @@
 export * from "./FileSystem.js";
 export * from "./System.js";
 // classes
-export * as classes from "./classes/index.js";
 // export * from "./classes/Reader.js";
 // export * from "./classes/Watcher.js";
 // export * from "./classes/Writer.js";
 export * from "./classes/ZionCsv.js";
 export * from "./classes/ZionYaml.js";
 // lib
+export * as classes from "./classes/index.js";
 export * as lib from "./lib/index.js";
 // export * from "./lib/CRUD.js";
 // export * from "./lib/read.js";

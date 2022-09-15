@@ -73,10 +73,6 @@
       "path": "apps/social"
     },
     {
-      "name": "pfp_minter",
-      "path": "apps/pfp_minter"
-    },
-    {
       "name": "ui",
       "path": "packages/@zionstate/ui"
     },
@@ -95,6 +91,14 @@
     {
       "name": "tutorial-blog-next-js",
       "path": "../_tests/tutorial-blog-next-js"
+    },
+    {
+      "name": "pfp_minter",
+      "path": "apps/pfp_minter"
+    },
+    {
+      "name": "zion",
+      "path": "apps/zion"
     }
   ],
   "settings": {}

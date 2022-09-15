@@ -104,8 +104,6 @@ function checkObjectConstructor(object, constructor) {
  * @returns
  */
 function hasArrayObjectElements(array) {
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
     if (this.isArrayEmpty(array)) {
         return "Array is Empty";
     }
@@ -336,13 +334,9 @@ function convertDecimalToFracionString(decimale) {
         return "1";
     if (decimale >= 1)
         return "il valore passato deve essere un numero decimale!";
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
     const numeriDopoLaVirgola = this.quantiDecimaliDopoLaVirgola(decimale);
     let denominatore = Math.pow(10, numeriDopoLaVirgola);
     let numeratore = decimale * denominatore;
-    // TODO capire uso di this in ext functions
-    //@ts-expect-error
     const divisore = this.massimoComuneDivisore(numeratore, denominatore);
     numeratore /= divisore;
     denominatore /= divisore;

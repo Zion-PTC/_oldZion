@@ -48,4 +48,4 @@ const main = async () => {
   );
 };
 
-runProcess(main, SUCCESMESS);
+runProcess(main, { successMess: SUCCESMESS });

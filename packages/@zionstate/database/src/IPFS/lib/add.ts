@@ -34,4 +34,4 @@ const main = async () => {
   await addAndPrintLog(ipfs, filename, LOGTARGETFOLDER, path, nameExtension);
 };
 
-runProcess(main, SUCCESMESS);
+runProcess(main, { successMess: SUCCESMESS });
