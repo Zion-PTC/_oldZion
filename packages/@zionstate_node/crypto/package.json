@@ -1,8 +1,8 @@
 {
   "name": "@zionstate_node/crypto",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
-  "main": "built/index.js",
+  "main": "build/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
@@ -10,6 +10,9 @@
   "scripts": {
     "tsc": "tsc",
     "inspectCrypto": "node ./built/src/inspect/crypto.js"
+  },
+  "bin": {
+    "hello": "./hello.js"
   },
   "dependencies": {
     "@zionstate/system": "*"

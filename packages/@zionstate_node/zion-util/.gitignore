@@ -12,7 +12,6 @@ jspm_packages/
 /coverage
 
 # production
-/build
 
 # misc
 .DS_Store
@@ -133,3 +132,4 @@ node_modules
 era.js
 era.d.ts
 era.ts
+src/zionCopy.ts

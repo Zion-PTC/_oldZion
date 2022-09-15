@@ -24,7 +24,7 @@
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
-    "@zionstate/test-suite-1": "*",
+    "@zionstate/test": "*",
     "monaco-editor": "^0.34.0",
     "monaco-themes": "^0.4.2",
     "styled-components": "^5.3.5",

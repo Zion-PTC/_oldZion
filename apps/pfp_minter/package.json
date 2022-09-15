@@ -21,7 +21,7 @@
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
     "@zionstate/auth": "*",
-    "@zionstate/test-suite-1": "*",
+    "@zionstate/test": "*",
     "@zionstate/ui": "*",
     "next": "^12.2.5",
     "react": "^18.2.0",

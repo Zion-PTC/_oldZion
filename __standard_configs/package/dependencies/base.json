@@ -1,6 +1,6 @@
 {
   "@zionstate/database": "*",
-  "@zionstate/test-suite-1": "*",
+  "@zionstate/test": "*",
   "@zionstate_js/error": "*",
   "@zionstate_js/regexp": "*",
   "@zionstate_js/url": "*",

@@ -7,6 +7,7 @@ export type GitHub = {
 };
 export {};
 export interface IMonorepo {
+  id: string;
   name: string;
   path: string;
   organization: Organization;

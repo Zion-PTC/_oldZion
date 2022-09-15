@@ -22,7 +22,7 @@
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
-    "@zionstate/test-suite-1": "*",
+    "@zionstate/test": "*",
     "telegraf": "^4.8.6",
     "dotenv": "^16.0.2"
   }

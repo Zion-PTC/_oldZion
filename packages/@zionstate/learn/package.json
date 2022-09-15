@@ -22,6 +22,6 @@
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
     "@zionstate/database": "*",
-    "@zionstate/test-suite-1": "*"
+    "@zionstate/test": "*"
   }
 }

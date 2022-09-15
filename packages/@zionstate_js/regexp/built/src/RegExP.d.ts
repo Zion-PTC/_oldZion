@@ -12,6 +12,7 @@ export declare class ZionRegExp extends RegExp implements IZionRegExp {
     static firstAndLast3: RegExp;
     static everythingBetween: RegExp;
     static tsComment: RegExp;
+    static tsComment2: RegExp;
     static allTsComments: RegExp;
     static fileExtensionWithPoint: RegExp;
     static filenameFromPath: RegExp;

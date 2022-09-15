@@ -1,4 +1,4 @@
-const { testEnvironment } = await import("@zionstate/test-suite-1");
+const { testEnvironment } = await import("@zionstate/test");
 const { BlogPost } = await import("../built/src/BlogPosts.js");
 const { DesignPattern } = await import("../built/src/DesignPattern.js");
 const { Tutorial } = await import("../built/src/Tutorial.js");

@@ -32,6 +32,7 @@ export class ZionRegExp extends RegExp implements IZionRegExp {
   static firstAndLast3 = /^.{3}?|.{3}?$/g;
   static everythingBetween = /\{(.*?)\}/g;
   static tsComment = /(\/\*.*\*\/)/g;
+  static tsComment2 = /\/\/.*\,/g;
   static allTsComments = /(\/\**.*\*\/)/g;
   static fileExtensionWithPoint = /(\..*)/g;
   static filenameFromPath = /[\w-_]+(?=\.)/g;

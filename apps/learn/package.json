@@ -23,7 +23,7 @@
     "@zionstate/database": "*",
     "@zionstate/learn": "*",
     "@zionstate/database": "*",
-    "@zionstate/test-suite-1": "*",
+    "@zionstate/test": "*",
     "@zionstate/ui": "*",
     "css-loader": "^6.7.1",
     "dotenv": "^16.0.2",

@@ -5,6 +5,42 @@
       "path": "."
     },
     {
+      "name": "error",
+      "path": "packages/@zionstate_js/error"
+    },
+    {
+      "name": "fetch-api",
+      "path": "packages/@zionstate_js/fetch-api"
+    },
+    {
+      "name": "regexp",
+      "path": "packages/@zionstate_js/regexp"
+    },
+    {
+      "name": "url",
+      "path": "packages/@zionstate_js/url"
+    },
+    {
+      "name": "crypto",
+      "path": "packages/@zionstate_node/crypto"
+    },
+    {
+      "name": "emitter",
+      "path": "packages/@zionstate_node/emitter"
+    },
+    {
+      "name": "node-fetch",
+      "path": "packages/@zionstate_node/node-fetch"
+    },
+    {
+      "name": "process",
+      "path": "packages/@zionstate_node/process"
+    },
+    {
+      "name": "zion-util",
+      "path": "packages/@zionstate_node/zion-util"
+    },
+    {
       "name": "git",
       "path": "packages/@zionstate/git"
     },
@@ -21,10 +57,6 @@
       "path": "packages/@zionstate/base"
     },
     {
-      "name": "error",
-      "path": "packages/@zionstate_js/error"
-    },
-    {
       "name": "database",
       "path": "packages/@zionstate/database"
     },
@@ -35,14 +67,6 @@
     {
       "name": "bot",
       "path": "packages/@zionstate/bot"
-    },
-    {
-      "name": "node-fetch",
-      "path": "packages/@zionstate_node/node-fetch"
-    },
-    {
-      "name": "fetch-api",
-      "path": "packages/@zionstate_js/fetch-api"
     },
     {
       "name": "social",
@@ -61,12 +85,16 @@
       "path": "packages/@zionstate/ui/src/HTML/React"
     },
     {
-      "name": "zion-util",
-      "path": "packages/@zionstate_node/zion-util"
-    },
-    {
       "name": "blockchain",
       "path": "packages/@zionstate/blockchain"
+    },
+    {
+      "name": "test",
+      "path": "packages/@zionstate/test"
+    },
+    {
+      "name": "tutorial-blog-next-js",
+      "path": "../_tests/tutorial-blog-next-js"
     }
   ],
   "settings": {}

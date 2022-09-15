@@ -1,5 +1,5 @@
 import { hexToRgb } from "../../built/src/lib/Color/hexToRgb.js";
-import "@zionstate/test-suite-1";
+import "@zionstate/test";
 import { testEnvironment } from "@zionstate/test";
 const { expect, log } = testEnvironment();
 

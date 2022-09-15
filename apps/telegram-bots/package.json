@@ -15,7 +15,7 @@
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "dependencies": {
-    "@zionstate/test-suite-1": "*",
+    "@zionstate/test": "*",
     "@zionstate/web3": "*",
     "axios": "^0.27.2",
     "body-parser": "^1.19.1",
