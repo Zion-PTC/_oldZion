@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "../components/theme";
 
-const App = styled.div`
-  height: 100vh;
+const App = styled.div<{ height: number }>`
+  height: ${(props) => props.height}px;
 `;
 
 const NavBar = styled.nav`
