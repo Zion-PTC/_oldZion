@@ -9,6 +9,17 @@ kubernetes
 apps/prova-express
 apps/prova-next
 
+# users folders
+# by adding a folder name for each user in this line,
+# everyone can have a folder in the root project, named by
+# himself, which will be ignored. Files in that folder will
+# persist between checkouts.
+# ps. this doesnt work in sub-packages, meaning in a folder
+# where a package.json file lives. To have a persona ignored
+# folder in each project, please add the folder name in each
+# sub-project.
+giacomo
+
 # dependencies
 /node_modules
 /.pnp

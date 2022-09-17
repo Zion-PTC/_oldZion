@@ -3,6 +3,14 @@
 # folders
 /build
 
+# users folders
+# by adding a folder name for each user in this line,
+# everyone can have a folder in the package project, named by
+# himself, which will be ignored. Files in that folder will
+# persist between checkouts.
+# ps. this doesnt affects folders in the root package (zion-network-state)
+giacomo
+
 # Dependency directories
 node_modules/
 jspm_packages/
