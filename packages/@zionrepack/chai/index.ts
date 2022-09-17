@@ -1,9 +1,0 @@
-export let assert = chai.assert;
-export let Assertion = chai.Assertion;
-export let AssertionError = chai.AssertionError;
-export let config = chai.config;
-export let expect = chai.expect;
-export let should = chai.should;
-export let use = chai.use;
-export let util = chai.util;
-export let version = chai.version;

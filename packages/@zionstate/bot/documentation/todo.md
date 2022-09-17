@@ -1,5 +1,0 @@
-- [ ] capire auth
-- [ ] guardare come funzionano le mini app di TG
-  - [ ] creare un app React
-  - [ ] integrare lo [script](https://core.telegram.org/bots/webapps) di TG nell'app
-  - [ ] caricare il bot con le infos

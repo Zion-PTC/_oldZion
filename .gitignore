@@ -6,8 +6,6 @@
 /_archive
 /tasks
 kubernetes
-apps/prova-express
-apps/prova-next
 
 # users folders
 # by adding a folder name for each user in this line,
