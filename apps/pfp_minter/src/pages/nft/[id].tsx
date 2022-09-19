@@ -2,7 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Layout from "../../components/layout";
 import { getStatic } from "../../lib/static/getStatic";
-import { DataByPath, NftData } from "../api/types";
+import { DataByPath } from "../api/types";
+import { NftData } from "../collection/types";
 
 const { getStaticProps: gspr, getStaticPaths: gspt } = getStatic({
   type: "nft",
@@ -13,7 +14,9 @@ export const getStaticPaths = gspt;
 
 export const getStaticProps = gspr;
 
-const Nft: (props: DataByPath<NftData>) => JSX.Element = function ({ data }) {
+export const Nft: (props: DataByPath<NftData>) => JSX.Element = function ({
+  data,
+}) {
   const { name } = data;
 
   return (

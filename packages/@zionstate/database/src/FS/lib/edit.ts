@@ -3,6 +3,33 @@ import { jsconfigJSON, tsconfigJSON } from "../lib/types/index.js";
 type js = jsconfigJSON.DataType;
 type ts = tsconfigJSON.DataType;
 
+type basicObject = { [key: string]: string | number | boolean | basicObject };
+
+type changeKeyValueType2 = <
+  T extends basicObject,
+  X extends keyof T,
+  Y extends keyof T[X]
+>(
+  obj: T,
+  prop: [[X, Y], T[X] | T[X][Y]]
+) => T;
+const changeKeyValue2: changeKeyValueType2 = function (obj, prop) {
+  if (prop[0][1]) obj[prop[0][0]][prop[0][1]];
+  else obj[prop[0][0]] = prop[1];
+  return obj;
+};
+
+const obj = { lala: { bobo: "" } };
+type uuu = keyof typeof obj | keyof typeof obj.lala;
+
+type changeKeyValueType = <T>(obj: T, prop: [keyof T, T[keyof T]]) => T;
+const changeKeyValue: changeKeyValueType = function (obj, prop) {
+  obj[prop[0]] = prop[1];
+  return obj;
+};
+
+changeKeyValue({ name: "giacomo" }, ["name", "ciao"]);
+
 const error1: string = "No compiler options in the tsconfig file";
 type StringTuple = [string];
 type GenericObject = {

@@ -13,6 +13,10 @@ export enum NextApiStrategy {
 }
 export type NextApiStrategiesTypes = keyof typeof NextApiStrategy;
 
+/**
+ * Helper class to filter type of storages from which next
+ * will retrieve the datas from.
+ */
 export class NextApiHandler {
   strategy: nextApiHandler;
   constructor(strategy: NextApiStrategiesTypes) {

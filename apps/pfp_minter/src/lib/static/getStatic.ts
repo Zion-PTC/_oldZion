@@ -42,7 +42,6 @@ export const getStatic = function <D extends DataType, Ds extends Database<D>>(
       props.params.URL = URL;
       props.params.key = props.params.id;
     }
-    console.log(URL);
     return getStaticPropsHandler<D, Ds>(props, { URL });
   }
 

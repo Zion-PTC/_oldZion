@@ -6,9 +6,9 @@ import Layout from "../../components/layout";
 import { ContentArea } from "../../components/Sections/Content/ContentArea";
 import { Area } from "../../components/Sections/Content/Area";
 import { getStatic } from "../../lib/static/getStatic";
-import { Data, NftData, NftsData } from "../api/types";
+import { Data } from "../api/types";
 import underlord1 from "../../../database/batch1/pfp3_65_740512378.jpg";
-import { CollectionProps } from "./types";
+import { CollectionProps, NftData, NftsData } from "./types";
 import { useInfiniteScroll } from "../../lib/hooks/useInfiniteScroll";
 import { Loader } from "../../components/Loader";
 
@@ -25,19 +25,21 @@ const CollectionArea = styled.div`
   height: 100%;
 `;
 export default function Collection(props: CollectionProps) {
-  const {
-    isLoading,
-    loadMoreCallback,
-    hasDynamicPosts,
-    dynamicPosts,
-    isLastPage,
-  } = useInfiniteScroll(props.data);
-  let data = hasDynamicPosts ? dynamicPosts : props.data;
+  // const {
+  //   isLoading,
+  //   loadMoreCallback,
+  //   hasDynamicPosts,
+  //   dynamicPosts,
+  //   isLastPage,
+  // } = useInfiniteScroll(props.data);
+  let data = props.data;
+  console.log(data);
+
   return (
-    <Layout>
+    <Layout {...props.layout}>
       <CollectionArea>
         <h1>Collection</h1>
-        <ContentArea ref={props.contentArea}>
+        <ContentArea ref={props.contentArea} id="collection-area">
           <Area
             width={props.width}
             height={props.height}
@@ -48,13 +50,12 @@ export default function Collection(props: CollectionProps) {
               <Card key={i} type={"nft-pfp"} src={data.src}></Card>
             ))}
           </Area>
-          <Loader
+          {/* <Loader
             isLoading={isLoading}
             isLastPage={isLastPage}
             loadMoreCallback={loadMoreCallback}
-          />
+          /> */}
         </ContentArea>
-        <Link href="/">Home</Link>
       </CollectionArea>
     </Layout>
   );

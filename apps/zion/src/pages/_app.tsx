@@ -17,7 +17,6 @@ const Footer = styled.footer`
   bottom: 0;
 `;
 
-// TODO #29 aggiungere theme provider
 function Application({ Component, pageProps }) {
   const [theme, setTheme] = useState("light");
 

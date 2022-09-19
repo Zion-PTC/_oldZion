@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextApiHandler } from "../../../lib/api/apiHanlder";
-import { NftData, NftsData, OpenSeaMetadata } from "../types";
+import { OpenSeaMetadata } from "../types";
 import fs from "fs";
+import { NftsData } from "../../collection/types";
 
 const source =
   "/Users/WAW/Documents/Projects/ZION/apps/pfp_minter/database/content/metadata";

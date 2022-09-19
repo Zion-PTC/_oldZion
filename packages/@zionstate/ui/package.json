@@ -1,1 +1,37 @@
-{"name":"@zionstate/ui","version":"0.0.1","description":"","main":"built/index.js","keywords":[],"author":"Gagliano Giacomo","license":"ISC","type":"module","scripts":{"tsc":"tsc","test":"nodemon ./test/test.js"},"dependencies":{"@monaco-editor/react":"^4.4.5","@zeit/next-css":"^1.0.1","@zionstate_js/error":"*","@zionstate_js/regexp":"*","@zionstate_js/url":"*","@zionstate_node/crypto":"*","@zionstate_node/emitter":"*","@zionstate_node/fs":"*","@zionstate_node/fs-utilities":"*","@zionstate_node/process":"*","@zionstate_node/zion-util":"*","@zionstate/database":"*","@zionstate/test":"*","monaco-editor":"^0.34.0","monaco-themes":"^0.4.2","styled-components":"^5.3.5","telegraf":"^4.8.1","react":"^18.2.0"},"devDependencies":{"babel-plugin-styled-components":"^2.0.7"}}
+{
+  "name": "@zionstate/ui",
+  "version": "0.0.1",
+  "description": "",
+  "main": "built/index.js",
+  "keywords": [],
+  "author": "Gagliano Giacomo",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "nodemon ./test/test.js"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.4.5",
+    "@zeit/next-css": "^1.0.1",
+    "@zionstate_js/error": "*",
+    "@zionstate_js/regexp": "*",
+    "@zionstate_js/url": "*",
+    "@zionstate_node/crypto": "*",
+    "@zionstate_node/emitter": "*",
+    "@zionstate_node/fs": "*",
+    "@zionstate_node/fs-utilities": "*",
+    "@zionstate_node/process": "*",
+    "@zionstate_node/zion-util": "*",
+    "@zionstate/database": "*",
+    "@zionstate/test": "*",
+    "monaco-editor": "^0.34.0",
+    "monaco-themes": "^0.4.2",
+    "styled-components": "^5.3.5",
+    "telegraf": "^4.8.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7"
+  }
+}

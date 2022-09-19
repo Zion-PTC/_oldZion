@@ -1,4 +1,4 @@
-// TODO #14 add ThemeProvider to app and create basic dark ad light theme. @ariannatnl
-// TODO #16 correct content area grid rows
-// TODO #17 content area
-// TODO recursive todo
+// TODO fare ts di props di \_app
+// TODO fare stile a theme button
+// TODO dare altezza default a immagine card
+// TODO mettere infinite scroll

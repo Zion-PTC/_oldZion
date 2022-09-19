@@ -1,21 +1,9 @@
 import { StaticImageData } from "next/image";
 import React from "react";
 import Layout from "../components/layout";
+import { LandingProps, LandingStaticProps } from "./type";
 
-type AppConfig = {
-  slug: string;
-  name: string;
-  shortname: string;
-  description: string[];
-};
-
-type ConfigDatas = {
-  props: {
-    appConfig: AppConfig;
-  };
-};
-
-export function getStaticProps(): ConfigDatas {
+export function getStaticProps(): LandingStaticProps {
   const appConfig = {
     slug: "underlords",
     name: "The Underlords", // used for Token long name
@@ -38,7 +26,7 @@ export function getStaticProps(): ConfigDatas {
 }
 
 interface Landing {
-  (props: { appConfig: AppConfig }): JSX.Element;
+  (props: LandingProps): JSX.Element;
 }
 
 const Pis = (props: { children: string[] }): JSX.Element => {
@@ -52,12 +40,12 @@ const Pis = (props: { children: string[] }): JSX.Element => {
   );
 };
 
-const Landing: Landing = function Landing({ appConfig }) {
+const Landing: Landing = function Landing({ appConfig, contentArea, layout }) {
   let O = () => <div></div>;
   const { name, description } = appConfig;
   return (
-    <Layout landing>
-      <div className="landing-page">
+    <Layout landing {...layout}>
+      <div className="landing-page" ref={contentArea}>
         <h1 className="landing-page-title">{name}</h1>
         <Pis>{description}</Pis>
       </div>

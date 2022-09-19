@@ -51,7 +51,6 @@ export const useInfiniteScroll = <T>(posts: T[]): UseInfiniteScroll<T> => {
     (el: HTMLDivElement) => {
       if (isLoading) return;
       if (observerRef.current) observerRef.current.disconnect();
-      console.log("page");
 
       const option: IntersectionObserverInit = {
         root: null,

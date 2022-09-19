@@ -4,17 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const App = styled.div<{ height: number }>`
   height: ${(props) => props.height}px;
-`;
-
-const NavBar = styled.nav`
-  border: 1px red solid;
-  position: absolute;
-  top: 0;
-`;
-const Footer = styled.footer`
-  border: 1px red solid;
-  position: fixed;
-  bottom: 0;
+  width: 100vw;
 `;
 
 const rows = 14;
@@ -35,6 +25,10 @@ function Application({ Component, pageProps }) {
   const [blockSize, setBlockSize] = useState(0);
   const contentArea = useRef<HTMLDivElement>();
   //
+  const toggleTheme = () => {
+    theme == "light" ? setTheme("dark") : setTheme("light");
+  };
+  //
   pageProps.handleParentWidth = setParentWidth;
   pageProps.parentWidth = parentWidth;
   pageProps.handleParentHeight = setParentHeight;
@@ -47,6 +41,14 @@ function Application({ Component, pageProps }) {
   pageProps.blockSize = blockSize;
   pageProps.contentArea = contentArea;
   pageProps.columns = columns;
+  //
+  pageProps.navbar = navbar;
+  pageProps.footer = footer;
+  pageProps.handleClick = toggleTheme;
+  pageProps.layout = {};
+  pageProps.layout.navbar = navbar;
+  pageProps.layout.footer = footer;
+  pageProps.layout.handleClick = toggleTheme;
 
   useEffect(() => {
     setAppHeight(window.visualViewport.height);
@@ -62,26 +64,18 @@ function Application({ Component, pageProps }) {
     setParentHeight(contentArea.current.clientHeight);
   }, [componentAreaHeight]);
   useEffect(() => {
+    console.log(parentHeight);
     setHeight(parentHeight * 0.99);
-  }, [parentWidth]);
+  }, [parentHeight]);
   useEffect(() => {
-    console.log(height * 0.99);
     setBlockSize(height / rows);
     setWidth((height / rows) * columns);
   }, [height]);
-
-  const toggleTheme = () => {
-    theme == "light" ? setTheme("dark") : setTheme("light");
-  };
   return (
     <ThemeProvider theme={theme == "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
-      <App ref={app} height={appHeight}>
-        <NavBar ref={navbar}>
-          <button onClick={toggleTheme}>Switch Theme</button>
-        </NavBar>
+      <App ref={app} height={appHeight} id="arianna è scema">
         <Component {...pageProps} />
-        <Footer ref={footer}>ciao</Footer>
       </App>
     </ThemeProvider>
   );
