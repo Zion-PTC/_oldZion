@@ -15,8 +15,6 @@
     "@zionstate_js/url": "*",
     "@zionstate_node/crypto": "*",
     "@zionstate_node/emitter": "*",
-    "@zionstate_node/fs": "*",
-    "@zionstate_node/fs-utilities": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",

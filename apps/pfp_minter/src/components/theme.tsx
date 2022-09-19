@@ -1,10 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 import { Temporary, Theme } from "./types";
 
+const black = "#090909";
+const white = "#fafafa";
+
 export const darkTheme: Temporary = {
-  body: "#090909",
-  textColor: "#fafafa",
-  backgroundColor: "#090909",
+  body: black,
+  textColor: white,
+  backgroundColor: black,
   borderColor: "#fafafa",
 };
 

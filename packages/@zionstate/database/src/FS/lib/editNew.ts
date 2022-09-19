@@ -3,6 +3,8 @@ function edit<T, Prop extends keyof T>(obj: T, prop: [Prop, T[Prop]]): T {
   return obj;
 }
 
+edit({ name: "" }, ["name", ""]);
+
 function edit2<T, Prop extends keyof T>(
   obj: T,
   nested: false,
@@ -34,3 +36,8 @@ type flatUnion<T> = T extends string ? T : false;
 type flatKeysOfObj<T> = flatUnion<keysOfObject<T>>;
 type ttt = flatUnion<keysOfObject<{ name: "" }>>;
 type get = flatKeysOfObj<[]>;
+
+function changPar(obj: { name: string }, value: string) {
+  obj.name = value;
+  return obj;
+}
