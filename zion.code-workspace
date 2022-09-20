@@ -89,16 +89,16 @@
       "path": "packages/@zionstate/test"
     },
     {
-      "name": "tutorial-blog-next-js",
-      "path": "../_tests/tutorial-blog-next-js"
-    },
-    {
       "name": "pfp_minter",
       "path": "apps/pfp_minter"
     },
     {
       "name": "zion",
       "path": "apps/zion"
+    },
+    {
+      "name": "tutorial-blog-next-js",
+      "path": "../_tests/tutorial-blog-next-js"
     }
   ],
   "settings": {}

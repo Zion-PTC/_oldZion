@@ -1,20 +1,25 @@
+import { DataType } from "../../pages/api/types";
 import {
-  Database,
-  DataByPath,
-  DataType,
-  Options,
-  StaticProps,
-} from "../../pages/api/types";
+  database,
+  dataByPath,
+  genericPaths,
+  getStaticPropsOptions,
+} from "./types";
 
-export async function getStaticPropsWithPath<
-  Ds extends Database<D>,
+export const getStaticPropsWithPath = async function <
+  Ds extends database<D>,
   D extends DataType
->(props: StaticProps, args: Options) {
+>(
+  props: genericPaths,
+  args: getStaticPropsOptions
+): Promise<{
+  props: dataByPath<D>;
+}> {
   const response = await fetch(args.URL);
   const body: Ds = await response.json();
-  const newProps: DataByPath<D> = { data: undefined };
+  const newProps: dataByPath<D> = { data: undefined };
   newProps.data = body[props.params.id];
   return {
     props: newProps,
   };
-}
+};

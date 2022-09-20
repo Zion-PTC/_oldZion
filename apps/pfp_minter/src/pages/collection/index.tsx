@@ -1,13 +1,10 @@
-import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Card from "../../components/Card/Card";
 import Layout from "../../components/layout";
 import { ContentArea } from "../../components/Sections/Content/ContentArea";
 import { Area } from "../../components/Sections/Content/Area";
 import { getStatic } from "../../lib/static/getStatic";
-import { Data } from "../api/types";
-import underlord1 from "../../../database/batch1/pfp3_65_740512378.jpg";
 import { CollectionProps, NftData, NftsData } from "./types";
 import { useInfiniteScroll } from "../../lib/hooks/useInfiniteScroll";
 import { Loader } from "../../components/Loader";

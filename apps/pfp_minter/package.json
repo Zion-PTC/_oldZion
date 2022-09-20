@@ -17,17 +17,19 @@
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/database": "*",
     "@zionstate/auth": "*",
+    "@zionstate/database": "*",
     "@zionstate/test": "*",
     "@zionstate/ui": "*",
+    "dotenv": "^16.0.2",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.5",
-    "dotenv": "^16.0.2"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
+    "@types/react": "^18.0.20",
+    "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.0.7"
   }
 }
