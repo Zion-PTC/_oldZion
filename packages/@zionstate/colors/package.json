@@ -9,7 +9,11 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./test/test.js"
+    "test": "nodemon ./test/test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@zionstate/database": "*",
@@ -21,5 +25,10 @@
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

@@ -10,12 +10,15 @@
   "scripts": {
     "tsc": "tsc",
     "testReadJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readJSON.test.js",
-    "testReadPackageJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readPackageJSON.test.js"
+    "testReadPackageJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readPackageJSON.test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "chokidar": "^3.5.3",
-    "yaml": "2.1.1",
-    "csv-parse": "^5.2.0",
+    "@zionstate/database": "*",
+    "@zionstate/test": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",
     "@zionstate_js/url": "*",
@@ -23,7 +26,13 @@
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/database": "*",
-    "@zionstate/test": "*"
-  }
+    "chokidar": "^3.5.3",
+    "csv-parse": "^5.2.0",
+    "yaml": "2.1.1"
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

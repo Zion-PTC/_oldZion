@@ -9,9 +9,18 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./test/test.js"
+    "test": "nodemon ./test/test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

@@ -17,13 +17,22 @@
     "testGit.hasRemote": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Git.hasRemote.test.js",
     "testRepoHasRemote": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/repoHasRemote.test.js",
     "testGit": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Git.test.js",
-    "testRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Repo.test.js"
+    "testRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Repo.test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "dotenv": "^16.0.2",
-    "simple-git": "^3.10.0",
     "@zionstate/database": "*",
-    "@zionstate_js/error": "*"
-  }
+    "@zionstate_js/error": "*",
+    "dotenv": "^16.0.2",
+    "simple-git": "^3.10.0"
+  },
+  "source": "src/index.ts",
+  "files": [
+    "build"
+  ],
+  "types": "build/index.d.ts"
 }

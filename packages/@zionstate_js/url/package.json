@@ -2,15 +2,24 @@
   "name": "@zionstate_js/url",
   "version": "0.0.2",
   "description": "",
-  "main": "build/index.js",
+  "main": "undefined/index.js",
   "keywords": [],
   "scripts": {
-    "test": "nodemon test/test.js"
+    "test": "nodemon test/test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    null
+  ],
+  "types": "undefined/index.d.ts"
 }

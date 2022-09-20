@@ -1,13 +1,17 @@
 {
   "name": "@zionstate/blockchain",
+  "version": "0.0.1",
   "dependencies": {
-    "@zionstate_node/zion-util": "*",
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@zionstate_node/zion-util": "*",
     "ethers": "^5.6.9",
     "web3": "^1.7.4",
     "zksync": "^0.12.3"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
     "@zionstate/database": "*",
     "@zionstate/test": "*",
     "@zionstate_js/error": "*",
@@ -16,13 +20,16 @@
     "@zionstate_node/crypto": "*",
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
-    "@zionstate_node/zion-util": "*",
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
-    "@nomiclabs/hardhat-ethers": "^2.0.2",
-    "@nomiclabs/hardhat-web3": "^2.0.0",
-    "dotenv": "16.0.2",
-    "chai": "^4.3.4",
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.2",
     "hardhat": "^2.11.1",
     "ts-node": "^10.9.1"
-  }
+  },
+  "type": "module",
+  "source": "src/index.ts",
+  "main": "undefined/index.js",
+  "files": [
+    null
+  ],
+  "types": "undefined/index.d.ts"
 }

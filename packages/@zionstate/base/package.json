@@ -2,11 +2,15 @@
   "name": "@zionstate/base",
   "version": "0.0.1",
   "description": "Zion Standard Classes",
-  "main": "built/index.js",
+  "main": "undefined/index.js",
   "scripts": {
     "tsc": "tsc",
     "test": "NODE_DEBUG=log nodemon ./test/test.js",
-    "testMix": "NODE_DEBUG=log nodemon ./test/Mix.test.js"
+    "testMix": "NODE_DEBUG=log nodemon ./test/Mix.test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "standard"
@@ -19,5 +23,10 @@
   "devDependencies": {
     "@types/uuid": "^8.3.4"
   },
-  "type": "module"
+  "type": "module",
+  "source": "src/index.ts",
+  "files": [
+    null
+  ],
+  "types": "undefined/index.d.ts"
 }

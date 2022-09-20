@@ -9,12 +9,21 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "inspectCrypto": "node ./built/src/inspect/crypto.js"
+    "inspectCrypto": "node ./built/src/inspect/crypto.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "bin": {
     "hello": "./hello.js"
   },
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "build"
+  ],
+  "types": "build/index.d.ts"
 }

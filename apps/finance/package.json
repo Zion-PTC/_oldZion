@@ -9,6 +9,12 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./built/Budget.js"
-  }
+    "test": "nodemon ./built/Budget.js",
+    "build": "next dev",
+    "dev": "next dev",
+    "prod": "next start",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf built"
+  },
+  "source": "src/index.ts"
 }

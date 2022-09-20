@@ -34,9 +34,17 @@
     "testRx-observable-create": "node ./test/examples/rx-observable-create.test.js",
     "testSpawn": "node ./test/examples/spawn.test.js",
     "testTerminal-link": "node ./test/examples/terminal-link.test.js",
-    "testWhen": "node ./test/examples/when.test.js"
+    "testWhen": "node ./test/examples/when.test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@zionstate/base": "*",
+    "@zionstate/colors": "*",
+    "@zionstate/database": "*",
+    "@zionstate/test": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",
     "@zionstate_js/url": "*",
@@ -44,10 +52,6 @@
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/base": "*",
-    "@zionstate/colors": "*",
-    "@zionstate/database": "*",
-    "@zionstate/test": "*",
     "caporal": "^1.4.0",
     "chalk-pipe": "^5.1.1",
     "cmdify": "^0.0.4",
@@ -55,11 +59,16 @@
     "import-jsx": "^4.0.1",
     "ink": "^3.2.0",
     "inquirer": "^9.0.0",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "terminal-link": "^3.0.0",
     "yargs-interactive": "^3.0.1"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.1"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

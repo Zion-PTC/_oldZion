@@ -1,5 +1,5 @@
 {
-  "name": "packagename",
+  "name": "@zionstate/dom",
   "version": "0.0.1",
   "description": "",
   "main": "built/index.js",
@@ -9,10 +9,19 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./test/test.js"
+    "test": "nodemon ./test/test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@zionstate/database": "*",
     "html-react-parser": "^3.0.1"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

@@ -16,17 +16,23 @@
     "testDrawer": "NODE_DEBUG=log nodemon test/Drawer.test.js",
     "testDna": "NODE_DEBUG=log nodemon test/Dna.test.js",
     "testNft_Metadata": "NODE_DEBUG=log nodemon test/Nft_Metadata.test.js",
-    "testUserInterface": "NODE_DEBUG=log node test/UserInterface.test.js"
+    "testUserInterface": "NODE_DEBUG=log node test/UserInterface.test.js",
+    "build": "next dev",
+    "dev": "next dev",
+    "prod": "next start",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf built"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^2.9.1",
-    "it-all": "^1.0.6",
+    "@zionstate/base": "*",
     "@zionstate/database": "*",
     "@zionstate/terminal": "*",
     "@zionstate/test": "*",
-    "@zionstate/base": "*"
+    "canvas": "^2.9.1",
+    "it-all": "^1.0.6"
   },
-  "type": "module"
+  "type": "module",
+  "source": "src/index.ts"
 }

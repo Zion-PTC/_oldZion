@@ -9,5 +9,10 @@
   "type": "module",
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

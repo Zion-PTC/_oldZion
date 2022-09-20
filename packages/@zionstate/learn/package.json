@@ -9,17 +9,26 @@
   "type": "module",
   "scripts": {
     "tsc": "tsc",
-    "test": "nodemon ./test/test.js"
+    "test": "nodemon ./test/test.js",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@zionstate/database": "*",
+    "@zionstate/test": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",
     "@zionstate_js/url": "*",
     "@zionstate_node/crypto": "*",
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
-    "@zionstate_node/zion-util": "*",
-    "@zionstate/database": "*",
-    "@zionstate/test": "*"
-  }
+    "@zionstate_node/zion-util": "*"
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

@@ -8,6 +8,11 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@zionstate/system": "*"
-  }
+    "@zionstate/database": "*"
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

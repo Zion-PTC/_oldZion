@@ -10,6 +10,12 @@
   "scripts": {
     "tsc": "tsc",
     "start": "node ./built/index.js",
-    "test": "nodemon ./test/test.js"
-  }
+    "test": "nodemon ./test/test.js",
+    "build": "next dev",
+    "dev": "next dev",
+    "prod": "next start",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf built"
+  },
+  "source": "src/index.ts"
 }

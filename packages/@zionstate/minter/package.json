@@ -2,12 +2,17 @@
   "name": "@zionstate/minter",
   "version": "0.0.1",
   "description": "",
-  "main": "built/index.js",
+  "main": "undefined/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    null
+  ],
+  "types": "undefined/index.d.ts"
 }

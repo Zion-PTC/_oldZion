@@ -2,15 +2,24 @@
   "name": "@zionstate/catering",
   "version": "0.0.1",
   "description": "",
-  "main": "built/index.js",
+  "main": "undefined/index.js",
   "keywords": [],
   "author": "Gagliano Giacomo",
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "clean": "rm -rf dist",
+    "build": "run-p build:*",
+    "build:types": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@zionstate/system": "*"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    null
+  ],
+  "types": "undefined/index.d.ts"
 }

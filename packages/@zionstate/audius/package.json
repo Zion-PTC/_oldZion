@@ -10,5 +10,10 @@
   "dependencies": {
     "@audius/sdk": "^0.0.10",
     "web3": "^1.7.4"
-  }
+  },
+  "source": "src/index.ts",
+  "files": [
+    "built"
+  ],
+  "types": "built/index.d.ts"
 }

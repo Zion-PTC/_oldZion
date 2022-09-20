@@ -7,12 +7,20 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "tsc": "cd ts ; tsc"
+    "tsc": "cd ts ; tsc",
+    "build": "next dev",
+    "prod": "next start",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@manypkg/cli": "^0.19.1",
+    "@zionstate/database": "*",
+    "@zionstate/git": "*",
+    "@zionstate/test": "*",
     "@zionstate_js/error": "*",
     "@zionstate_js/regexp": "*",
     "@zionstate_js/url": "*",
@@ -20,15 +28,13 @@
     "@zionstate_node/emitter": "*",
     "@zionstate_node/process": "*",
     "@zionstate_node/zion-util": "*",
-    "@zionstate/database": "*",
-    "@zionstate/git": "*",
-    "@zionstate/test": "*",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "next": "^12.2.5",
+    "next": "^12.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5"
-  }
+  },
+  "source": "src/index.ts"
 }
