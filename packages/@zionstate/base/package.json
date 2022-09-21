@@ -8,8 +8,6 @@
     "test": "NODE_DEBUG=log nodemon ./test/test.js",
     "testMix": "NODE_DEBUG=log nodemon ./test/Mix.test.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [

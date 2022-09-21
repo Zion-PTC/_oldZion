@@ -65,10 +65,6 @@
       "path": "packages/@zionstate/auth"
     },
     {
-      "name": "bot",
-      "path": "packages/@zionstate/bot"
-    },
-    {
       "name": "social",
       "path": "apps/social"
     },

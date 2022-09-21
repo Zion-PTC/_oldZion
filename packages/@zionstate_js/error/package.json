@@ -10,8 +10,6 @@
   "scripts": {
     "testGetFuncArgs": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_js/error/test/Error.getFunctionArgs.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

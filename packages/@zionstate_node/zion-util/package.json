@@ -8,8 +8,6 @@
     "testSplitAt": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate_node/zion-util/test/zionUtil.splitAt.test.js",
     "tsc": "tsc",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "repository": {

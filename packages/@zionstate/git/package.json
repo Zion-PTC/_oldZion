@@ -19,8 +19,6 @@
     "testGit": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Git.test.js",
     "testRepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/git/test/Repo.test.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

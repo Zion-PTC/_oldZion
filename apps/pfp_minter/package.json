@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "next dev",
     "clean": "rm -rf .next .swc",
-    "build": "next build",
     "prod": "next start",
     "typecheck": "tsc --noEmit"
   },

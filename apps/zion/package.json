@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "next dev",
     "tsc": "cd ts ; tsc",
-    "build": "next dev",
     "prod": "next start",
+    "build": "next build",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf build"
   },

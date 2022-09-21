@@ -6,7 +6,6 @@
   "module": "node",
   "scripts": {
     "dev": "next dev",
-    "build": "next dev",
     "prod": "next start",
     "typecheck": "tsc --noEmit"
   },

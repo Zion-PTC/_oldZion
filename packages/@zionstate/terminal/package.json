@@ -36,8 +36,6 @@
     "testTerminal-link": "node ./test/examples/terminal-link.test.js",
     "testWhen": "node ./test/examples/when.test.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

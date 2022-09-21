@@ -38,7 +38,7 @@
     "testMonorepo": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/test/Monorepo.test.js",
     "postinstall": "manypkg check",
     "clean": "bolt ws clean",
-    "build": "preconstruct build && bolt ws build",
+    "build": "preconstruct build && bolt w @zionstate/ui run build",
     "dev": "bolt w client dev",
     "prod": "bolt w client prod",
     "typecheck": "bolt ws typecheck"

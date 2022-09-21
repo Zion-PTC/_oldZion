@@ -12,8 +12,6 @@
     "testReadJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readJSON.test.js",
     "testReadPackageJSON": "NODE_DEBUG=log nodemon /Users/WAW/Documents/Projects/ZION/packages/@zionstate/system/test/readPackageJSON.test.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

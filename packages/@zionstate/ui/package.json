@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "",
   "source": "src/index.ts",
-  "main": "dist/@zionstate/ui.cjs.js",
-  "module": "dist/@zionstate/ui.esm.js",
+  "main": "dist/ui.cjs.js",
+  "module": "dist/ui.esm.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/@zionstate/ui.esm.js",
-      "require": "./dist/@zionstate/ui.cjs.js"
+      "import": "./dist/ui.esm.js",
+      "require": "./dist/ui.cjs.js"
     }
   },
   "files": [

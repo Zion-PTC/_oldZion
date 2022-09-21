@@ -15,8 +15,6 @@
     "tsc": "tsc",
     "test": "nodemon ./test/test.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

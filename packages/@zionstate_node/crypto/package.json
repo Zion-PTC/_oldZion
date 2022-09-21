@@ -11,8 +11,6 @@
     "tsc": "tsc",
     "inspectCrypto": "node ./built/src/inspect/crypto.js",
     "clean": "rm -rf dist",
-    "build": "run-p build:*",
-    "build:types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "bin": {
